@@ -1,0 +1,23 @@
+C:\Users\blowu\source\repos\First Game\First Game\bin\Debug\First Game.exe.config
+C:\Users\blowu\source\repos\First Game\First Game\bin\Debug\First Game.exe
+C:\Users\blowu\source\repos\First Game\First Game\bin\Debug\First Game.pdb
+C:\Users\blowu\source\repos\First Game\First Game\obj\Debug\First Game.csprojAssemblyReference.cache
+C:\Users\blowu\source\repos\First Game\First Game\obj\Debug\First_Game.Properties.Resources.resources
+C:\Users\blowu\source\repos\First Game\First Game\obj\Debug\First Game.csproj.GenerateResource.cache
+C:\Users\blowu\source\repos\First Game\First Game\obj\Debug\First Game.csproj.CoreCompileInputs.cache
+C:\Users\blowu\source\repos\First Game\First Game\obj\Debug\First Game.exe
+C:\Users\blowu\source\repos\First Game\First Game\obj\Debug\First Game.pdb
+C:\Users\blowu\source\repos\First Game\First Game\obj\Debug\First_Game.Form1.resources
+\\GARY-LENOVO-PC\Source Code\First Game\First Game\bin\Debug\First Game.exe.config
+\\GARY-LENOVO-PC\Source Code\First Game\First Game\bin\Debug\First Game.exe
+\\GARY-LENOVO-PC\Source Code\First Game\First Game\bin\Debug\First Game.pdb
+\\GARY-LENOVO-PC\Source Code\First Game\First Game\obj\Debug\First Game.csprojAssemblyReference.cache
+\\GARY-LENOVO-PC\Source Code\First Game\First Game\obj\Debug\First_Game.Form1.resources
+\\GARY-LENOVO-PC\Source Code\First Game\First Game\obj\Debug\First_Game.Properties.Resources.resources
+\\GARY-LENOVO-PC\Source Code\First Game\First Game\obj\Debug\First Game.csproj.GenerateResource.cache
+\\GARY-LENOVO-PC\Source Code\First Game\First Game\obj\Debug\First Game.csproj.CoreCompileInputs.cache
+\\GARY-LENOVO-PC\Source Code\First Game\First Game\obj\Debug\First Game.exe
+\\GARY-LENOVO-PC\Source Code\First Game\First Game\obj\Debug\First Game.pdb
+\\GARY-LENOVO-PC\Source Code\First Game\First Game\bin\Debug\Newtonsoft.Json.dll
+\\GARY-LENOVO-PC\Source Code\First Game\First Game\bin\Debug\Newtonsoft.Json.xml
+\\GARY-LENOVO-PC\Source Code\First Game\First Game\obj\Debug\First Game.csproj.CopyComplete
