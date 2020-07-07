@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class Defender : Player  
+  class Defender : Player
   {
     public Player TargetPlayer;
     public int Intelligence = 10;
