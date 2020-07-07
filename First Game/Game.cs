@@ -64,15 +64,25 @@ namespace FootballGame
       offenderMiddleLineman.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       players.Add(offenderMiddleLineman);
 
+      offenderMiddleLineman = clonable.CloneAndUpcast<OffenderMiddleLineman, Player>();
+      offenderMiddleLineman.PicBox = AddPlayerPictureBox(ParentForm.Player1);
+      offenderMiddleLineman.Top = playerWithBall.Top - 70;
+      players.Add(offenderMiddleLineman);
+
+      offenderMiddleLineman = clonable.CloneAndUpcast<OffenderMiddleLineman, Player>();
+      offenderMiddleLineman.PicBox = AddPlayerPictureBox(ParentForm.Player1);
+      offenderMiddleLineman.Top = playerWithBall.Top + 70;
+      players.Add(offenderMiddleLineman);
+
+      // Defensive Players
       clonable.Team = 2;
       clonable.Top = playerWithBall.Top;
       clonable.Left = 200;
       clonable.PicBox = ParentForm.Player2;
       clonable.ChangeX = -3;
       clonable.ChangeY = -3;
-      clonable.Cap = 90;
+      clonable.Cap = 100;
 
-      // Middle Lineman 
       DefenderMiddleLineman defenderMiddleLineman = clonable.CloneAndUpcast<DefenderMiddleLineman, Player>();
       defenderMiddleLineman.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderMiddleLineman.Intelligence = 10;
@@ -81,10 +91,10 @@ namespace FootballGame
 
       DefenderOutsideLineman defenderOutsideLineman = clonable.CloneAndUpcast<DefenderOutsideLineman, Player>();
       defenderOutsideLineman.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      defenderOutsideLineman.PicBox.Image.RotateFlip(RotateFlipType.Rotate180FlipY);
-      defenderOutsideLineman.PicBox.BackColor = Color.Yellow; 
-      defenderOutsideLineman.Offset = -32;
-      defenderOutsideLineman.Top = clonable.Top + defenderOutsideLineman.Offset - 30;
+      //defenderOutsideLineman.PicBox.Image.RotateFlip(RotateFlipType.Rotate180FlipY);
+      defenderOutsideLineman.PicBox.BackColor = Color.LightGreen; 
+      defenderOutsideLineman.Offset = -80;
+      defenderOutsideLineman.Top = clonable.Top + defenderOutsideLineman.Offset - 20;
       //defenderOutsideLineman.Cap = 100;
       defenderOutsideLineman.Intelligence = 4;
       defenderOutsideLineman.TargetPlayer = playerWithBall;
@@ -93,10 +103,10 @@ namespace FootballGame
 
       defenderOutsideLineman = clonable.CloneAndUpcast<DefenderOutsideLineman, Player>();
       defenderOutsideLineman.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      defenderOutsideLineman.PicBox.Image.RotateFlip(RotateFlipType.Rotate180FlipY);
-      defenderOutsideLineman.PicBox.BackColor = Color.Yellow;
-      defenderOutsideLineman.Offset = 32;
-      defenderOutsideLineman.Top = clonable.Top + defenderOutsideLineman.Offset + 30;
+      //defenderOutsideLineman.PicBox.Image.RotateFlip(RotateFlipType.Rotate180FlipY);
+      defenderOutsideLineman.PicBox.BackColor = Color.LightGreen;
+      defenderOutsideLineman.Offset = 80;
+      defenderOutsideLineman.Top = clonable.Top + defenderOutsideLineman.Offset + 20;
       //defenderOutsideLineman.Cap = 100;
       defenderOutsideLineman.Intelligence = 4;
       defenderOutsideLineman.TargetPlayer = playerWithBall;
@@ -109,11 +119,11 @@ namespace FootballGame
     public PictureBox AddPlayerPictureBox(PictureBox pb)
     {
       PictureBox p = new PictureBox();
-      ParentForm.Controls.Add(p);
       p.Height = pb.Height;
       p.Width = pb.Width;
       p.SizeMode = pb.SizeMode;
       p.Image = pb.Image;
+      ParentForm.Controls.Add(p);
       return p;
     }
  

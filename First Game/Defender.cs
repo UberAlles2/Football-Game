@@ -64,6 +64,12 @@ namespace FootballGame
 
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {
+      if (collidedWithPlayer.HasBall)
+      {
+        MessageBox.Show("Tackled");
+        return;
+      }
+
       if (this.MovingAroundBlocker > 0)
       {
         return;
@@ -73,28 +79,48 @@ namespace FootballGame
 
     public override void MoveAroundPlayer(CollisionOrientation collisionOrientation)
     {
-      int r = new Random().Next(-2, 3);
+      int r = new Random().Next(-1, 2);
 
       switch (collisionOrientation)
       {
         case CollisionOrientation.Above:
           this.ChangeY = 5;
-          this.ChangeX = 40 * r;
+          if (this.TargetPlayer.Left < this.Left - 60 && this.ChangeX < -60)
+            this.ChangeX -= 10;
+          else if (this.TargetPlayer.Left > this.Left + 50 && this.ChangeX > 60)
+            this.ChangeX += 10;
+          else
+            this.ChangeX = 40 * r;
           break;
         case CollisionOrientation.Below:
           this.ChangeY = -5;
-          this.ChangeX = 40 * r;
+          if (this.TargetPlayer.Left < this.Left - 60 && this.ChangeX < -60)
+            this.ChangeX -= 10;
+          else if (this.TargetPlayer.Left > this.Left + 50 && this.ChangeX > 60)
+            this.ChangeX += 10;
+          else
+            this.ChangeX = 40 * r;
           break;
         case CollisionOrientation.ToLeft:
           this.ChangeX = -5;
-          this.ChangeY = 40 * r;
+          if (this.TargetPlayer.Top < this.Top -60 && this.ChangeY < -60)
+            this.ChangeY -= 10;
+          else if (this.TargetPlayer.Top > this.Top + 50 && this.ChangeY > 60)
+            this.ChangeY += 10;
+          else
+            this.ChangeY = 40 * r;
           break;
         case CollisionOrientation.ToRight:
           this.ChangeX = 5;
-          this.ChangeY = 40 * r;
+          if (this.TargetPlayer.Top < this.Top - 60 && this.ChangeY < -60)
+            this.ChangeY -= 10;
+          else if (this.TargetPlayer.Top > this.Top + 50 && this.ChangeY > 60)
+            this.ChangeY += 10;
+          else
+            this.ChangeY = 40 * r;
           break;
       }
-      this.MovingAroundBlocker = 20;
+      this.MovingAroundBlocker = 18;
     }
   }
 }

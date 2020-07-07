@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class OffenderQuarterback : Player
+  class OffenderQuarterback : Offender
   {
     public override void Move()
     {
@@ -17,11 +17,6 @@ namespace FootballGame
 
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {
-      if (this.HasBall && collidedWithPlayer is Defender)
-      {
-        MessageBox.Show("collision");
-        return;
-      }
       base.CollisionMove(collidedWithPlayer, collisionOrientation);
     }
   }

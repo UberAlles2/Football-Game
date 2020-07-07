@@ -11,3 +11,15 @@
 \\GARY-LENOVO-PC\Source Code\First Game\First Game\obj\Debug\FootballGame.Properties.Resources.resources
 \\GARY-LENOVO-PC\Source Code\First Game\First Game\obj\Debug\FootballGame.exe
 \\GARY-LENOVO-PC\Source Code\First Game\First Game\obj\Debug\FootballGame.pdb
+C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\bin\Debug\FootballGame.exe.config
+C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\bin\Debug\FootballGame.exe
+C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\bin\Debug\FootballGame.pdb
+C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\bin\Debug\Newtonsoft.Json.dll
+C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\bin\Debug\Newtonsoft.Json.xml
+C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\obj\Debug\FootballGame.csprojAssemblyReference.cache
+C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\obj\Debug\FootballGame.Form1.resources
+C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\obj\Debug\FootballGame.Properties.Resources.resources
+C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\obj\Debug\FootballGame.csproj.GenerateResource.cache
+C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\obj\Debug\FootballGame.csproj.CopyComplete
+C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\obj\Debug\FootballGame.exe
+C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\obj\Debug\FootballGame.pdb

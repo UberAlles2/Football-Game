@@ -95,23 +95,29 @@ namespace FootballGame
 
     public virtual void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {
+      if (this.HasBall && collidedWithPlayer is Defender)
+      {
+//        MessageBox.Show("Tackled");
+        return;
+      }
+
       switch (collisionOrientation)
       {
         case CollisionOrientation.Above:
-          this.Top -= 2;
-          this.ChangeY = -8;
+          this.Top -= 3;
+          this.ChangeY = -12;
           break;
         case CollisionOrientation.Below:
-          this.Top += 2;
-          this.ChangeY = 8;
+          this.Top += 3;
+          this.ChangeY = 12;
           break;
         case CollisionOrientation.ToLeft:
-          this.Left -= 2;
-          this.ChangeX = -8;
+          this.Left -= 3;
+          this.ChangeX = 12;
           break;
         case CollisionOrientation.ToRight:
-          this.Left += 2;
-          this.ChangeX = 8;
+          this.Left += 3;
+          this.ChangeX = -12;
           break;
       }
     }
