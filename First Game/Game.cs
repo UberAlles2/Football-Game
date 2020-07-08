@@ -255,8 +255,8 @@ namespace FootballGame
               }
               else
               {
-                players[j].CollisionMove(players[j], CollisionOrientation.Above);
-                players[i].CollisionMove(players[i], CollisionOrientation.Below);
+                players[j].CollisionMove(players[i], CollisionOrientation.Above);
+                players[i].CollisionMove(players[j], CollisionOrientation.Below);
               }
             }
             else // Hitting to the left or right of another player
