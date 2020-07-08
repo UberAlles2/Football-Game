@@ -10,6 +10,8 @@ namespace FootballGame
 {
   public class BallAsPlayer : Player
   {
+    private bool endingMove;
+
     public override void Initialize()
     {
       SpeedCap = 260;
@@ -27,12 +29,23 @@ namespace FootballGame
       if (!Game.IsThrowing)
         return;
 
-      //if (IsBall && Top < 150 && Top > -100)
-      //  InitialLeft = 0;
-      if (Game.DetectCollision(this, TargetPlayer))
-        Game.IsThrowing = false;
+      // Is the ball close to the ending target
+      if (!endingMove && Game.DetectCloseCollision(this, TargetPlayer, 60))
+      {
+        endingMove = true;
+        GetChangeYChangeX();
+      }
 
-      if (TotalMoves % 12 == 0 && Top > 0)
+      // Keep the ball going past the target for a bit. 
+      if (endingMove && !Game.DetectCloseCollision(this, TargetPlayer, 60))
+      {
+        Game.IsThrowing = false;
+        ParentGame.EndPlay("Incomplete");
+        return;
+      }
+
+      // Keep the ball on target by adjusting its path.
+      if (!endingMove && TotalMoves % 12 == 0 && Top > -999)
       {
         GetChangeYChangeX();
       }
@@ -50,10 +63,11 @@ namespace FootballGame
       TotalMoves = 0;
       Top = Y;  // start position
       Left = X; // start position
-      TargetPlayer.Top = targetY;  // end position
+      TargetPlayer.Top = targetY - 8;  // end position
       TargetPlayer.Left = targetX; // end position
       GetChangeYChangeX();
       Game.IsThrowing = true;
+      endingMove = false;
     }
 
     private void GetChangeYChangeX()

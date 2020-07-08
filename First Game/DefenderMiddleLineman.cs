@@ -37,7 +37,7 @@ namespace FootballGame
 
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {
-      if (collidedWithPlayer.HasBall)
+      if (collidedWithPlayer.HasBall && !Game.IsThrowing)
       {
         ParentGame.EndPlay("Tackled");
       }

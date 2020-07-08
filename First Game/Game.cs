@@ -236,7 +236,8 @@ namespace FootballGame
       if (e.Button == MouseButtons.Left)
       {
         // Pass the ball. Ball is really another player.
-        ballAsPlayer.ThrowBall(PlayerWithBall.Top + 16, PlayerWithBall.Left + 16, e.Location.Y, e.Location.X);   
+        if(!Game.IsThrowing)
+          ballAsPlayer.ThrowBall(PlayerWithBall.Top + 16, PlayerWithBall.Left + 16, e.Location.Y, e.Location.X);   
       }
     }
 
@@ -292,11 +293,11 @@ namespace FootballGame
 
     public static bool DetectCollision(Player player1, Player player2)
     {
-      return Math.Abs(player1.CenterX - player2.CenterX) < player1.PlayerWidth && Math.Abs(player1.CenterY - player2.CenterY) < player1.PlayerHeight;
+      return Math.Abs(player1.Left - player2.Left) < player1.PlayerWidth && Math.Abs(player1.Top - player2.Top) < player1.PlayerHeight;
     }
     public static bool DetectCloseCollision(Player player1, Player player2, int howClose)
     {
-      return Math.Abs(player1.CenterX - player2.CenterX) < howClose && Math.Abs(player1.CenterY - player2.CenterY) < howClose;
+      return Math.Abs(player1.Left - player2.Left) < howClose && Math.Abs(player1.Top - player2.Top) < howClose;
     }
   }
 }
