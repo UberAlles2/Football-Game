@@ -13,6 +13,11 @@ namespace FootballGame
     public Player TargetPlayer;
     public int Intelligence = 10;
     public DefensiveMode DefensiveMode = DefensiveMode.Normal;
+    public override void Initialize()
+    {
+      this.Team = 2;
+      base.Initialize();
+    }
 
     public override void Move()
     {
@@ -65,11 +70,11 @@ namespace FootballGame
 
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {
-      if (collidedWithPlayer.HasBall)
-      {
-        MessageBox.Show("Tackled");
-        return;
-      }
+      //if (collidedWithPlayer.HasBall)
+      //{
+      //  ParentGame.EndPlay("Tackled");
+      //  return;
+      //}
 
       if (this.MovingAroundBlocker > 0)
       {

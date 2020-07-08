@@ -10,6 +10,12 @@ namespace FootballGame
 {
   class Offender : Player
   {
+    public override void Initialize()
+    {
+      this.Team = 1;
+      base.Initialize();
+    }
+
     public override void Move()
     {
       base.Move();

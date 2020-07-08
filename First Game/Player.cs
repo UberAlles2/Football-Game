@@ -11,6 +11,7 @@ namespace FootballGame
   public class Player 
   {
     public static Form1 ParentForm;
+    public static Game ParentGame;
     public static List<Player> players = new List<Player>();
 
     private int changeX;
@@ -23,11 +24,13 @@ namespace FootballGame
     private int centerY;
     private bool hasBall = false;
     private int movingAroundBlocker = 0;
+    private int? initialTop = null;
+    private int? initialLeft = null;
     private int top;
     private int left;
     private PictureBox pictureBox;
 
-    public int Cap { get => cap; set => cap = value; }
+    public int SpeedCap { get => cap; set => cap = value; }
     public int Team { get => team; set => team = value; }
     public int PlayerWidth { get => playerWidth; set => playerWidth = value; }
     public int PlayerHeight { get => playerHeight; set => playerHeight = value; }
@@ -37,6 +40,8 @@ namespace FootballGame
     public int CenterY { get => centerY; set => centerY = value; }
     public bool HasBall { get => hasBall; set => hasBall = value; }
     public int MovingAroundBlocker { get => movingAroundBlocker; set => movingAroundBlocker = value; }
+    public int? InitialTop { get => initialTop; set => initialTop = value; }
+    public int? InitialLeft { get => initialLeft; set => initialLeft = value; }
 
     public int Top
     {
@@ -68,20 +73,24 @@ namespace FootballGame
       }
     }
 
-    public Player()
+    public virtual void Initialize()
     {
+      if (this.InitialTop != null) this.Top = this.InitialTop ?? 0;
+      if (this.InitialLeft != null) this.Left = this.InitialLeft ?? 0;
 
+      this.ChangeX = 0;
+      this.ChangeY = 0;
     }
 
     public virtual void Move()
     {
-      if (Math.Abs(ChangeY) > Cap)
+      if (Math.Abs(ChangeY) > SpeedCap)
       {
-        ChangeY = Cap * Math.Sign(ChangeY);
+        ChangeY = SpeedCap * Math.Sign(ChangeY);
       }
-      if (Math.Abs(ChangeX) > Cap)
+      if (Math.Abs(ChangeX) > SpeedCap)
       {
-        ChangeX = Cap * Math.Sign(ChangeX);
+        ChangeX = SpeedCap * Math.Sign(ChangeX);
       }
       CheckFormBoundries();
       MovePic(this);
@@ -95,12 +104,6 @@ namespace FootballGame
 
     public virtual void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {
-      if (this.HasBall && collidedWithPlayer is Defender)
-      {
-        MessageBox.Show("Tackled");
-        return;
-      }
-
       switch (collisionOrientation)
       {
         case CollisionOrientation.Above:

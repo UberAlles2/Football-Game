@@ -10,6 +10,14 @@ namespace FootballGame
 {
   class DefenderMiddleLinebacker : Defender
   {
+    public override void Initialize()
+    {
+      this.SpeedCap = 130;
+      this.Intelligence = 12;
+      this.TargetPlayer = Game.PlayerWithBall;
+      base.Initialize();
+    }
+
     public override void Move()
     {
       if (MovingAroundBlocker > 0)
@@ -55,10 +63,11 @@ namespace FootballGame
 
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {
-      if(collidedWithPlayer is Offender)
+      if (collidedWithPlayer.HasBall)
+        ParentGame.EndPlay("Tackled");
+
+      if (collidedWithPlayer is Offender)
       {
-        if (collidedWithPlayer.HasBall)
-          MessageBox.Show("Tackled");
         base.MoveAroundPlayer(collisionOrientation);
         return;
       }

@@ -25,19 +25,26 @@ namespace FootballGame
     Soft
   }
 
-  class Game
+  public class Game
   {
     public static Form1 ParentForm;
+    public static Player PlayerWithBall = new Player();
+    public int FieldCenterY;
     public List<Player> players = Player.players;
-    Player playerWithBall = new Player();
-    bool running = true;
-    System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+
+    private bool running = true;
+    private bool reintialize = false;
+    private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
     public Game(Form1 form1)
     {
       ParentForm = form1;
       Player.ParentForm = form1;
+      Player.ParentGame = this;
+      FieldCenterY = ParentForm.Height / 2 + 16;
+
       AddPlayers();
+
       timer.Tick += new System.EventHandler(KeyDown);
       timer.Interval = 50;
     }
@@ -45,91 +52,80 @@ namespace FootballGame
     public void AddPlayers()
     {
       OffenderQuarterback offenderQuarterback = new OffenderQuarterback();
-      offenderQuarterback.Top = ParentForm.Height/2 + 16;
-      offenderQuarterback.Left = 10;
-      offenderQuarterback.Team = 1;
+      offenderQuarterback.InitialTop = FieldCenterY;
+      offenderQuarterback.InitialLeft = 10;
+      offenderQuarterback.Initialize();
       offenderQuarterback.PicBox = ParentForm.Player1;
-      offenderQuarterback.ChangeX = 0;
-      offenderQuarterback.Cap = 80;
-      offenderQuarterback.ChangeY = 0;
-      offenderQuarterback.HasBall = true;
       players.Add(offenderQuarterback);
-      playerWithBall = offenderQuarterback;
+      PlayerWithBall = offenderQuarterback;
 
-      // Clonable base
-      Player clonable = new Player();
-      clonable.Team = 1;
-      clonable.Top = playerWithBall.Top;
-      clonable.Left = 140;
-      clonable.PicBox = ParentForm.Player1;
-      clonable.ChangeX = -3;
-      clonable.ChangeY = -3;
-      clonable.Cap = 90;
-
-      OffenderMiddleLineman offenderMiddleLineman = clonable.CloneAndUpcast<OffenderMiddleLineman, Player>();
+      OffenderMiddleLineman offenderMiddleLineman = new OffenderMiddleLineman();
+      offenderMiddleLineman.InitialTop = FieldCenterY;
+      offenderMiddleLineman.InitialLeft = 150;
+      offenderMiddleLineman.Initialize(); 
       offenderMiddleLineman.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       players.Add(offenderMiddleLineman);
 
-      offenderMiddleLineman = clonable.CloneAndUpcast<OffenderMiddleLineman, Player>();
+      offenderMiddleLineman = offenderMiddleLineman.CloneAndUpcast<OffenderMiddleLineman, OffenderMiddleLineman>();
+      offenderMiddleLineman.InitialTop = FieldCenterY - 70;
+      offenderMiddleLineman.Initialize();
       offenderMiddleLineman.PicBox = AddPlayerPictureBox(ParentForm.Player1);
-      offenderMiddleLineman.Top = playerWithBall.Top - 70;
       players.Add(offenderMiddleLineman);
 
-      offenderMiddleLineman = clonable.CloneAndUpcast<OffenderMiddleLineman, Player>();
+      offenderMiddleLineman = offenderMiddleLineman.CloneAndUpcast<OffenderMiddleLineman, OffenderMiddleLineman>();
+      offenderMiddleLineman.InitialTop = FieldCenterY + 70;
+      offenderMiddleLineman.Initialize();
       offenderMiddleLineman.PicBox = AddPlayerPictureBox(ParentForm.Player1);
-      offenderMiddleLineman.Top = playerWithBall.Top + 70;
       players.Add(offenderMiddleLineman);
 
       // Defensive Players
-      clonable.Team = 2;
-      clonable.Top = playerWithBall.Top;
-      clonable.Left = 200;
-      clonable.PicBox = ParentForm.Player2;
-      clonable.ChangeX = -3;
-      clonable.ChangeY = -3;
-      clonable.Cap = 100;
+      // Clonable base
+      //Player clonable = new Player();
+      //clonable.Team = 2;
+      //clonable.Top = PlayerWithBall.Top;
+      //clonable.Left = 200;
+      //clonable.PicBox = ParentForm.Player2;
+      //clonable.ChangeX = -3;
+      //clonable.ChangeY = -3;
+      //clonable.SpeedCap = 100;
 
-      DefenderMiddleLineman defenderMiddleLineman = clonable.CloneAndUpcast<DefenderMiddleLineman, Player>();
-      defenderMiddleLineman.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      defenderMiddleLineman.Intelligence = 9;
-      defenderMiddleLineman.TargetPlayer = playerWithBall;
+      DefenderMiddleLineman defenderMiddleLineman = new DefenderMiddleLineman(); //clonable.CloneAndUpcast<DefenderMiddleLineman, Player>();
+      defenderMiddleLineman.InitialTop = FieldCenterY;
+      defenderMiddleLineman.InitialLeft = 200;
+      defenderMiddleLineman.Initialize();
+      defenderMiddleLineman.PicBox = ParentForm.Player2;
       players.Add(defenderMiddleLineman);
 
-      DefenderOutsideLineman defenderOutsideLineman = clonable.CloneAndUpcast<DefenderOutsideLineman, Player>();
-      defenderOutsideLineman.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      //defenderOutsideLineman.PicBox.Image.RotateFlip(RotateFlipType.Rotate180FlipY);
-      defenderOutsideLineman.PicBox.BackColor = Color.LightGreen; 
+      DefenderOutsideLineman defenderOutsideLineman = defenderMiddleLineman.CloneAndUpcast<DefenderOutsideLineman, Player>();
       defenderOutsideLineman.Offset = -80;
-      defenderOutsideLineman.Top = clonable.Top + defenderOutsideLineman.Offset - 20;
-      //defenderOutsideLineman.Cap = 100;
-      defenderOutsideLineman.Intelligence = 5;
-      defenderOutsideLineman.TargetPlayer = playerWithBall;
-      defenderOutsideLineman.CoDefender = defenderMiddleLineman;
-      players.Add(defenderOutsideLineman);
-
-      defenderOutsideLineman = clonable.CloneAndUpcast<DefenderOutsideLineman, Player>();
+      defenderOutsideLineman.InitialLeft = 200;
+      defenderOutsideLineman.InitialTop = FieldCenterY + defenderOutsideLineman.Offset - 20;
+      defenderOutsideLineman.Initialize();
       defenderOutsideLineman.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      //defenderOutsideLineman.PicBox.Image.RotateFlip(RotateFlipType.Rotate180FlipY);
-      defenderOutsideLineman.PicBox.BackColor = Color.LightGreen;
-      defenderOutsideLineman.Offset = 80;
-      defenderOutsideLineman.Top = clonable.Top + defenderOutsideLineman.Offset + 20;
-      //defenderOutsideLineman.Cap = 100;
-      defenderOutsideLineman.Intelligence = 5;
-      defenderOutsideLineman.TargetPlayer = playerWithBall;
+      defenderOutsideLineman.PicBox.BackColor = Color.LightGreen; 
       defenderOutsideLineman.CoDefender = defenderMiddleLineman;
       players.Add(defenderOutsideLineman);
 
-      DefenderMiddleLinebacker defenderMiddleLinebacker = clonable.CloneAndUpcast<DefenderMiddleLinebacker, Player>();
-      defenderMiddleLinebacker.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      defenderMiddleLinebacker.Left = clonable.Left + 200;
-      defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen;
-      defenderMiddleLinebacker.Cap = 130;
-      defenderMiddleLinebacker.Intelligence = 13;
-      defenderMiddleLinebacker.TargetPlayer = playerWithBall;
+
+      defenderOutsideLineman = defenderOutsideLineman.CloneAndUpcast<DefenderOutsideLineman, DefenderOutsideLineman>();
+      defenderOutsideLineman.Offset = 80;
+      defenderOutsideLineman.InitialTop = FieldCenterY + defenderOutsideLineman.Offset + 20;
+      defenderOutsideLineman.Initialize();
+      defenderOutsideLineman.PicBox = AddPlayerPictureBox(ParentForm.Player2);
+      defenderOutsideLineman.PicBox.BackColor = Color.LightGreen;
+      defenderOutsideLineman.CoDefender = defenderMiddleLineman;
+      players.Add(defenderOutsideLineman);
+
+      DefenderMiddleLinebacker defenderMiddleLinebacker = defenderOutsideLineman.CloneAndUpcast<DefenderMiddleLinebacker, Player>();
       defenderMiddleLinebacker.DefensiveMode = DefensiveMode.Blitz;
+      defenderMiddleLinebacker.InitialLeft = 400;
+      defenderMiddleLinebacker.InitialTop = FieldCenterY;
+      defenderMiddleLinebacker.Initialize();
+      defenderMiddleLinebacker.PicBox = AddPlayerPictureBox(ParentForm.Player2);
+      defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen;
       players.Add(defenderMiddleLinebacker);
 
-      ParentForm.Player2.Visible = false;
+//      ParentForm.Player2.Visible = false;
     }
 
     public PictureBox AddPlayerPictureBox(PictureBox pb)
@@ -142,12 +138,23 @@ namespace FootballGame
       ParentForm.Controls.Add(p);
       return p;
     }
- 
+
+    public void ReinitializePlayers()
+    {
+      players.ForEach(p => p.Initialize());
+    }
+
     public void Run()
     {
       timer.Start();
       while (running)
       {
+        if(reintialize)
+        {
+          ReinitializePlayers();
+          reintialize = false;
+        }
+
         Application.DoEvents();
         foreach (Player p in players)
         {
@@ -155,8 +162,15 @@ namespace FootballGame
           p.Move();
         }
         CheckCollisions(players);
+
         Thread.Sleep(32);
       }
+    }
+
+    public void EndPlay(string message)
+    {
+      MessageBox.Show(message);
+      reintialize = true;
     }
 
     public void Stop()
@@ -171,43 +185,43 @@ namespace FootballGame
       
       if (IsKeyDown(Keys.Left))
       {
-        if(playerWithBall.ChangeX > -32 && playerWithBall.ChangeX < 32)
-          playerWithBall.ChangeX -= 32;
+        if(PlayerWithBall.ChangeX > -32 && PlayerWithBall.ChangeX < 32)
+          PlayerWithBall.ChangeX -= 32;
         else
-          playerWithBall.ChangeX -= 12;
+          PlayerWithBall.ChangeX -= 12;
         keypressed = true;
       }
       if (IsKeyDown(Keys.Right))
       {
-        if (playerWithBall.ChangeX < 32 && playerWithBall.ChangeX > -32)
-          playerWithBall.ChangeX += 32;
+        if (PlayerWithBall.ChangeX < 32 && PlayerWithBall.ChangeX > -32)
+          PlayerWithBall.ChangeX += 32;
         else
-          playerWithBall.ChangeX += 12;
+          PlayerWithBall.ChangeX += 12;
         keypressed = true;
       }
       if (IsKeyDown(Keys.Up))
       {
-        if (playerWithBall.ChangeY > -32 && playerWithBall.ChangeY < 32)
-          playerWithBall.ChangeY -= 32;
+        if (PlayerWithBall.ChangeY > -32 && PlayerWithBall.ChangeY < 32)
+          PlayerWithBall.ChangeY -= 32;
         else
-          playerWithBall.ChangeY -= 12;
+          PlayerWithBall.ChangeY -= 12;
         keypressed = true;
       }
       if (IsKeyDown(Keys.Down))
       {
-        if (playerWithBall.ChangeY < 32 && playerWithBall.ChangeY > -32)
-          playerWithBall.ChangeY += 26;
+        if (PlayerWithBall.ChangeY < 32 && PlayerWithBall.ChangeY > -32)
+          PlayerWithBall.ChangeY += 26;
         else
-          playerWithBall.ChangeY += 12;
+          PlayerWithBall.ChangeY += 12;
         keypressed = true;
       }
       if (keypressed == false)
       {
-        playerWithBall.ChangeX = playerWithBall.ChangeX - (8 * Math.Sign(playerWithBall.ChangeX));
-        playerWithBall.ChangeY = playerWithBall.ChangeY - (8 * Math.Sign(playerWithBall.ChangeY));
+        PlayerWithBall.ChangeX = PlayerWithBall.ChangeX - (8 * Math.Sign(PlayerWithBall.ChangeX));
+        PlayerWithBall.ChangeY = PlayerWithBall.ChangeY - (8 * Math.Sign(PlayerWithBall.ChangeY));
       }
 
-      playerWithBall.Move();
+      PlayerWithBall.Move();
 
       return;
     }
@@ -236,13 +250,13 @@ namespace FootballGame
               //  | |
               if (players[i].Top < players[j].Top) 
               {
-                players[i].CollisionMove(players[j], CollisionOrientation.Above);
                 players[j].CollisionMove(players[i], CollisionOrientation.Below);
+                players[i].CollisionMove(players[j], CollisionOrientation.Above);
               }
               else
               {
-                players[i].CollisionMove(players[i], CollisionOrientation.Below);
                 players[j].CollisionMove(players[j], CollisionOrientation.Above);
+                players[i].CollisionMove(players[i], CollisionOrientation.Below);
               }
             }
             else // Hitting to the left or right of another player
@@ -250,17 +264,17 @@ namespace FootballGame
               //  | |   | |
               if (players[i].Left < players[j].Left)
               {
-                players[i].CollisionMove(players[j], CollisionOrientation.ToLeft);
                 players[j].CollisionMove(players[i], CollisionOrientation.ToRight);
+                players[i].CollisionMove(players[j], CollisionOrientation.ToLeft);
               }
               else
               {
-                players[i].CollisionMove(players[j], CollisionOrientation.ToRight);
                 players[j].CollisionMove(players[i], CollisionOrientation.ToLeft);
+                players[i].CollisionMove(players[j], CollisionOrientation.ToRight);
               }
             }
-            Player.MovePic(players[i]);
             Player.MovePic(players[j]);
+            Player.MovePic(players[i]);
           }
         }
       }

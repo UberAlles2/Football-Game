@@ -10,6 +10,14 @@ namespace FootballGame
 {
   class OffenderQuarterback : Offender
   {
+    public override void Initialize()
+    {
+      this.SpeedCap = 80;
+      this.HasBall = true;
+
+      base.Initialize();
+    }
+
     public override void Move()
     {
       base.Move();
