@@ -14,7 +14,7 @@ namespace FootballGame
     {
       this.SpeedCap = 124;
       this.Intelligence = 13;
-      this.TargetPlayer = Game.PlayerWithBall;
+      this.TargetPlayer = Game.ControllablePlayer;
       base.Initialize();
     }
 

@@ -10,16 +10,17 @@ namespace FootballGame
 {
   public class BallAsPlayer : Player
   {
-    private bool endingMove;
+    public bool BallIsCatchable;
 
     public override void Initialize()
     {
-      SpeedCap = 260;
+      SpeedCap = 320;
       IsBall = true;
       TargetPlayer = new Player();
       TargetPlayer.Top = -999;  // end position
       TargetPlayer.Left = -999; // end position
       Game.IsThrowing = false;
+      BallIsCatchable = false;
 
       base.Initialize();
     }
@@ -29,23 +30,24 @@ namespace FootballGame
       if (!Game.IsThrowing)
         return;
 
-      // Is the ball close to the ending target
-      if (!endingMove && Game.DetectCloseCollision(this, TargetPlayer, 60))
+      // Is the ball close to the ending target.  Ball is catchable while this is going on. 
+      if (!BallIsCatchable && Game.DetectCloseCollision(this, TargetPlayer, 30))
       {
-        endingMove = true;
+        BallIsCatchable = true;
         GetChangeYChangeX();
       }
 
-      // Keep the ball going past the target for a bit. 
-      if (endingMove && !Game.DetectCloseCollision(this, TargetPlayer, 60))
+      // Keep the ball going past the target for a bit.
+      if (BallIsCatchable && !Game.DetectCloseCollision(this, TargetPlayer, 30))
       {
+        BallIsCatchable = false;
         Game.IsThrowing = false;
         ParentGame.EndPlay("Incomplete");
         return;
       }
 
-      // Keep the ball on target by adjusting its path.
-      if (!endingMove && TotalMoves % 12 == 0 && Top > -999)
+      // Keep the ball on target by adjusting its path every dozen moves.
+      if (!BallIsCatchable && TotalMoves % 12 == 0 && Top > -999)
       {
         GetChangeYChangeX();
       }
@@ -63,11 +65,11 @@ namespace FootballGame
       TotalMoves = 0;
       Top = Y;  // start position
       Left = X; // start position
-      TargetPlayer.Top = targetY - 8;  // end position
-      TargetPlayer.Left = targetX; // end position
+      TargetPlayer.Top  = targetY - 8 + (Game.Random.Next(-10, 10) * ((targetX + 20) / 80));  // end position with randomness
+      TargetPlayer.Left = targetX + 8 + (Game.Random.Next(-10, 10) * ((targetX + 20) / 80));  // end position with randomness
+
       GetChangeYChangeX();
       Game.IsThrowing = true;
-      endingMove = false;
     }
 
     private void GetChangeYChangeX()

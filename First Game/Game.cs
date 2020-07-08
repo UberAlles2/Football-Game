@@ -27,23 +27,28 @@ namespace FootballGame
 
   public class Game
   {
+    // static
     public static Form1 ParentForm;
-    public static Player PlayerWithBall = new Player();
+    //public static Player PlayerWithBall = new Player();
+    public static Player ControllablePlayer = new Player();
     public static BallAsPlayer ballAsPlayer = new BallAsPlayer();
     public static int FieldCenterY;
     public static bool IsThrowing;
-    public List<Player> players = Player.players;
+    public static Random Random = new Random();
 
+    // instance
     private bool running = true;
     private bool reintialize = false;
     private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+    public List<Player> players = Player.players;
+   
 
     public Game(Form1 form1)
     {
       ParentForm = form1;
       Player.ParentForm = form1;
       Player.ParentGame = this;
-      FieldCenterY = ParentForm.Height / 2 - 10;
+      FieldCenterY = ParentForm.Height / 2 - 32;
 
       AddPlayers();
 
@@ -60,7 +65,7 @@ namespace FootballGame
       offenderQuarterback.PicBox = ParentForm.Player1;
       offenderQuarterback.Initialize();
       players.Add(offenderQuarterback);
-      PlayerWithBall = offenderQuarterback;
+      ControllablePlayer = offenderQuarterback;
 
       OffenderMiddleLineman offenderMiddleLineman = new OffenderMiddleLineman();
       offenderMiddleLineman.InitialTop = FieldCenterY;
@@ -80,6 +85,13 @@ namespace FootballGame
       offenderMiddleLineman.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderMiddleLineman.Initialize();
       players.Add(offenderMiddleLineman);
+
+      OffenderWideReceiver offenderWideReceiver = new OffenderWideReceiver();
+      offenderWideReceiver.InitialTop = FieldCenterY - 240;
+      offenderWideReceiver.InitialLeft = 150;
+      offenderWideReceiver.PicBox = AddPlayerPictureBox(ParentForm.Player1);
+      offenderWideReceiver.Initialize();
+      players.Add(offenderWideReceiver);
 
       // Defensive Players
       DefenderMiddleLineman defenderMiddleLineman = new DefenderMiddleLineman(); 
@@ -183,43 +195,43 @@ namespace FootballGame
       
       if (IsKeyDown(Keys.Left))
       {
-        if(Math.Abs(PlayerWithBall.ChangeX) > 30)
-          PlayerWithBall.ChangeX -= 20;
+        if(Math.Abs(ControllablePlayer.ChangeX) > 30)
+          ControllablePlayer.ChangeX -= 20;
         else
-          PlayerWithBall.ChangeX -= 10;
+          ControllablePlayer.ChangeX -= 10;
         keypressed = true;
       }
       if (IsKeyDown(Keys.Right))
       {
-        if (Math.Abs(PlayerWithBall.ChangeX) > 30)
-          PlayerWithBall.ChangeX += 20;
+        if (Math.Abs(ControllablePlayer.ChangeX) > 30)
+          ControllablePlayer.ChangeX += 20;
         else
-          PlayerWithBall.ChangeX += 10;
+          ControllablePlayer.ChangeX += 10;
         keypressed = true;
       }
       if (IsKeyDown(Keys.Up))
       {
-        if (PlayerWithBall.ChangeY > -30 && PlayerWithBall.ChangeY < 30)
-          PlayerWithBall.ChangeY -= 20;
+        if (ControllablePlayer.ChangeY > -30 && ControllablePlayer.ChangeY < 30)
+          ControllablePlayer.ChangeY -= 20;
         else
-          PlayerWithBall.ChangeY -= 10;
+          ControllablePlayer.ChangeY -= 10;
         keypressed = true;
       }
       if (IsKeyDown(Keys.Down))
       {
-        if (PlayerWithBall.ChangeY < 30 && PlayerWithBall.ChangeY > -30)
-          PlayerWithBall.ChangeY += 20;
+        if (ControllablePlayer.ChangeY < 30 && ControllablePlayer.ChangeY > -30)
+          ControllablePlayer.ChangeY += 20;
         else
-          PlayerWithBall.ChangeY += 10;
+          ControllablePlayer.ChangeY += 10;
         keypressed = true;
       }
       if (keypressed == false)
       {
-        PlayerWithBall.ChangeX = PlayerWithBall.ChangeX - (8 * Math.Sign(PlayerWithBall.ChangeX));
-        PlayerWithBall.ChangeY = PlayerWithBall.ChangeY - (8 * Math.Sign(PlayerWithBall.ChangeY));
+        ControllablePlayer.ChangeX = ControllablePlayer.ChangeX - (8 * Math.Sign(ControllablePlayer.ChangeX));
+        ControllablePlayer.ChangeY = ControllablePlayer.ChangeY - (8 * Math.Sign(ControllablePlayer.ChangeY));
       }
 
-      PlayerWithBall.Move();
+      ControllablePlayer.Move();
 
       return;
     }
@@ -237,7 +249,7 @@ namespace FootballGame
       {
         // Pass the ball. Ball is really another player.
         if(!Game.IsThrowing)
-          ballAsPlayer.ThrowBall(PlayerWithBall.Top + 16, PlayerWithBall.Left + 16, e.Location.Y, e.Location.X);   
+          ballAsPlayer.ThrowBall(ControllablePlayer.Top + 16, ControllablePlayer.Left + 16, e.Location.Y, e.Location.X);   
       }
     }
 
