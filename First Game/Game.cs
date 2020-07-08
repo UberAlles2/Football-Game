@@ -18,6 +18,12 @@ namespace FootballGame
     ToLeft,
     ToRight
   }
+  public enum DefensiveMode
+  {
+    Blitz,
+    Normal,
+    Soft
+  }
 
   class Game
   {
@@ -43,9 +49,9 @@ namespace FootballGame
       offenderQuarterback.Left = 10;
       offenderQuarterback.Team = 1;
       offenderQuarterback.PicBox = ParentForm.Player1;
-      offenderQuarterback.ChangeX = 1;
-      offenderQuarterback.Cap = 90;
-      offenderQuarterback.ChangeY = 1;
+      offenderQuarterback.ChangeX = 0;
+      offenderQuarterback.Cap = 80;
+      offenderQuarterback.ChangeY = 0;
       offenderQuarterback.HasBall = true;
       players.Add(offenderQuarterback);
       playerWithBall = offenderQuarterback;
@@ -85,7 +91,7 @@ namespace FootballGame
 
       DefenderMiddleLineman defenderMiddleLineman = clonable.CloneAndUpcast<DefenderMiddleLineman, Player>();
       defenderMiddleLineman.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      defenderMiddleLineman.Intelligence = 10;
+      defenderMiddleLineman.Intelligence = 9;
       defenderMiddleLineman.TargetPlayer = playerWithBall;
       players.Add(defenderMiddleLineman);
 
@@ -96,7 +102,7 @@ namespace FootballGame
       defenderOutsideLineman.Offset = -80;
       defenderOutsideLineman.Top = clonable.Top + defenderOutsideLineman.Offset - 20;
       //defenderOutsideLineman.Cap = 100;
-      defenderOutsideLineman.Intelligence = 4;
+      defenderOutsideLineman.Intelligence = 5;
       defenderOutsideLineman.TargetPlayer = playerWithBall;
       defenderOutsideLineman.CoDefender = defenderMiddleLineman;
       players.Add(defenderOutsideLineman);
@@ -108,10 +114,20 @@ namespace FootballGame
       defenderOutsideLineman.Offset = 80;
       defenderOutsideLineman.Top = clonable.Top + defenderOutsideLineman.Offset + 20;
       //defenderOutsideLineman.Cap = 100;
-      defenderOutsideLineman.Intelligence = 4;
+      defenderOutsideLineman.Intelligence = 5;
       defenderOutsideLineman.TargetPlayer = playerWithBall;
       defenderOutsideLineman.CoDefender = defenderMiddleLineman;
       players.Add(defenderOutsideLineman);
+
+      DefenderMiddleLinebacker defenderMiddleLinebacker = clonable.CloneAndUpcast<DefenderMiddleLinebacker, Player>();
+      defenderMiddleLinebacker.PicBox = AddPlayerPictureBox(ParentForm.Player2);
+      defenderMiddleLinebacker.Left = clonable.Left + 200;
+      defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen;
+      defenderMiddleLinebacker.Cap = 130;
+      defenderMiddleLinebacker.Intelligence = 13;
+      defenderMiddleLinebacker.TargetPlayer = playerWithBall;
+      defenderMiddleLinebacker.DefensiveMode = DefensiveMode.Blitz;
+      players.Add(defenderMiddleLinebacker);
 
       ParentForm.Player2.Visible = false;
     }

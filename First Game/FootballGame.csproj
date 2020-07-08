@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DefenderMiddleLinebacker.cs" />
     <Compile Include="OffenderQuarterback.cs" />
     <Compile Include="OffenderMiddleLineman.cs" />
     <Compile Include="Offender.cs" />

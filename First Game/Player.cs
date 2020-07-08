@@ -97,7 +97,7 @@ namespace FootballGame
     {
       if (this.HasBall && collidedWithPlayer is Defender)
       {
-//        MessageBox.Show("Tackled");
+        MessageBox.Show("Tackled");
         return;
       }
 
@@ -131,22 +131,38 @@ namespace FootballGame
     {
       if (this.Left < 0)
       {
-        this.ChangeX = 0;
+        if(this is Defender)
+          this.ChangeX = 30;
+        else
+          this.ChangeX = 0;
+        
         this.Left = 1;
       }
       if (this.Left > ParentForm.Width - this.PicBox.Width - 10)
       {
-        this.ChangeX = 0;
+        if (this is Defender)
+          this.ChangeX = 0;
+        else
+          this.ChangeX = 0;
+
         this.Left = ParentForm.Width - this.PicBox.Width - 10 - 1;
       }
       if (this.Top < 0)
       {
-        this.ChangeY = 0;
+        if (this is Defender)
+          this.ChangeY = 60;
+        else
+          this.ChangeY = 0;
+
         this.Top = 1;
       }
       if (this.Top > ParentForm.Height - this.PicBox.Height - 35)
       {
-        this.ChangeY = 0;
+        if (this is Defender)
+          this.ChangeY = -60;
+        else
+          this.ChangeY = 0;
+
         this.Top = ParentForm.Height - this.PicBox.Height - 35 - 1;
       }
     }

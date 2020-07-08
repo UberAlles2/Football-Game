@@ -12,6 +12,7 @@ namespace FootballGame
   {
     public Player TargetPlayer;
     public int Intelligence = 10;
+    public DefensiveMode DefensiveMode = DefensiveMode.Normal;
 
     public override void Move()
     {
