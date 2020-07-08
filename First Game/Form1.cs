@@ -34,5 +34,10 @@ namespace FootballGame
     {
       game.Stop();
     }
+
+    private void Form1_MouseClick(object sender, MouseEventArgs e)
+    {
+      game.MouseClick(sender, e);
+    }
   }
 }

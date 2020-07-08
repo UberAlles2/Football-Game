@@ -31,8 +31,10 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
       this.Player2 = new System.Windows.Forms.PictureBox();
       this.Player1 = new System.Windows.Forms.PictureBox();
+      this.picFootball = new System.Windows.Forms.PictureBox();
       ((System.ComponentModel.ISupportInitialize)(this.Player2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picFootball)).BeginInit();
       this.SuspendLayout();
       // 
       // Player2
@@ -55,12 +57,23 @@
       this.Player1.TabIndex = 0;
       this.Player1.TabStop = false;
       // 
+      // picFootball
+      // 
+      this.picFootball.Image = ((System.Drawing.Image)(resources.GetObject("picFootball.Image")));
+      this.picFootball.Location = new System.Drawing.Point(0, 284);
+      this.picFootball.Name = "picFootball";
+      this.picFootball.Size = new System.Drawing.Size(24, 24);
+      this.picFootball.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picFootball.TabIndex = 2;
+      this.picFootball.TabStop = false;
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.Green;
       this.ClientSize = new System.Drawing.Size(1112, 636);
+      this.Controls.Add(this.picFootball);
       this.Controls.Add(this.Player2);
       this.Controls.Add(this.Player1);
       this.Name = "Form1";
@@ -68,8 +81,10 @@
       this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
       this.Load += new System.EventHandler(this.Form1_Load);
       this.Shown += new System.EventHandler(this.Form1_Shown);
+      this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
       ((System.ComponentModel.ISupportInitialize)(this.Player2)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picFootball)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -78,6 +93,7 @@
 
     public System.Windows.Forms.PictureBox Player1;
     public System.Windows.Forms.PictureBox Player2;
+    public System.Windows.Forms.PictureBox picFootball;
   }
 }
 

@@ -10,6 +10,7 @@ namespace FootballGame
 {
   public class Player 
   {
+    public Player TargetPlayer;
     public static Form1 ParentForm;
     public static Game ParentGame;
     public static List<Player> players = new List<Player>();
@@ -23,6 +24,7 @@ namespace FootballGame
     private int centerX;
     private int centerY;
     private bool hasBall = false;
+    private bool isBall = false;
     private int movingAroundBlocker = 0;
     private int? initialTop = null;
     private int? initialLeft = null;
@@ -39,9 +41,12 @@ namespace FootballGame
     public int CenterX { get => centerX; set => centerX = value; }
     public int CenterY { get => centerY; set => centerY = value; }
     public bool HasBall { get => hasBall; set => hasBall = value; }
+    public bool IsBall { get => isBall; set => isBall = value; }
     public int MovingAroundBlocker { get => movingAroundBlocker; set => movingAroundBlocker = value; }
     public int? InitialTop { get => initialTop; set => initialTop = value; }
     public int? InitialLeft { get => initialLeft; set => initialLeft = value; }
+
+    public int TotalMoves;
 
     public int Top
     {
@@ -77,20 +82,78 @@ namespace FootballGame
     {
       if (this.InitialTop != null) this.Top = this.InitialTop ?? 0;
       if (this.InitialLeft != null) this.Left = this.InitialLeft ?? 0;
+      Player.MovePic(this);
 
+      this.TotalMoves = 0;
       this.ChangeX = 0;
       this.ChangeY = 0;
     }
 
     public virtual void Move()
     {
+      TotalMoves++;
       CheckFormBoundries();
       MovePic(this);
       Application.DoEvents();
     }
+    public static void MovePic(Player player)
+    {
+      if (Math.Abs(player.ChangeY) > player.SpeedCap)
+      {
+        player.ChangeY = player.SpeedCap * Math.Sign(player.ChangeY);
+      }
+      if (Math.Abs(player.ChangeX) > player.SpeedCap)
+      {
+        player.ChangeX = player.SpeedCap * Math.Sign(player.ChangeX);
+      }
+      player.Top = player.Top + player.ChangeY / 32;
+      player.Left = player.Left + player.ChangeX / 32;
+      player.PicBox.Top = player.Top;
+      player.PicBox.Left = player.Left;
+    }
 
     public virtual void MoveTowardsTarget(int Y, int X)
     {
+      // Vertical move
+      if (Math.Abs(this.Left - X) < Math.Abs(this.Top - Y))
+      {
+        if (Y < this.Top)
+        {
+          this.ChangeY += -16;
+        }
+        if (Y > this.Top)
+        {
+          this.ChangeY += 16;
+        }
+        if (X < this.Left)
+        {
+          this.ChangeX += -4;
+        }
+        if (X > this.Left)
+        {
+          this.ChangeX += 4;
+        }
+
+      }
+      else // Horizontal Move
+      {
+        if (Y < this.Top)
+        {
+          this.ChangeY += -4;
+        }
+        if (Y > this.Top)
+        {
+          this.ChangeY += 4;
+        }
+        if (X < this.Left)
+        {
+          this.ChangeX += -16;
+        }
+        if (X > this.Left)
+        {
+          this.ChangeX += 16;
+        }
+      }
     }
 
 
@@ -124,6 +187,9 @@ namespace FootballGame
 
     private void CheckFormBoundries()
     {
+      if (IsBall)
+        return;
+      
       if (this.Left < 0)
       {
         if(this is Defender)
@@ -160,22 +226,6 @@ namespace FootballGame
 
         this.Top = ParentForm.Height - this.PicBox.Height - 35 - 1;
       }
-    }
-
-    public static void MovePic(Player player)
-    {
-      if (Math.Abs(player.ChangeY) > player.SpeedCap)
-      {
-        player.ChangeY = player.SpeedCap * Math.Sign(player.ChangeY);
-      }
-      if (Math.Abs(player.ChangeX) > player.SpeedCap)
-      {
-        player.ChangeX = player.SpeedCap * Math.Sign(player.ChangeX);
-      }
-      player.Top = player.Top + player.ChangeY/32;
-      player.Left = player.Left + player.ChangeX/32;
-      player.PicBox.Top = player.Top;
-      player.PicBox.Left = player.Left;
     }
   }
 }

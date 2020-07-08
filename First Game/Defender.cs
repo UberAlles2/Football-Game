@@ -10,7 +10,6 @@ namespace FootballGame
 {
   class Defender : Player
   {
-    public Player TargetPlayer;
     public int Intelligence = 10;
     public DefensiveMode DefensiveMode = DefensiveMode.Normal;
     public override void Initialize()
@@ -25,47 +24,7 @@ namespace FootballGame
     }
     public override void MoveTowardsTarget(int Y, int X)
     {
-
-      // Vertical move
-      if (Math.Abs(this.Left - X) < Math.Abs(this.Top - Y))
-      {
-        if (Y < this.Top)
-        {
-          this.ChangeY += -16;
-        }
-        if (Y > this.Top)
-        {
-          this.ChangeY += 16;
-        }
-        if (X < this.Left)
-        {
-          this.ChangeX += -4;
-        }
-        if (X > this.Left)
-        {
-          this.ChangeX += 4;
-        }
-
-      }
-      else // Horizontal Move
-      {
-        if (Y < this.Top)
-        {
-          this.ChangeY += -4;
-        }
-        if (Y > this.Top)
-        {
-          this.ChangeY += 4;
-        }
-        if (X < this.Left)
-        {
-          this.ChangeX += -16;
-        }
-        if (X > this.Left)
-        {
-          this.ChangeX += 16;
-        }
-      }
+      base.MoveTowardsTarget(Y, X);
     }
 
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
