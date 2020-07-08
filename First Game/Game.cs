@@ -117,7 +117,7 @@ namespace FootballGame
       players.Add(defenderOutsideLineman);
 
       DefenderMiddleLinebacker defenderMiddleLinebacker = defenderOutsideLineman.CloneAndUpcast<DefenderMiddleLinebacker, Player>();
-      defenderMiddleLinebacker.DefensiveMode = DefensiveMode.Blitz;
+      defenderMiddleLinebacker.DefensiveMode = DefensiveMode.Normal;
       defenderMiddleLinebacker.InitialLeft = 400;
       defenderMiddleLinebacker.InitialTop = FieldCenterY;
       defenderMiddleLinebacker.Initialize();
@@ -185,34 +185,34 @@ namespace FootballGame
       
       if (IsKeyDown(Keys.Left))
       {
-        if(PlayerWithBall.ChangeX > -32 && PlayerWithBall.ChangeX < 32)
-          PlayerWithBall.ChangeX -= 32;
+        if(Math.Abs(PlayerWithBall.ChangeX) > 30)
+          PlayerWithBall.ChangeX -= 20;
         else
-          PlayerWithBall.ChangeX -= 12;
+          PlayerWithBall.ChangeX -= 10;
         keypressed = true;
       }
       if (IsKeyDown(Keys.Right))
       {
-        if (PlayerWithBall.ChangeX < 32 && PlayerWithBall.ChangeX > -32)
-          PlayerWithBall.ChangeX += 32;
+        if (Math.Abs(PlayerWithBall.ChangeX) > 30)
+          PlayerWithBall.ChangeX += 20;
         else
-          PlayerWithBall.ChangeX += 12;
+          PlayerWithBall.ChangeX += 10;
         keypressed = true;
       }
       if (IsKeyDown(Keys.Up))
       {
-        if (PlayerWithBall.ChangeY > -32 && PlayerWithBall.ChangeY < 32)
-          PlayerWithBall.ChangeY -= 32;
+        if (PlayerWithBall.ChangeY > -30 && PlayerWithBall.ChangeY < 30)
+          PlayerWithBall.ChangeY -= 20;
         else
-          PlayerWithBall.ChangeY -= 12;
+          PlayerWithBall.ChangeY -= 10;
         keypressed = true;
       }
       if (IsKeyDown(Keys.Down))
       {
-        if (PlayerWithBall.ChangeY < 32 && PlayerWithBall.ChangeY > -32)
-          PlayerWithBall.ChangeY += 26;
+        if (PlayerWithBall.ChangeY < 30 && PlayerWithBall.ChangeY > -30)
+          PlayerWithBall.ChangeY += 20;
         else
-          PlayerWithBall.ChangeY += 12;
+          PlayerWithBall.ChangeY += 10;
         keypressed = true;
       }
       if (keypressed == false)

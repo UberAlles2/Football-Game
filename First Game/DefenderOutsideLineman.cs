@@ -15,8 +15,8 @@ namespace FootballGame
 
     public override void Initialize()
     {
-      this.SpeedCap = 90;
-      this.Intelligence = 5;
+      this.SpeedCap = 95;
+      this.Intelligence = 6;
       this.TargetPlayer = Game.PlayerWithBall;
       base.Initialize();
     }
@@ -30,7 +30,7 @@ namespace FootballGame
         if (TargetPlayer.Left - 100 < this.Left)
           diffX = (TargetPlayer.Left - CoDefender.Left) / -64;
 
-        if(random.Next(0, 15) > 13)
+        if(random.Next(0, 15) > 5)
         {
           if (this.Offset > 40)
             this.Offset--;
@@ -43,12 +43,12 @@ namespace FootballGame
         if (Math.Abs(this.CenterX - TargetPlayer.CenterX) < TargetPlayer.PlayerWidth + 90 && Math.Abs(this.CenterY - TargetPlayer.CenterY) < TargetPlayer.PlayerHeight + 90)
         {
           calculatedTargetY = TargetPlayer.Top;
-          calculatedTargetX = TargetPlayer.Left;
+          calculatedTargetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2);
         }
         else
         {
-          calculatedTargetY = (TargetPlayer.Top + CoDefender.Top) / 2 + this.Offset * diffX;
-          calculatedTargetX = (TargetPlayer.Left + CoDefender.Left) / 2;
+          calculatedTargetY = (TargetPlayer.Top + TargetPlayer.Top + CoDefender.Top) / 3 + this.Offset * diffX;
+          calculatedTargetX = (TargetPlayer.Left + CoDefender.Left) / 2 + (TargetPlayer.ChangeX / 2);
         }
 
         base.MoveTowardsTarget(calculatedTargetY, calculatedTargetX);

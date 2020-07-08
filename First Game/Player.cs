@@ -84,14 +84,6 @@ namespace FootballGame
 
     public virtual void Move()
     {
-      if (Math.Abs(ChangeY) > SpeedCap)
-      {
-        ChangeY = SpeedCap * Math.Sign(ChangeY);
-      }
-      if (Math.Abs(ChangeX) > SpeedCap)
-      {
-        ChangeX = SpeedCap * Math.Sign(ChangeX);
-      }
       CheckFormBoundries();
       MovePic(this);
       Application.DoEvents();
@@ -172,6 +164,14 @@ namespace FootballGame
 
     public static void MovePic(Player player)
     {
+      if (Math.Abs(player.ChangeY) > player.SpeedCap)
+      {
+        player.ChangeY = player.SpeedCap * Math.Sign(player.ChangeY);
+      }
+      if (Math.Abs(player.ChangeX) > player.SpeedCap)
+      {
+        player.ChangeX = player.SpeedCap * Math.Sign(player.ChangeX);
+      }
       player.Top = player.Top + player.ChangeY/32;
       player.Left = player.Left + player.ChangeX/32;
       player.PicBox.Top = player.Top;
