@@ -52,7 +52,7 @@ namespace FootballGame
           this.ChangeY = -8;
           if (this.TargetPlayer.Left < this.Left - 60 && this.ChangeX < -60)
             this.ChangeX -= 10;
-          else if (this.TargetPlayer.Left > this.Left + 50 && this.ChangeX > 60)
+          else if (this.TargetPlayer.Left > this.Left + 60 && this.ChangeX > 60)
             this.ChangeX += 10;
           else
             this.ChangeX = 40 * r;
@@ -61,7 +61,7 @@ namespace FootballGame
           this.ChangeY = 8;
           if (this.TargetPlayer.Left < this.Left - 60 && this.ChangeX < -60)
             this.ChangeX -= 10;
-          else if (this.TargetPlayer.Left > this.Left + 50 && this.ChangeX > 60)
+          else if (this.TargetPlayer.Left > this.Left + 60 && this.ChangeX > 60)
             this.ChangeX += 10;
           else
           {
@@ -78,22 +78,24 @@ namespace FootballGame
           this.ChangeX = -5;
           if (this.TargetPlayer.Top < this.Top -60 && this.ChangeY < -60)
             this.ChangeY -= 10;
-          else if (this.TargetPlayer.Top > this.Top + 50 && this.ChangeY > 60)
+          else if (this.TargetPlayer.Top > this.Top + 60 && this.ChangeY > 60)
             this.ChangeY += 10;
           else
             this.ChangeY = 40 * r;
           break;
         case CollisionOrientation.ToRight:
           this.ChangeX = 5;
-          if (this.TargetPlayer.Top < this.Top - 60 && this.ChangeY < -60)
+          if (this.TargetPlayer.Left > this.Left)
+            this.ChangeX += 10;
+          else if (this.TargetPlayer.Top < this.Top - 60 && this.ChangeY < -60)
             this.ChangeY -= 10;
-          else if (this.TargetPlayer.Top > this.Top + 50 && this.ChangeY > 60)
+          else if (this.TargetPlayer.Top > this.Top + 60 && this.ChangeY > 60)
             this.ChangeY += 10;
           else
             this.ChangeY = 40 * r;
           break;
       }
-      this.MovingAroundBlocker = 18;
+      this.MovingAroundBlocker = 20;
     }
   }
 }

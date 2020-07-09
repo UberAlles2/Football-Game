@@ -97,6 +97,7 @@
       this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
       this.Load += new System.EventHandler(this.Form1_Load);
       this.Shown += new System.EventHandler(this.Form1_Shown);
+      this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
       this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
       ((System.ComponentModel.ISupportInitialize)(this.Player2)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).EndInit();

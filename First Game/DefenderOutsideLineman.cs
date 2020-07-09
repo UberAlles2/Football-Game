@@ -38,10 +38,12 @@ namespace FootballGame
 
         if(random.Next(0, 15) > 6)
         {
-          if (this.Offset > 42)
-            this.Offset--;
-          if (this.Offset < -42)
+          if (this is DefenderOutsideLinemanTop && this.Offset < -44)
             this.Offset++;
+          if (this is DefenderOutsideLinemanBottom && this.Offset > 44)
+            this.Offset--;
+          //if(Math.Abs(this.Offset) < 45)
+          //  this.Offset--;
         }
 
         int calculatedTargetY = 0;

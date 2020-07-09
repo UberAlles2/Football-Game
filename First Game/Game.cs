@@ -27,7 +27,7 @@ namespace FootballGame
     public static Player ControllablePlayer = new Player();
     public static BallAsPlayer ballAsPlayer = new BallAsPlayer();
     public static int FieldCenterY;
-    public static int LineOfScrimage = 175;
+    public static int LineOfScrimage = 200;
     public static bool IsThrowing;
     public static Random Random = new Random();
 
@@ -44,6 +44,9 @@ namespace FootballGame
       Player.ParentForm = form1;
       Player.ParentGame = this;
       FieldCenterY = ParentForm.Height / 2 - 32;
+
+      Graphics gdi = ParentForm.CreateGraphics();
+      gdi.DrawLine(Pens.Red, new Point(0, 0), new Point(100, 100));
 
       AddPlayers();
 
@@ -64,7 +67,7 @@ namespace FootballGame
 
       OffenderLinemanMiddle offenderLinemanMiddle = new OffenderLinemanMiddle();
       offenderLinemanMiddle.InitialTop = FieldCenterY;
-      offenderLinemanMiddle.InitialLeft = 150;
+      offenderLinemanMiddle.InitialLeft = LineOfScrimage - 25;
       offenderLinemanMiddle.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderLinemanMiddle.Initialize();
       Player.AddPlayer(offenderLinemanMiddle);
@@ -81,25 +84,34 @@ namespace FootballGame
       offenderLinemanBottom.Initialize();
       Player.AddPlayer(offenderLinemanBottom);
 
-      OffenderWideReceiver offenderWideReceiver = new OffenderWideReceiver();
-      offenderWideReceiver.InitialTop = FieldCenterY - 240;
-      offenderWideReceiver.InitialLeft = 150;
-      offenderWideReceiver.PicBox = AddPlayerPictureBox(ParentForm.Player1);
-      offenderWideReceiver.ButtonHookPattern(); // TODO randomize
-      offenderWideReceiver.Initialize();
-      Player.AddPlayer(offenderWideReceiver);
+      OffenderWideReceiverTop offenderWideReceiverTop = new OffenderWideReceiverTop();
+      offenderWideReceiverTop.InitialTop = FieldCenterY - 240;
+      offenderWideReceiverTop.InitialLeft = LineOfScrimage - 25;
+      offenderWideReceiverTop.PicBox = AddPlayerPictureBox(ParentForm.Player1);
+      offenderWideReceiverTop.ButtonHookPattern(); // TODO randomize
+      offenderWideReceiverTop.Initialize();
+      Player.AddPlayer(offenderWideReceiverTop);
+
+      OffenderWideReceiverBottom offenderWideReceiverBottom = new OffenderWideReceiverBottom();
+      offenderWideReceiverBottom.InitialTop = FieldCenterY + 240;
+      offenderWideReceiverBottom.InitialLeft = LineOfScrimage - 25;
+      offenderWideReceiverBottom.PicBox = AddPlayerPictureBox(ParentForm.Player1);
+      offenderWideReceiverBottom.ButtonHookPattern(); // TODO randomize
+      offenderWideReceiverBottom.Initialize();
+      Player.AddPlayer(offenderWideReceiverBottom);
+
 
       // Defensive Players
       DefenderMiddleLineman defenderMiddleLineman = new DefenderMiddleLineman(); 
       defenderMiddleLineman.InitialTop = FieldCenterY;
-      defenderMiddleLineman.InitialLeft = 200;
+      defenderMiddleLineman.InitialLeft = LineOfScrimage + 25;
       defenderMiddleLineman.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderMiddleLineman.Initialize();
       Player.AddPlayer(defenderMiddleLineman);
 
       DefenderOutsideLinemanTop defenderOutsideLinemanTop = defenderMiddleLineman.CloneAndUpcast<DefenderOutsideLinemanTop, Player>();
-      defenderOutsideLinemanTop.Offset = -86;
-      defenderOutsideLinemanTop.InitialLeft = 200;
+      defenderOutsideLinemanTop.Offset = -64;
+      defenderOutsideLinemanTop.InitialLeft = LineOfScrimage + 25;
       defenderOutsideLinemanTop.InitialTop = FieldCenterY + defenderOutsideLinemanTop.Offset - 20;
       defenderOutsideLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen;
@@ -108,7 +120,7 @@ namespace FootballGame
       Player.AddPlayer(defenderOutsideLinemanTop);
 
       DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = defenderOutsideLinemanTop.CloneAndUpcast<DefenderOutsideLinemanBottom, DefenderOutsideLineman>();
-      defenderOutsideLinemanBottom.Offset = 86;
+      defenderOutsideLinemanBottom.Offset = 64;
       defenderOutsideLinemanBottom.InitialTop = FieldCenterY + defenderOutsideLinemanBottom.Offset + 20;
       defenderOutsideLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen;
@@ -118,20 +130,28 @@ namespace FootballGame
 
       DefenderMiddleLinebacker defenderMiddleLinebacker = defenderOutsideLinemanTop.CloneAndUpcast<DefenderMiddleLinebacker, Player>();
       defenderMiddleLinebacker.DefensiveMode = DefensiveMode.Normal;  // TODO randomize between coverage
-      defenderMiddleLinebacker.InitialLeft = 400;
+      defenderMiddleLinebacker.InitialLeft = 420;
       defenderMiddleLinebacker.InitialTop = FieldCenterY;
       defenderMiddleLinebacker.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen;
       defenderMiddleLinebacker.Initialize();
       Player.AddPlayer(defenderMiddleLinebacker);
 
-      DefenderCornerback defenderCornerback = defenderMiddleLineman.CloneAndUpcast<DefenderCornerback, Player>();
-      defenderCornerback.DefensiveMode = DefensiveMode.Normal;  // TODO randomize between coverage
-      defenderCornerback.InitialLeft = offenderWideReceiver.Left + 200;
-      defenderCornerback.InitialTop = offenderWideReceiver.Top + 30;
-      defenderCornerback.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      defenderCornerback.Initialize();
-      Player.AddPlayer(defenderCornerback);
+      DefenderCornerbackTop defenderCornerbackTop = new DefenderCornerbackTop();
+      defenderCornerbackTop.DefensiveMode = DefensiveMode.Normal;  // TODO randomize between coverage
+      defenderCornerbackTop.InitialLeft = offenderWideReceiverTop.Left + 200;
+      defenderCornerbackTop.InitialTop = offenderWideReceiverTop.Top + 30;
+      defenderCornerbackTop.PicBox = AddPlayerPictureBox(ParentForm.Player2);
+      defenderCornerbackTop.Initialize();
+      Player.AddPlayer(defenderCornerbackTop);
+
+      DefenderCornerbackBottom defenderCornerbackBottom = new DefenderCornerbackBottom();
+      defenderCornerbackBottom.DefensiveMode = DefensiveMode.Normal;  // TODO randomize between coverage
+      defenderCornerbackBottom.InitialLeft = offenderWideReceiverBottom.Left + 200;
+      defenderCornerbackBottom.InitialTop = offenderWideReceiverBottom.Top -30;
+      defenderCornerbackBottom.PicBox = AddPlayerPictureBox(ParentForm.Player2);
+      defenderCornerbackBottom.Initialize();
+      Player.AddPlayer(defenderCornerbackBottom);
 
       // Ball as a Player
       ballAsPlayer.InitialLeft = -999;
@@ -141,10 +161,13 @@ namespace FootballGame
       Player.AddPlayer(ballAsPlayer);
 
       // Setup Initial TargetPlayers
-      defenderCornerback.InitialTargetPlayer = offenderWideReceiver;
+      defenderCornerbackTop.InitialTargetPlayer = offenderWideReceiverTop;
+      defenderCornerbackBottom.InitialTargetPlayer = offenderWideReceiverBottom;
       offenderLinemanTop.InitialTargetPlayer = defenderOutsideLinemanTop;
-      offenderLinemanMiddle.InitialTargetPlayer = defenderMiddleLineman;
+       offenderLinemanMiddle.InitialTargetPlayer = defenderMiddleLineman;
       offenderLinemanBottom.InitialTargetPlayer = defenderOutsideLinemanBottom;
+
+      //Player.Get(typeof(OffenderLinemanBottom));
     }
 
     public PictureBox AddPlayerPictureBox(PictureBox pb)
@@ -212,7 +235,7 @@ namespace FootballGame
       if (IsKeyDown(Keys.Left))
       {
         if(ControllablePlayer.ChangeX > 30)
-          ControllablePlayer.ChangeX -= 16;
+          ControllablePlayer.ChangeX -= 14;
         else
           ControllablePlayer.ChangeX -= 8;
         keypressed = true;
@@ -220,7 +243,7 @@ namespace FootballGame
       if (IsKeyDown(Keys.Right))
       {
         if (ControllablePlayer.ChangeX < 30)
-          ControllablePlayer.ChangeX += 16;
+          ControllablePlayer.ChangeX += 14;
         else
           ControllablePlayer.ChangeX += 8;
         keypressed = true;
@@ -228,7 +251,7 @@ namespace FootballGame
       if (IsKeyDown(Keys.Up))
       {
         if (ControllablePlayer.ChangeY > 30)
-          ControllablePlayer.ChangeY -= 16;
+          ControllablePlayer.ChangeY -= 14;
         else
           ControllablePlayer.ChangeY -= 8;
         keypressed = true;
@@ -236,7 +259,7 @@ namespace FootballGame
       if (IsKeyDown(Keys.Down))
       {
         if (ControllablePlayer.ChangeY < 30)
-          ControllablePlayer.ChangeY += 16;
+          ControllablePlayer.ChangeY += 14;
         else
           ControllablePlayer.ChangeY += 8;
         keypressed = true;

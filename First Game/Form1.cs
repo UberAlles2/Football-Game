@@ -39,5 +39,11 @@ namespace FootballGame
     {
       game.MouseClick(sender, e);
     }
+
+    private void Form1_Paint(object sender, PaintEventArgs e)
+    {
+      Pen pen = new Pen(Color.FromArgb(255, 128, 128, 255));
+      e.Graphics.DrawLine(pen, Game.LineOfScrimage, 0, Game.LineOfScrimage, 800);
+    }
   }
 }

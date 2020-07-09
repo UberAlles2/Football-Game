@@ -20,6 +20,11 @@ namespace FootballGame
 
     public override void Move()
     {
+      if (Game.ControllablePlayer.Left > Game.LineOfScrimage)
+      {
+        Intelligence = 11; // Once the runner get past the line of scrimage, this defender doen't have to worry about the blockers.
+      }
+
       if (TargetPlayer != Game.ControllablePlayer)
         TargetPlayer = Game.ControllablePlayer;
 
@@ -32,7 +37,7 @@ namespace FootballGame
       
       if(this.Intelligence > Game.Random.Next(0,15))
       {
-        base.MoveTowardsTarget(Game.ControllablePlayer.Top, Game.ControllablePlayer.Left);
+        base.MoveTowardsTarget(Game.ControllablePlayer.Top, Game.ControllablePlayer.Left + 30);
       }
       base.Move();
     }

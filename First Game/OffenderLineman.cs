@@ -37,7 +37,6 @@ namespace FootballGame
       if (TargetPlayer.Top > Top)
         ChangeY += 2;
 
-
       base.Move();
     }
   }

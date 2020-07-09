@@ -8,12 +8,14 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
+  class DefenderCornerbackTop : DefenderCornerback { }
+  class DefenderCornerbackBottom : DefenderCornerback { }
   class DefenderCornerback : Defender
   {
     public override void Initialize()
     {
-      SpeedCap = 122;
-      Intelligence = 11;
+      SpeedCap = 130;
+      Intelligence = 12;
       base.Initialize();
     }
 
@@ -23,7 +25,7 @@ namespace FootballGame
       {
         TargetPlayer = Game.ControllablePlayer;
         ChangeX += 20;
-        base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
+        base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + 160 + (TargetPlayer.ChangeX / 2));
       }
 
       if (MovingAroundBlocker > 0)
@@ -37,9 +39,9 @@ namespace FootballGame
       if (this.Intelligence > Game.Random.Next(0,15))
       {
         if (TargetPlayer.Top < Game.FieldCenterY)
-          base.MoveTowardsTarget(TargetPlayer.Top + 30, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
+          base.MoveTowardsTarget(TargetPlayer.Top + 60, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
         else
-          base.MoveTowardsTarget(TargetPlayer.Top - 30, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
+          base.MoveTowardsTarget(TargetPlayer.Top - 60, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
       }
       base.Move();
     }

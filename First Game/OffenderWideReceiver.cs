@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
+  class OffenderWideReceiverTop : OffenderWideReceiver { }
+  class OffenderWideReceiverBottom : OffenderWideReceiver { }
+
   class OffenderWideReceiver : Offender
   {
     private List<ReceiverPattern> receiverPatterns = new List<ReceiverPattern>();

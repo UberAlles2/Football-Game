@@ -15,27 +15,28 @@ namespace FootballGame
     Soft
   }
 
-  public enum Position
-  {
-    OffenderQuarterback,
-    OffenderLinemanTop,
-    OffenderLinemanMiddle,
-    OffenderLinemanBottom,
-    OffenderWideReceiver,
-    DefenderMiddleLineman,
-    DefenderOutsideLinemanTop,
-    DefenderOutsideLinemanBottom,
-    DefenderMiddleLinebacker,
-    DefenderCornerback,
-    BallAsPlayer
-  }
+  //public enum Position
+  //{
+  //  OffenderQuarterback,
+  //  OffenderLinemanTop,
+  //  OffenderLinemanMiddle,
+  //  OffenderLinemanBottom,
+  //  OffenderWideReceiver,
+  //  DefenderMiddleLineman,
+  //  DefenderOutsideLinemanTop,
+  //  DefenderOutsideLinemanBottom,
+  //  DefenderMiddleLinebacker,
+  //  DefenderCornerback,
+  //  BallAsPlayer
+  //}
 
   public class Player
   {
     public Player TargetPlayer;
     public static Form1 ParentForm;
     public static Game ParentGame;
-    public static List<Player> Players = new List<Player>(new Player[Enum.GetValues(typeof(Position)).Cast<int>().Max() + 1]);
+    //public static List<Player> Players = new List<Player>(new Player[Enum.GetValues(typeof(Position)).Cast<int>().Max() + 1]);
+    public static List<Player> Players = new List<Player>();
 
     private int changeX;
     private int changeY;
@@ -107,17 +108,23 @@ namespace FootballGame
        
     }
 
-    public static Player Get(Position position)
+    //public static Player Get(Position position)
+    //{
+    //  return Players[(int)position];
+    //}
+    public static Player Get(Type type)
     {
-      return Players[(int)position];
+      Player player = Players.Where(p => p.GetType() == type).FirstOrDefault();
+      return player;
     }
 
     public static void AddPlayer(Player player)
     {
-      string name = player.GetType().Name;
-      Position positionEnum = (Position)Enum.Parse(typeof(Position), name);
-      Players.RemoveAt((int)positionEnum);
-      Players.Insert((int)positionEnum, player);
+      Players.Add(player);
+      //string name = player.GetType().Name;
+      //Position positionEnum = (Position)Enum.Parse(typeof(Position), name);
+      //Players.RemoveAt((int)positionEnum);
+      //Players.Insert((int)positionEnum, player);
     }
 
     public virtual void Initialize()
@@ -145,11 +152,22 @@ namespace FootballGame
       if (Math.Abs(player.ChangeY) > player.SpeedCap)
       {
         player.ChangeY = player.SpeedCap * Math.Sign(player.ChangeY);
+
+        if (Math.Abs(player.ChangeX) > player.SpeedCap - 40)
+        {
+          player.ChangeX -= 16;
+        }
       }
       if (Math.Abs(player.ChangeX) > player.SpeedCap)
       {
         player.ChangeX = player.SpeedCap * Math.Sign(player.ChangeX);
+        
+        if (Math.Abs(player.ChangeY) > player.SpeedCap - 40)
+        {
+          player.ChangeY -= 16;
+        }
       }
+
       player.Top = player.Top + player.ChangeY / 32;
       player.Left = player.Left + player.ChangeX / 32;
       player.PicBox.Top = player.Top;
