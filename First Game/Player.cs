@@ -107,6 +107,11 @@ namespace FootballGame
        
     }
 
+    public static Player Get(Position position)
+    {
+      return Players[(int)position];
+    }
+
     public static void AddPlayer(Player player)
     {
       string name = player.GetType().Name;

@@ -8,11 +8,11 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class OffenderMiddleLinemanTop : OffenderMiddleLineman { }
-  class OffenderMiddleLinemanMiddle : OffenderMiddleLineman { }
-  class OffenderMiddleLinemanBottom : OffenderMiddleLineman { }
+  class OffenderLinemanTop : OffenderLineman { }
+  class OffenderLinemanMiddle : OffenderLineman { }
+  class OffenderLinemanBottom : OffenderLineman { }
 
-  class OffenderMiddleLineman : Offender
+  class OffenderLineman : Offender
   {
     public override void Initialize()
     {

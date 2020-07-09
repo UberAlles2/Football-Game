@@ -44,7 +44,6 @@ namespace FootballGame
       Player.ParentForm = form1;
       Player.ParentGame = this;
       FieldCenterY = ParentForm.Height / 2 - 32;
-      //Enum.GetValues(typeof(Foo)).Cast<int>().Max();
 
       AddPlayers();
 
@@ -60,31 +59,27 @@ namespace FootballGame
       offenderQuarterback.InitialLeft = 10;
       offenderQuarterback.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderQuarterback.Initialize();
-      //Player.Players.Insert((int)Position.OffenderQuarterback, offenderQuarterback);
       Player.AddPlayer(offenderQuarterback);
-      ControllablePlayer = offenderQuarterback; // TODO put in initializer
+      ControllablePlayer = offenderQuarterback; 
 
-      OffenderMiddleLinemanMiddle offenderMiddleLineman = new OffenderMiddleLinemanMiddle();
-      offenderMiddleLineman.InitialTop = FieldCenterY;
-      offenderMiddleLineman.InitialLeft = 150;
-      offenderMiddleLineman.PicBox = AddPlayerPictureBox(ParentForm.Player1);
-      offenderMiddleLineman.Initialize();
-      Player.AddPlayer(offenderMiddleLineman);
-      //Player.Players.Insert((int)Position.OffenderMiddleLinemanMiddle, offenderMiddleLineman);
+      OffenderLinemanMiddle offenderLinemanMiddle = new OffenderLinemanMiddle();
+      offenderLinemanMiddle.InitialTop = FieldCenterY;
+      offenderLinemanMiddle.InitialLeft = 150;
+      offenderLinemanMiddle.PicBox = AddPlayerPictureBox(ParentForm.Player1);
+      offenderLinemanMiddle.Initialize();
+      Player.AddPlayer(offenderLinemanMiddle);
 
-      OffenderMiddleLinemanTop offenderMiddleLinemanTop = offenderMiddleLineman.CloneAndUpcast<OffenderMiddleLinemanTop, OffenderMiddleLineman>();
-      offenderMiddleLinemanTop.InitialTop = FieldCenterY - 82;
-      offenderMiddleLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player1);
-      offenderMiddleLinemanTop.Initialize();
-      Player.AddPlayer(offenderMiddleLinemanTop);
-      //Player.Players.Insert((int)Position.OffenderMiddleLinemanTop, offenderMiddleLineman);
+      OffenderLinemanTop offenderLinemanTop = offenderLinemanMiddle.CloneAndUpcast<OffenderLinemanTop, OffenderLineman>();
+      offenderLinemanTop.InitialTop = FieldCenterY - 82;
+      offenderLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player1);
+      offenderLinemanTop.Initialize();
+      Player.AddPlayer(offenderLinemanTop);
 
-      OffenderMiddleLinemanBottom offenderMiddleLinemanBottom = offenderMiddleLinemanTop.CloneAndUpcast<OffenderMiddleLinemanBottom, OffenderMiddleLineman>();
-      offenderMiddleLinemanBottom.InitialTop = FieldCenterY + 82;
-      offenderMiddleLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player1);
-      offenderMiddleLinemanBottom.Initialize();
-      Player.AddPlayer(offenderMiddleLinemanBottom);
-      //Player.Players.Insert((int)Position.OffenderMiddleLinemanBottom, offenderMiddleLinemanBottom);
+      OffenderLinemanBottom offenderLinemanBottom = offenderLinemanTop.CloneAndUpcast<OffenderLinemanBottom, OffenderLineman>();
+      offenderLinemanBottom.InitialTop = FieldCenterY + 82;
+      offenderLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player1);
+      offenderLinemanBottom.Initialize();
+      Player.AddPlayer(offenderLinemanBottom);
 
       OffenderWideReceiver offenderWideReceiver = new OffenderWideReceiver();
       offenderWideReceiver.InitialTop = FieldCenterY - 240;
@@ -93,7 +88,6 @@ namespace FootballGame
       offenderWideReceiver.ButtonHookPattern(); // TODO randomize
       offenderWideReceiver.Initialize();
       Player.AddPlayer(offenderWideReceiver);
-      //Player.Players.Add(offenderWideReceiver);
 
       // Defensive Players
       DefenderMiddleLineman defenderMiddleLineman = new DefenderMiddleLineman(); 
@@ -115,7 +109,7 @@ namespace FootballGame
 
       DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = defenderOutsideLineman.CloneAndUpcast<DefenderOutsideLinemanBottom, DefenderOutsideLineman>();
       defenderOutsideLinemanBottom.Offset = 80;
-      defenderOutsideLinemanBottom.InitialTop = FieldCenterY + defenderOutsideLineman.Offset + 20;
+      defenderOutsideLinemanBottom.InitialTop = FieldCenterY + defenderOutsideLinemanBottom.Offset + 20;
       defenderOutsideLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen;
       defenderOutsideLinemanBottom.CoDefender = defenderMiddleLineman;
@@ -136,7 +130,6 @@ namespace FootballGame
       defenderCornerback.InitialLeft = offenderWideReceiver.Left + 200;
       defenderCornerback.InitialTop = offenderWideReceiver.Top + 30;
       defenderCornerback.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      defenderCornerback.InitialTargetPlayer = offenderWideReceiver;
       defenderCornerback.Initialize();
       Player.AddPlayer(defenderCornerback);
 
@@ -146,6 +139,11 @@ namespace FootballGame
       ballAsPlayer.PicBox = ParentForm.picFootball;
       ballAsPlayer.Initialize();
       Player.AddPlayer(ballAsPlayer);
+
+      // Setup Initial TargetPlayers
+      defenderCornerback.InitialTargetPlayer = offenderWideReceiver;
+      
+
     }
 
     public PictureBox AddPlayerPictureBox(PictureBox pb)

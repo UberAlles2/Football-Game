@@ -54,7 +54,7 @@
     <Compile Include="DefenderCornerback.cs" />
     <Compile Include="OffenderWideReceiver.cs" />
     <Compile Include="OffenderQuarterback.cs" />
-    <Compile Include="OffenderMiddleLineman.cs" />
+    <Compile Include="OffenderLineman.cs" />
     <Compile Include="Offender.cs" />
     <Compile Include="DefenderOutsideLineman.cs" />
     <Compile Include="DefenderMiddleLineman.cs" />
