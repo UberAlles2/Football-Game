@@ -18,9 +18,9 @@ namespace FootballGame
   public enum Position
   {
     OffenderQuarterback,
-    OffenderMiddleLinemanTop,
-    OffenderMiddleLinemanMiddle,
-    OffenderMiddleLinemanBottom,
+    OffenderLinemanTop,
+    OffenderLinemanMiddle,
+    OffenderLinemanBottom,
     OffenderWideReceiver,
     DefenderMiddleLineman,
     DefenderOutsideLinemanTop,
@@ -68,7 +68,7 @@ namespace FootballGame
     public int MovingAroundBlocker { get => movingAroundBlocker; set => movingAroundBlocker = value; }
     public int InitialTop { get => initialTop; set => initialTop = value; }
     public int InitialLeft { get => initialLeft; set => initialLeft = value; }
-    public Player InitialTargetPlayer { get => initialTargetPlayer; set => initialTargetPlayer = value; }
+    public Player InitialTargetPlayer { get => initialTargetPlayer; set { initialTargetPlayer = value; TargetPlayer = value; } }
 
     public int TotalMoves;
 

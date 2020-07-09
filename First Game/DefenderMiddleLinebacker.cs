@@ -12,9 +12,9 @@ namespace FootballGame
   {
     public override void Initialize()
     {
-      this.SpeedCap = 120;
-      this.Intelligence = 13;
-      this.TargetPlayer = Game.ControllablePlayer;
+      SpeedCap = 120;
+      Intelligence = 12;
+      TargetPlayer = Game.ControllablePlayer;
       base.Initialize();
     }
 
@@ -57,16 +57,17 @@ namespace FootballGame
           if (TargetPlayer.Left < Game.LineOfScrimage)
             calculatedTargetX = 280;
           else
-            calculatedTargetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 3) + (diffY / 3);
+            calculatedTargetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + (diffY / 2);
         }
         else if (this.DefensiveMode == DefensiveMode.Soft)
         {
           if (TargetPlayer.Left < Game.LineOfScrimage)
             calculatedTargetX = 400;
           else
-            calculatedTargetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 3) + diffY;
+            calculatedTargetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + diffY;
         }
 
+        ChangeX += 8; // keeps player moving down field a little
         base.MoveTowardsTarget(calculatedTargetY, calculatedTargetX);
       }
       base.Move();

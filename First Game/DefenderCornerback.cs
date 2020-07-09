@@ -12,14 +12,14 @@ namespace FootballGame
   {
     public override void Initialize()
     {
-      SpeedCap = 120;
+      SpeedCap = 122;
       Intelligence = 11;
       base.Initialize();
     }
 
     public override void Move()
     {
-      if (Game.ControllablePlayer.Left > Game.LineOfScrimage)
+      if (Game.ControllablePlayer.Left > Game.LineOfScrimage && TargetPlayer != Game.ControllablePlayer)
       {
         TargetPlayer = Game.ControllablePlayer;
         ChangeX += 20;
@@ -33,9 +33,10 @@ namespace FootballGame
         return;
       }
 
-      if(this.Intelligence > Game.Random.Next(0,15))
+      ChangeX += 4;
+      if (this.Intelligence > Game.Random.Next(0,15))
       {
-        if(TargetPlayer.Top < Game.FieldCenterY)
+        if (TargetPlayer.Top < Game.FieldCenterY)
           base.MoveTowardsTarget(TargetPlayer.Top + 30, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
         else
           base.MoveTowardsTarget(TargetPlayer.Top - 30, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));

@@ -70,13 +70,13 @@ namespace FootballGame
       Player.AddPlayer(offenderLinemanMiddle);
 
       OffenderLinemanTop offenderLinemanTop = offenderLinemanMiddle.CloneAndUpcast<OffenderLinemanTop, OffenderLineman>();
-      offenderLinemanTop.InitialTop = FieldCenterY - 82;
+      offenderLinemanTop.InitialTop = FieldCenterY - 80;
       offenderLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderLinemanTop.Initialize();
       Player.AddPlayer(offenderLinemanTop);
 
       OffenderLinemanBottom offenderLinemanBottom = offenderLinemanTop.CloneAndUpcast<OffenderLinemanBottom, OffenderLineman>();
-      offenderLinemanBottom.InitialTop = FieldCenterY + 82;
+      offenderLinemanBottom.InitialTop = FieldCenterY + 80;
       offenderLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderLinemanBottom.Initialize();
       Player.AddPlayer(offenderLinemanBottom);
@@ -97,18 +97,18 @@ namespace FootballGame
       defenderMiddleLineman.Initialize();
       Player.AddPlayer(defenderMiddleLineman);
 
-      DefenderOutsideLinemanTop defenderOutsideLineman = defenderMiddleLineman.CloneAndUpcast<DefenderOutsideLinemanTop, Player>();
-      defenderOutsideLineman.Offset = -80;
-      defenderOutsideLineman.InitialLeft = 200;
-      defenderOutsideLineman.InitialTop = FieldCenterY + defenderOutsideLineman.Offset - 20;
-      defenderOutsideLineman.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      defenderOutsideLineman.PicBox.BackColor = Color.LightGreen;
-      defenderOutsideLineman.CoDefender = defenderMiddleLineman;
-      defenderOutsideLineman.Initialize();
-      Player.AddPlayer(defenderOutsideLineman);
+      DefenderOutsideLinemanTop defenderOutsideLinemanTop = defenderMiddleLineman.CloneAndUpcast<DefenderOutsideLinemanTop, Player>();
+      defenderOutsideLinemanTop.Offset = -86;
+      defenderOutsideLinemanTop.InitialLeft = 200;
+      defenderOutsideLinemanTop.InitialTop = FieldCenterY + defenderOutsideLinemanTop.Offset - 20;
+      defenderOutsideLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player2);
+      defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen;
+      defenderOutsideLinemanTop.CoDefender = defenderMiddleLineman;
+      defenderOutsideLinemanTop.Initialize();
+      Player.AddPlayer(defenderOutsideLinemanTop);
 
-      DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = defenderOutsideLineman.CloneAndUpcast<DefenderOutsideLinemanBottom, DefenderOutsideLineman>();
-      defenderOutsideLinemanBottom.Offset = 80;
+      DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = defenderOutsideLinemanTop.CloneAndUpcast<DefenderOutsideLinemanBottom, DefenderOutsideLineman>();
+      defenderOutsideLinemanBottom.Offset = 86;
       defenderOutsideLinemanBottom.InitialTop = FieldCenterY + defenderOutsideLinemanBottom.Offset + 20;
       defenderOutsideLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen;
@@ -116,7 +116,7 @@ namespace FootballGame
       defenderOutsideLinemanBottom.Initialize();
       Player.AddPlayer(defenderOutsideLinemanBottom);
 
-      DefenderMiddleLinebacker defenderMiddleLinebacker = defenderOutsideLineman.CloneAndUpcast<DefenderMiddleLinebacker, Player>();
+      DefenderMiddleLinebacker defenderMiddleLinebacker = defenderOutsideLinemanTop.CloneAndUpcast<DefenderMiddleLinebacker, Player>();
       defenderMiddleLinebacker.DefensiveMode = DefensiveMode.Normal;  // TODO randomize between coverage
       defenderMiddleLinebacker.InitialLeft = 400;
       defenderMiddleLinebacker.InitialTop = FieldCenterY;
@@ -142,8 +142,9 @@ namespace FootballGame
 
       // Setup Initial TargetPlayers
       defenderCornerback.InitialTargetPlayer = offenderWideReceiver;
-      
-
+      offenderLinemanTop.InitialTargetPlayer = defenderOutsideLinemanTop;
+      offenderLinemanMiddle.InitialTargetPlayer = defenderMiddleLineman;
+      offenderLinemanBottom.InitialTargetPlayer = defenderOutsideLinemanBottom;
     }
 
     public PictureBox AddPlayerPictureBox(PictureBox pb)

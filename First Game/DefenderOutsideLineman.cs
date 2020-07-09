@@ -36,11 +36,11 @@ namespace FootballGame
         if (TargetPlayer.Left - 100 < this.Left)
           diffX = (TargetPlayer.Left - CoDefender.Left) / -64;
 
-        if(random.Next(0, 15) > 5)
+        if(random.Next(0, 15) > 6)
         {
-          if (this.Offset > 40)
+          if (this.Offset > 42)
             this.Offset--;
-          if (this.Offset < -40)
+          if (this.Offset < -42)
             this.Offset++;
         }
 
@@ -55,7 +55,7 @@ namespace FootballGame
         else
         {
           calculatedTargetY = (TargetPlayer.Top + TargetPlayer.Top + CoDefender.Top) / 3 + this.Offset * diffX;
-          calculatedTargetX = (TargetPlayer.Left + CoDefender.Left) / 2 + (TargetPlayer.ChangeX / 2);
+          calculatedTargetX = (TargetPlayer.Left + 20 + CoDefender.Left) / 2 + (TargetPlayer.ChangeX / 2);
         }
 
         base.MoveTowardsTarget(calculatedTargetY, calculatedTargetX);

@@ -23,8 +23,21 @@ namespace FootballGame
 
     public override void Move()
     {
-      ChangeX = Game.ControllablePlayer.ChangeX / 2;
-      
+      if (TargetPlayer.Left < Left)
+        ChangeX -= 2;
+      else
+        ChangeX = Game.ControllablePlayer.ChangeX / 2;
+
+      if (TargetPlayer.Left > Left)
+        ChangeX += 2;
+
+      if (TargetPlayer.Top < Top)
+        ChangeY -= 2;
+
+      if (TargetPlayer.Top > Top)
+        ChangeY += 2;
+
+
       base.Move();
     }
   }
