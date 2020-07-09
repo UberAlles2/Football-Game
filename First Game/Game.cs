@@ -33,6 +33,7 @@ namespace FootballGame
     public static Player ControllablePlayer = new Player();
     public static BallAsPlayer ballAsPlayer = new BallAsPlayer();
     public static int FieldCenterY;
+    public static int LineOfScrimage = 175;
     public static bool IsThrowing;
     public static Random Random = new Random();
 
@@ -76,13 +77,13 @@ namespace FootballGame
       players.Add(offenderMiddleLineman);
 
       offenderMiddleLineman = offenderMiddleLineman.CloneAndUpcast<OffenderMiddleLineman, OffenderMiddleLineman>();
-      offenderMiddleLineman.InitialTop = FieldCenterY - 78;
+      offenderMiddleLineman.InitialTop = FieldCenterY - 82;
       offenderMiddleLineman.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderMiddleLineman.Initialize();
       players.Add(offenderMiddleLineman);
 
       offenderMiddleLineman = offenderMiddleLineman.CloneAndUpcast<OffenderMiddleLineman, OffenderMiddleLineman>();
-      offenderMiddleLineman.InitialTop = FieldCenterY + 78;
+      offenderMiddleLineman.InitialTop = FieldCenterY + 82;
       offenderMiddleLineman.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderMiddleLineman.Initialize();
       players.Add(offenderMiddleLineman);
@@ -189,8 +190,8 @@ namespace FootballGame
 
     public void EndPlay(string message)
     {
-      MessageBox.Show(message);
       reintialize = true;
+      MessageBox.Show(message);
     }
 
     public void Stop()
@@ -202,7 +203,14 @@ namespace FootballGame
     public void KeyDown(object sender, EventArgs e)
     {
       bool keypressed = false;
-      
+
+      if (reintialize)
+      {
+        ControllablePlayer.ChangeX = 0;
+        ControllablePlayer.ChangeY = 0;
+        return;
+      }
+
       if (IsKeyDown(Keys.Left))
       {
         if(ControllablePlayer.ChangeX > 30)

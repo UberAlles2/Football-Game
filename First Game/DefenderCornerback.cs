@@ -19,13 +19,20 @@ namespace FootballGame
 
     public override void Move()
     {
+      if (Game.ControllablePlayer.Left > Game.LineOfScrimage)
+      {
+        TargetPlayer = Game.ControllablePlayer;
+        ChangeX += 20;
+        base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
+      }
+
       if (MovingAroundBlocker > 0)
       {
         MovingAroundBlocker--;
         base.Move(); 
         return;
       }
-      
+
       if(this.Intelligence > Game.Random.Next(0,15))
       {
         if(TargetPlayer.Top < Game.FieldCenterY)

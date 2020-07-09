@@ -12,12 +12,15 @@ namespace FootballGame
   {
     public override void Initialize()
     {
-      this.SpeedCap = 90;
+      SpeedCap = 90;
+
       base.Initialize();
     }
 
     public override void Move()
     {
+      ChangeX = Game.ControllablePlayer.ChangeX / 2;
+      
       base.Move();
     }
   }

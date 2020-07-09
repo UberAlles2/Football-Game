@@ -57,7 +57,7 @@ namespace FootballGame
 
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {
-      base.CollisionMove(collidedWithPlayer, collisionOrientation);
+      // The ball doesn't move when colliding.
     }
 
     public void ThrowBall(int Y, int X, int targetY, int targetX)

@@ -87,7 +87,7 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.Green;
-      this.ClientSize = new System.Drawing.Size(1112, 636);
+      this.ClientSize = new System.Drawing.Size(1182, 636);
       this.Controls.Add(this.picBearsBall);
       this.Controls.Add(this.picFootball);
       this.Controls.Add(this.Player2);

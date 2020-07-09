@@ -19,6 +19,7 @@ namespace FootballGame
     {
       SpeedCap = 110;
       HasBall = false;
+      PicBox.Image = ParentForm.Player1.Image;
       PicBox.MouseClick += new System.Windows.Forms.MouseEventHandler(MouseClick);
       receiverPatternIndex = 0;
       TargetPlayer = target;
@@ -68,7 +69,7 @@ namespace FootballGame
           collidedWithPlayer.Left = -999;
           Game.ControllablePlayer.HasBall = false;
           this.HasBall = true;
-          this.PicBox.BackColor = System.Drawing.Color.Yellow;
+          PicBox.Image = ParentForm.picBearsBall.Image;
           runningPattern = false;
           Game.ControllablePlayer = this;
         }
