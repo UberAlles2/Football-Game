@@ -17,7 +17,7 @@ namespace FootballGame
 
     public override void Initialize()
     {
-      SpeedCap = 120;
+      SpeedCap = 110;
       HasBall = false;
       PicBox.MouseClick += new System.Windows.Forms.MouseEventHandler(MouseClick);
       receiverPatternIndex = 0;
@@ -73,15 +73,16 @@ namespace FootballGame
           Game.ControllablePlayer = this;
         }
       }
+      base.CollisionMove(collidedWithPlayer, collisionOrientation);
     }
 
     public void ButtonHookPattern()
     {
       receiverPatterns.Clear();
 
-      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 500, TargetY = this.InitialTop ?? 0};
+      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 500, TargetY = this.InitialTop};
       receiverPatterns.Add(receiverPattern);
-      receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 150, TargetY = this.InitialTop ?? 0 };
+      receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 150, TargetY = this.InitialTop};
       receiverPatterns.Add(receiverPattern);
     }
   }

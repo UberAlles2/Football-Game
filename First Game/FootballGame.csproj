@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="DefenderMiddleLinebacker.cs" />
     <Compile Include="BallAsPlayer.cs" />
+    <Compile Include="DefenderCornerback.cs" />
     <Compile Include="OffenderWideReceiver.cs" />
     <Compile Include="OffenderQuarterback.cs" />
     <Compile Include="OffenderMiddleLineman.cs" />

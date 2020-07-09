@@ -20,6 +20,9 @@ namespace FootballGame
 
     public override void Move()
     {
+      if (Game.IsThrowing)
+        this.ChangeX += 20;
+ 
       if (TargetPlayer != Game.ControllablePlayer)
         TargetPlayer = Game.ControllablePlayer;
 

@@ -43,7 +43,8 @@ namespace FootballGame
 
         int calculatedTargetY = 0;
         int calculatedTargetX = 0;
-        if (Math.Abs(this.CenterX - TargetPlayer.CenterX) < TargetPlayer.PlayerWidth + 90 && Math.Abs(this.CenterY - TargetPlayer.CenterY) < TargetPlayer.PlayerHeight + 90)
+        //         if (Math.Abs(this.CenterX - TargetPlayer.CenterX) < TargetPlayer.PlayerWidth + 90 && Math.Abs(this.CenterY - TargetPlayer.CenterY) < TargetPlayer.PlayerHeight + 90)
+        if (Game.DetectCloseCollision(this, TargetPlayer, 90))
         {
           calculatedTargetY = TargetPlayer.Top;
           calculatedTargetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2);

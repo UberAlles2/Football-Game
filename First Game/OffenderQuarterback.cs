@@ -12,8 +12,9 @@ namespace FootballGame
   {
     public override void Initialize()
     {
-      this.SpeedCap = 70;
-      this.HasBall = true;
+      SpeedCap = 90;
+      HasBall = true;
+      Game.ControllablePlayer = this;
 
       base.Initialize();
     }

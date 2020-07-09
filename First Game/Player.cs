@@ -26,8 +26,9 @@ namespace FootballGame
     private bool hasBall = false;
     private bool isBall = false;
     private int movingAroundBlocker = 0;
-    private int? initialTop = null;
-    private int? initialLeft = null;
+    private int initialTop = -1;
+    private int initialLeft = -1;
+    private Player initialTargetPlayer;
     private int top;
     private int left;
     private PictureBox pictureBox;
@@ -43,8 +44,9 @@ namespace FootballGame
     public bool HasBall { get => hasBall; set => hasBall = value; }
     public bool IsBall { get => isBall; set => isBall = value; }
     public int MovingAroundBlocker { get => movingAroundBlocker; set => movingAroundBlocker = value; }
-    public int? InitialTop { get => initialTop; set => initialTop = value; }
-    public int? InitialLeft { get => initialLeft; set => initialLeft = value; }
+    public int InitialTop { get => initialTop; set => initialTop = value; }
+    public int InitialLeft { get => initialLeft; set => initialLeft = value; }
+    public Player InitialTargetPlayer { get => initialTargetPlayer; set => initialTargetPlayer = value; }
 
     public int TotalMoves;
 
@@ -80,8 +82,10 @@ namespace FootballGame
 
     public virtual void Initialize()
     {
-      if (this.InitialTop != null) this.Top = this.InitialTop ?? 0;
-      if (this.InitialLeft != null) this.Left = this.InitialLeft ?? 0;
+      if (InitialTop != -1) Top = InitialTop;
+      if (InitialLeft != -1) Left = InitialLeft;
+      if (InitialTargetPlayer != null) TargetPlayer = InitialTargetPlayer;
+
       Player.MovePic(this);
 
       this.TotalMoves = 0;

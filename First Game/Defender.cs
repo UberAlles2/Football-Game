@@ -49,7 +49,7 @@ namespace FootballGame
       switch (collisionOrientation)
       {
         case CollisionOrientation.Above:
-          this.ChangeY = 5;
+          this.ChangeY = -8;
           if (this.TargetPlayer.Left < this.Left - 60 && this.ChangeX < -60)
             this.ChangeX -= 10;
           else if (this.TargetPlayer.Left > this.Left + 50 && this.ChangeX > 60)
@@ -58,13 +58,21 @@ namespace FootballGame
             this.ChangeX = 40 * r;
           break;
         case CollisionOrientation.Below:
-          this.ChangeY = -5;
+          this.ChangeY = 8;
           if (this.TargetPlayer.Left < this.Left - 60 && this.ChangeX < -60)
             this.ChangeX -= 10;
           else if (this.TargetPlayer.Left > this.Left + 50 && this.ChangeX > 60)
             this.ChangeX += 10;
           else
-            this.ChangeX = 40 * r;
+          {
+            if(ChangeX > 60)
+              ChangeX = ChangeX - 40;
+            else if (ChangeX < -60)
+              ChangeX = ChangeX + 40;
+            else
+              ChangeX = 40 * r;
+          }
+
           break;
         case CollisionOrientation.ToLeft:
           this.ChangeX = -5;
