@@ -12,6 +12,7 @@ namespace FootballGame
   {
     private List<ReceiverPattern> receiverPatterns = new List<ReceiverPattern>();
     private int receiverPatternIndex;
+    private bool runningPattern;
     private Player target = new Player();
 
     public override void Initialize()
@@ -23,6 +24,7 @@ namespace FootballGame
       TargetPlayer = target;
       target.Top = receiverPatterns[0].TargetY;
       target.Left = receiverPatterns[0].TargetX;
+      runningPattern = true;
 
       base.Initialize();
     }
@@ -36,26 +38,43 @@ namespace FootballGame
     public override void Move()
     {
       
-      if(Game.DetectCloseCollision(this, target, 40))
+      if(runningPattern == true)
       {
-        target.Top  = receiverPatterns[receiverPatternIndex].TargetY;
-        target.Left = receiverPatterns[receiverPatternIndex].TargetX;
+        if (Game.DetectCloseCollision(this, target, 40))
+        {
+          target.Top = receiverPatterns[receiverPatternIndex].TargetY;
+          target.Left = receiverPatterns[receiverPatternIndex].TargetX;
 
-        if (receiverPatternIndex < receiverPatterns.Count-1)
-          receiverPatternIndex++;
-        else
-          receiverPatternIndex = 0; // loop through again
+          if (receiverPatternIndex < receiverPatterns.Count - 1)
+            receiverPatternIndex++;
+          else
+            receiverPatternIndex = 0; // loop through again
+        }
+        base.MoveTowardsTarget(target.Top, target.Left);
       }
 
-      base.MoveTowardsTarget(target.Top, target.Left);
       base.Move();
     }
 
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {
-      base.CollisionMove(collidedWithPlayer, collisionOrientation);
+      if(collidedWithPlayer is BallAsPlayer)
+      {
+        Game.IsThrowing = false;
+        if (Game.Random.Next(0,10) > 7)
+          ParentGame.EndPlay("Dropped");
+        else
+        {
+          collidedWithPlayer.Left = -999;
+          Game.ControllablePlayer.HasBall = false;
+          this.HasBall = true;
+          this.PicBox.BackColor = System.Drawing.Color.Yellow;
+          runningPattern = false;
+          Game.ControllablePlayer = this;
+        }
+      }
     }
-  
+
     public void ButtonHookPattern()
     {
       receiverPatterns.Clear();

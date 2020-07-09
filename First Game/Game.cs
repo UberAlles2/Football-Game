@@ -260,8 +260,15 @@ namespace FootballGame
       {
         for (int j = i + 1; j < players.Count; j++)
         {
-          if (players[j].IsBall)
+          if (!Game.IsThrowing && players[j].IsBall) // players[i] is OffenderWideReceiver
             break;
+
+          if (!(players[i] is OffenderWideReceiver) && players[j].IsBall) 
+            break;
+
+
+          //if (players[j].IsBall)
+          //  players[j].IsBall = players[j].IsBall;
 
           // If player is hitting another player
           if (DetectCollision(players[i], players[j]))
