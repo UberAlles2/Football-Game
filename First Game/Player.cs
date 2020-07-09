@@ -8,12 +8,34 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  public class Player 
+  public enum DefensiveMode
+  {
+    Blitz,
+    Normal,
+    Soft
+  }
+
+  public enum Position
+  {
+    OffenderQuarterback,
+    OffenderMiddleLinemanTop,
+    OffenderMiddleLinemanMiddle,
+    OffenderMiddleLinemanBottom,
+    OffenderWideReceiver,
+    DefenderMiddleLineman,
+    DefenderOutsideLinemanTop,
+    DefenderOutsideLinemanBottom,
+    DefenderMiddleLinebacker,
+    DefenderCornerback,
+    BallAsPlayer
+  }
+
+  public class Player
   {
     public Player TargetPlayer;
     public static Form1 ParentForm;
     public static Game ParentGame;
-    public static List<Player> players = new List<Player>();
+    public static List<Player> Players = new List<Player>(new Player[Enum.GetValues(typeof(Position)).Cast<int>().Max() + 1]);
 
     private int changeX;
     private int changeY;
@@ -78,6 +100,19 @@ namespace FootballGame
         PlayerWidth = pictureBox.Width;
         PlayerHeight = pictureBox.Height;
       }
+    }
+
+    public Player()
+    {
+       
+    }
+
+    public static void AddPlayer(Player player)
+    {
+      string name = player.GetType().Name;
+      Position positionEnum = (Position)Enum.Parse(typeof(Position), name);
+      Players.RemoveAt((int)positionEnum);
+      Players.Insert((int)positionEnum, player);
     }
 
     public virtual void Initialize()
@@ -193,14 +228,14 @@ namespace FootballGame
     {
       if (IsBall)
         return;
-      
+
       if (this.Left < 0)
       {
-        if(this is Defender)
+        if (this is Defender)
           this.ChangeX = 30;
         else
           this.ChangeX = 0;
-        
+
         this.Left = 1;
       }
       if (this.Left > ParentForm.Width - this.PicBox.Width - 10)

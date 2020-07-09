@@ -41,12 +41,11 @@ namespace FootballGame
         int calculatedTargetX = 0;
         bool closeToTackle = false;
 
-        int diffX = 200;
-        if (TargetPlayer.Left > 160 && Math.Abs(TargetPlayer.Top - this.Top) < 100)
-          diffX = 20;
+        int diffY = Math.Abs(TargetPlayer.Top - this.Top);
 
-        if (Math.Abs(this.CenterX - TargetPlayer.CenterX) < TargetPlayer.PlayerWidth + 60 && Math.Abs(this.CenterY - TargetPlayer.CenterY) < TargetPlayer.PlayerHeight + 60)
-          closeToTackle = true;
+        if(diffY < 60)
+          if (Game.DetectCloseCollision(this, TargetPlayer, 60))
+            closeToTackle = true;
 
         // Go right towards target if close to target or are blitzing
         if (closeToTackle || this.DefensiveMode == DefensiveMode.Blitz)
@@ -55,17 +54,17 @@ namespace FootballGame
         }
         else if (this.DefensiveMode == DefensiveMode.Normal)
         {
-          if(TargetPlayer.Left < Game.LineOfScrimage)
-            calculatedTargetX = 200;
+          if (TargetPlayer.Left < Game.LineOfScrimage)
+            calculatedTargetX = 280;
           else
-            calculatedTargetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + (diffX / 2);
+            calculatedTargetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 3) + (diffY / 3);
         }
         else if (this.DefensiveMode == DefensiveMode.Soft)
         {
           if (TargetPlayer.Left < Game.LineOfScrimage)
-            calculatedTargetX = 240;
+            calculatedTargetX = 400;
           else
-            calculatedTargetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + diffX;
+            calculatedTargetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 3) + diffY;
         }
 
         base.MoveTowardsTarget(calculatedTargetY, calculatedTargetX);

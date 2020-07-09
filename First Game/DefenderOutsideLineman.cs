@@ -8,6 +8,9 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
+  class DefenderOutsideLinemanTop : DefenderOutsideLineman { }
+  class DefenderOutsideLinemanBottom : DefenderOutsideLineman { }
+
   class DefenderOutsideLineman : Defender
   {
     public Defender CoDefender; 
