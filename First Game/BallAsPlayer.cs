@@ -67,6 +67,7 @@ namespace FootballGame
       Left = X; // start position
       TargetPlayer.Top  = targetY - 8 + (Game.Random.Next(-10, 10) * ((targetX + 20) / 80));  // end position with randomness
       TargetPlayer.Left = targetX + 8 + (Game.Random.Next(-10, 10) * ((targetX + 20) / 80));  // end position with randomness
+      Game.ControllablePlayer.PicBox.Image = ParentForm.Player1.Image;
 
       GetChangeYChangeX();
       Game.IsThrowing = true;

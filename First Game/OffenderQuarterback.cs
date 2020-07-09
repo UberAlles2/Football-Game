@@ -15,6 +15,7 @@ namespace FootballGame
       SpeedCap = 90;
       HasBall = true;
       Game.ControllablePlayer = this;
+      PicBox.Image = ParentForm.picBearsBall.Image;
 
       base.Initialize();
     }

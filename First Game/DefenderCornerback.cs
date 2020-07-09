@@ -38,6 +38,22 @@ namespace FootballGame
 
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {
+      if (collidedWithPlayer is BallAsPlayer)
+      {
+        if (((BallAsPlayer)collidedWithPlayer).BallIsCatchable == false)
+          return;
+        
+        Game.IsThrowing = false;
+        if (Game.Random.Next(0, 10) > 4)
+          ParentGame.EndPlay("Cornerback dropped");
+        else
+        {
+          HasBall = true;
+          PicBox.BackColor = System.Drawing.Color.Yellow;
+          ParentGame.EndPlay("Intercepted");
+        }
+      }
+
       if (collidedWithPlayer.HasBall && !Game.IsThrowing)
       {
         ParentGame.EndPlay("Tackled");

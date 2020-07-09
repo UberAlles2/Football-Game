@@ -62,7 +62,8 @@ namespace FootballGame
       OffenderQuarterback offenderQuarterback = new OffenderQuarterback();
       offenderQuarterback.InitialTop = FieldCenterY;
       offenderQuarterback.InitialLeft = 10;
-      offenderQuarterback.PicBox = ParentForm.Player1;
+      //offenderQuarterback.PicBox = ParentForm.Player1;
+      offenderQuarterback.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderQuarterback.Initialize();
       players.Add(offenderQuarterback);
       ControllablePlayer = offenderQuarterback;
@@ -98,7 +99,7 @@ namespace FootballGame
       DefenderMiddleLineman defenderMiddleLineman = new DefenderMiddleLineman(); 
       defenderMiddleLineman.InitialTop = FieldCenterY;
       defenderMiddleLineman.InitialLeft = 200;
-      defenderMiddleLineman.PicBox = ParentForm.Player2;
+      defenderMiddleLineman.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderMiddleLineman.Initialize();
       players.Add(defenderMiddleLineman);
 
@@ -268,10 +269,10 @@ namespace FootballGame
       {
         for (int j = i + 1; j < players.Count; j++)
         {
-          if (!Game.IsThrowing && players[j].IsBall) // players[i] is OffenderWideReceiver
+          if (!Game.IsThrowing && players[j].IsBall) 
             break;
 
-          if (!(players[i] is OffenderWideReceiver) && players[j].IsBall) 
+          if (!(players[i] is OffenderWideReceiver) && !(players[i] is DefenderCornerback) && !(players[i] is DefenderMiddleLinebacker) && players[j].IsBall) 
             break;
 
 
