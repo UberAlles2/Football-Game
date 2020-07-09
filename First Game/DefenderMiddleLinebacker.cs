@@ -20,6 +20,9 @@ namespace FootballGame
 
     public override void Move()
     {
+      if (TargetPlayer != Game.ControllablePlayer)
+        TargetPlayer = Game.ControllablePlayer;
+
       if (MovingAroundBlocker > 0)
       {
         MovingAroundBlocker--;

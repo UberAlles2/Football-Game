@@ -15,7 +15,7 @@ namespace FootballGame
 
     public override void Initialize()
     {
-      this.SpeedCap = 95;
+      this.SpeedCap = 105;
       this.Intelligence = 6;
       this.TargetPlayer = Game.ControllablePlayer;
       base.Initialize();
@@ -23,6 +23,9 @@ namespace FootballGame
 
     public override void Move()
     {
+      if (TargetPlayer != Game.ControllablePlayer)
+        TargetPlayer = Game.ControllablePlayer;
+
       Random random = new Random();
       if(this.Intelligence > random.Next(0,15))
       {
