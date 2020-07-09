@@ -10,11 +10,19 @@ namespace FootballGame
 {
   class OffenderWideReceiver : Offender
   {
+    private List<ReceiverPattern> receiverPatterns = new List<ReceiverPattern>();
+    private int receiverPatternIndex;
+    private Player target = new Player();
+
     public override void Initialize()
     {
       SpeedCap = 140;
       HasBall = false;
       PicBox.MouseClick += new System.Windows.Forms.MouseEventHandler(MouseClick);
+      receiverPatternIndex = 0;
+      TargetPlayer = target;
+      target.Top = receiverPatterns[0].TargetY;
+      target.Left = receiverPatterns[0].TargetX;
 
       base.Initialize();
     }
@@ -27,6 +35,19 @@ namespace FootballGame
 
     public override void Move()
     {
+      
+      if(Game.DetectCloseCollision(this, target, 40))
+      {
+        target.Top  = receiverPatterns[receiverPatternIndex].TargetY;
+        target.Left = receiverPatterns[receiverPatternIndex].TargetX;
+
+        if (receiverPatternIndex < receiverPatterns.Count-1)
+          receiverPatternIndex++;
+        else
+          receiverPatternIndex = 0; // loop through again
+      }
+
+      base.MoveTowardsTarget(target.Top, target.Left);
       base.Move();
     }
 
@@ -34,5 +55,22 @@ namespace FootballGame
     {
       base.CollisionMove(collidedWithPlayer, collisionOrientation);
     }
+  
+    public void ButtonHookPattern()
+    {
+      receiverPatterns.Clear();
+
+      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 500, TargetY = this.InitialTop ?? 0};
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 150, TargetY = this.InitialTop ?? 0 };
+      receiverPatterns.Add(receiverPattern);
+    }
+  }
+
+  class ReceiverPattern
+  {
+    public string Name;
+    public int TargetX;
+    public int TargetY;
   }
 }

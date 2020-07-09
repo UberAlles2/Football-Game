@@ -26,9 +26,8 @@ namespace FootballGame
         base.Move(); 
         return;
       }
-
-      Random random = new Random();
-      if(this.Intelligence > random.Next(0,15))
+      
+      if(this.Intelligence > Game.Random.Next(0,15))
       {
         base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left);
       }

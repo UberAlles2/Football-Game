@@ -90,6 +90,7 @@ namespace FootballGame
       offenderWideReceiver.InitialTop = FieldCenterY - 240;
       offenderWideReceiver.InitialLeft = 150;
       offenderWideReceiver.PicBox = AddPlayerPictureBox(ParentForm.Player1);
+      offenderWideReceiver.ButtonHookPattern(); // TODO randomize
       offenderWideReceiver.Initialize();
       players.Add(offenderWideReceiver);
 
