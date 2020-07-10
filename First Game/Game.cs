@@ -235,9 +235,9 @@ using Drake.Tools;
     {
       bool keypressed = false;
 
-      if (reintialize)
+      if (reintialize) // Stop the player from moving after pay ends.
       {
-        ControllablePlayer.ChangeX = 0;
+        ControllablePlayer.ChangeX = 0; 
         ControllablePlayer.ChangeY = 0;
         return;
       }

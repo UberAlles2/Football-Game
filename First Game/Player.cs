@@ -155,23 +155,19 @@ namespace FootballGame
     }
     public static void MovePic(Player player)
     {
+      if (Math.Abs(player.ChangeY) + Math.Abs(player.ChangeX) > player.SpeedCap * 1.5)
+      {
+        player.ChangeY = player.ChangeY - Math.Sign(player.ChangeY) * 10;
+        player.ChangeX = player.ChangeX - Math.Sign(player.ChangeX) * 10;
+      }
+
       if (Math.Abs(player.ChangeY) > player.SpeedCap)
       {
         player.ChangeY = player.SpeedCap * Math.Sign(player.ChangeY);
-
-        if (Math.Abs(player.ChangeX) > player.SpeedCap - 40)
-        {
-          player.ChangeX -= 16;
-        }
       }
       if (Math.Abs(player.ChangeX) > player.SpeedCap)
       {
         player.ChangeX = player.SpeedCap * Math.Sign(player.ChangeX);
-        
-        if (Math.Abs(player.ChangeY) > player.SpeedCap - 40)
-        {
-          player.ChangeY -= 16;
-        }
       }
 
       player.Top = player.Top + player.ChangeY / 32;

@@ -14,7 +14,7 @@ namespace FootballGame
 
     public override void Initialize()
     {
-      SpeedCap = 360;
+      SpeedCap = 400;
       IsBall = true;
       TargetPlayer = new Player();
       TargetPlayer.Top = -999;  // end position
@@ -65,8 +65,8 @@ namespace FootballGame
       TotalMoves = 0;
       Top = startY;  // start position
       Left = startX; // start position
-      TargetPlayer.Top  = targetY - 8 + (Random.Next(-10, 10) * (targetX / 80));  // end position with randomness
-      TargetPlayer.Left = targetX + 8 + (Random.Next(-10, 10) * (targetX / 80));  // end position with randomness
+      TargetPlayer.Top  = targetY - 8 + (Random.Next(-4, 4) * (targetX / 100));  // end position with randomness
+      TargetPlayer.Left = targetX + 8 + (Random.Next(-4, 4) * (targetX / 100));  // end position with randomness
       Game.ControllablePlayer.PicBox.Image = ParentForm.Player1.Image;
 
       GetChangeYChangeX();
