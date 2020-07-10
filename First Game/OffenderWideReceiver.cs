@@ -71,7 +71,7 @@ namespace FootballGame
         {
           collidedWithPlayer.Left = -999;
           Game.ControllablePlayer.HasBall = false;
-          this.HasBall = true;
+          HasBall = true;
           PicBox.Image = ParentForm.picBearsBall.Image;
           runningPattern = false;
           Game.ControllablePlayer = this;

@@ -31,21 +31,18 @@ using Drake.Tools;
 
   public class Game
   {
-    // static
     public static Form1 ParentForm;
-    //public static Player PlayerWithBall = new Player();
     public static Player ControllablePlayer = new Player();
     public static BallAsPlayer ballAsPlayer = new BallAsPlayer();
     public static int FieldCenterY;
     public static int LineOfScrimage = 200;
     public static Random Random = new Random();
 
-    // instance
-    private bool running = true;
-    private bool reintialize = false;
-    private System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
-    //public List<Player> players = Player.players;
-   
+    private static float PixalsInYard = 32;
+    private static float yardsGained;
+    private static bool running = true;
+    private static bool reintialize = false;
+    private static System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
     public Game(Form1 form1)
     {
@@ -60,7 +57,7 @@ using Drake.Tools;
       AddPlayers();
 
       timer.Tick += new System.EventHandler(KeyDown);
-      timer.Interval = 60;
+      timer.Interval = 52;
     }
 
     public void AddPlayers()
@@ -221,7 +218,8 @@ using Drake.Tools;
     public void EndPlay(string message)
     {
       reintialize = true;
-      MessageBox.Show(message);
+      yardsGained = (float)(ControllablePlayer.CenterX - LineOfScrimage) / PixalsInYard;
+      MessageBox.Show(message + Environment.NewLine + $"{yardsGained, 0:#.#} yards gained.");
     }
 
     public void Stop()
