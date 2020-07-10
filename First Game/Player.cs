@@ -193,14 +193,14 @@ namespace FootballGame
         if (Y < Top)
         {
           if(ChangeY > 30)
-            ChangeY -= (closingIn + 4);
+            ChangeY -= (closingIn + 2);
           else
             ChangeY -= (closingIn - 2);
         }
         if (Y > Top)
         {
           if (ChangeY < -30)
-            ChangeY += (closingIn + 4); 
+            ChangeY += (closingIn + 2); 
           else
             ChangeY += (closingIn - 2); 
         }
@@ -219,7 +219,7 @@ namespace FootballGame
             ChangeX += (closingIn - 4); 
         }
       }
-      else // Horizontal Move
+      else // Horizontal move, the target player if either way right or left of the chasing player, X should change more 
       {
         if (Y < Top)
         {
@@ -238,16 +238,16 @@ namespace FootballGame
         if (X < this.Left)
         {
           if (ChangeX > 30)
-            ChangeX -= closingIn;
+            ChangeX -= (closingIn + 2);
           else
-            ChangeX -= (closingIn - 4);
+            ChangeX -= (closingIn - 2);
         }
         if (X > this.Left)
         {
           if (ChangeX < -30)
-            ChangeX += closingIn;
+            ChangeX += (closingIn + 2);
           else
-            ChangeX += (closingIn - 4);
+            ChangeX += (closingIn - 2);
         }
       }
     }
