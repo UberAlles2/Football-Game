@@ -17,7 +17,7 @@ namespace FootballGame
 
     public override void Initialize()
     {
-      SpeedCap = 132;
+      SpeedCap = 136;
       Intelligence = 9;
       InCoverage = true;
       base.Initialize();
@@ -25,7 +25,7 @@ namespace FootballGame
 
     public override void Move()
     {
-      if (Player.ControllablePlayer.Left > Game.LineOfScrimage && InCoverage == true)
+      if (ControllablePlayer.Left > Game.LineOfScrimage && InCoverage == true)
       {
         TargetPlayer = Player.ControllablePlayer;
         ChangeX += 20;
@@ -38,9 +38,14 @@ namespace FootballGame
         if (InCoverage)
         {
           if (TargetPlayer.Top < Game.FieldCenterY)
-            base.MoveTowardsTarget(TargetPlayer.Top + 40, TargetPlayer.Left + Random.Next(-200, 200) + (TargetPlayer.ChangeX / 3));
+            base.MoveTowardsTarget(TargetPlayer.Top + 40, TargetPlayer.Left + Random.Next(-120, 200) + (TargetPlayer.ChangeX / 2));
           else
-            base.MoveTowardsTarget(TargetPlayer.Top - 40, TargetPlayer.Left + Random.Next(-200, 200) + (TargetPlayer.ChangeX / 3));
+            base.MoveTowardsTarget(TargetPlayer.Top - 40, TargetPlayer.Left + Random.Next(-120, 200) + (TargetPlayer.ChangeX / 2));
+
+          if (IsThrowing && Random.Next(0, 10) > 9) // Player will move towards thrown ball
+          {
+            TargetPlayer = Game.ballAsPlayer.TargetPlayer;
+          }
         }
         else
         {
@@ -56,12 +61,15 @@ namespace FootballGame
     {
       if (collidedWithPlayer is BallAsPlayer)
       {
-        if (((BallAsPlayer)collidedWithPlayer).BallIsCatchable == false)
+        if (BallAsPlayer.BallIsCatchable == false)
           return;
         
         IsThrowing = false;
-        if (Random.Next(0, 10) > 4)
+        int random = Random.Next(0, 10);
+        if (random < 3)
           ParentGame.EndPlay("Cornerback dropped");
+        else if (random < 6)
+          BallAsPlayer.BallIsCatchable = false; // Tipped ball, ball is uncatchable
         else
         {
           HasBall = true;

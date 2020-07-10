@@ -14,8 +14,21 @@ namespace FootballGame
     {
       SpeedCap = 116;
       Intelligence = 10;
-      TargetPlayer = Player.ControllablePlayer;
+      TargetPlayer = ControllablePlayer;
+
       base.Initialize();
+
+      if (Random.Next(0, 10) < 3)
+      {
+        Intelligence = 9; // Mixed in with blocker less intelligence
+        DefensiveMode = DefensiveMode.Blitz;
+        Top = Game.FieldCenterY - 40;
+        Left = 200;
+      }
+      else if (Random.Next(0, 10) < 8)
+        DefensiveMode = DefensiveMode.Normal;
+      else
+        DefensiveMode = DefensiveMode.Soft;
     }
 
     public override void Move()

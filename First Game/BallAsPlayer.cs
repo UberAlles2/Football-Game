@@ -10,7 +10,9 @@ namespace FootballGame
 {
   public class BallAsPlayer : Player
   {
-    public bool BallIsCatchable;
+    private int keepGoing;
+    
+    public static bool BallIsCatchable;
 
     public override void Initialize()
     {
@@ -21,6 +23,7 @@ namespace FootballGame
       TargetPlayer.Left = -999; // end position
       IsThrowing = false;
       BallIsCatchable = false;
+      keepGoing = 0;
 
       base.Initialize();
     }
@@ -31,14 +34,17 @@ namespace FootballGame
         return;
 
       // Is the ball close to the ending target.  Ball is catchable while this is going on. 
-      if (!BallIsCatchable && Game.DetectCloseCollision(this, TargetPlayer, 30))
+      if (!BallIsCatchable && Game.DetectCloseCollision(this, TargetPlayer, 60))
       {
         BallIsCatchable = true;
         GetChangeYChangeX();
       }
 
+      if (BallIsCatchable)
+        keepGoing++;
+
       // Keep the ball going past the target for a bit.
-      if (BallIsCatchable && !Game.DetectCloseCollision(this, TargetPlayer, 30))
+      if (keepGoing > 10)
       {
         BallIsCatchable = false;
         IsThrowing = false;
@@ -65,8 +71,8 @@ namespace FootballGame
       TotalMoves = 0;
       Top = startY;  // start position
       Left = startX; // start position
-      TargetPlayer.Top  = targetY - 8 + (Random.Next(-4, 4) * (targetX / 100));  // end position with randomness
-      TargetPlayer.Left = targetX + 8 + (Random.Next(-4, 4) * (targetX / 100));  // end position with randomness
+      TargetPlayer.Top  = targetY - 8 + (Random.Next(-5, 5) * (targetX / 100));  // end position with randomness
+      TargetPlayer.Left = targetX + 8 + (Random.Next(-5, 5) * (targetX / 100));  // end position with randomness
       Player.ControllablePlayer.PicBox.Image = ParentForm.Player1.Image;
 
       GetChangeYChangeX();

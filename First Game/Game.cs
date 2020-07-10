@@ -61,7 +61,7 @@ using Drake.Tools;
 
     public void AddPlayers()
     {
-      // Offensive Players
+      //--------------------- Offensive Players
       OffenderQuarterback offenderQuarterback = new OffenderQuarterback();
       offenderQuarterback.InitialTop = FieldCenterY;
       offenderQuarterback.InitialLeft = 10;
@@ -106,7 +106,7 @@ using Drake.Tools;
       Player.AddPlayer(offenderWideReceiverBottom);
 
 
-      // Defensive Players
+      //--------------------- Defensive Players
       DefenderMiddleLineman defenderMiddleLineman = new DefenderMiddleLineman(); 
       defenderMiddleLineman.InitialTop = FieldCenterY;
       defenderMiddleLineman.InitialLeft = LineOfScrimage + 25;
@@ -316,7 +316,7 @@ using Drake.Tools;
             break;
 
 
-          //if (players[j].IsBall)
+          //if (players[j].IsBall && (players[i] is DefenderCornerback) && ballAsPlayer.BallIsCatchable) // TODO take out
           //  players[j].IsBall = players[j].IsBall;
 
           // If player is hitting another player
