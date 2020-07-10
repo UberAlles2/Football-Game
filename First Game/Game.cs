@@ -57,7 +57,7 @@ using Drake.Tools;
       AddPlayers();
 
       timer.Tick += new System.EventHandler(KeyDown);
-      timer.Interval = 52;
+      timer.Interval = 50;
     }
 
     public void AddPlayers()
@@ -116,7 +116,7 @@ using Drake.Tools;
       Player.AddPlayer(defenderMiddleLineman);
 
       DefenderOutsideLinemanTop defenderOutsideLinemanTop = defenderMiddleLineman.CloneAndUpcast<DefenderOutsideLinemanTop, Player>();
-      defenderOutsideLinemanTop.InitialOffset = -66;
+      defenderOutsideLinemanTop.InitialOffset = -72;
       defenderOutsideLinemanTop.InitialLeft = LineOfScrimage + 25;
       defenderOutsideLinemanTop.InitialTop = FieldCenterY + defenderOutsideLinemanTop.Offset - 20;
       defenderOutsideLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player2);
@@ -126,7 +126,7 @@ using Drake.Tools;
       Player.AddPlayer(defenderOutsideLinemanTop);
 
       DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = defenderOutsideLinemanTop.CloneAndUpcast<DefenderOutsideLinemanBottom, DefenderOutsideLineman>();
-      defenderOutsideLinemanBottom.InitialOffset = 66;
+      defenderOutsideLinemanBottom.InitialOffset = 72;
       defenderOutsideLinemanBottom.InitialTop = FieldCenterY + defenderOutsideLinemanBottom.Offset + 20;
       defenderOutsideLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen;

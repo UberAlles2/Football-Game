@@ -18,7 +18,7 @@ namespace FootballGame
     public override void Initialize()
     {
       SpeedCap = 105;
-      Intelligence = 6;
+      Intelligence = 8;
       TargetPlayer = Game.ControllablePlayer;
       base.Initialize();
     }
@@ -34,11 +34,11 @@ namespace FootballGame
         if (TargetPlayer.Left - 100 < this.Left)
           diffX = (TargetPlayer.Left - CoDefender.Left) / -64;
 
-        if(Random.Next(0, 15) > 6)
+        if(Random.Next(0, 15) > 8)
         {
-          if (this is DefenderOutsideLinemanTop && Offset < -44)
+          if (this is DefenderOutsideLinemanTop && Offset < -48)
             Offset++;
-          if (this is DefenderOutsideLinemanBottom && Offset > 44)
+          if (this is DefenderOutsideLinemanBottom && Offset > 48)
             Offset--;
           //if(Math.Abs(this.Offset) < 45)
           //  this.Offset--;
@@ -72,6 +72,11 @@ namespace FootballGame
 
       if (collidedWithPlayer is Offender)
       {
+        if (collisionOrientation == CollisionOrientation.ToLeft || collisionOrientation == CollisionOrientation.ToRight)
+          ChangeX = ChangeX / 2;
+        if (collisionOrientation == CollisionOrientation.Above || collisionOrientation == CollisionOrientation.Below)
+          ChangeY = ChangeY / 2;
+
         base.MoveAroundPlayer(collisionOrientation);
         return;
       }

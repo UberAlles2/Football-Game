@@ -46,58 +46,43 @@ namespace FootballGame
 
     public override void MoveAroundPlayer(CollisionOrientation collisionOrientation)
     {
-      int r = new Random().Next(-1, 2);
+      int r = Player.Random.Next(-10, 10);
 
       switch (collisionOrientation)
       {
         case CollisionOrientation.Above:
           ChangeY = -8;
-          if (TargetPlayer.Left < Left - 60 && ChangeX < -60)
-            ChangeX -= 10;
-          else if (TargetPlayer.Left > Left + 60 && ChangeX > 60)
-            ChangeX += 10;
-          else
-            ChangeX = 40 * r;
           break;
         case CollisionOrientation.Below:
           ChangeY = 8;
-          if (TargetPlayer.Left < Left - 60 && ChangeX < -60)
-            ChangeX -= 10;
-          else if (TargetPlayer.Left > Left + 60 && ChangeX > 60)
-            ChangeX += 10;
-          else
-          {
-            if(ChangeX > 60)
-              ChangeX = ChangeX - 40;
-            else if (ChangeX < -60)
-              ChangeX = ChangeX + 40;
-            else
-              ChangeX = 40 * r;
-          }
-
           break;
         case CollisionOrientation.ToLeft:
-          ChangeX = -5;
-          if (TargetPlayer.Top < Top -60 && ChangeY < -60)
-            ChangeY -= 10;
-          else if (TargetPlayer.Top > Top + 60 && ChangeY > 60)
-            ChangeY += 10;
-          else
-            ChangeY = 40 * r;
-          break;
+          ChangeX = -8;
+      break;
         case CollisionOrientation.ToRight:
-          if(this is DefenderCornerbackTop) //TODO debug
-            ChangeX = ChangeX;
+          ChangeX = 8;
+          break;
+      }
 
-          ChangeX = 5;
-          if (TargetPlayer.Left > Left)
-            ChangeX += 10;
-          else if (TargetPlayer.Top < Top - 60 && ChangeY < -60)
-            ChangeY -= 10;
-          else if (TargetPlayer.Top > Top + 60 && ChangeY > 60)
-            ChangeY += 10;
+      switch (collisionOrientation)
+      {
+        case CollisionOrientation.Above:
+        case CollisionOrientation.Below:
+          if (TargetPlayer.Left < Left - 60 && ChangeX < -40) // The target is way to the left and this is moving left, keep moving left
+            ChangeX -= 8;
+          else if (TargetPlayer.Left > Left + 60 && ChangeX > 40) // The target is way to the right and this is moving right, keep moving right
+            ChangeX += 8;
+          else // Else, randomly go left or right.
+            ChangeX = 8 * r;
+          break;
+        case CollisionOrientation.ToLeft:
+        case CollisionOrientation.ToRight:
+          if (TargetPlayer.Top < Top - 60 && ChangeY < -40)
+            ChangeY -= 8;
+          else if (TargetPlayer.Top > Top + 60 && ChangeY > 40)
+            ChangeY += 8;
           else
-            ChangeY = 40 * r;
+            ChangeY = 8 * r;
           break;
       }
       MovingAroundBlocker = 20;

@@ -30,19 +30,22 @@ namespace FootballGame
         base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + 160 + (TargetPlayer.ChangeX / 2));
       }
 
-      if (TargetPlayer.Left < Left)
-        ChangeX -= 2;
-      else
-        ChangeX = Game.ControllablePlayer.ChangeX / 2;
+      //Game.ControllablePlayer.ChangeX / 2; // TODO put back?
 
-      if (TargetPlayer.Left > Left)
+      if (TargetPlayer.Left < Left + 4 && Game.ControllablePlayer.Left < Left - 8)
+        ChangeX -= 10;
+      else if (TargetPlayer.Left > Left + 4)
         ChangeX += 2;
+      else
+        ChangeX = ChangeX / 2;
 
-      if (TargetPlayer.Top < Top)
+      if (TargetPlayer.Top < Top - 4)
         ChangeY -= 2;
-
-      if (TargetPlayer.Top > Top)
+      else if (TargetPlayer.Top > Top)
         ChangeY += 2;
+      else
+        ChangeY = ChangeY / 2;
+
 
       base.Move();
     }

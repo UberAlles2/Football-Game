@@ -45,6 +45,11 @@ namespace FootballGame
 
       if (collidedWithPlayer is Offender)
       {
+        if (collisionOrientation == CollisionOrientation.ToLeft || collisionOrientation == CollisionOrientation.ToRight)
+          ChangeX = ChangeX/2;
+        if (collisionOrientation == CollisionOrientation.Above || collisionOrientation == CollisionOrientation.Below)
+          ChangeY = ChangeY/2;
+
         base.MoveAroundPlayer(collisionOrientation);
         return;
       }

@@ -180,50 +180,74 @@ namespace FootballGame
 
     public virtual void MoveTowardsTarget(int Y, int X)
     {
-      // Vertical move
+      int closingIn = 12;
+
+      if (this is DefenderMiddleLineman || this is DefenderOutsideLineman) // Can't close in on target that fast with blockers
+        closingIn = 8;
+
+      // TODO no difference between verticle and horizontal??? Should there be?
+      
+      // Vertical move, the target player if either way above or below chasing player, Y should change more 
       if (Math.Abs(this.Left - X) < Math.Abs(this.Top - Y))
       {
         if (Y < Top)
         {
           if(ChangeY > 30)
-            ChangeY += -20;
+            ChangeY -= (closingIn + 4);
           else
-            ChangeY += -16;
+            ChangeY -= (closingIn - 2);
         }
         if (Y > Top)
         {
           if (ChangeY < -30)
-            ChangeY += 20;
+            ChangeY += (closingIn + 4); 
           else
-            ChangeY += 16;
+            ChangeY += (closingIn - 2); 
         }
         if (X < this.Left)
         {
-          this.ChangeX += -4;
+          if (ChangeX > 30)
+            ChangeX -= closingIn;
+          else
+            ChangeX -= (closingIn - 4); 
         }
         if (X > this.Left)
         {
-          this.ChangeX += 4;
+          if (ChangeX < -30)
+            ChangeX += closingIn; 
+          else
+            ChangeX += (closingIn - 4); 
         }
-
       }
       else // Horizontal Move
       {
-        if (Y < this.Top)
+        if (Y < Top)
         {
-          this.ChangeY += -4;
+          if (ChangeY > 30)
+            ChangeY -= closingIn;
+          else
+            ChangeY -= (closingIn - 4);
         }
-        if (Y > this.Top)
+        if (Y > Top)
         {
-          this.ChangeY += 4;
+          if (ChangeY < -30)
+            ChangeY += closingIn;
+          else
+            ChangeY += (closingIn - 4);
         }
         if (X < this.Left)
         {
-          this.ChangeX += -16;
+          if (ChangeX > 30)
+            ChangeX -= closingIn;
+          else
+            ChangeX -= (closingIn - 4);
         }
         if (X > this.Left)
         {
-          this.ChangeX += 16;
+          if (ChangeX < -30)
+            ChangeX += closingIn;
+          else
+            ChangeX += (closingIn - 4);
         }
       }
     }
