@@ -13,6 +13,7 @@ namespace FootballGame
   class DefenderCornerback : Defender
   {
     private bool InCoverage = true;
+    
 
     public override void Initialize()
     {
@@ -24,15 +25,14 @@ namespace FootballGame
 
     public override void Move()
     {
-      if (Game.ControllablePlayer.Left > Game.LineOfScrimage && TargetPlayer != Game.ControllablePlayer)
+      if (Game.ControllablePlayer.Left > Game.LineOfScrimage && InCoverage == true)
       {
         TargetPlayer = Game.ControllablePlayer;
         ChangeX += 20;
-        base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + 160 + (TargetPlayer.ChangeX / 2));
+        base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + 160);
         InCoverage = false;
       }
 
-      ChangeX += 4;
       if (this.Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
         if (InCoverage)
@@ -44,9 +44,11 @@ namespace FootballGame
         }
         else
         {
-          base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
+          int diffY = Math.Abs(TargetPlayer.Top - Top);
+          base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + diffY + (TargetPlayer.ChangeX / 2));
         }
       }
+
       base.Move();
     }
 

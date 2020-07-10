@@ -244,7 +244,7 @@ using Drake.Tools;
         if(ControllablePlayer.ChangeX > 30)
           ControllablePlayer.ChangeX -= 14;
         else
-          ControllablePlayer.ChangeX -= 8;
+          ControllablePlayer.ChangeX -= 6;
         keypressed = true;
       }
       if (IsKeyDown(Keys.Right))
@@ -252,7 +252,7 @@ using Drake.Tools;
         if (ControllablePlayer.ChangeX < 30)
           ControllablePlayer.ChangeX += 14;
         else
-          ControllablePlayer.ChangeX += 8;
+          ControllablePlayer.ChangeX += 6;
         keypressed = true;
       }
       if (IsKeyDown(Keys.Up))
@@ -260,7 +260,7 @@ using Drake.Tools;
         if (ControllablePlayer.ChangeY > 30)
           ControllablePlayer.ChangeY -= 14;
         else
-          ControllablePlayer.ChangeY -= 8;
+          ControllablePlayer.ChangeY -= 6;
         keypressed = true;
       }
       if (IsKeyDown(Keys.Down))
@@ -268,7 +268,7 @@ using Drake.Tools;
         if (ControllablePlayer.ChangeY < 30)
           ControllablePlayer.ChangeY += 14;
         else
-          ControllablePlayer.ChangeY += 8;
+          ControllablePlayer.ChangeY += 6;
         keypressed = true;
       }
       if (keypressed == false)

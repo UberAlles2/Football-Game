@@ -180,7 +180,7 @@ namespace FootballGame
 
     public virtual void MoveTowardsTarget(int Y, int X)
     {
-      int closingIn = 12;
+      int closingIn = 16;
 
       if (this is DefenderMiddleLineman || this is DefenderOutsideLineman) // Can't close in on target that fast with blockers
         closingIn = 8;

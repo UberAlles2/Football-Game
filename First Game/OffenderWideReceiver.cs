@@ -20,7 +20,7 @@ namespace FootballGame
 
     public override void Initialize()
     {
-      SpeedCap = 110;
+      SpeedCap = 108;
       HasBall = false;
       PicBox.Image = ParentForm.Player1.Image;
       PicBox.MouseClick += new System.Windows.Forms.MouseEventHandler(MouseClick);

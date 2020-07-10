@@ -28,7 +28,7 @@ namespace FootballGame
       if (TargetPlayer != Game.ControllablePlayer)
         TargetPlayer = Game.ControllablePlayer;
 
-      if(this.Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
+      if(Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
         int diffX = 1;
         if (TargetPlayer.Left - 100 < this.Left)
@@ -54,8 +54,8 @@ namespace FootballGame
         }
         else
         {
-          calculatedTargetY = (TargetPlayer.Top + TargetPlayer.Top + CoDefender.Top) / 3 + this.Offset * diffX;
-          calculatedTargetX = (TargetPlayer.Left + 20 + CoDefender.Left) / 2 + (TargetPlayer.ChangeX / 2);
+          calculatedTargetY = (TargetPlayer.Top ) + Offset * diffX;  // eliminated  + CoDefender.Top
+          calculatedTargetX = (TargetPlayer.Left + 20) + (TargetPlayer.ChangeX / 2);        // eliminated  + CoDefender.Left   
         }
 
         base.MoveTowardsTarget(calculatedTargetY, calculatedTargetX);
