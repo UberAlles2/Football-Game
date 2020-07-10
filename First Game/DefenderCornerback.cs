@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -25,9 +26,10 @@ namespace FootballGame
 
     public override void Move()
     {
+      // Running back / quarterback has cross the scrimmage line. Change the target to the running back
       if (ControllablePlayer.Left > Game.LineOfScrimage && InCoverage == true)
       {
-        TargetPlayer = Player.ControllablePlayer;
+        TargetPlayer = ControllablePlayer;
         ChangeX += 20;
         base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + 160);
         InCoverage = false;
@@ -38,9 +40,9 @@ namespace FootballGame
         if (InCoverage)
         {
           if (TargetPlayer.Top < Game.FieldCenterY)
-            base.MoveTowardsTarget(TargetPlayer.Top + 40, TargetPlayer.Left + Random.Next(-120, 200) + (TargetPlayer.ChangeX / 2));
+            base.MoveTowardsTarget(TargetPlayer.Top + 40, TargetPlayer.Left + Random.Next(-140, 200) + (TargetPlayer.ChangeX / 2));
           else
-            base.MoveTowardsTarget(TargetPlayer.Top - 40, TargetPlayer.Left + Random.Next(-120, 200) + (TargetPlayer.ChangeX / 2));
+            base.MoveTowardsTarget(TargetPlayer.Top - 40, TargetPlayer.Left + Random.Next(-140, 200) + (TargetPlayer.ChangeX / 2));
 
           if (IsThrowing && Random.Next(0, 10) > 9) // Player will move towards thrown ball
           {
@@ -64,17 +66,17 @@ namespace FootballGame
         if (BallAsPlayer.BallIsCatchable == false)
           return;
         
-        IsThrowing = false;
         int random = Random.Next(0, 10);
-        if (random < 3)
-          ParentGame.EndPlay("Cornerback dropped");
-        else if (random < 6)
+        if (random < 9) 
+        {
           BallAsPlayer.BallIsCatchable = false; // Tipped ball, ball is uncatchable
+          BallAsPlayer.SpinDefectedBall();
+        }
         else
         {
-          HasBall = true;
-          PicBox.BackColor = System.Drawing.Color.Yellow;
+          PicBox.BackColor = System.Drawing.Color.Yellow; // TODO
           ParentGame.EndPlay("Intercepted");
+          return;
         }
       }
 

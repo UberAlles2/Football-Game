@@ -54,7 +54,7 @@ namespace FootballGame
           else
             receiverPatternIndex = 0; // loop through again
         }
-        if (IsThrowing && Random.Next(0, 10) > 5) // Player will move towards thrown ball
+        if (IsThrowing && Random.Next(0, 10) > 7) // Player will move towards thrown ball
         {
           target.Top  = (target.Top + Game.ballAsPlayer.TargetPlayer.Top) / 2;
           target.Left = (target.Left + Game.ballAsPlayer.TargetPlayer.Left) / 2;
@@ -70,17 +70,27 @@ namespace FootballGame
     {
       if(collidedWithPlayer is BallAsPlayer)
       {
-        IsThrowing = false;
-        if (Random.Next(0,10) > 7)
-          ParentGame.EndPlay("Dropped");
-        else
+        if(BallAsPlayer.BallIsCatchable)
         {
-          collidedWithPlayer.Left = -999;
-          Player.ControllablePlayer.HasBall = false;
-          HasBall = true;
-          PicBox.Image = ParentForm.picBearsBall.Image;
-          runningPattern = false;
-          Player.ControllablePlayer = this;
+          if (Random.Next(0, 10) > 7)
+          {
+            BallAsPlayer.SpinDefectedBall();
+            ParentGame.EndPlay("Dropped");
+          }
+          else
+          { // Caught, run with ball.
+            ControllablePlayer.HasBall = false;
+            HasBall = true;
+            PicBox.Image = ParentForm.picBearsBall.Image;
+
+            collidedWithPlayer.Left = -999;
+
+            IsThrowing = false;
+            runningPattern = false;
+
+            ControllablePlayer = this;
+            ControllablePlayer.HasBall = true;
+          }
         }
       }
       base.CollisionMove(collidedWithPlayer, collisionOrientation);

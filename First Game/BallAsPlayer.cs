@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -10,9 +11,28 @@ namespace FootballGame
 {
   public class BallAsPlayer : Player
   {
-    private int keepGoing;
-    
     public static bool BallIsCatchable;
+
+    private int keepGoing;
+
+    public static void SpinDefectedBall()
+    {
+      Game.ballAsPlayer.PicBox.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+      Game.ballAsPlayer.PicBox.Invalidate();
+      Thread.Sleep(100);
+      Game.ballAsPlayer.PicBox.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+      Game.ballAsPlayer.PicBox.Invalidate();
+      Application.DoEvents();
+      Thread.Sleep(100);
+      Game.ballAsPlayer.PicBox.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+      Game.ballAsPlayer.PicBox.Invalidate();
+      Application.DoEvents();
+      Thread.Sleep(100);
+      Game.ballAsPlayer.PicBox.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+      Game.ballAsPlayer.PicBox.Invalidate();
+      Application.DoEvents();
+      Thread.Sleep(100);
+    }
 
     public override void Initialize()
     {
@@ -34,13 +54,19 @@ namespace FootballGame
         return;
 
       // Is the ball close to the ending target.  Ball is catchable while this is going on. 
-      if (!BallIsCatchable && Game.DetectCloseCollision(this, TargetPlayer, 60))
+      if (!BallIsCatchable && keepGoing == 0 && Game.DetectCloseCollision(this, TargetPlayer, 90)) 
       {
+        if (ChangeX > (ChangeY + 10) && (Math.Abs(this.Top) - Math.Abs(TargetPlayer.Top)) > 30) // Going horizontal, Y difference has to be tighter.
+          return;
+        if (ChangeY > (ChangeX + 10) && (Math.Abs(this.Left) - Math.Abs(TargetPlayer.Left)) > 30) // Going vertical, Y difference has to be tighter.
+          return;
+
+        keepGoing = 1;
         BallIsCatchable = true;
         GetChangeYChangeX();
       }
 
-      if (BallIsCatchable)
+      if (keepGoing > 0)
         keepGoing++;
 
       // Keep the ball going past the target for a bit.
