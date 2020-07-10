@@ -12,6 +12,8 @@ namespace FootballGame
   class DefenderCornerbackBottom : DefenderCornerback { }
   class DefenderCornerback : Defender
   {
+    private bool InCoverage = true;
+
     public override void Initialize()
     {
       SpeedCap = 130;
@@ -26,6 +28,7 @@ namespace FootballGame
         TargetPlayer = Game.ControllablePlayer;
         ChangeX += 20;
         base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + 160 + (TargetPlayer.ChangeX / 2));
+        InCoverage = false;
       }
 
       if (MovingAroundBlocker > 0)
@@ -38,10 +41,17 @@ namespace FootballGame
       ChangeX += 4;
       if (this.Intelligence > Game.Random.Next(0,15))
       {
-        if (TargetPlayer.Top < Game.FieldCenterY)
-          base.MoveTowardsTarget(TargetPlayer.Top + 60, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
+        if (InCoverage)
+        {
+          if (TargetPlayer.Top < Game.FieldCenterY)
+            base.MoveTowardsTarget(TargetPlayer.Top + 60, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
+          else
+            base.MoveTowardsTarget(TargetPlayer.Top - 60, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
+        }
         else
-          base.MoveTowardsTarget(TargetPlayer.Top - 60, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
+        {
+          base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
+        }
       }
       base.Move();
     }

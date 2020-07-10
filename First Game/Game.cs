@@ -110,7 +110,7 @@ namespace FootballGame
       Player.AddPlayer(defenderMiddleLineman);
 
       DefenderOutsideLinemanTop defenderOutsideLinemanTop = defenderMiddleLineman.CloneAndUpcast<DefenderOutsideLinemanTop, Player>();
-      defenderOutsideLinemanTop.Offset = -64;
+      defenderOutsideLinemanTop.InitialOffset = -66;
       defenderOutsideLinemanTop.InitialLeft = LineOfScrimage + 25;
       defenderOutsideLinemanTop.InitialTop = FieldCenterY + defenderOutsideLinemanTop.Offset - 20;
       defenderOutsideLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player2);
@@ -120,7 +120,7 @@ namespace FootballGame
       Player.AddPlayer(defenderOutsideLinemanTop);
 
       DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = defenderOutsideLinemanTop.CloneAndUpcast<DefenderOutsideLinemanBottom, DefenderOutsideLineman>();
-      defenderOutsideLinemanBottom.Offset = 64;
+      defenderOutsideLinemanBottom.InitialOffset = 66;
       defenderOutsideLinemanBottom.InitialTop = FieldCenterY + defenderOutsideLinemanBottom.Offset + 20;
       defenderOutsideLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen;

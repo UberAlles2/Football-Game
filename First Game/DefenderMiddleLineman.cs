@@ -46,7 +46,8 @@ namespace FootballGame
     {
       if (collidedWithPlayer.HasBall && !Game.IsThrowing)
       {
-        ParentGame.EndPlay("Tackled");
+        if (Game.Random.Next(0, 10) > 1) // Allow a missed tackle 10% of time.
+          ParentGame.EndPlay("Tackled by Middle Lineman.");
       }
 
       if (collidedWithPlayer is Offender)

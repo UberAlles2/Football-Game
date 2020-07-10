@@ -13,8 +13,7 @@ namespace FootballGame
 
   class DefenderOutsideLineman : Defender
   {
-    public Defender CoDefender; 
-    public int Offset = 0;
+    public Defender CoDefender;
 
     public override void Initialize()
     {
@@ -29,19 +28,18 @@ namespace FootballGame
       if (TargetPlayer != Game.ControllablePlayer)
         TargetPlayer = Game.ControllablePlayer;
 
-      Random random = new Random();
-      if(this.Intelligence > random.Next(0,15))
+      if(this.Intelligence > Game.Random.Next(0,15))
       {
         int diffX = 1;
         if (TargetPlayer.Left - 100 < this.Left)
           diffX = (TargetPlayer.Left - CoDefender.Left) / -64;
 
-        if(random.Next(0, 15) > 6)
+        if(Game.Random.Next(0, 15) > 6)
         {
-          if (this is DefenderOutsideLinemanTop && this.Offset < -44)
-            this.Offset++;
-          if (this is DefenderOutsideLinemanBottom && this.Offset > 44)
-            this.Offset--;
+          if (this is DefenderOutsideLinemanTop && Offset < -44)
+            Offset++;
+          if (this is DefenderOutsideLinemanBottom && Offset > 44)
+            Offset--;
           //if(Math.Abs(this.Offset) < 45)
           //  this.Offset--;
         }
@@ -68,7 +66,8 @@ namespace FootballGame
     {
       if (collidedWithPlayer.HasBall && !Game.IsThrowing)
       {
-        ParentGame.EndPlay("Tackled");
+        if (Game.Random.Next(0, 10) > 1) // Allow a missed tackle 10% of time.
+          ParentGame.EndPlay("Tackled by Outside Lineman.");
       }
 
       if (collidedWithPlayer is Offender)

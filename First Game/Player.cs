@@ -51,9 +51,11 @@ namespace FootballGame
     private int movingAroundBlocker = 0;
     private int initialTop = -1;
     private int initialLeft = -1;
+    private int initialOffset = 0;
     private Player initialTargetPlayer;
     private int top;
     private int left;
+    private int offset;
     private PictureBox pictureBox;
 
     public int SpeedCap { get => cap; set => cap = value; }
@@ -69,6 +71,8 @@ namespace FootballGame
     public int MovingAroundBlocker { get => movingAroundBlocker; set => movingAroundBlocker = value; }
     public int InitialTop { get => initialTop; set => initialTop = value; }
     public int InitialLeft { get => initialLeft; set => initialLeft = value; }
+    public int Offset { get => offset; set => offset = value; }
+    public int InitialOffset { get => initialOffset; set { initialOffset = value; offset = value; } }
     public Player InitialTargetPlayer { get => initialTargetPlayer; set { initialTargetPlayer = value; TargetPlayer = value; } }
 
     public int TotalMoves;
@@ -131,6 +135,7 @@ namespace FootballGame
     {
       if (InitialTop != -1) Top = InitialTop;
       if (InitialLeft != -1) Left = InitialLeft;
+      Offset = InitialOffset;
       if (InitialTargetPlayer != null) TargetPlayer = InitialTargetPlayer;
 
       Player.MovePic(this);
@@ -179,13 +184,19 @@ namespace FootballGame
       // Vertical move
       if (Math.Abs(this.Left - X) < Math.Abs(this.Top - Y))
       {
-        if (Y < this.Top)
+        if (Y < Top)
         {
-          this.ChangeY += -16;
+          if(ChangeY > 30)
+            ChangeY += -20;
+          else
+            ChangeY += -16;
         }
-        if (Y > this.Top)
+        if (Y > Top)
         {
-          this.ChangeY += 16;
+          if (ChangeY < -30)
+            ChangeY += 20;
+          else
+            ChangeY += 16;
         }
         if (X < this.Left)
         {

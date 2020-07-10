@@ -39,6 +39,7 @@ namespace FootballGame
       {
         return;
       }
+
       base.CollisionMove(collidedWithPlayer, collisionOrientation);
     }
 
@@ -95,7 +96,7 @@ namespace FootballGame
             this.ChangeY = 40 * r;
           break;
       }
-      this.MovingAroundBlocker = 20;
+      MovingAroundBlocker = 20;
     }
   }
 }
