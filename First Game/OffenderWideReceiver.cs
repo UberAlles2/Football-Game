@@ -89,6 +89,19 @@ namespace FootballGame
       receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 150, TargetY = this.InitialTop};
       receiverPatterns.Add(receiverPattern);
     }
+
+    public void TheBomb()
+    {
+      receiverPatterns.Clear();
+
+      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "TheBomb", TargetX = 900, TargetY = this.InitialTop };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "TheBomb", TargetX = 900, TargetY = 500 };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "TheBomb", TargetX = 200, TargetY = 500 };
+      receiverPatterns.Add(receiverPattern);
+    }
+
   }
 
   class ReceiverPattern

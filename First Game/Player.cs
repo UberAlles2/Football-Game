@@ -37,6 +37,7 @@ namespace FootballGame
     public static Game ParentGame;
     //public static List<Player> Players = new List<Player>(new Player[Enum.GetValues(typeof(Position)).Cast<int>().Max() + 1]);
     public static List<Player> Players = new List<Player>();
+    public static Random Random = new Random();
 
     private int changeX;
     private int changeY;

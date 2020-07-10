@@ -9,7 +9,17 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Drake.Tools;
 
-namespace FootballGame
+/* To Do List
+ * Middle linebacker isn't intercepting and coliiding with the ball
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+ namespace FootballGame
 {
   public enum CollisionOrientation
   {
@@ -96,7 +106,7 @@ namespace FootballGame
       offenderWideReceiverBottom.InitialTop = FieldCenterY + 240;
       offenderWideReceiverBottom.InitialLeft = LineOfScrimage - 25;
       offenderWideReceiverBottom.PicBox = AddPlayerPictureBox(ParentForm.Player1);
-      offenderWideReceiverBottom.ButtonHookPattern(); // TODO randomize
+      offenderWideReceiverBottom.TheBomb(); // TODO randomize
       offenderWideReceiverBottom.Initialize();
       Player.AddPlayer(offenderWideReceiverBottom);
 

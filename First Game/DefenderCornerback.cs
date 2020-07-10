@@ -17,7 +17,8 @@ namespace FootballGame
     public override void Initialize()
     {
       SpeedCap = 130;
-      Intelligence = 12;
+      Intelligence = 10;
+      InCoverage = true;
       base.Initialize();
     }
 
@@ -31,26 +32,19 @@ namespace FootballGame
         InCoverage = false;
       }
 
-      if (MovingAroundBlocker > 0)
-      {
-        MovingAroundBlocker--;
-        base.Move(); 
-        return;
-      }
-
       ChangeX += 4;
-      if (this.Intelligence > Game.Random.Next(0,15))
+      if (this.Intelligence > Player.Random.Next(0,15) || MovingAroundBlocker > 0)
       {
         if (InCoverage)
         {
           if (TargetPlayer.Top < Game.FieldCenterY)
-            base.MoveTowardsTarget(TargetPlayer.Top + 60, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
+            base.MoveTowardsTarget(TargetPlayer.Top + 40, TargetPlayer.Left + Player.Random.Next(-100, 100) + (TargetPlayer.ChangeX / 3));
           else
-            base.MoveTowardsTarget(TargetPlayer.Top - 60, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
+            base.MoveTowardsTarget(TargetPlayer.Top - 40, TargetPlayer.Left + Player.Random.Next(-100, 100) + (TargetPlayer.ChangeX / 3));
         }
         else
         {
-          base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + (TargetPlayer.ChangeX / 2));
+          base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + 20 + (TargetPlayer.ChangeX / 2));
         }
       }
       base.Move();

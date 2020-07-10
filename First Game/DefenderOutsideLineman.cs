@@ -28,7 +28,7 @@ namespace FootballGame
       if (TargetPlayer != Game.ControllablePlayer)
         TargetPlayer = Game.ControllablePlayer;
 
-      if(this.Intelligence > Game.Random.Next(0,15))
+      if(this.Intelligence > Game.Random.Next(0,15) || MovingAroundBlocker > 0)
       {
         int diffX = 1;
         if (TargetPlayer.Left - 100 < this.Left)

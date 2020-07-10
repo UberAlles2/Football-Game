@@ -14,7 +14,7 @@ namespace FootballGame
 
     public override void Initialize()
     {
-      SpeedCap = 320;
+      SpeedCap = 360;
       IsBall = true;
       TargetPlayer = new Player();
       TargetPlayer.Top = -999;  // end position
@@ -60,13 +60,13 @@ namespace FootballGame
       // The ball doesn't move when colliding.
     }
 
-    public void ThrowBall(int Y, int X, int targetY, int targetX)
+    public void ThrowBall(int startY, int startX, int targetY, int targetX)
     {
       TotalMoves = 0;
-      Top = Y;  // start position
-      Left = X; // start position
-      TargetPlayer.Top  = targetY - 8 + (Game.Random.Next(-10, 10) * ((targetX + 20) / 80));  // end position with randomness
-      TargetPlayer.Left = targetX + 8 + (Game.Random.Next(-10, 10) * ((targetX + 20) / 80));  // end position with randomness
+      Top = startY;  // start position
+      Left = startX; // start position
+      TargetPlayer.Top  = targetY - 8 + (Random.Next(-10, 10) * (targetX / 80));  // end position with randomness
+      TargetPlayer.Left = targetX + 8 + (Random.Next(-10, 10) * (targetX / 80));  // end position with randomness
       Game.ControllablePlayer.PicBox.Image = ParentForm.Player1.Image;
 
       GetChangeYChangeX();

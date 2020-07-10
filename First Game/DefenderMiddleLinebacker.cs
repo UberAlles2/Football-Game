@@ -26,15 +26,8 @@ namespace FootballGame
       if (TargetPlayer != Game.ControllablePlayer)
         TargetPlayer = Game.ControllablePlayer;
 
-      if (MovingAroundBlocker > 0)
-      {
-        MovingAroundBlocker--;
-        base.Move(); 
-        return;
-      }
-
       Random random = new Random();
-      if(this.Intelligence > random.Next(0,15))
+      if(this.Intelligence > random.Next(0,15) || MovingAroundBlocker > 0)
       {
 
         int calculatedTargetY = TargetPlayer.Top; 

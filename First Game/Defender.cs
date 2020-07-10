@@ -14,7 +14,7 @@ namespace FootballGame
     public DefensiveMode DefensiveMode = DefensiveMode.Normal;
     public override void Initialize()
     {
-      this.Team = 2;
+      Team = 2;
       base.Initialize();
     }
 
@@ -35,8 +35,9 @@ namespace FootballGame
       //  return;
       //}
 
-      if (this.MovingAroundBlocker > 0)
+      if (MovingAroundBlocker > 0)
       {
+        MovingAroundBlocker--;
         return;
       }
 
@@ -50,20 +51,20 @@ namespace FootballGame
       switch (collisionOrientation)
       {
         case CollisionOrientation.Above:
-          this.ChangeY = -8;
-          if (this.TargetPlayer.Left < this.Left - 60 && this.ChangeX < -60)
-            this.ChangeX -= 10;
-          else if (this.TargetPlayer.Left > this.Left + 60 && this.ChangeX > 60)
-            this.ChangeX += 10;
+          ChangeY = -8;
+          if (TargetPlayer.Left < Left - 60 && ChangeX < -60)
+            ChangeX -= 10;
+          else if (TargetPlayer.Left > Left + 60 && ChangeX > 60)
+            ChangeX += 10;
           else
-            this.ChangeX = 40 * r;
+            ChangeX = 40 * r;
           break;
         case CollisionOrientation.Below:
-          this.ChangeY = 8;
-          if (this.TargetPlayer.Left < this.Left - 60 && this.ChangeX < -60)
-            this.ChangeX -= 10;
-          else if (this.TargetPlayer.Left > this.Left + 60 && this.ChangeX > 60)
-            this.ChangeX += 10;
+          ChangeY = 8;
+          if (TargetPlayer.Left < Left - 60 && ChangeX < -60)
+            ChangeX -= 10;
+          else if (TargetPlayer.Left > Left + 60 && ChangeX > 60)
+            ChangeX += 10;
           else
           {
             if(ChangeX > 60)
@@ -76,24 +77,27 @@ namespace FootballGame
 
           break;
         case CollisionOrientation.ToLeft:
-          this.ChangeX = -5;
-          if (this.TargetPlayer.Top < this.Top -60 && this.ChangeY < -60)
-            this.ChangeY -= 10;
-          else if (this.TargetPlayer.Top > this.Top + 60 && this.ChangeY > 60)
-            this.ChangeY += 10;
+          ChangeX = -5;
+          if (TargetPlayer.Top < Top -60 && ChangeY < -60)
+            ChangeY -= 10;
+          else if (TargetPlayer.Top > Top + 60 && ChangeY > 60)
+            ChangeY += 10;
           else
-            this.ChangeY = 40 * r;
+            ChangeY = 40 * r;
           break;
         case CollisionOrientation.ToRight:
-          this.ChangeX = 5;
-          if (this.TargetPlayer.Left > this.Left)
-            this.ChangeX += 10;
-          else if (this.TargetPlayer.Top < this.Top - 60 && this.ChangeY < -60)
-            this.ChangeY -= 10;
-          else if (this.TargetPlayer.Top > this.Top + 60 && this.ChangeY > 60)
-            this.ChangeY += 10;
+          if(this is DefenderCornerbackTop) //TODO debug
+            ChangeX = ChangeX;
+
+          ChangeX = 5;
+          if (TargetPlayer.Left > Left)
+            ChangeX += 10;
+          else if (TargetPlayer.Top < Top - 60 && ChangeY < -60)
+            ChangeY -= 10;
+          else if (TargetPlayer.Top > Top + 60 && ChangeY > 60)
+            ChangeY += 10;
           else
-            this.ChangeY = 40 * r;
+            ChangeY = 40 * r;
           break;
       }
       MovingAroundBlocker = 20;
