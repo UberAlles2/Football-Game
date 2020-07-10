@@ -12,7 +12,7 @@ namespace FootballGame
   {
     public override void Initialize()
     {
-      SpeedCap = 94;
+      SpeedCap = 100;
       HasBall = true;
       Game.ControllablePlayer = this;
       PicBox.Image = ParentForm.picBearsBall.Image;

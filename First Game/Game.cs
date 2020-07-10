@@ -277,6 +277,11 @@ using Drake.Tools;
         ControllablePlayer.ChangeY = ControllablePlayer.ChangeY - (8 * Math.Sign(ControllablePlayer.ChangeY));
       }
 
+      if (Math.Abs(ControllablePlayer.ChangeX) > ControllablePlayer.SpeedCap -32)
+      {
+        ControllablePlayer.ChangeX = (ControllablePlayer.SpeedCap - 40) * Math.Sign(ControllablePlayer.ChangeX);
+      }
+
       ControllablePlayer.Move();
 
       return;
