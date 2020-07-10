@@ -28,13 +28,13 @@ namespace FootballGame
       if (TargetPlayer != Game.ControllablePlayer)
         TargetPlayer = Game.ControllablePlayer;
 
-      if(this.Intelligence > Game.Random.Next(0,15) || MovingAroundBlocker > 0)
+      if(this.Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
         int diffX = 1;
         if (TargetPlayer.Left - 100 < this.Left)
           diffX = (TargetPlayer.Left - CoDefender.Left) / -64;
 
-        if(Game.Random.Next(0, 15) > 6)
+        if(Random.Next(0, 15) > 6)
         {
           if (this is DefenderOutsideLinemanTop && Offset < -44)
             Offset++;
@@ -64,9 +64,9 @@ namespace FootballGame
     }
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {
-      if (collidedWithPlayer.HasBall && !Game.IsThrowing)
+      if (collidedWithPlayer.HasBall && !IsThrowing)
       {
-        if (Game.Random.Next(0, 10) > 1) // Allow a missed tackle 10% of time.
+        if (Random.Next(0, 10) > 1) // Allow a missed tackle 10% of time.
           ParentGame.EndPlay("Tackled by Outside Lineman.");
       }
 

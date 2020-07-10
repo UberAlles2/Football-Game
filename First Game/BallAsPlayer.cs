@@ -19,7 +19,7 @@ namespace FootballGame
       TargetPlayer = new Player();
       TargetPlayer.Top = -999;  // end position
       TargetPlayer.Left = -999; // end position
-      Game.IsThrowing = false;
+      IsThrowing = false;
       BallIsCatchable = false;
 
       base.Initialize();
@@ -27,7 +27,7 @@ namespace FootballGame
 
     public override void Move()
     {
-      if (!Game.IsThrowing)
+      if (!IsThrowing)
         return;
 
       // Is the ball close to the ending target.  Ball is catchable while this is going on. 
@@ -41,7 +41,7 @@ namespace FootballGame
       if (BallIsCatchable && !Game.DetectCloseCollision(this, TargetPlayer, 30))
       {
         BallIsCatchable = false;
-        Game.IsThrowing = false;
+        IsThrowing = false;
         ParentGame.EndPlay("Incomplete");
         return;
       }
@@ -70,7 +70,7 @@ namespace FootballGame
       Game.ControllablePlayer.PicBox.Image = ParentForm.Player1.Image;
 
       GetChangeYChangeX();
-      Game.IsThrowing = true;
+      IsThrowing = true;
     }
 
     private void GetChangeYChangeX()

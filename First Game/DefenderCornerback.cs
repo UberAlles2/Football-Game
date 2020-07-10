@@ -33,14 +33,14 @@ namespace FootballGame
       }
 
       ChangeX += 4;
-      if (this.Intelligence > Player.Random.Next(0,15) || MovingAroundBlocker > 0)
+      if (this.Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
         if (InCoverage)
         {
           if (TargetPlayer.Top < Game.FieldCenterY)
-            base.MoveTowardsTarget(TargetPlayer.Top + 40, TargetPlayer.Left + Player.Random.Next(-200, 200) + (TargetPlayer.ChangeX / 3));
+            base.MoveTowardsTarget(TargetPlayer.Top + 40, TargetPlayer.Left + Random.Next(-200, 200) + (TargetPlayer.ChangeX / 3));
           else
-            base.MoveTowardsTarget(TargetPlayer.Top - 40, TargetPlayer.Left + Player.Random.Next(-200, 200) + (TargetPlayer.ChangeX / 3));
+            base.MoveTowardsTarget(TargetPlayer.Top - 40, TargetPlayer.Left + Random.Next(-200, 200) + (TargetPlayer.ChangeX / 3));
         }
         else
         {
@@ -57,8 +57,8 @@ namespace FootballGame
         if (((BallAsPlayer)collidedWithPlayer).BallIsCatchable == false)
           return;
         
-        Game.IsThrowing = false;
-        if (Game.Random.Next(0, 10) > 4)
+        IsThrowing = false;
+        if (Random.Next(0, 10) > 4)
           ParentGame.EndPlay("Cornerback dropped");
         else
         {
@@ -68,7 +68,7 @@ namespace FootballGame
         }
       }
 
-      if (collidedWithPlayer.HasBall && !Game.IsThrowing)
+      if (collidedWithPlayer.HasBall && !IsThrowing)
       {
         ParentGame.EndPlay("Tackled");
       }

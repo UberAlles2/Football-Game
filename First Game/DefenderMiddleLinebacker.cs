@@ -20,7 +20,7 @@ namespace FootballGame
 
     public override void Move()
     {
-      if (Game.IsThrowing)
+      if (IsThrowing)
         this.ChangeX += 20;
  
       if (TargetPlayer != Game.ControllablePlayer)
@@ -68,7 +68,7 @@ namespace FootballGame
 
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {
-      if (collidedWithPlayer.HasBall && !Game.IsThrowing)
+      if (collidedWithPlayer.HasBall && !IsThrowing)
       {
         ParentGame.EndPlay("Tackled");
       }

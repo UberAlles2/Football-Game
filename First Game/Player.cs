@@ -32,12 +32,12 @@ namespace FootballGame
 
   public class Player
   {
-    public Player TargetPlayer;
+    public static Random Random = new Random();
     public static Form1 ParentForm;
     public static Game ParentGame;
     //public static List<Player> Players = new List<Player>(new Player[Enum.GetValues(typeof(Position)).Cast<int>().Max() + 1]);
     public static List<Player> Players = new List<Player>();
-    public static Random Random = new Random();
+    public static bool IsThrowing;
 
     private int changeX;
     private int changeY;
@@ -58,6 +58,8 @@ namespace FootballGame
     private int left;
     private int offset;
     private PictureBox pictureBox;
+
+    public Player TargetPlayer;
 
     public int SpeedCap { get => cap; set => cap = value; }
     public int Team { get => team; set => team = value; }

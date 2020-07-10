@@ -64,8 +64,8 @@ namespace FootballGame
     {
       if(collidedWithPlayer is BallAsPlayer)
       {
-        Game.IsThrowing = false;
-        if (Game.Random.Next(0,10) > 7)
+        IsThrowing = false;
+        if (Random.Next(0,10) > 7)
           ParentGame.EndPlay("Dropped");
         else
         {

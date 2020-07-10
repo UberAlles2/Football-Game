@@ -38,7 +38,6 @@ using Drake.Tools;
     public static BallAsPlayer ballAsPlayer = new BallAsPlayer();
     public static int FieldCenterY;
     public static int LineOfScrimage = 200;
-    public static bool IsThrowing;
     public static Random Random = new Random();
 
     // instance
@@ -61,7 +60,7 @@ using Drake.Tools;
       AddPlayers();
 
       timer.Tick += new System.EventHandler(KeyDown);
-      timer.Interval = 50;
+      timer.Interval = 60;
     }
 
     public void AddPlayers()
@@ -297,7 +296,7 @@ using Drake.Tools;
       if (e.Button == MouseButtons.Left)
       {
         // Pass the ball. Ball is really another player.
-        if(!Game.IsThrowing)
+        if(!Player.IsThrowing)
           ballAsPlayer.ThrowBall(ControllablePlayer.Top + 16, ControllablePlayer.Left + 16, e.Location.Y, e.Location.X);   
       }
     }
@@ -308,7 +307,7 @@ using Drake.Tools;
       {
         for (int j = i + 1; j < Player.Players.Count; j++)
         {
-          if (!Game.IsThrowing && players[j].IsBall) 
+          if (!Player.IsThrowing && players[j].IsBall) 
             break;
 
           if (!(players[i] is OffenderWideReceiver) && !(players[i] is DefenderCornerback) && !(players[i] is DefenderMiddleLinebacker) && players[j].IsBall) 
