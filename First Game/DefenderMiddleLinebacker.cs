@@ -13,8 +13,8 @@ namespace FootballGame
     public override void Initialize()
     {
       SpeedCap = 116;
-      Intelligence = 11;
-      TargetPlayer = Game.ControllablePlayer;
+      Intelligence = 10;
+      TargetPlayer = Player.ControllablePlayer;
       base.Initialize();
     }
 
@@ -23,8 +23,8 @@ namespace FootballGame
       if (IsThrowing)
         this.ChangeX += 20;
  
-      if (TargetPlayer != Game.ControllablePlayer)
-        TargetPlayer = Game.ControllablePlayer;
+      if (TargetPlayer != Player.ControllablePlayer)
+        TargetPlayer = Player.ControllablePlayer;
 
       Random random = new Random();
       if(this.Intelligence > random.Next(0,15) || MovingAroundBlocker > 0)

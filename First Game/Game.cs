@@ -32,7 +32,6 @@ using Drake.Tools;
   public class Game
   {
     public static Form1 ParentForm;
-    public static Player ControllablePlayer = new Player();
     public static BallAsPlayer ballAsPlayer = new BallAsPlayer();
     public static int FieldCenterY;
     public static int LineOfScrimage = 200;
@@ -69,7 +68,7 @@ using Drake.Tools;
       offenderQuarterback.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderQuarterback.Initialize();
       Player.AddPlayer(offenderQuarterback);
-      ControllablePlayer = offenderQuarterback; 
+      Player.ControllablePlayer = offenderQuarterback; 
 
       OffenderLinemanMiddle offenderLinemanMiddle = new OffenderLinemanMiddle();
       offenderLinemanMiddle.InitialTop = FieldCenterY;
@@ -79,7 +78,7 @@ using Drake.Tools;
       Player.AddPlayer(offenderLinemanMiddle);
 
       OffenderLinemanTop offenderLinemanTop = offenderLinemanMiddle.CloneAndUpcast<OffenderLinemanTop, OffenderLineman>();
-      offenderLinemanTop.InitialTop = FieldCenterY - 80;
+      offenderLinemanTop.InitialTop = FieldCenterY - 83; //? an extra 3 toward top because the top defensive lineman always goes on overtop
       offenderLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderLinemanTop.Initialize();
       Player.AddPlayer(offenderLinemanTop);
@@ -116,7 +115,7 @@ using Drake.Tools;
       Player.AddPlayer(defenderMiddleLineman);
 
       DefenderOutsideLinemanTop defenderOutsideLinemanTop = defenderMiddleLineman.CloneAndUpcast<DefenderOutsideLinemanTop, Player>();
-      defenderOutsideLinemanTop.InitialOffset = -72;
+      defenderOutsideLinemanTop.InitialOffset = -76;
       defenderOutsideLinemanTop.InitialLeft = LineOfScrimage + 25;
       defenderOutsideLinemanTop.InitialTop = FieldCenterY + defenderOutsideLinemanTop.Offset - 20;
       defenderOutsideLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player2);
@@ -126,7 +125,7 @@ using Drake.Tools;
       Player.AddPlayer(defenderOutsideLinemanTop);
 
       DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = defenderOutsideLinemanTop.CloneAndUpcast<DefenderOutsideLinemanBottom, DefenderOutsideLineman>();
-      defenderOutsideLinemanBottom.InitialOffset = 72;
+      defenderOutsideLinemanBottom.InitialOffset = 76;
       defenderOutsideLinemanBottom.InitialTop = FieldCenterY + defenderOutsideLinemanBottom.Offset + 20;
       defenderOutsideLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen;
@@ -218,7 +217,7 @@ using Drake.Tools;
     public void EndPlay(string message)
     {
       reintialize = true;
-      yardsGained = (float)(ControllablePlayer.CenterX - LineOfScrimage) / PixalsInYard;
+      yardsGained = (float)(Player.ControllablePlayer.CenterX - LineOfScrimage) / PixalsInYard;
       MessageBox.Show(message + Environment.NewLine + $"{yardsGained, 0:#.#} yards gained.");
     }
 
@@ -234,55 +233,55 @@ using Drake.Tools;
 
       if (reintialize) // Stop the player from moving after pay ends.
       {
-        ControllablePlayer.ChangeX = 0; 
-        ControllablePlayer.ChangeY = 0;
+        Player.ControllablePlayer.ChangeX = 0; 
+        Player.ControllablePlayer.ChangeY = 0;
         return;
       }
 
       if (IsKeyDown(Keys.Left))
       {
-        if(ControllablePlayer.ChangeX > 30)
-          ControllablePlayer.ChangeX -= 14;
+        if(Player.ControllablePlayer.ChangeX > 30)
+          Player.ControllablePlayer.ChangeX -= 14;
         else
-          ControllablePlayer.ChangeX -= 6;
+          Player.ControllablePlayer.ChangeX -= 6;
         keypressed = true;
       }
       if (IsKeyDown(Keys.Right))
       {
-        if (ControllablePlayer.ChangeX < 30)
-          ControllablePlayer.ChangeX += 14;
+        if (Player.ControllablePlayer.ChangeX < 30)
+          Player.ControllablePlayer.ChangeX += 14;
         else
-          ControllablePlayer.ChangeX += 6;
+          Player.ControllablePlayer.ChangeX += 6;
         keypressed = true;
       }
       if (IsKeyDown(Keys.Up))
       {
-        if (ControllablePlayer.ChangeY > 30)
-          ControllablePlayer.ChangeY -= 14;
+        if (Player.ControllablePlayer.ChangeY > 30)
+          Player.ControllablePlayer.ChangeY -= 14;
         else
-          ControllablePlayer.ChangeY -= 6;
+          Player.ControllablePlayer.ChangeY -= 6;
         keypressed = true;
       }
       if (IsKeyDown(Keys.Down))
       {
-        if (ControllablePlayer.ChangeY < 30)
-          ControllablePlayer.ChangeY += 14;
+        if (Player.ControllablePlayer.ChangeY < 30)
+          Player.ControllablePlayer.ChangeY += 14;
         else
-          ControllablePlayer.ChangeY += 6;
+          Player.ControllablePlayer.ChangeY += 6;
         keypressed = true;
       }
       if (keypressed == false)
       {
-        ControllablePlayer.ChangeX = ControllablePlayer.ChangeX - (8 * Math.Sign(ControllablePlayer.ChangeX));
-        ControllablePlayer.ChangeY = ControllablePlayer.ChangeY - (8 * Math.Sign(ControllablePlayer.ChangeY));
+        Player.ControllablePlayer.ChangeX = Player.ControllablePlayer.ChangeX - (8 * Math.Sign(Player.ControllablePlayer.ChangeX));
+        Player.ControllablePlayer.ChangeY = Player.ControllablePlayer.ChangeY - (8 * Math.Sign(Player.ControllablePlayer.ChangeY));
       }
 
-      if (Math.Abs(ControllablePlayer.ChangeX) > ControllablePlayer.SpeedCap -32)
+      if (Math.Abs(Player.ControllablePlayer.ChangeX) > Player.ControllablePlayer.SpeedCap -32)
       {
-        ControllablePlayer.ChangeX = (ControllablePlayer.SpeedCap - 40) * Math.Sign(ControllablePlayer.ChangeX);
+        Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 40) * Math.Sign(Player.ControllablePlayer.ChangeX);
       }
 
-      ControllablePlayer.Move();
+      Player.ControllablePlayer.Move();
 
       return;
     }
@@ -300,7 +299,7 @@ using Drake.Tools;
       {
         // Pass the ball. Ball is really another player.
         if(!Player.IsThrowing)
-          ballAsPlayer.ThrowBall(ControllablePlayer.Top + 16, ControllablePlayer.Left + 16, e.Location.Y, e.Location.X);   
+          ballAsPlayer.ThrowBall(Player.ControllablePlayer.Top + 16, Player.ControllablePlayer.Left + 16, e.Location.Y, e.Location.X);   
       }
     }
 

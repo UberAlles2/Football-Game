@@ -70,11 +70,11 @@ namespace FootballGame
         else
         {
           collidedWithPlayer.Left = -999;
-          Game.ControllablePlayer.HasBall = false;
+          Player.ControllablePlayer.HasBall = false;
           HasBall = true;
           PicBox.Image = ParentForm.picBearsBall.Image;
           runningPattern = false;
-          Game.ControllablePlayer = this;
+          Player.ControllablePlayer = this;
         }
       }
       base.CollisionMove(collidedWithPlayer, collisionOrientation);
@@ -84,9 +84,11 @@ namespace FootballGame
     {
       receiverPatterns.Clear();
 
-      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 500, TargetY = this.InitialTop};
+      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 500, TargetY = InitialTop};
       receiverPatterns.Add(receiverPattern);
-      receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 150, TargetY = this.InitialTop};
+      receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 250, TargetY = InitialTop};
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 250, TargetY = InitialTop + 200};
       receiverPatterns.Add(receiverPattern);
     }
 

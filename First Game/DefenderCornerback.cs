@@ -25,9 +25,9 @@ namespace FootballGame
 
     public override void Move()
     {
-      if (Game.ControllablePlayer.Left > Game.LineOfScrimage && InCoverage == true)
+      if (Player.ControllablePlayer.Left > Game.LineOfScrimage && InCoverage == true)
       {
-        TargetPlayer = Game.ControllablePlayer;
+        TargetPlayer = Player.ControllablePlayer;
         ChangeX += 20;
         base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + 160);
         InCoverage = false;

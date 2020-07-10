@@ -32,6 +32,7 @@ namespace FootballGame
 
   public class Player
   {
+    public static Player ControllablePlayer = new Player();
     public static Random Random = new Random();
     public static Form1 ParentForm;
     public static Game ParentGame;

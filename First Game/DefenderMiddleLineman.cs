@@ -13,24 +13,24 @@ namespace FootballGame
     public override void Initialize()
     {
       SpeedCap = 104;
-      Intelligence = 9;
-      TargetPlayer = Game.ControllablePlayer;
+      Intelligence = 8;
+      TargetPlayer = Player.ControllablePlayer;
       base.Initialize();
     }
 
     public override void Move()
     {
-      if (Game.ControllablePlayer.Left > Game.LineOfScrimage)
+      if (Player.ControllablePlayer.Left > Game.LineOfScrimage + 8)
       {
         Intelligence = 11; // Once the runner get past the line of scrimage, this defender doen't have to worry about the blockers.
       }
 
-      if (TargetPlayer != Game.ControllablePlayer)
-        TargetPlayer = Game.ControllablePlayer;
+      if (TargetPlayer != Player.ControllablePlayer)
+        TargetPlayer = Player.ControllablePlayer;
 
       if(Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
-        base.MoveTowardsTarget(Game.ControllablePlayer.Top, Game.ControllablePlayer.Left + 30);
+        base.MoveTowardsTarget(Player.ControllablePlayer.Top, Player.ControllablePlayer.Left + 30);
       }
       base.Move();
     }

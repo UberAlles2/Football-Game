@@ -19,14 +19,14 @@ namespace FootballGame
     {
       SpeedCap = 105;
       Intelligence = 8;
-      TargetPlayer = Game.ControllablePlayer;
+      TargetPlayer = Player.ControllablePlayer;
       base.Initialize();
     }
 
     public override void Move()
     {
-      if (TargetPlayer != Game.ControllablePlayer)
-        TargetPlayer = Game.ControllablePlayer;
+      if (TargetPlayer != Player.ControllablePlayer)
+        TargetPlayer = Player.ControllablePlayer;
 
       if(Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
@@ -37,9 +37,26 @@ namespace FootballGame
         if(Random.Next(0, 15) > 8)
         {
           if (this is DefenderOutsideLinemanTop && Offset < -48)
+          {
+            ChangeY -= 4; // Keep on top
+            if (Top > Game.FieldCenterY - 80) // Top Outside lineman should leave his zone and stay on top 
+            {
+              Offset--;
+              ChangeY += 10;
+            }
             Offset++;
+          }
           if (this is DefenderOutsideLinemanBottom && Offset > 48)
-            Offset--;
+          {
+            ChangeY -= 4; // Keep on bottom
+            if (Top < Game.FieldCenterY + 80) // Bottom Outside lineman should leave his zone and stay on bottom 
+            {
+              Offset++;
+              ChangeY += 10;
+            }
+            else
+              Offset--;
+          }
           //if(Math.Abs(this.Offset) < 45)
           //  this.Offset--;
         }
