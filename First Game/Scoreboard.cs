@@ -23,16 +23,15 @@ namespace FootballGame
         letterPicBoxes.Add(CreateLetterPictureBox((i * 25) + 2));
       }
 
-      //letterPicBoxes[0].Image = GetLetterImage("!");
-      //DisplayMessage(" 0", 1);
       DisplayDown("1");
       DisplayToGo("32");
+      DisplayBallOn("45");
     }
 
     public static PictureBox CreateLetterPictureBox(int left)
     {
       PictureBox p = new PictureBox();
-      p.Top = 32;
+      p.Top = 30;
       p.Left = left;
       p.Width = 26;
       p.Height = 34;
@@ -82,6 +81,10 @@ namespace FootballGame
     public static void DisplayToGo(string message)
     {
       DisplayMessage(message, 5);
+    }
+    public static void DisplayBallOn(string message)
+    {
+      DisplayMessage(message, 9);
     }
   }
 }

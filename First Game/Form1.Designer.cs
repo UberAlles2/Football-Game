@@ -44,6 +44,7 @@
       this.picScoreboardLetters = new System.Windows.Forms.PictureBox();
       this.label2 = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
+      this.label4 = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.Player2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFootball)).BeginInit();
@@ -177,6 +178,7 @@
       this.pnlScoreboard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.pnlScoreboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(8)))), ((int)(((byte)(8)))));
+      this.pnlScoreboard.Controls.Add(this.label4);
       this.pnlScoreboard.Controls.Add(this.label3);
       this.pnlScoreboard.Controls.Add(this.label2);
       this.pnlScoreboard.Controls.Add(this.picScoreboardLetters);
@@ -198,8 +200,8 @@
       // 
       this.label2.AutoSize = true;
       this.label2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-      this.label2.Location = new System.Drawing.Point(16, 1);
+      this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(194)))), ((int)(((byte)(63)))));
+      this.label2.Location = new System.Drawing.Point(25, 1);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(76, 24);
       this.label2.TabIndex = 7;
@@ -209,12 +211,23 @@
       // 
       this.label3.AutoSize = true;
       this.label3.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
-      this.label3.Location = new System.Drawing.Point(112, 2);
+      this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(194)))), ((int)(((byte)(63)))));
+      this.label3.Location = new System.Drawing.Point(113, 2);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(77, 24);
       this.label3.TabIndex = 8;
       this.label3.Text = "TO GO";
+      // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(194)))), ((int)(((byte)(63)))));
+      this.label4.Location = new System.Drawing.Point(202, 2);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(102, 24);
+      this.label4.TabIndex = 9;
+      this.label4.Text = "BALL ON";
       // 
       // Form1
       // 
@@ -267,6 +280,7 @@
     public System.Windows.Forms.PictureBox picScoreboardLetters;
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.Label label4;
   }
 }
 
