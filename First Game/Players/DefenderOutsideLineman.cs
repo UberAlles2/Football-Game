@@ -75,7 +75,7 @@ namespace FootballGame
           calculatedTargetX = (TargetPlayer.Left + 20) + (TargetPlayer.ChangeX / 2);        // eliminated  + CoDefender.Left   
         }
 
-        base.MoveTowardsTarget(calculatedTargetY, calculatedTargetX);
+        base.MoveTowardsTarget(calculatedTargetX, calculatedTargetY);
       }
       base.Move();
     }

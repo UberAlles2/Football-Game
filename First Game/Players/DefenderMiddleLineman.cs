@@ -30,7 +30,7 @@ namespace FootballGame
 
       if(Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
-        base.MoveTowardsTarget(Player.ControllablePlayer.Top, Player.ControllablePlayer.Left + 30);
+        base.MoveTowardsTarget(Player.ControllablePlayer.Left + 30, Player.ControllablePlayer.Top);
       }
       base.Move();
     }

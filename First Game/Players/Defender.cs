@@ -22,9 +22,9 @@ namespace FootballGame
     {
         base.Move();
     }
-    public override void MoveTowardsTarget(int Y, int X)
+    public override void MoveTowardsTarget(int X, int Y)
     {
-      base.MoveTowardsTarget(Y, X);
+      base.MoveTowardsTarget(X, Y);
     }
 
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)

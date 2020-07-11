@@ -74,7 +74,7 @@ namespace FootballGame
         }
 
         ChangeX += 8; // keeps player moving down field a little
-        base.MoveTowardsTarget(calculatedTargetY, calculatedTargetX);
+        base.MoveTowardsTarget(calculatedTargetX, calculatedTargetY);
       }
       base.Move();
     }

@@ -185,7 +185,7 @@ namespace FootballGame
       player.PicBox.Left = player.Left;
     }
 
-    public virtual void MoveTowardsTarget(int Y, int X)
+    public virtual void MoveTowardsTarget(int X, int Y)
     {
       int closingIn = 16;
 

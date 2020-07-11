@@ -31,7 +31,7 @@ namespace FootballGame
       {
         TargetPlayer = ControllablePlayer;
         ChangeX += 20;
-        base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + 160);
+        base.MoveTowardsTarget(TargetPlayer.Left + 160, TargetPlayer.Top);
         InCoverage = false;
       }
 
@@ -40,9 +40,9 @@ namespace FootballGame
         if (InCoverage)
         {
           if (TargetPlayer.Top < Game.FieldCenterY)
-            base.MoveTowardsTarget(TargetPlayer.Top + 40, TargetPlayer.Left + Random.Next(-140, 200) + (TargetPlayer.ChangeX / 2));
+            base.MoveTowardsTarget(TargetPlayer.Left + Random.Next(-140, 200) + (TargetPlayer.ChangeX / 2), TargetPlayer.Top + 40);
           else
-            base.MoveTowardsTarget(TargetPlayer.Top - 40, TargetPlayer.Left + Random.Next(-140, 200) + (TargetPlayer.ChangeX / 2));
+            base.MoveTowardsTarget(TargetPlayer.Left + Random.Next(-140, 200) + (TargetPlayer.ChangeX / 2), TargetPlayer.Top - 40);
 
           if (IsThrowing && Random.Next(0, 10) > 9) // Player will move towards thrown ball
           {
@@ -52,7 +52,7 @@ namespace FootballGame
         else
         {
           int diffY = Math.Abs(TargetPlayer.Top - Top);
-          base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + diffY + (TargetPlayer.ChangeX / 2));
+          base.MoveTowardsTarget(TargetPlayer.Left + diffY + (TargetPlayer.ChangeX / 2), TargetPlayer.Top);
         }
       }
 

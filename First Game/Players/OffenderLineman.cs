@@ -27,7 +27,7 @@ namespace FootballGame
       {
         TargetPlayer = Player.ControllablePlayer;
         ChangeX += 20;
-        base.MoveTowardsTarget(TargetPlayer.Top, TargetPlayer.Left + 160 + (TargetPlayer.ChangeX / 2));
+        base.MoveTowardsTarget(TargetPlayer.Left + 160 + (TargetPlayer.ChangeX / 2), TargetPlayer.Top);
       }
 
       //Player.ControllablePlayer.ChangeX / 2; // TODO put back?

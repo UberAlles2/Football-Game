@@ -60,7 +60,7 @@ namespace FootballGame
           target.Left = (target.Left + Game.ballAsPlayer.TargetPlayer.Left) / 2;
         }
 
-        base.MoveTowardsTarget(target.Top, target.Left);
+        base.MoveTowardsTarget(target.Left, target.Top);
       }
 
       base.Move();
