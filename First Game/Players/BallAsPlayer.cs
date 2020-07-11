@@ -92,7 +92,7 @@ namespace FootballGame
       // The ball doesn't move when colliding.
     }
 
-    public void ThrowBall(int startY, int startX, int targetY, int targetX)
+    public void ThrowBall(int startX, int startY, int targetY, int targetX)
     {
       TotalMoves = 0;
       Top = startY;  // start position

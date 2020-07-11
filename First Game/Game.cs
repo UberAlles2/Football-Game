@@ -308,7 +308,7 @@ using Drake.Tools;
       {
         // Pass the ball. Ball is really another player.
         if(!Player.IsThrowing)
-          ballAsPlayer.ThrowBall(Player.ControllablePlayer.Top + 16, Player.ControllablePlayer.Left + 16, e.Location.Y, e.Location.X);   
+          ballAsPlayer.ThrowBall(Player.ControllablePlayer.Left + 16, Player.ControllablePlayer.Top + 16, e.Location.Y, e.Location.X);   
       }
     }
 
