@@ -47,7 +47,10 @@ using Drake.Tools;
     {
       ParentForm = form1;
       Player.ParentForm = form1;
+      Drawing.ParentForm = form1;
       ParentForm.pnlPlayOptions.Visible = false;
+
+      Drawing.InitializeDrawing();
 
       Player.ParentGame = this;
       FieldCenterY = ParentForm.Height / 2 - 32;

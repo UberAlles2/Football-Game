@@ -49,6 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Drawing.cs" />
     <Compile Include="Players\DefenderMiddleLinebacker.cs" />
     <Compile Include="Players\BallAsPlayer.cs" />
     <Compile Include="Players\DefenderCornerback.cs" />

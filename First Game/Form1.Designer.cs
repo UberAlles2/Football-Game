@@ -40,12 +40,15 @@
       this.radioButton2 = new System.Windows.Forms.RadioButton();
       this.radioButton1 = new System.Windows.Forms.RadioButton();
       this.label1 = new System.Windows.Forms.Label();
+      this.pnlScoreboard = new System.Windows.Forms.Panel();
+      this.picScoreboardLetters = new System.Windows.Forms.PictureBox();
       ((System.ComponentModel.ISupportInitialize)(this.Player2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFootball)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picBearsBall)).BeginInit();
       this.pnlPlayOptions.SuspendLayout();
       this.pnlTopReceiver.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.picScoreboardLetters)).BeginInit();
       this.SuspendLayout();
       // 
       // Player2
@@ -97,7 +100,7 @@
       this.pnlPlayOptions.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
       this.pnlPlayOptions.Controls.Add(this.btnOK);
       this.pnlPlayOptions.Controls.Add(this.pnlTopReceiver);
-      this.pnlPlayOptions.Location = new System.Drawing.Point(252, 26);
+      this.pnlPlayOptions.Location = new System.Drawing.Point(252, 105);
       this.pnlPlayOptions.Name = "pnlPlayOptions";
       this.pnlPlayOptions.Size = new System.Drawing.Size(742, 434);
       this.pnlPlayOptions.TabIndex = 4;
@@ -166,13 +169,34 @@
       this.label1.TabIndex = 0;
       this.label1.Text = "Top Wide Receiver Pattern";
       // 
+      // pnlScoreboard
+      // 
+      this.pnlScoreboard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+      this.pnlScoreboard.BackColor = System.Drawing.Color.White;
+      this.pnlScoreboard.Location = new System.Drawing.Point(0, 1);
+      this.pnlScoreboard.Name = "pnlScoreboard";
+      this.pnlScoreboard.Size = new System.Drawing.Size(1241, 38);
+      this.pnlScoreboard.TabIndex = 5;
+      // 
+      // picScoreboardLetters
+      // 
+      this.picScoreboardLetters.Image = ((System.Drawing.Image)(resources.GetObject("picScoreboardLetters.Image")));
+      this.picScoreboardLetters.Location = new System.Drawing.Point(72, 45);
+      this.picScoreboardLetters.Name = "picScoreboardLetters";
+      this.picScoreboardLetters.Size = new System.Drawing.Size(1081, 37);
+      this.picScoreboardLetters.TabIndex = 6;
+      this.picScoreboardLetters.TabStop = false;
+      // 
       // Form1
       // 
       this.AcceptButton = this.btnOK;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.Green;
-      this.ClientSize = new System.Drawing.Size(1242, 636);
+      this.ClientSize = new System.Drawing.Size(1242, 670);
+      this.Controls.Add(this.picScoreboardLetters);
+      this.Controls.Add(this.pnlScoreboard);
       this.Controls.Add(this.pnlPlayOptions);
       this.Controls.Add(this.picBearsBall);
       this.Controls.Add(this.picFootball);
@@ -192,6 +216,7 @@
       this.pnlPlayOptions.ResumeLayout(false);
       this.pnlTopReceiver.ResumeLayout(false);
       this.pnlTopReceiver.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.picScoreboardLetters)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -209,6 +234,8 @@
     private System.Windows.Forms.RadioButton radioButton3;
     private System.Windows.Forms.RadioButton radioButton2;
     public System.Windows.Forms.Panel pnlPlayOptions;
+    public System.Windows.Forms.Panel pnlScoreboard;
+    public System.Windows.Forms.PictureBox picScoreboardLetters;
   }
 }
 
