@@ -293,23 +293,23 @@ namespace FootballGame
       if (IsBall)
         return;
 
-      if (Left < FieldBounds.X)
+      if (this.Left < FieldBounds.X)
       {
         if (this is Defender)
           this.ChangeX = 30;
         else
           this.ChangeX = 0;
 
-        this.Left = 1;
+        this.Left = FieldBounds.X + 1;
       }
       if (this.Left > FieldBounds.Width)
       {
-        if (this is Defender) 
+        if (this is Defender)
           this.ChangeX = 0;
         else
           this.ChangeX = 0;
 
-        this.Left = ParentForm.Width - this.PicBox.Width - 11;
+        this.Left = FieldBounds.Width - 1;
       }
       if (this.Top < FieldBounds.Y)
       {
@@ -318,16 +318,16 @@ namespace FootballGame
         else
           this.ChangeY = 0;
 
-        this.Top = 1;
+        this.Top = FieldBounds.Y + 1;
       }
-      if (this.Top > FieldBounds.Height - 35)
+      if (this.Top > FieldBounds.Height)
       {
         if (this is Defender)
           this.ChangeY = -60;
         else
           this.ChangeY = 0;
 
-        this.Top = ParentForm.Height - this.PicBox.Height - 35 - 1;
+        this.Top = FieldBounds.Height - 1;
       }
     }
   }
