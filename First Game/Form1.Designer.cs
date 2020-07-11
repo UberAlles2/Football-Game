@@ -29,10 +29,6 @@
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-      this.Player2 = new System.Windows.Forms.PictureBox();
-      this.Player1 = new System.Windows.Forms.PictureBox();
-      this.picFootball = new System.Windows.Forms.PictureBox();
-      this.picBearsBall = new System.Windows.Forms.PictureBox();
       this.pnlPlayOptions = new System.Windows.Forms.Panel();
       this.btnOK = new System.Windows.Forms.Button();
       this.pnlTopReceiver = new System.Windows.Forms.Panel();
@@ -49,58 +45,19 @@
       this.label6 = new System.Windows.Forms.Label();
       this.label7 = new System.Windows.Forms.Label();
       this.label8 = new System.Windows.Forms.Label();
-      ((System.ComponentModel.ISupportInitialize)(this.Player2)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.Player1)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picFootball)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picBearsBall)).BeginInit();
+      this.picFootball = new System.Windows.Forms.PictureBox();
+      this.picBearsBall = new System.Windows.Forms.PictureBox();
+      this.Player2 = new System.Windows.Forms.PictureBox();
+      this.Player1 = new System.Windows.Forms.PictureBox();
       this.pnlPlayOptions.SuspendLayout();
       this.pnlTopReceiver.SuspendLayout();
       this.pnlScoreboard.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.picScoreboardLetters)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picFootball)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picBearsBall)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.Player2)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.Player1)).BeginInit();
       this.SuspendLayout();
-      // 
-      // Player2
-      // 
-      this.Player2.Image = ((System.Drawing.Image)(resources.GetObject("Player2.Image")));
-      this.Player2.Location = new System.Drawing.Point(-8, 314);
-      this.Player2.Name = "Player2";
-      this.Player2.Size = new System.Drawing.Size(32, 32);
-      this.Player2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.Player2.TabIndex = 1;
-      this.Player2.TabStop = false;
-      this.Player2.Visible = false;
-      // 
-      // Player1
-      // 
-      this.Player1.Image = ((System.Drawing.Image)(resources.GetObject("Player1.Image")));
-      this.Player1.Location = new System.Drawing.Point(0, 208);
-      this.Player1.Name = "Player1";
-      this.Player1.Size = new System.Drawing.Size(32, 32);
-      this.Player1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.Player1.TabIndex = 0;
-      this.Player1.TabStop = false;
-      this.Player1.Visible = false;
-      // 
-      // picFootball
-      // 
-      this.picFootball.Image = ((System.Drawing.Image)(resources.GetObject("picFootball.Image")));
-      this.picFootball.Location = new System.Drawing.Point(0, 284);
-      this.picFootball.Name = "picFootball";
-      this.picFootball.Size = new System.Drawing.Size(24, 24);
-      this.picFootball.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.picFootball.TabIndex = 2;
-      this.picFootball.TabStop = false;
-      // 
-      // picBearsBall
-      // 
-      this.picBearsBall.Image = ((System.Drawing.Image)(resources.GetObject("picBearsBall.Image")));
-      this.picBearsBall.Location = new System.Drawing.Point(-8, 246);
-      this.picBearsBall.Name = "picBearsBall";
-      this.picBearsBall.Size = new System.Drawing.Size(32, 32);
-      this.picBearsBall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.picBearsBall.TabIndex = 3;
-      this.picBearsBall.TabStop = false;
-      this.picBearsBall.Visible = false;
       // 
       // pnlPlayOptions
       // 
@@ -282,6 +239,49 @@
       this.label8.Text = ":";
       this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
+      // picFootball
+      // 
+      this.picFootball.Image = ((System.Drawing.Image)(resources.GetObject("picFootball.Image")));
+      this.picFootball.Location = new System.Drawing.Point(29, 299);
+      this.picFootball.Name = "picFootball";
+      this.picFootball.Size = new System.Drawing.Size(24, 24);
+      this.picFootball.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picFootball.TabIndex = 2;
+      this.picFootball.TabStop = false;
+      // 
+      // picBearsBall
+      // 
+      this.picBearsBall.Image = ((System.Drawing.Image)(resources.GetObject("picBearsBall.Image")));
+      this.picBearsBall.Location = new System.Drawing.Point(21, 261);
+      this.picBearsBall.Name = "picBearsBall";
+      this.picBearsBall.Size = new System.Drawing.Size(32, 32);
+      this.picBearsBall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picBearsBall.TabIndex = 3;
+      this.picBearsBall.TabStop = false;
+      this.picBearsBall.Visible = false;
+      // 
+      // Player2
+      // 
+      this.Player2.Image = ((System.Drawing.Image)(resources.GetObject("Player2.Image")));
+      this.Player2.Location = new System.Drawing.Point(21, 329);
+      this.Player2.Name = "Player2";
+      this.Player2.Size = new System.Drawing.Size(32, 32);
+      this.Player2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.Player2.TabIndex = 1;
+      this.Player2.TabStop = false;
+      this.Player2.Visible = false;
+      // 
+      // Player1
+      // 
+      this.Player1.Image = ((System.Drawing.Image)(resources.GetObject("Player1.Image")));
+      this.Player1.Location = new System.Drawing.Point(29, 223);
+      this.Player1.Name = "Player1";
+      this.Player1.Size = new System.Drawing.Size(32, 32);
+      this.Player1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.Player1.TabIndex = 0;
+      this.Player1.TabStop = false;
+      this.Player1.Visible = false;
+      // 
       // Form1
       // 
       this.AcceptButton = this.btnOK;
@@ -302,26 +302,21 @@
       this.Shown += new System.EventHandler(this.Form1_Shown);
       this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
       this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
-      ((System.ComponentModel.ISupportInitialize)(this.Player2)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.Player1)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picFootball)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picBearsBall)).EndInit();
       this.pnlPlayOptions.ResumeLayout(false);
       this.pnlTopReceiver.ResumeLayout(false);
       this.pnlTopReceiver.PerformLayout();
       this.pnlScoreboard.ResumeLayout(false);
       this.pnlScoreboard.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.picScoreboardLetters)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picFootball)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picBearsBall)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.Player2)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.Player1)).EndInit();
       this.ResumeLayout(false);
 
     }
 
     #endregion
-
-    public System.Windows.Forms.PictureBox Player1;
-    public System.Windows.Forms.PictureBox Player2;
-    public System.Windows.Forms.PictureBox picFootball;
-    public System.Windows.Forms.PictureBox picBearsBall;
     private System.Windows.Forms.Panel pnlTopReceiver;
     private System.Windows.Forms.RadioButton radioButton1;
     private System.Windows.Forms.Label label1;
@@ -338,6 +333,10 @@
     private System.Windows.Forms.Label label7;
     private System.Windows.Forms.Label label6;
     private System.Windows.Forms.Label label8;
+    public System.Windows.Forms.PictureBox picFootball;
+    public System.Windows.Forms.PictureBox picBearsBall;
+    public System.Windows.Forms.PictureBox Player2;
+    public System.Windows.Forms.PictureBox Player1;
   }
 }
 

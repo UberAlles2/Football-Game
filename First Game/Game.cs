@@ -33,6 +33,8 @@ using Drake.Tools;
   {
     public static Form1 ParentForm;
     public static BallAsPlayer ballAsPlayer = new BallAsPlayer();
+    public static Rectangle FieldBounds;
+    public static int FieldHeight;
     public static int FieldCenterY;
     public static int LineOfScrimage = 200;
     public static Random Random = new Random();
@@ -45,19 +47,20 @@ using Drake.Tools;
 
     public Game(Form1 form1)
     {
+      // Set Parents
       ParentForm = form1;
       Player.ParentForm = form1;
-      Scoreboard.ParentForm = form1;
-      ParentForm.pnlPlayOptions.Visible = false;
-      ParentForm.picScoreboardLetters.Visible = false;
-
-      Scoreboard.InitializeDrawing();
-
       Player.ParentGame = this;
-      FieldCenterY = ParentForm.Height / 2 - 32;
+      Scoreboard.ParentForm = form1;
+      
+      ParentForm.pnlPlayOptions.Visible = false;
 
-      Graphics gdi = ParentForm.CreateGraphics();
-      gdi.DrawLine(Pens.Red, new Point(0, 0), new Point(100, 100));
+      Scoreboard.InitializeDrawing(); // Draw the starting scorboard
+
+      // Initialize field dimensions
+      FieldBounds = new Rectangle(0, ParentForm.pnlScoreboard.Height, ParentForm.Width - ParentForm.Player1.Width, ParentForm.Height - ParentForm.pnlScoreboard.Height);
+      Player.FieldBounds = FieldBounds;
+      FieldCenterY = FieldBounds.Height / 2; // Players go out of bounds when their botton goes out.
 
       AddPlayers();
 

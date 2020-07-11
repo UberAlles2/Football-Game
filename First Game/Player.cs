@@ -1,6 +1,7 @@
 ﻿using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -36,6 +37,7 @@ namespace FootballGame
     public static Random Random = new Random();
     public static Form1 ParentForm;
     public static Game ParentGame;
+    public static Rectangle FieldBounds;
     //public static List<Player> Players = new List<Player>(new Player[Enum.GetValues(typeof(Position)).Cast<int>().Max() + 1]);
     public static List<Player> Players = new List<Player>();
     public static bool IsThrowing;
@@ -152,7 +154,7 @@ namespace FootballGame
     public virtual void Move()
     {
       TotalMoves++;
-      CheckFormBoundries();
+      CheckFieldBoundries();
       MovePic(this);
       Application.DoEvents();
     }
@@ -172,6 +174,10 @@ namespace FootballGame
       {
         player.ChangeX = (player.SpeedCap -12) * Math.Sign(player.ChangeX);
       }
+
+      // Debug TODO
+      //if (player.Top < 109)
+      //  player.Top = player.Top;
 
       player.Top = player.Top + player.ChangeY / 32;
       player.Left = player.Left + player.ChangeX / 32;
@@ -282,12 +288,12 @@ namespace FootballGame
 
     }
 
-    private void CheckFormBoundries()
+    private void CheckFieldBoundries()
     {
       if (IsBall)
         return;
 
-      if (this.Left < 0)
+      if (Left < FieldBounds.X)
       {
         if (this is Defender)
           this.ChangeX = 30;
@@ -296,16 +302,16 @@ namespace FootballGame
 
         this.Left = 1;
       }
-      if (this.Left > ParentForm.Width - this.PicBox.Width - 10)
+      if (this.Left > FieldBounds.Width)
       {
-        if (this is Defender)
+        if (this is Defender) 
           this.ChangeX = 0;
         else
           this.ChangeX = 0;
 
-        this.Left = ParentForm.Width - this.PicBox.Width - 10 - 1;
+        this.Left = ParentForm.Width - this.PicBox.Width - 11;
       }
-      if (this.Top < 0)
+      if (this.Top < FieldBounds.Y)
       {
         if (this is Defender)
           this.ChangeY = 60;
@@ -314,7 +320,7 @@ namespace FootballGame
 
         this.Top = 1;
       }
-      if (this.Top > ParentForm.Height - this.PicBox.Height - 35)
+      if (this.Top > FieldBounds.Height - 35)
       {
         if (this is Defender)
           this.ChangeY = -60;

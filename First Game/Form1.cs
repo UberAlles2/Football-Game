@@ -44,6 +44,7 @@ namespace FootballGame
     {
       Pen pen = new Pen(Color.FromArgb(255, 128, 128, 255));
       e.Graphics.DrawLine(pen, Game.LineOfScrimage, 0, Game.LineOfScrimage, 800);
+      e.Graphics.DrawLine(pen, Game.FieldBounds.X, Game.FieldBounds.Y, Game.FieldBounds.Width, Game.FieldBounds.Height);
     }
   }
 }

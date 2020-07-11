@@ -16,6 +16,7 @@ namespace FootballGame
     public static void InitializeDrawing()
     {
       ScoreboardLetters = ParentForm.picScoreboardLetters.Image;
+      ParentForm.picScoreboardLetters.Visible = false;
 
       // Create all the pictureboxes
       for (int i = 0; i < 48; i++)
