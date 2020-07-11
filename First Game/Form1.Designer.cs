@@ -34,12 +34,12 @@
       this.picFootball = new System.Windows.Forms.PictureBox();
       this.picBearsBall = new System.Windows.Forms.PictureBox();
       this.pnlPlayOptions = new System.Windows.Forms.Panel();
-      this.pnlTopReceiver = new System.Windows.Forms.Panel();
-      this.label1 = new System.Windows.Forms.Label();
-      this.radioButton1 = new System.Windows.Forms.RadioButton();
-      this.radioButton2 = new System.Windows.Forms.RadioButton();
-      this.radioButton3 = new System.Windows.Forms.RadioButton();
       this.btnOK = new System.Windows.Forms.Button();
+      this.pnlTopReceiver = new System.Windows.Forms.Panel();
+      this.radioButton3 = new System.Windows.Forms.RadioButton();
+      this.radioButton2 = new System.Windows.Forms.RadioButton();
+      this.radioButton1 = new System.Windows.Forms.RadioButton();
+      this.label1 = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.Player2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFootball)).BeginInit();
@@ -97,10 +97,20 @@
       this.pnlPlayOptions.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
       this.pnlPlayOptions.Controls.Add(this.btnOK);
       this.pnlPlayOptions.Controls.Add(this.pnlTopReceiver);
-      this.pnlPlayOptions.Location = new System.Drawing.Point(262, 26);
+      this.pnlPlayOptions.Location = new System.Drawing.Point(252, 26);
       this.pnlPlayOptions.Name = "pnlPlayOptions";
       this.pnlPlayOptions.Size = new System.Drawing.Size(742, 434);
       this.pnlPlayOptions.TabIndex = 4;
+      // 
+      // btnOK
+      // 
+      this.btnOK.BackColor = System.Drawing.Color.Silver;
+      this.btnOK.Location = new System.Drawing.Point(631, 373);
+      this.btnOK.Name = "btnOK";
+      this.btnOK.Size = new System.Drawing.Size(86, 44);
+      this.btnOK.TabIndex = 1;
+      this.btnOK.Text = "OK";
+      this.btnOK.UseVisualStyleBackColor = false;
       // 
       // pnlTopReceiver
       // 
@@ -114,25 +124,16 @@
       this.pnlTopReceiver.Size = new System.Drawing.Size(200, 121);
       this.pnlTopReceiver.TabIndex = 0;
       // 
-      // label1
+      // radioButton3
       // 
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(4, 4);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(137, 13);
-      this.label1.TabIndex = 0;
-      this.label1.Text = "Top Wide Receiver Pattern";
-      // 
-      // radioButton1
-      // 
-      this.radioButton1.AutoSize = true;
-      this.radioButton1.Location = new System.Drawing.Point(7, 72);
-      this.radioButton1.Name = "radioButton1";
-      this.radioButton1.Size = new System.Drawing.Size(38, 17);
-      this.radioButton1.TabIndex = 1;
-      this.radioButton1.TabStop = true;
-      this.radioButton1.Text = "Fly";
-      this.radioButton1.UseVisualStyleBackColor = true;
+      this.radioButton3.AutoSize = true;
+      this.radioButton3.Location = new System.Drawing.Point(7, 51);
+      this.radioButton3.Name = "radioButton3";
+      this.radioButton3.Size = new System.Drawing.Size(112, 17);
+      this.radioButton3.TabIndex = 3;
+      this.radioButton3.TabStop = true;
+      this.radioButton3.Text = "Long Button Hook";
+      this.radioButton3.UseVisualStyleBackColor = true;
       // 
       // radioButton2
       // 
@@ -145,26 +146,25 @@
       this.radioButton2.Text = "Short Button Hook";
       this.radioButton2.UseVisualStyleBackColor = true;
       // 
-      // radioButton3
+      // radioButton1
       // 
-      this.radioButton3.AutoSize = true;
-      this.radioButton3.Location = new System.Drawing.Point(7, 51);
-      this.radioButton3.Name = "radioButton3";
-      this.radioButton3.Size = new System.Drawing.Size(112, 17);
-      this.radioButton3.TabIndex = 3;
-      this.radioButton3.TabStop = true;
-      this.radioButton3.Text = "Long Button Hook";
-      this.radioButton3.UseVisualStyleBackColor = true;
+      this.radioButton1.AutoSize = true;
+      this.radioButton1.Location = new System.Drawing.Point(7, 72);
+      this.radioButton1.Name = "radioButton1";
+      this.radioButton1.Size = new System.Drawing.Size(38, 17);
+      this.radioButton1.TabIndex = 1;
+      this.radioButton1.TabStop = true;
+      this.radioButton1.Text = "Fly";
+      this.radioButton1.UseVisualStyleBackColor = true;
       // 
-      // btnOK
+      // label1
       // 
-      this.btnOK.BackColor = System.Drawing.Color.Silver;
-      this.btnOK.Location = new System.Drawing.Point(631, 373);
-      this.btnOK.Name = "btnOK";
-      this.btnOK.Size = new System.Drawing.Size(86, 44);
-      this.btnOK.TabIndex = 1;
-      this.btnOK.Text = "OK";
-      this.btnOK.UseVisualStyleBackColor = false;
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(4, 4);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(137, 13);
+      this.label1.TabIndex = 0;
+      this.label1.Text = "Top Wide Receiver Pattern";
       // 
       // Form1
       // 
@@ -202,13 +202,13 @@
     public System.Windows.Forms.PictureBox Player2;
     public System.Windows.Forms.PictureBox picFootball;
     public System.Windows.Forms.PictureBox picBearsBall;
-    private System.Windows.Forms.Panel pnlPlayOptions;
     private System.Windows.Forms.Panel pnlTopReceiver;
     private System.Windows.Forms.RadioButton radioButton1;
     private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Button btnOK;
     private System.Windows.Forms.RadioButton radioButton3;
     private System.Windows.Forms.RadioButton radioButton2;
+    public System.Windows.Forms.Panel pnlPlayOptions;
   }
 }
 
