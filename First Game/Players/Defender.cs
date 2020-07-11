@@ -87,5 +87,11 @@ namespace FootballGame
       }
       MovingAroundBlocker = 20;
     }
+  
+    public void AIBasicMoveTowardsTarget(Player target, out int targetX, out int targetY, DefensiveMode defensiveMode)
+    {
+      targetX = 1;
+      targetY = 1;
+    }
   }
 }
