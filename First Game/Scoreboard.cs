@@ -24,8 +24,13 @@ namespace FootballGame
       }
 
       DisplayDown("1");
-      DisplayToGo("32");
-      DisplayBallOn("45");
+      DisplayToGo("10");
+      DisplayBallOn("20");
+      DisplayQtr("1");
+      DisplayBearsScore(" 0");
+      DisplayTimeMin("15");
+      DisplayTimeSec("00");
+      DisplayGuestScore(" 0");
     }
 
     public static PictureBox CreateLetterPictureBox(int left)
@@ -85,6 +90,26 @@ namespace FootballGame
     public static void DisplayBallOn(string message)
     {
       DisplayMessage(message, 9);
+    }
+    public static void DisplayQtr(string message)
+    {
+      DisplayMessage(message, 13);
+    }
+    public static void DisplayBearsScore(string message)
+    {
+      DisplayMessage(message, 18);
+    }
+    public static void DisplayTimeMin(string message)
+    {
+      DisplayMessage(message, 21);
+    }
+    public static void DisplayTimeSec(string message)
+    {
+      DisplayMessage(message, 24);
+    }
+    public static void DisplayGuestScore(string message)
+    {
+      DisplayMessage(message, 27);
     }
   }
 }

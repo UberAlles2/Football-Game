@@ -45,6 +45,10 @@
       this.label2 = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
       this.label4 = new System.Windows.Forms.Label();
+      this.label5 = new System.Windows.Forms.Label();
+      this.label6 = new System.Windows.Forms.Label();
+      this.label7 = new System.Windows.Forms.Label();
+      this.label8 = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.Player2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFootball)).BeginInit();
@@ -178,6 +182,10 @@
       this.pnlScoreboard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
       this.pnlScoreboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(8)))), ((int)(((byte)(8)))));
+      this.pnlScoreboard.Controls.Add(this.label8);
+      this.pnlScoreboard.Controls.Add(this.label7);
+      this.pnlScoreboard.Controls.Add(this.label6);
+      this.pnlScoreboard.Controls.Add(this.label5);
       this.pnlScoreboard.Controls.Add(this.label4);
       this.pnlScoreboard.Controls.Add(this.label3);
       this.pnlScoreboard.Controls.Add(this.label2);
@@ -228,6 +236,51 @@
       this.label4.Size = new System.Drawing.Size(102, 24);
       this.label4.TabIndex = 9;
       this.label4.Text = "BALL ON";
+      // 
+      // label5
+      // 
+      this.label5.AutoSize = true;
+      this.label5.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(194)))), ((int)(((byte)(63)))));
+      this.label5.Location = new System.Drawing.Point(312, 2);
+      this.label5.Name = "label5";
+      this.label5.Size = new System.Drawing.Size(60, 24);
+      this.label5.TabIndex = 10;
+      this.label5.Text = "QTR.";
+      // 
+      // label6
+      // 
+      this.label6.AutoSize = true;
+      this.label6.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label6.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(194)))), ((int)(((byte)(63)))));
+      this.label6.Location = new System.Drawing.Point(440, 2);
+      this.label6.Name = "label6";
+      this.label6.Size = new System.Drawing.Size(83, 24);
+      this.label6.TabIndex = 11;
+      this.label6.Text = "BEARS";
+      // 
+      // label7
+      // 
+      this.label7.AutoSize = true;
+      this.label7.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label7.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(194)))), ((int)(((byte)(63)))));
+      this.label7.Location = new System.Drawing.Point(661, 2);
+      this.label7.Name = "label7";
+      this.label7.Size = new System.Drawing.Size(81, 24);
+      this.label7.TabIndex = 12;
+      this.label7.Text = "GUEST";
+      // 
+      // label8
+      // 
+      this.label8.BackColor = System.Drawing.Color.Transparent;
+      this.label8.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label8.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(214)))), ((int)(((byte)(194)))), ((int)(((byte)(63)))));
+      this.label8.Location = new System.Drawing.Point(582, 34);
+      this.label8.Name = "label8";
+      this.label8.Size = new System.Drawing.Size(17, 24);
+      this.label8.TabIndex = 13;
+      this.label8.Text = ":";
+      this.label8.TextAlign = System.Drawing.ContentAlignment.TopRight;
       // 
       // Form1
       // 
@@ -281,6 +334,10 @@
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.Label label4;
+    private System.Windows.Forms.Label label5;
+    private System.Windows.Forms.Label label7;
+    private System.Windows.Forms.Label label6;
+    private System.Windows.Forms.Label label8;
   }
 }
 
