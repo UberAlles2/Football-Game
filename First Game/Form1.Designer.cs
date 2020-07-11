@@ -42,12 +42,15 @@
       this.label1 = new System.Windows.Forms.Label();
       this.pnlScoreboard = new System.Windows.Forms.Panel();
       this.picScoreboardLetters = new System.Windows.Forms.PictureBox();
+      this.label2 = new System.Windows.Forms.Label();
+      this.label3 = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.Player2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFootball)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picBearsBall)).BeginInit();
       this.pnlPlayOptions.SuspendLayout();
       this.pnlTopReceiver.SuspendLayout();
+      this.pnlScoreboard.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.picScoreboardLetters)).BeginInit();
       this.SuspendLayout();
       // 
@@ -100,7 +103,7 @@
       this.pnlPlayOptions.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
       this.pnlPlayOptions.Controls.Add(this.btnOK);
       this.pnlPlayOptions.Controls.Add(this.pnlTopReceiver);
-      this.pnlPlayOptions.Location = new System.Drawing.Point(252, 105);
+      this.pnlPlayOptions.Location = new System.Drawing.Point(250, 128);
       this.pnlPlayOptions.Name = "pnlPlayOptions";
       this.pnlPlayOptions.Size = new System.Drawing.Size(742, 434);
       this.pnlPlayOptions.TabIndex = 4;
@@ -173,20 +176,45 @@
       // 
       this.pnlScoreboard.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-      this.pnlScoreboard.BackColor = System.Drawing.Color.White;
+      this.pnlScoreboard.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(8)))), ((int)(((byte)(8)))), ((int)(((byte)(8)))));
+      this.pnlScoreboard.Controls.Add(this.label3);
+      this.pnlScoreboard.Controls.Add(this.label2);
+      this.pnlScoreboard.Controls.Add(this.picScoreboardLetters);
       this.pnlScoreboard.Location = new System.Drawing.Point(0, 1);
       this.pnlScoreboard.Name = "pnlScoreboard";
-      this.pnlScoreboard.Size = new System.Drawing.Size(1241, 38);
+      this.pnlScoreboard.Size = new System.Drawing.Size(1241, 69);
       this.pnlScoreboard.TabIndex = 5;
       // 
       // picScoreboardLetters
       // 
       this.picScoreboardLetters.Image = ((System.Drawing.Image)(resources.GetObject("picScoreboardLetters.Image")));
-      this.picScoreboardLetters.Location = new System.Drawing.Point(72, 45);
+      this.picScoreboardLetters.Location = new System.Drawing.Point(73, 29);
       this.picScoreboardLetters.Name = "picScoreboardLetters";
       this.picScoreboardLetters.Size = new System.Drawing.Size(1081, 37);
       this.picScoreboardLetters.TabIndex = 6;
       this.picScoreboardLetters.TabStop = false;
+      // 
+      // label2
+      // 
+      this.label2.AutoSize = true;
+      this.label2.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+      this.label2.Location = new System.Drawing.Point(16, 1);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(76, 24);
+      this.label2.TabIndex = 7;
+      this.label2.Text = "DOWN";
+      // 
+      // label3
+      // 
+      this.label3.AutoSize = true;
+      this.label3.Font = new System.Drawing.Font("Arial", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(128)))));
+      this.label3.Location = new System.Drawing.Point(112, 2);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(77, 24);
+      this.label3.TabIndex = 8;
+      this.label3.Text = "TO GO";
       // 
       // Form1
       // 
@@ -194,8 +222,7 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.Green;
-      this.ClientSize = new System.Drawing.Size(1242, 670);
-      this.Controls.Add(this.picScoreboardLetters);
+      this.ClientSize = new System.Drawing.Size(1242, 692);
       this.Controls.Add(this.pnlScoreboard);
       this.Controls.Add(this.pnlPlayOptions);
       this.Controls.Add(this.picBearsBall);
@@ -216,6 +243,8 @@
       this.pnlPlayOptions.ResumeLayout(false);
       this.pnlTopReceiver.ResumeLayout(false);
       this.pnlTopReceiver.PerformLayout();
+      this.pnlScoreboard.ResumeLayout(false);
+      this.pnlScoreboard.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.picScoreboardLetters)).EndInit();
       this.ResumeLayout(false);
 
@@ -236,6 +265,8 @@
     public System.Windows.Forms.Panel pnlPlayOptions;
     public System.Windows.Forms.Panel pnlScoreboard;
     public System.Windows.Forms.PictureBox picScoreboardLetters;
+    private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.Label label3;
   }
 }
 
