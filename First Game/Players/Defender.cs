@@ -88,10 +88,39 @@ namespace FootballGame
       MovingAroundBlocker = 20;
     }
   
-    public void AIBasicMoveTowardsTarget(Player target, out int targetX, out int targetY, DefensiveMode defensiveMode)
+    public int AI_BasicMoveTowardsTarget()
     {
-      targetX = 1;
-      targetY = 1;
+      int targetX = 0;
+      bool closeToTackle = false;
+
+      // If player is way above or way below his target, you must lead move at a diagonal in front of the target, not right at the target
+      int diffY = Math.Abs(TargetPlayer.Top - this.Top);
+
+      if (diffY < 60)
+        if (Game.DetectCloseCollision(this, TargetPlayer, 60))
+          closeToTackle = true; // Move right towards player
+
+      // Go right towards target if close to target or are blitzing
+      if (closeToTackle || this.DefensiveMode == DefensiveMode.Blitz)
+      {
+        targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2);
+      }
+      else if (this.DefensiveMode == DefensiveMode.Normal)
+      {
+        if (TargetPlayer.Left < Game.LineOfScrimage)
+          targetX = 280;
+        else
+          targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + (diffY / 2);
+      }
+      else if (this.DefensiveMode == DefensiveMode.Soft)
+      {
+        if (TargetPlayer.Left < Game.LineOfScrimage)
+          targetX = 400;
+        else
+          targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + diffY;
+      }
+
+      return targetX;
     }
   }
 }

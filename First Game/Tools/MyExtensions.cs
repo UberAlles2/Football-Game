@@ -149,20 +149,6 @@ namespace Drake.Tools
 
     #region Object Extensions -------------------------------------------------------
 
-    //public static T _JsonClone<T>(this T value) 
-    //{
-    //  string data = JsonConvert.SerializeObject(value, new JsonSerializerSettings
-    //  {
-    //    Formatting = Formatting.Indented,
-    //    MaxDepth = 3,
-    //    ReferenceLoopHandling = ReferenceLoopHandling.Ignore
-    //  }); 
-
-    //  T obj2 = JsonConvert.DeserializeObject<T>(data);
-      
-    //  return obj2;
-    //}
-
     public static U CloneAndUpcast<U, B>(this B b) where U : B, new()
     {
       U clone = new U();

@@ -43,39 +43,12 @@ namespace FootballGame
       if(this.Intelligence > random.Next(0,15) || MovingAroundBlocker > 0)
       {
 
-        int calculatedTargetY = TargetPlayer.Top; 
-        int calculatedTargetX = 0;
-        bool closeToTackle = false;
-
-        int diffY = Math.Abs(TargetPlayer.Top - this.Top);
-
-        if(diffY < 60)
-          if (Game.DetectCloseCollision(this, TargetPlayer, 60))
-            closeToTackle = true;
-
-        // Go right towards target if close to target or are blitzing
-        if (closeToTackle || this.DefensiveMode == DefensiveMode.Blitz)
-        {
-          calculatedTargetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2);
-        }
-        else if (this.DefensiveMode == DefensiveMode.Normal)
-        {
-          if (TargetPlayer.Left < Game.LineOfScrimage)
-            calculatedTargetX = 280;
-          else
-            calculatedTargetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + (diffY / 2);
-        }
-        else if (this.DefensiveMode == DefensiveMode.Soft)
-        {
-          if (TargetPlayer.Left < Game.LineOfScrimage)
-            calculatedTargetX = 400;
-          else
-            calculatedTargetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + diffY;
-        }
+        int calculatedTargetX = AI_BasicMoveTowardsTarget();
 
         ChangeX += 8; // keeps player moving down field a little
-        base.MoveTowardsTarget(calculatedTargetX, calculatedTargetY);
+        base.MoveTowardsTarget(calculatedTargetX, TargetPlayer.Top);
       }
+
       base.Move();
     }
 
