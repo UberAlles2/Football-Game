@@ -39,9 +39,12 @@ using Drake.Tools;
   public class Game
   {
     private static float PixalsInYard = 32;
-    private static float yardsGained;
+    private static float lineOfScrimage = 20;
+    private static float yardsGained = 0;
+    private static float yardsToGo = 10;
+    private static float down = 1;
+
     private static bool running = true;
-    private static bool reintialize = false;
     private static System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
     public static Form1 ParentForm;
@@ -51,6 +54,7 @@ using Drake.Tools;
     public static int FieldCenterY;
     public static int LineOfScrimage = 200;
     public static Random Random = new Random();
+    public static bool PlayEnded = false;
 
     public Game(Form1 form1)
     {
@@ -59,7 +63,9 @@ using Drake.Tools;
       Player.ParentForm = form1;
       Player.ParentGame = this;
       Scoreboard.ParentForm = form1;
-      
+      lineOfScrimage = 20; // 1 - 100;
+      yardsToGo = 10;
+
       ParentForm.pnlPlayOptions.Visible = false;
 
       Scoreboard.InitializeDrawing(); // Draw the starting scorboard
@@ -217,10 +223,10 @@ using Drake.Tools;
       timer.Start();
       while (running)
       {
-        if(reintialize)
+        if(PlayEnded)
         {
           ReinitializePlayers();
-          reintialize = false;
+          PlayEnded = false;
         }
 
         Application.DoEvents();
@@ -237,17 +243,38 @@ using Drake.Tools;
 
     public void EndPlay(EndPlayType endPlayType, string message)
     {
-      reintialize = true;
+      if (PlayEnded) // Play ended by anpother player
+        return;
+
+      PlayEnded = true;
       yardsGained = 0;
       if (endPlayType == EndPlayType.Tackled)
       {
         yardsGained = (float)(Player.ControllablePlayer.CenterX - LineOfScrimage) / PixalsInYard;
-        MessageBox.Show(message + Environment.NewLine + $"{yardsGained,0:#.#} yards gained.");
+        lineOfScrimage += yardsGained;
+        yardsToGo -= yardsGained;
       }
-      else
+
+      down++;
+
+      if(yardsToGo < 0)
       {
-        MessageBox.Show(message + Environment.NewLine + "No gain");
+        yardsToGo = 10;
+        down = 1;
       }
+
+      float displayedLineOfScrimage = lineOfScrimage < 50 ? lineOfScrimage : 100 - lineOfScrimage;
+
+      Scoreboard.DisplayBallOn(lineOfScrimage.ToString("00"));
+      Scoreboard.DisplayToGo(yardsToGo.ToString("00"));
+      Scoreboard.DisplayDown(down.ToString("0"));
+      ParentForm.Invalidate();
+
+      if(yardsGained > 0)
+        MessageBox.Show(message + Environment.NewLine + $"{yardsGained,0:#.#} yards gained.");
+      else
+        MessageBox.Show(message + Environment.NewLine + "No gain");
+
     }
 
     public void Stop()
@@ -260,7 +287,7 @@ using Drake.Tools;
     {
       bool keypressed = false;
 
-      if (reintialize) // Stop the player from moving after pay ends.
+      if (PlayEnded) // Stop the player from moving after pay ends.
       {
         Player.ControllablePlayer.ChangeX = 0; 
         Player.ControllablePlayer.ChangeY = 0;
@@ -330,6 +357,15 @@ using Drake.Tools;
         if(!Player.IsThrowing)
           ballAsPlayer.ThrowBall(Player.ControllablePlayer.Left + 16, Player.ControllablePlayer.Top + 16, e.Location.Y, e.Location.X);   
       }
+    }
+
+    public void PaintField(object sender, PaintEventArgs e)
+    {
+      Pen pen = new Pen(Color.FromArgb(255, 128, 128, 255));
+      e.Graphics.DrawLine(pen, Game.LineOfScrimage, 0, Game.LineOfScrimage, 800);
+      pen = new Pen(Color.FromArgb(255, 255, 255, 0));
+      int firstDownMarker = LineOfScrimage + ((int)yardsToGo * (int)PixalsInYard);
+      e.Graphics.DrawLine(pen, firstDownMarker, 0, firstDownMarker, 800);
     }
 
     public void CheckCollisions(List<Player> players)
