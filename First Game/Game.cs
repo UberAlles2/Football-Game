@@ -80,6 +80,7 @@ using Drake.Tools;
       Player.ControllablePlayer = offenderQuarterback; 
 
       OffenderLinemanMiddle offenderLinemanMiddle = new OffenderLinemanMiddle();
+      offenderLinemanMiddle.VerticalPosition = VerticalPosition.PositionMiddle;
       offenderLinemanMiddle.InitialTop = FieldCenterY;
       offenderLinemanMiddle.InitialLeft = LineOfScrimage - 25;
       offenderLinemanMiddle.PicBox = AddPlayerPictureBox(ParentForm.Player1);
@@ -87,13 +88,15 @@ using Drake.Tools;
       Player.AddPlayer(offenderLinemanMiddle);
 
       OffenderLinemanTop offenderLinemanTop = offenderLinemanMiddle.CloneAndUpcast<OffenderLinemanTop, OffenderLineman>();
-      offenderLinemanTop.InitialTop = FieldCenterY - 83; //? an extra 3 toward top because the top defensive lineman always goes on overtop
+      offenderLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
+      offenderLinemanTop.InitialTop = FieldCenterY - 85; //? an extra 3 toward top because the top defensive lineman always goes on overtop
       offenderLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderLinemanTop.Initialize();
       Player.AddPlayer(offenderLinemanTop);
 
       OffenderLinemanBottom offenderLinemanBottom = offenderLinemanTop.CloneAndUpcast<OffenderLinemanBottom, OffenderLineman>();
-      offenderLinemanBottom.InitialTop = FieldCenterY + 80;
+      offenderLinemanBottom.VerticalPosition = VerticalPosition.PositionBottom;
+      offenderLinemanBottom.InitialTop = FieldCenterY + 85;
       offenderLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderLinemanBottom.Initialize();
       Player.AddPlayer(offenderLinemanBottom);
@@ -124,21 +127,23 @@ using Drake.Tools;
       Player.AddPlayer(defenderMiddleLineman);
 
       DefenderOutsideLinemanTop defenderOutsideLinemanTop = defenderMiddleLineman.CloneAndUpcast<DefenderOutsideLinemanTop, Player>();
-      defenderOutsideLinemanTop.InitialOffset = -76;
+      defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
+      defenderOutsideLinemanTop.InitialOffset = -240;
       defenderOutsideLinemanTop.InitialLeft = LineOfScrimage + 25;
-      defenderOutsideLinemanTop.InitialTop = FieldCenterY + defenderOutsideLinemanTop.Offset - 20;
+      defenderOutsideLinemanTop.InitialTop = FieldCenterY -112;
       defenderOutsideLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen;
-      defenderOutsideLinemanTop.CoDefender = defenderMiddleLineman;
+      //defenderOutsideLinemanTop.CoDefender = defenderMiddleLineman;
       defenderOutsideLinemanTop.Initialize();
       Player.AddPlayer(defenderOutsideLinemanTop);
 
       DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = defenderOutsideLinemanTop.CloneAndUpcast<DefenderOutsideLinemanBottom, DefenderOutsideLineman>();
-      defenderOutsideLinemanBottom.InitialOffset = 76;
-      defenderOutsideLinemanBottom.InitialTop = FieldCenterY + defenderOutsideLinemanBottom.Offset + 20;
+      defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionBottom;
+      defenderOutsideLinemanBottom.InitialOffset = 240;
+      defenderOutsideLinemanBottom.InitialTop = FieldCenterY + 112;
       defenderOutsideLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen;
-      defenderOutsideLinemanBottom.CoDefender = defenderMiddleLineman;
+      //defenderOutsideLinemanBottom.CoDefender = defenderMiddleLineman;
       defenderOutsideLinemanBottom.Initialize();
       Player.AddPlayer(defenderOutsideLinemanBottom);
 
@@ -371,11 +376,11 @@ using Drake.Tools;
 
     public static bool DetectCollision(Player player1, Player player2)
     {
-      return Math.Abs(player1.Left - player2.Left) < player1.PlayerWidth && Math.Abs(player1.Top - player2.Top) < player1.PlayerHeight;
+      return Math.Abs(player1.Left - player2.Left) < player1.PlayerWidth - 1 && Math.Abs(player1.Top - player2.Top) < player1.PlayerHeight - 1;
     }
     public static bool DetectCloseCollision(Player player1, Player player2, int howClose)
     {
-      return Math.Abs(player1.Left - player2.Left) < howClose && Math.Abs(player1.Top - player2.Top) < howClose;
+      return Math.Abs(player1.Left - player2.Left - 1) < howClose && Math.Abs(player1.Top - player2.Top - 1) < howClose;
     }
   }
 }

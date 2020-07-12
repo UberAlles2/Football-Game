@@ -22,6 +22,7 @@ namespace FootballGame
       Intelligence = 9;
       InCoverage = true;
       base.Initialize();
+
     }
 
     public override void Move()
@@ -37,12 +38,14 @@ namespace FootballGame
 
       if (this.Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
+        int calcTargetX = AI_BasicMoveTowardsTargetX();
+
         if (InCoverage)
         {
           if (TargetPlayer.Top < Game.FieldCenterY)
-            base.MoveTowardsTarget(TargetPlayer.Left + Random.Next(-140, 200) + (TargetPlayer.ChangeX / 2), TargetPlayer.Top + 40);
+            base.MoveTowardsTarget(calcTargetX + Random.Next(-140, 200), TargetPlayer.Top + 40);
           else
-            base.MoveTowardsTarget(TargetPlayer.Left + Random.Next(-140, 200) + (TargetPlayer.ChangeX / 2), TargetPlayer.Top - 40);
+            base.MoveTowardsTarget(calcTargetX + Random.Next(-140, 200), TargetPlayer.Top - 40);
 
           if (IsThrowing && Random.Next(0, 10) > 9) // Player will move towards thrown ball
           {
@@ -51,8 +54,7 @@ namespace FootballGame
         }
         else
         {
-          int diffY = Math.Abs(TargetPlayer.Top - Top);
-          base.MoveTowardsTarget(TargetPlayer.Left + diffY + (TargetPlayer.ChangeX / 2), TargetPlayer.Top);
+          base.MoveTowardsTarget(calcTargetX, TargetPlayer.Top);
         }
       }
 

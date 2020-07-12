@@ -29,12 +29,6 @@ namespace FootballGame
 
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {
-      //if (collidedWithPlayer.HasBall)
-      //{
-      //  ParentGame.EndPlay("Tackled");
-      //  return;
-      //}
-
       if (MovingAroundBlocker > 0)
       {
         MovingAroundBlocker--;
@@ -46,8 +40,6 @@ namespace FootballGame
 
     public override void MoveAroundPlayer(CollisionOrientation collisionOrientation)
     {
-      int r = Player.Random.Next(-10, 10);
-
       switch (collisionOrientation)
       {
         case CollisionOrientation.Above:
@@ -64,31 +56,37 @@ namespace FootballGame
           break;
       }
 
-      switch (collisionOrientation)
+      int r = Random.Next(-10, 10);
+      if (MovingAroundBlocker == 0)
       {
-        case CollisionOrientation.Above:
-        case CollisionOrientation.Below:
-          if (TargetPlayer.Left < Left - 60 && ChangeX < -40) // The target is way to the left and this is moving left, keep moving left
-            ChangeX -= 8;
-          else if (TargetPlayer.Left > Left + 60 && ChangeX > 40) // The target is way to the right and this is moving right, keep moving right
-            ChangeX += 8;
-          else // Else, randomly go left or right.
-            ChangeX = 8 * r;
-          break;
-        case CollisionOrientation.ToLeft:
-        case CollisionOrientation.ToRight:
-          if (TargetPlayer.Top < Top - 60 && ChangeY < -40)
-            ChangeY -= 8;
-          else if (TargetPlayer.Top > Top + 60 && ChangeY > 40)
-            ChangeY += 8;
-          else
-            ChangeY = 8 * r;
-          break;
+        switch (collisionOrientation)
+        {
+          case CollisionOrientation.Above:
+          case CollisionOrientation.Below:
+            if (TargetPlayer.Left < Left - 90 && ChangeX < -40) // The target is way to the left and this is moving left, keep moving left
+              ChangeX -= 8;
+            else if (TargetPlayer.Left > Left + 90 && ChangeX > 40) // The target is way to the right and this is moving right, keep moving right
+              ChangeX += 8;
+            else // Else, randomly go left or right.
+              ChangeX = 8 * r;
+            break;
+          case CollisionOrientation.ToLeft:
+          case CollisionOrientation.ToRight:
+            if(Math.Abs(Offset) > 40) // For Outside defensive linemen
+              ChangeY = 8 * r;
+            else if (TargetPlayer.Top < Top - 90 && ChangeY < -40)
+              ChangeY -= 8;
+            else if (TargetPlayer.Top > Top + 90 && ChangeY > 40)
+              ChangeY += 8;
+            else
+              ChangeY = 8 * r;
+            break;
+        }
+        MovingAroundBlocker = 20;
       }
-      MovingAroundBlocker = 20;
     }
   
-    public int AI_BasicMoveTowardsTarget()
+    public int AI_BasicMoveTowardsTargetX()
     {
       int targetX = 0;
       bool closeToTackle = false;
@@ -110,14 +108,14 @@ namespace FootballGame
         if (TargetPlayer.Left < Game.LineOfScrimage)
           targetX = 280;
         else
-          targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + (diffY / 2);
+          targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + (diffY / 3);
       }
       else if (this.DefensiveMode == DefensiveMode.Soft)
       {
         if (TargetPlayer.Left < Game.LineOfScrimage)
           targetX = 400;
         else
-          targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + diffY;
+          targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + (diffY / 2);
       }
 
       return targetX;

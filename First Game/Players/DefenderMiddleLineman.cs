@@ -20,18 +20,19 @@ namespace FootballGame
 
     public override void Move()
     {
+      if (TargetPlayer != Player.ControllablePlayer) // if catch is made
+        TargetPlayer = Player.ControllablePlayer;
+
       if (Player.ControllablePlayer.Left > Game.LineOfScrimage + 8)
       {
         Intelligence = 11; // Once the runner get past the line of scrimage, this defender doen't have to worry about the blockers.
       }
 
-      if (TargetPlayer != Player.ControllablePlayer)
-        TargetPlayer = Player.ControllablePlayer;
-
       if(Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
-        base.MoveTowardsTarget(Player.ControllablePlayer.Left + 30, Player.ControllablePlayer.Top);
+        base.MoveTowardsTarget(TargetPlayer.Left + 30, TargetPlayer.Top);
       }
+
       base.Move();
     }
 

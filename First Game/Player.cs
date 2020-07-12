@@ -16,20 +16,12 @@ namespace FootballGame
     Soft
   }
 
-  //public enum Position
-  //{
-  //  OffenderQuarterback,
-  //  OffenderLinemanTop,
-  //  OffenderLinemanMiddle,
-  //  OffenderLinemanBottom,
-  //  OffenderWideReceiver,
-  //  DefenderMiddleLineman,
-  //  DefenderOutsideLinemanTop,
-  //  DefenderOutsideLinemanBottom,
-  //  DefenderMiddleLinebacker,
-  //  DefenderCornerback,
-  //  BallAsPlayer
-  //}
+  public enum VerticalPosition
+  {
+    PositionTop,
+    PositionMiddle,
+    PositionBottom
+  }
 
   public class Player
   {
@@ -57,6 +49,7 @@ namespace FootballGame
     private int initialLeft = -1;
     private int initialOffset = 0;
     private Player initialTargetPlayer;
+    private VerticalPosition position;
     private int top;
     private int left;
     private int offset;
@@ -80,6 +73,8 @@ namespace FootballGame
     public int Offset { get => offset; set => offset = value; }
     public int InitialOffset { get => initialOffset; set { initialOffset = value; offset = value; } }
     public Player InitialTargetPlayer { get => initialTargetPlayer; set { initialTargetPlayer = value; TargetPlayer = value; } }
+    public VerticalPosition VerticalPosition { get => position; set => position = value; }
+
 
     public int TotalMoves;
 
@@ -266,19 +261,19 @@ namespace FootballGame
       {
         case CollisionOrientation.Above:
           this.Top -= 3;
-          this.ChangeY = -12;
+          this.ChangeY = -10;
           break;
         case CollisionOrientation.Below:
           this.Top += 3;
-          this.ChangeY = 12;
+          this.ChangeY = 10;
           break;
         case CollisionOrientation.ToLeft:
           this.Left -= 3;
-          this.ChangeX = 12;
+          this.ChangeX = -10;
           break;
         case CollisionOrientation.ToRight:
           this.Left += 3;
-          this.ChangeX = -12;
+          this.ChangeX = 10;
           break;
       }
     }

@@ -33,20 +33,16 @@ namespace FootballGame
 
     public override void Move()
     {
+      if (TargetPlayer != Player.ControllablePlayer) // If a catch is made by offensive player
+        TargetPlayer = Player.ControllablePlayer;    // Change your target
+
       if (IsThrowing)
-        this.ChangeX += 20;
- 
-      if (TargetPlayer != Player.ControllablePlayer)
-        TargetPlayer = Player.ControllablePlayer;
-
-      Random random = new Random();
-      if(this.Intelligence > random.Next(0,15) || MovingAroundBlocker > 0)
       {
-
-        int calculatedTargetX = AI_BasicMoveTowardsTarget();
-
-        ChangeX += 8; // keeps player moving down field a little
-        base.MoveTowardsTarget(calculatedTargetX, TargetPlayer.Top);
+        ChangeX += 20; // If the ball is thrown go out where the receivers are.
+      }
+      else if(Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
+      {
+        base.MoveTowardsTarget(AI_BasicMoveTowardsTargetX(), TargetPlayer.Top);
       }
 
       base.Move();

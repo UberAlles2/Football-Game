@@ -23,29 +23,38 @@ namespace FootballGame
 
     public override void Move()
     {
-      if (Player.ControllablePlayer.Left > Game.LineOfScrimage && TargetPlayer != Player.ControllablePlayer)
+      if (ControllablePlayer.Left > Game.LineOfScrimage && TargetPlayer != ControllablePlayer)
       {
-        TargetPlayer = Player.ControllablePlayer;
+        TargetPlayer = ControllablePlayer;
         ChangeX += 20;
         base.MoveTowardsTarget(TargetPlayer.Left + 160 + (TargetPlayer.ChangeX / 2), TargetPlayer.Top);
       }
 
-      //Player.ControllablePlayer.ChangeX / 2; // TODO put back?
+      if (VerticalPosition == VerticalPosition.PositionTop && ControllablePlayer.Top > Top + 16 && TargetPlayer.Top > Top)
+        ChangeY += 1;
+      if (VerticalPosition == VerticalPosition.PositionBottom && ControllablePlayer.Top < Top - 16 && TargetPlayer.Top < Top)
+        ChangeY += -1;
 
-      if (TargetPlayer.Left < Left + 4 && Player.ControllablePlayer.Left < Left - 8)
-        ChangeX -= 10;
-      else if (TargetPlayer.Left > Left + 4)
+      if (TargetPlayer.Left < Left + 20)
+      {
+        ChangeX -= 2;
+      }
+      if (TargetPlayer.Left < Left + 30)
+      {
+        TargetPlayer.Offset = TargetPlayer.Offset - (Math.Sign(TargetPlayer.Offset) * 2);
+        ChangeX -= 3;
+      }
+      else if (TargetPlayer.Left > Left - 4)
         ChangeX += 2;
       else
         ChangeX = ChangeX / 2;
 
-      if (TargetPlayer.Top < Top - 4)
+      if (TargetPlayer.Top < Top + 4)
         ChangeY -= 2;
-      else if (TargetPlayer.Top > Top)
+      else if (TargetPlayer.Top > Top - 4)
         ChangeY += 2;
       else
         ChangeY = ChangeY / 2;
-
 
       base.Move();
     }
