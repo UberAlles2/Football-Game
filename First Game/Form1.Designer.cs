@@ -300,7 +300,7 @@
       this.lblBottomSideline.Name = "lblBottomSideline";
       this.lblBottomSideline.Size = new System.Drawing.Size(1248, 32);
       this.lblBottomSideline.TabIndex = 7;
-      this.lblBottomSideline.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lblBottomSideline_MouseClick);
+      this.lblBottomSideline.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
       // 
       // Form1
       // 
@@ -324,6 +324,7 @@
       this.Load += new System.EventHandler(this.Form1_Load);
       this.Shown += new System.EventHandler(this.Form1_Shown);
       this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
+      this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
       this.pnlPlayOptions.ResumeLayout(false);
       this.pnlTopReceiver.ResumeLayout(false);
       this.pnlTopReceiver.PerformLayout();

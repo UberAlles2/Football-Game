@@ -103,14 +103,14 @@ using Drake.Tools;
 
       OffenderLinemanTop offenderLinemanTop = offenderLinemanMiddle.CloneAndUpcast<OffenderLinemanTop, OffenderLineman>();
       offenderLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
-      offenderLinemanTop.InitialTop = FieldCenterY - 85; //? an extra 3 toward top because the top defensive lineman always goes on overtop
+      offenderLinemanTop.InitialTop = FieldCenterY - 90; //? an extra 3 toward top because the top defensive lineman always goes on overtop
       offenderLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderLinemanTop.Initialize();
       Player.AddPlayer(offenderLinemanTop);
 
       OffenderLinemanBottom offenderLinemanBottom = offenderLinemanTop.CloneAndUpcast<OffenderLinemanBottom, OffenderLineman>();
       offenderLinemanBottom.VerticalPosition = VerticalPosition.PositionBottom;
-      offenderLinemanBottom.InitialTop = FieldCenterY + 85;
+      offenderLinemanBottom.InitialTop = FieldCenterY + 90;
       offenderLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderLinemanBottom.Initialize();
       Player.AddPlayer(offenderLinemanBottom);
@@ -142,9 +142,9 @@ using Drake.Tools;
 
       DefenderOutsideLinemanTop defenderOutsideLinemanTop = defenderMiddleLineman.CloneAndUpcast<DefenderOutsideLinemanTop, Player>();
       defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
-      defenderOutsideLinemanTop.InitialOffset = -240;
+      defenderOutsideLinemanTop.InitialOffset = -248;
       defenderOutsideLinemanTop.InitialLeft = LineOfScrimage + 25;
-      defenderOutsideLinemanTop.InitialTop = FieldCenterY -112;
+      defenderOutsideLinemanTop.InitialTop = FieldCenterY -116;
       defenderOutsideLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen;
       //defenderOutsideLinemanTop.CoDefender = defenderMiddleLineman;
@@ -153,8 +153,8 @@ using Drake.Tools;
 
       DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = defenderOutsideLinemanTop.CloneAndUpcast<DefenderOutsideLinemanBottom, DefenderOutsideLineman>();
       defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionBottom;
-      defenderOutsideLinemanBottom.InitialOffset = 240;
-      defenderOutsideLinemanBottom.InitialTop = FieldCenterY + 112;
+      defenderOutsideLinemanBottom.InitialOffset = 248;
+      defenderOutsideLinemanBottom.InitialTop = FieldCenterY + 116;
       defenderOutsideLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen;
       //defenderOutsideLinemanBottom.CoDefender = defenderMiddleLineman;
@@ -256,7 +256,9 @@ using Drake.Tools;
         yardsToGo -= yardsGained;
       }
 
-      down++;
+      if(down < 4)
+        down++;
+      
 
       if(yardsToGo < 0)
       {
