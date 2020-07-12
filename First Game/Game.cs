@@ -29,8 +29,21 @@ using Drake.Tools;
     ToRight
   }
 
+  public enum EndPlayType
+  {
+    Tackled,
+    Incomplete,
+    Intercepted
+  }
+
   public class Game
   {
+    private static float PixalsInYard = 32;
+    private static float yardsGained;
+    private static bool running = true;
+    private static bool reintialize = false;
+    private static System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+
     public static Form1 ParentForm;
     public static BallAsPlayer ballAsPlayer = new BallAsPlayer();
     public static Rectangle FieldBounds;
@@ -38,12 +51,6 @@ using Drake.Tools;
     public static int FieldCenterY;
     public static int LineOfScrimage = 200;
     public static Random Random = new Random();
-
-    private static float PixalsInYard = 32;
-    private static float yardsGained;
-    private static bool running = true;
-    private static bool reintialize = false;
-    private static System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
     public Game(Form1 form1)
     {
@@ -60,7 +67,7 @@ using Drake.Tools;
       // Initialize field dimensions
       FieldBounds = new Rectangle(0, ParentForm.pnlScoreboard.Height, ParentForm.Width - ParentForm.Player1.Width, ParentForm.Height - ParentForm.pnlScoreboard.Height);
       Player.FieldBounds = FieldBounds;
-      FieldCenterY = FieldBounds.Height / 2; // Players go out of bounds when their botton goes out.
+      FieldCenterY = (FieldBounds.Height / 2) + 2; // Players go out of bounds when their botton goes out.
 
       AddPlayers();
 
@@ -228,11 +235,19 @@ using Drake.Tools;
       }
     }
 
-    public void EndPlay(string message)
+    public void EndPlay(EndPlayType endPlayType, string message)
     {
       reintialize = true;
-      yardsGained = (float)(Player.ControllablePlayer.CenterX - LineOfScrimage) / PixalsInYard;
-      MessageBox.Show(message + Environment.NewLine + $"{yardsGained, 0:#.#} yards gained.");
+      yardsGained = 0;
+      if (endPlayType == EndPlayType.Tackled)
+      {
+        yardsGained = (float)(Player.ControllablePlayer.CenterX - LineOfScrimage) / PixalsInYard;
+        MessageBox.Show(message + Environment.NewLine + $"{yardsGained,0:#.#} yards gained.");
+      }
+      else
+      {
+        MessageBox.Show(message + Environment.NewLine + "No gain");
+      }
     }
 
     public void Stop()

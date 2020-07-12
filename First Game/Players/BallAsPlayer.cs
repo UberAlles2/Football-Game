@@ -74,7 +74,7 @@ namespace FootballGame
       {
         BallIsCatchable = false;
         IsThrowing = false;
-        ParentGame.EndPlay("Incomplete");
+        ParentGame.EndPlay(EndPlayType.Incomplete, "Incomplete");
         return;
       }
 

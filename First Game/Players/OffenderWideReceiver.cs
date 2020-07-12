@@ -75,7 +75,7 @@ namespace FootballGame
           if (Random.Next(0, 10) > 7)
           {
             BallAsPlayer.SpinDefectedBall();
-            ParentGame.EndPlay("Dropped");
+            ParentGame.EndPlay(EndPlayType.Incomplete, "Dropped");
           }
           else
           { // Caught, run with ball.

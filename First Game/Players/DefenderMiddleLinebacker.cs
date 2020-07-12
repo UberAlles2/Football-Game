@@ -52,7 +52,7 @@ namespace FootballGame
     {
       if (collidedWithPlayer.HasBall && !IsThrowing)
       {
-        ParentGame.EndPlay("Tackled");
+        ParentGame.EndPlay(EndPlayType.Tackled, "Tackled");
       }
 
       if (collidedWithPlayer is Offender)
