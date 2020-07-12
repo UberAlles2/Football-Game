@@ -266,7 +266,7 @@ using Drake.Tools;
 
       float displayedLineOfScrimage = lineOfScrimage < 50 ? lineOfScrimage : 100 - lineOfScrimage;
 
-      Scoreboard.DisplayBallOn(lineOfScrimage.ToString("00"));
+      Scoreboard.DisplayBallOn(displayedLineOfScrimage.ToString("00"));
       Scoreboard.DisplayToGo(yardsToGo.ToString("00"));
       Scoreboard.DisplayDown(down.ToString("0"));
 
