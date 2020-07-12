@@ -57,12 +57,13 @@ namespace FootballGame
       if (!BallIsCatchable && keepGoing == 0 && Game.DetectCloseCollision(this, TargetPlayer, 90)) 
       {
         keepGoing = 1;
+        BallIsCatchable = true;
+
         if (Math.Abs(ChangeX) > (Math.Abs(ChangeY) + 10) && (Math.Abs(this.Top) - Math.Abs(TargetPlayer.Top)) > 30) // Going horizontal, Y difference has to be tighter.
           return;
         if (Math.Abs(ChangeY) > (Math.Abs(ChangeX) + 10) && (Math.Abs(this.Left) - Math.Abs(TargetPlayer.Left)) > 30) // Going vertical, Y difference has to be tighter.
           return;
 
-        BallIsCatchable = true;
         GetChangeYChangeX();
       }
 
@@ -70,10 +71,11 @@ namespace FootballGame
         keepGoing++;
 
       // Keep the ball going past the target for a bit.
-      if (keepGoing > 12)
+      if (keepGoing > 14)
       {
         BallIsCatchable = false;
         IsThrowing = false;
+        keepGoing = 0;
         ParentGame.EndPlay(EndPlayType.Incomplete, "Incomplete");
         return;
       }

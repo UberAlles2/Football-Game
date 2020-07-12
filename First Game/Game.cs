@@ -261,6 +261,7 @@ using Drake.Tools;
       {
         yardsToGo = 10;
         down = 1;
+        message += Environment.NewLine + "First Down!";
       }
 
       float displayedLineOfScrimage = lineOfScrimage < 50 ? lineOfScrimage : 100 - lineOfScrimage;
@@ -268,13 +269,13 @@ using Drake.Tools;
       Scoreboard.DisplayBallOn(lineOfScrimage.ToString("00"));
       Scoreboard.DisplayToGo(yardsToGo.ToString("00"));
       Scoreboard.DisplayDown(down.ToString("0"));
-      ParentForm.Invalidate();
 
-      if(yardsGained > 0)
+      if(yardsGained != 0)
         MessageBox.Show(message + Environment.NewLine + $"{yardsGained,0:#.#} yards gained.");
       else
         MessageBox.Show(message + Environment.NewLine + "No gain");
 
+      ParentForm.Invalidate();
     }
 
     public void Stop()
