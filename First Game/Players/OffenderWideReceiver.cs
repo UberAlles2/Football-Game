@@ -8,7 +8,21 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class OffenderWideReceiverTop : OffenderWideReceiver { }
+  class OffenderWideReceiverTop : OffenderWideReceiver
+  {
+    public override void Initialize()
+    {
+      base.Initialize();
+    }
+    public override void Move()
+    {
+      base.Move();
+    }
+    public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
+    {
+      base.CollisionMove(collidedWithPlayer, collisionOrientation);
+    }
+  }
   class OffenderWideReceiverBottom : OffenderWideReceiver { }
 
   class OffenderWideReceiver : Offender
