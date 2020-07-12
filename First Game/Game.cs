@@ -11,7 +11,7 @@ using Drake.Tools;
 
 /* To Do List
  * Middle linebacker isn't intercepting and coliiding with the ball
- * 
+ * Add ball on indicator if in opposing territory
  * 
  * 
  * 
@@ -32,6 +32,7 @@ using Drake.Tools;
   public enum EndPlayType
   {
     Tackled,
+    OutOfBounds,
     Incomplete,
     Intercepted
   }
@@ -68,12 +69,12 @@ using Drake.Tools;
 
       ParentForm.pnlPlayOptions.Visible = false;
 
-      Scoreboard.InitializeDrawing(); // Draw the starting scorboard
+      Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
 
       // Initialize field dimensions
-      FieldBounds = new Rectangle(0, ParentForm.pnlScoreboard.Height, ParentForm.Width - ParentForm.Player1.Width, ParentForm.Height - ParentForm.pnlScoreboard.Height);
+      FieldBounds = new Rectangle(0, ParentForm.pnlScoreboard.Height + 30, ParentForm.Width - ParentForm.Player1.Width, ParentForm.Height - ParentForm.pnlScoreboard.Height - 36);
       Player.FieldBounds = FieldBounds;
-      FieldCenterY = (FieldBounds.Height / 2) + 2; // Players go out of bounds when their botton goes out.
+      FieldCenterY = (FieldBounds.Height / 2) + ParentForm.lblTopSideline.Height + 2; // Players go out of bounds when their botton goes out.
 
       AddPlayers();
 
@@ -243,14 +244,14 @@ using Drake.Tools;
 
     public void EndPlay(EndPlayType endPlayType, string message)
     {
-      if (PlayEnded) // Play ended by anpother player
+      if (PlayEnded) // Play ended by another player
         return;
 
       PlayEnded = true;
       yardsGained = 0;
-      if (endPlayType == EndPlayType.Tackled)
+      if (endPlayType == EndPlayType.Tackled || endPlayType == EndPlayType.OutOfBounds)
       {
-        yardsGained = (float)(Player.ControllablePlayer.CenterX - LineOfScrimage) / PixalsInYard;
+        yardsGained = (float)(Player.ControllablePlayer.Left + Player.ControllablePlayer.PicBox.Width - LineOfScrimage) / PixalsInYard;
         lineOfScrimage += yardsGained;
         yardsToGo -= yardsGained;
       }

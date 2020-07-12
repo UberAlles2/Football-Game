@@ -84,7 +84,7 @@ namespace FootballGame
       set
       {
         top = value;
-        CenterY = top + PlayerHeight;
+        CenterY = top + (PlayerHeight/2);
       }
     }
     public int Left
@@ -93,7 +93,7 @@ namespace FootballGame
       set
       {
         left = value;
-        CenterX = left + PlayerWidth;
+        CenterX = left + (PlayerWidth/2);
       }
     }
 
@@ -310,8 +310,14 @@ namespace FootballGame
       {
         if (this is Defender)
           this.ChangeY = 60;
+        else if (this.HasBall)
+        {
+          ParentGame.EndPlay(EndPlayType.OutOfBounds, "Out of Bounds");
+          return;
+        }
         else
           this.ChangeY = 0;
+
 
         this.Top = FieldBounds.Y + 1;
       }
@@ -319,6 +325,11 @@ namespace FootballGame
       {
         if (this is Defender)
           this.ChangeY = -60;
+        else if (this.HasBall)
+        {
+          ParentGame.EndPlay(EndPlayType.OutOfBounds, "Out of Bounds");
+          return;
+        }
         else
           this.ChangeY = 0;
 
