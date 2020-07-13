@@ -57,7 +57,7 @@ namespace FootballGame
 
     private void Form1_Paint(object sender, PaintEventArgs e)
     {
-      game.PaintField(sender, e);       
+      game.PaintScrimmageAndFirstDownLines(sender, e);       
     }
   }
 }

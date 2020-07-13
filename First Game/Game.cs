@@ -367,13 +367,15 @@ using Drake.Tools;
       }
     }
 
-    public void PaintField(object sender, PaintEventArgs e)
+    public void PaintScrimmageAndFirstDownLines(object sender, PaintEventArgs e)
     {
+      // Scrimmage
       Pen pen = new Pen(Color.FromArgb(255, 128, 128, 255));
-      e.Graphics.DrawLine(pen, Game.LineOfScrimage, 0, Game.LineOfScrimage, 800);
+      e.Graphics.DrawLine(pen, Game.LineOfScrimage, 0, Game.LineOfScrimage, ParentForm.Height - 62);
+      // First Down
       pen = new Pen(Color.FromArgb(255, 255, 255, 0));
       int firstDownMarker = LineOfScrimage + ((int)yardsToGo * (int)PixalsInYard);
-      e.Graphics.DrawLine(pen, firstDownMarker, 0, firstDownMarker, 800);
+      e.Graphics.DrawLine(pen, firstDownMarker, 0, firstDownMarker, ParentForm.Height -62);
     }
 
     public void CheckCollisions(List<Player> players)

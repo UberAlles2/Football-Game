@@ -324,13 +324,13 @@
       this.BackColor = System.Drawing.Color.Green;
       this.ClientSize = new System.Drawing.Size(1242, 748);
       this.Controls.Add(this.picSidelineYardage);
-      this.Controls.Add(this.lblBottomSideline);
       this.Controls.Add(this.pnlScoreboard);
       this.Controls.Add(this.pnlPlayOptions);
       this.Controls.Add(this.picBearsBall);
       this.Controls.Add(this.picFootball);
       this.Controls.Add(this.Player2);
       this.Controls.Add(this.Player1);
+      this.Controls.Add(this.lblBottomSideline);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
       this.Name = "Form1";
       this.Text = "Form1";
