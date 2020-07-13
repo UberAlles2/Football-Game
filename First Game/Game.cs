@@ -39,7 +39,6 @@ using Drake.Tools;
 
   public class Game
   {
-    private static float PixalsInYard = 32;
     private static float lineOfScrimage = 20;
     private static float yardsGained = 0;
     private static float yardsToGo = 10;
@@ -48,6 +47,7 @@ using Drake.Tools;
     private static bool running = true;
     private static System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
+    public static float PixalsInYard = 32;
     public static Form1 ParentForm;
     public static BallAsPlayer ballAsPlayer = new BallAsPlayer();
     public static Rectangle FieldBounds;
@@ -64,20 +64,23 @@ using Drake.Tools;
       Player.ParentForm = form1;
       Player.ParentGame = this;
       Scoreboard.ParentForm = form1;
+      Sideline.ParentForm = form1;
       lineOfScrimage = 20; // 1 - 100;
       yardsToGo = 10;
 
       ParentForm.pnlPlayOptions.Visible = false;
 
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
+      Sideline.InitializeDrawing();   // Draw the starting sideline
 
       // Initialize field dimensions
       FieldBounds = new Rectangle(0, ParentForm.pnlScoreboard.Height + 30, ParentForm.Width - ParentForm.Player1.Width, ParentForm.Height - ParentForm.pnlScoreboard.Height - 36);
       Player.FieldBounds = FieldBounds;
-      FieldCenterY = (FieldBounds.Height / 2) + ParentForm.lblTopSideline.Height + 2; // Players go out of bounds when their botton goes out.
+      FieldCenterY = (FieldBounds.Height / 2) + ParentForm.picSidelineYardage.Height + 2; // Players go out of bounds when their botton goes out.
 
       AddPlayers();
 
+      // Getting keyboard input
       timer.Tick += new System.EventHandler(KeyDown);
       timer.Interval = 50;
     }
@@ -278,6 +281,7 @@ using Drake.Tools;
       else
         MessageBox.Show(message + Environment.NewLine + "No gain");
 
+      Sideline.DisplaySideline(lineOfScrimage);
       ParentForm.Invalidate();
     }
 

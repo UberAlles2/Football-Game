@@ -50,6 +50,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PlayingFieldDrawing.cs" />
+    <Compile Include="Sideline.cs" />
     <Compile Include="Scoreboard.cs" />
     <Compile Include="Players\DefenderMiddleLinebacker.cs" />
     <Compile Include="Players\BallAsPlayer.cs" />

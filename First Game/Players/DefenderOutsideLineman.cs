@@ -88,8 +88,8 @@ namespace FootballGame
           //  }
           //  Offset--;
           //}
-          if (Math.Abs(Offset) < 150)
-            calculatedTargetY = calculatedTargetY; // TODO
+          //if (Math.Abs(Offset) < 150)
+          //  calculatedTargetY = calculatedTargetY; // TODOne
 
 
           if (Game.DetectCloseCollision(this, TargetPlayer, 90))
