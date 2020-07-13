@@ -39,11 +39,16 @@ namespace FootballGame
     {
       game.MouseClick(sender, e);
     }
-    private void lblTopSideline_MouseClick(object sender, MouseEventArgs e)
+    private void picSidelineYardage_MouseClick(object sender, MouseEventArgs e)
     {
       MouseEventArgs mouseEventArgs = new MouseEventArgs(MouseButtons.Left, 1, e.Location.X, e.Location.Y + 64, 0);
       Form1_MouseClick(sender, mouseEventArgs);
     }
+    //private void lblTopSideline_MouseClick(object sender, MouseEventArgs e)
+    //{
+    //  MouseEventArgs mouseEventArgs = new MouseEventArgs(MouseButtons.Left, 1, e.Location.X, e.Location.Y + 64, 0);
+    //  Form1_MouseClick(sender, mouseEventArgs);
+    //}
     private void lblBottomSideline_MouseClick(object sender, MouseEventArgs e)
     {
       MouseEventArgs mouseEventArgs = new MouseEventArgs(MouseButtons.Left, 1, e.Location.X, e.Location.Y + Height - 56, 0);

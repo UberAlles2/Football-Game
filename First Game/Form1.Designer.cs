@@ -305,6 +305,7 @@
       this.picSidelineYardage.Size = new System.Drawing.Size(1248, 32);
       this.picSidelineYardage.TabIndex = 8;
       this.picSidelineYardage.TabStop = false;
+      this.picSidelineYardage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picSidelineYardage_MouseClick);
       // 
       // picFullSidelineYardage
       // 
