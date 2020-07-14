@@ -49,7 +49,7 @@ namespace FootballGame
     public override void Move()
     {
       // Running back / quarterback has cross the scrimmage line. Change the target to the running back
-      if (ControllablePlayer.Left > Game.LineOfScrimage && InCoverage == true)
+      if (ControllablePlayer.Left > Game.LineOfScrimagePixel && InCoverage == true)
       {
         TargetPlayer = ControllablePlayer;
         ChangeX += 20;

@@ -155,7 +155,7 @@
       this.pnlScoreboard.Controls.Add(this.picScoreboardLetters);
       this.pnlScoreboard.Location = new System.Drawing.Point(0, 1);
       this.pnlScoreboard.Name = "pnlScoreboard";
-      this.pnlScoreboard.Size = new System.Drawing.Size(1241, 69);
+      this.pnlScoreboard.Size = new System.Drawing.Size(1259, 69);
       this.pnlScoreboard.TabIndex = 5;
       // 
       // label8
@@ -291,9 +291,9 @@
       // lblBottomSideline
       // 
       this.lblBottomSideline.BackColor = System.Drawing.Color.White;
-      this.lblBottomSideline.Location = new System.Drawing.Point(0, 715);
+      this.lblBottomSideline.Location = new System.Drawing.Point(0, 724);
       this.lblBottomSideline.Name = "lblBottomSideline";
-      this.lblBottomSideline.Size = new System.Drawing.Size(1248, 32);
+      this.lblBottomSideline.Size = new System.Drawing.Size(1259, 32);
       this.lblBottomSideline.TabIndex = 7;
       this.lblBottomSideline.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
       // 
@@ -302,7 +302,7 @@
       this.picSidelineYardage.BackColor = System.Drawing.Color.White;
       this.picSidelineYardage.Location = new System.Drawing.Point(-1, 70);
       this.picSidelineYardage.Name = "picSidelineYardage";
-      this.picSidelineYardage.Size = new System.Drawing.Size(1248, 32);
+      this.picSidelineYardage.Size = new System.Drawing.Size(1260, 32);
       this.picSidelineYardage.TabIndex = 8;
       this.picSidelineYardage.TabStop = false;
       this.picSidelineYardage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picSidelineYardage_MouseClick);
@@ -322,7 +322,7 @@
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.Green;
-      this.ClientSize = new System.Drawing.Size(1242, 748);
+      this.ClientSize = new System.Drawing.Size(1260, 757);
       this.Controls.Add(this.picSidelineYardage);
       this.Controls.Add(this.pnlScoreboard);
       this.Controls.Add(this.pnlPlayOptions);

@@ -23,7 +23,7 @@ namespace FootballGame
       if (TargetPlayer != Player.ControllablePlayer) // if catch is made
         TargetPlayer = Player.ControllablePlayer;
 
-      if (Player.ControllablePlayer.Left > Game.LineOfScrimage + 8)
+      if (Player.ControllablePlayer.Left > Game.LineOfScrimagePixel + 8)
       {
         Intelligence = 11; // Once the runner get past the line of scrimage, this defender doen't have to worry about the blockers.
       }

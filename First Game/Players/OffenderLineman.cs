@@ -8,9 +8,63 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class OffenderLinemanTop : OffenderLineman { }
-  class OffenderLinemanMiddle : OffenderLineman { }
-  class OffenderLinemanBottom : OffenderLineman { }
+  class OffenderLinemanTackleTop : OffenderLineman 
+  {
+    public override void Initialize()
+    {
+      base.Initialize();
+      ChangeX = -80;
+    }
+    public override void Move()
+    {
+      base.Move();
+    }
+  }
+  class OffenderLinemanMiddleUpper : OffenderLineman
+  {
+    public override void Initialize()
+    {
+      base.Initialize();
+    }
+    public override void Move()
+    {
+      base.Move();
+    }
+  }
+  class OffenderLinemanCenter : OffenderLineman
+  {
+    public override void Initialize()
+    {
+      base.Initialize();
+    }
+    public override void Move()
+    {
+      base.Move();
+    }
+  }
+  class OffenderLinemanMiddleLower : OffenderLineman
+  {
+    public override void Initialize()
+    {
+      base.Initialize();
+    }
+    public override void Move()
+    {
+      base.Move();
+    }
+  }
+  class OffenderLinemanTackleBottom : OffenderLineman 
+  {
+    public override void Initialize()
+    {
+      base.Initialize();
+      ChangeX = -80;
+    }
+    public override void Move()
+    {
+      base.Move();
+    }
+  }
 
   class OffenderLineman : Offender
   {
@@ -23,7 +77,7 @@ namespace FootballGame
 
     public override void Move()
     {
-      if (ControllablePlayer.Left > Game.LineOfScrimage && TargetPlayer != ControllablePlayer)
+      if (ControllablePlayer.Left > Game.LineOfScrimagePixel && TargetPlayer != ControllablePlayer)
       {
         TargetPlayer = ControllablePlayer;
         ChangeX += 20;

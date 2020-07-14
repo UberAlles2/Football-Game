@@ -17,7 +17,7 @@ namespace FootballGame
 
     public static void DisplaySideline(double BallOnYard)
     {
-      double leftPosition = (BallOnYard * Game.PixalsInYard) + 149;
+      double leftPosition = (BallOnYard * Game.PixalsInYard) + (Game.LineOfScrimagePixel - 211);
       ParentForm.picSidelineYardage.Image = GetPartOfBiggerImage(leftPosition);
     }
 
