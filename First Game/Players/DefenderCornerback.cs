@@ -9,8 +9,29 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class DefenderCornerbackTop : DefenderCornerback { }
-  class DefenderCornerbackBottom : DefenderCornerback { }
+  class DefenderCornerbackTop : DefenderCornerback 
+  {
+    public override void Move()
+    {
+      if (Top > Game.FieldCenterY - 120) // Top man should not leave his zone and stay on top 
+      {
+        ChangeY -= 6;
+      }
+      base.Move();
+    }
+  }
+  class DefenderCornerbackBottom : DefenderCornerback 
+  {
+    public override void Move()
+    {
+      if (Top < Game.FieldCenterY + 120) // Bottom man should not leave his zone and stay on bottom 
+      {
+        ChangeY += 6;
+      }
+      base.Move();
+    }
+  }
+
   class DefenderCornerback : Defender
   {
     private bool InCoverage = true;

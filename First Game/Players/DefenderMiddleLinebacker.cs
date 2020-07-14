@@ -38,7 +38,16 @@ namespace FootballGame
 
       if (IsThrowing)
       {
-        ChangeX += 20; // If the ball is thrown go out where the receivers are.
+        if(DefensiveMode == DefensiveMode.Blitz)
+           ChangeX += 10; // If the ball is thrown go out where the receivers are.
+        else
+          ChangeX += 2; 
+
+        DefensiveMode = DefensiveMode.Blitz; // Switch to tight coverage.
+        if (Player.ControllablePlayer.Top < Top)
+          ChangeY += 4;
+        else
+          ChangeY -= 4;
       }
       else if(Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
