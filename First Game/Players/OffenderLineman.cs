@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class OffenderLinemanTackleTop : OffenderLineman 
+  class OffenderOutsideLinemanTop : OffenderLineman 
   {
     public override void Initialize()
     {
@@ -20,7 +20,7 @@ namespace FootballGame
       base.Move();
     }
   }
-  class OffenderLinemanMiddleUpper : OffenderLineman
+  class OffenderLinemanUpper : OffenderLineman
   {
     public override void Initialize()
     {
@@ -42,7 +42,7 @@ namespace FootballGame
       base.Move();
     }
   }
-  class OffenderLinemanMiddleLower : OffenderLineman
+  class OffenderLinemanLower : OffenderLineman
   {
     public override void Initialize()
     {
@@ -53,7 +53,7 @@ namespace FootballGame
       base.Move();
     }
   }
-  class OffenderLinemanTackleBottom : OffenderLineman 
+  class OffenderOutsideLinemanBottom : OffenderLineman 
   {
     public override void Initialize()
     {
@@ -95,11 +95,11 @@ namespace FootballGame
       }
       if (TargetPlayer.Left < Left + 30)
       {
-        TargetPlayer.Offset = TargetPlayer.Offset - (Math.Sign(TargetPlayer.Offset) * 2);
+        TargetPlayer.OffsetY = TargetPlayer.OffsetY - (Math.Sign(TargetPlayer.OffsetY) * 2);
         ChangeX -= 3;
       }
-      else if (TargetPlayer.Left > Left - 4)
-        ChangeX += 2;
+      else if (TargetPlayer.Left > Left - 8)
+        ChangeX += 3;
       else
         ChangeX = ChangeX / 2;
 

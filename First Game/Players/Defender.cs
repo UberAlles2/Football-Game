@@ -72,7 +72,7 @@ namespace FootballGame
             break;
           case CollisionOrientation.ToLeft:
           case CollisionOrientation.ToRight:
-            if(Math.Abs(Offset) > 40) // For Outside defensive linemen
+            if(Math.Abs(OffsetY) > 40) // For defensive linemen
               ChangeY = 8 * r;
             else if (TargetPlayer.Top < Top - 90 && ChangeY < -40)
               ChangeY -= 8;
@@ -99,21 +99,21 @@ namespace FootballGame
           closeToTackle = true; // Move right towards player
 
       // Go right towards target if close to target or are blitzing
-      if (closeToTackle || this.DefensiveMode == DefensiveMode.Blitz)
+      if (this.DefensiveMode == DefensiveMode.Blitz || closeToTackle)
       {
         targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2);
       }
       else if (this.DefensiveMode == DefensiveMode.Normal)
       {
         if (TargetPlayer.Left < Game.LineOfScrimagePixel)
-          targetX = 280;
+            targetX = TargetPlayer.Left + 30;
         else
           targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + (diffY / 3);
       }
       else if (this.DefensiveMode == DefensiveMode.Soft)
       {
         if (TargetPlayer.Left < Game.LineOfScrimagePixel)
-          targetX = 400;
+            targetX = TargetPlayer.Left + 60;
         else
           targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + (diffY / 2);
       }

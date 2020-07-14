@@ -60,7 +60,7 @@
     <Compile Include="Players\OffenderLineman.cs" />
     <Compile Include="Players\Offender.cs" />
     <Compile Include="Players\DefenderOutsideLineman.cs" />
-    <Compile Include="Players\DefenderMiddleLineman.cs" />
+    <Compile Include="Players\DefenderLineman.cs" />
     <Compile Include="Form1.cs">
       <SubType>Form</SubType>
     </Compile>

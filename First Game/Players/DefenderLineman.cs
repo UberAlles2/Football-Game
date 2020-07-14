@@ -8,7 +8,50 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class DefenderMiddleLineman : Defender
+  class DefenderLinemanUpper : DefenderLineman
+  {
+    public override void Initialize()
+    {
+      base.Initialize();
+    }
+    public override void Move()
+    {
+      ChangeY -= 1; // Tendency to move up
+      //if (Top > Game.FieldCenterY - 80) // Top Outside lineman should not leave his zone and stay on top 
+      //{
+      //  ChangeY -= 4;
+      //}
+      OffsetY++;
+      base.Move();
+    }
+    public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
+    {
+      base.CollisionMove(collidedWithPlayer, collisionOrientation);
+    }
+  }
+  class DefenderLinemanLower : DefenderLineman
+  {
+    public override void Initialize()
+    {
+      base.Initialize();
+    }
+    public override void Move()
+    {
+      ChangeY += 1; // Tendency to move down
+      //if (Top < Game.FieldCenterY + 80) // Bottom lineman should not leave his zone and stay on bottom
+      //{
+      //  ChangeY += 4;
+      //}
+      OffsetY--;
+      base.Move();
+    }
+    public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
+    {
+      base.CollisionMove(collidedWithPlayer, collisionOrientation);
+    }
+  }
+
+  class DefenderLineman : Defender
   {
     public override void Initialize()
     {
@@ -20,6 +63,8 @@ namespace FootballGame
 
     public override void Move()
     {
+      int calculatedTargetY = TargetPlayer.Top;
+
       if (TargetPlayer != Player.ControllablePlayer) // if catch is made
         TargetPlayer = Player.ControllablePlayer;
 
@@ -30,7 +75,16 @@ namespace FootballGame
 
       if(Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
-        base.MoveTowardsTarget(TargetPlayer.Left + 30, TargetPlayer.Top);
+        if (Game.DetectCloseCollision(this, TargetPlayer, 90))
+        {
+          calculatedTargetY = TargetPlayer.Top;
+        }
+        else
+        {
+          calculatedTargetY = TargetPlayer.Top + OffsetY;
+        }
+        int calculatedTargetX = AI_BasicMoveTowardsTargetX();
+        base.MoveTowardsTarget(calculatedTargetX, calculatedTargetY);
       }
 
       base.Move();

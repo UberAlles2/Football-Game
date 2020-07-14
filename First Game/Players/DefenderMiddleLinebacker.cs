@@ -38,20 +38,29 @@ namespace FootballGame
 
       if (IsThrowing)
       {
-        if(DefensiveMode == DefensiveMode.Blitz)
-           ChangeX += 10; // If the ball is thrown go out where the receivers are.
-        else
-          ChangeX += 2; 
-
         DefensiveMode = DefensiveMode.Blitz; // Switch to tight coverage.
-        if (Player.ControllablePlayer.Top < Top)
+        ChangeX += 10; // If the ball is thrown go out where the receivers are.
+
+        if (ControllablePlayer.Top < Top)
           ChangeY += 4;
         else
           ChangeY -= 4;
       }
       else if(Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
-        base.MoveTowardsTarget(AI_BasicMoveTowardsTargetX(), TargetPlayer.Top);
+        int calculatedTargetX = AI_BasicMoveTowardsTargetX();
+        switch(DefensiveMode)
+        {
+          case DefensiveMode.Normal:
+            if (TargetPlayer.Left < Game.LineOfScrimagePixel - 30)
+              calculatedTargetX += (Game.LineOfScrimagePixel - 80);
+            break;
+          case DefensiveMode.Soft:
+            if (TargetPlayer.Left < Game.LineOfScrimagePixel - 30)
+              calculatedTargetX += (Game.LineOfScrimagePixel);
+            break;
+        }
+        base.MoveTowardsTarget(calculatedTargetX, TargetPlayer.Top);
       }
 
       base.Move();

@@ -21,7 +21,7 @@ namespace FootballGame
       {
         ChangeY -= 4;
       }
-      Offset++;
+      OffsetY++;
       base.Move();
     }
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
@@ -42,7 +42,7 @@ namespace FootballGame
       {
         ChangeY += 4;
       }
-      Offset--;
+      OffsetY--;
       ChangeY += 1; // Tendency to move down
       base.Move(); 
     }
@@ -72,40 +72,22 @@ namespace FootballGame
       if (TargetPlayer != Player.ControllablePlayer)
         TargetPlayer = Player.ControllablePlayer;
 
+      if (Player.ControllablePlayer.Left > Game.LineOfScrimagePixel + 8)
+      {
+        Intelligence = 11; // Once the runner get past the line of scrimage, this defender doen't have to worry about the blockers.
+      }
+
       if (Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
         if(Random.Next(0, 15) > 8)
         {
-          //if (Position == Position.Top && Offset < -43)
-          //{
-          //  ChangeY -= 4; // Keep on top
-          //  if (Top > Game.FieldCenterY - 80) // Top Outside lineman should not leave his zone and stay on top 
-          //  {
-          //    ChangeY -= 6;
-          //  }
-          //  Offset++;
-          //  Offset++;
-          //}
-          //if (Position == Position.Bottom && Offset > 43)
-          //{
-          //  ChangeY += 4; // Keep on bottom
-          //  if (Top < Game.FieldCenterY + 80) // Bottom Outside lineman should not leave his zone and stay on bottom 
-          //  {
-          //    ChangeY += 6;
-          //  }
-          //  Offset--;
-          //}
-          //if (Math.Abs(Offset) < 150)
-          //  calculatedTargetY = calculatedTargetY; // TODOne
-
-
           if (Game.DetectCloseCollision(this, TargetPlayer, 90))
           {
             calculatedTargetY = TargetPlayer.Top;
           }
           else
           {
-            calculatedTargetY = TargetPlayer.Top + Offset;
+            calculatedTargetY = TargetPlayer.Top + OffsetY;
           }
         }
         int calcTargetX = AI_BasicMoveTowardsTargetX();

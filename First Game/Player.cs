@@ -70,7 +70,7 @@ namespace FootballGame
     public int MovingAroundBlocker { get => movingAroundBlocker; set => movingAroundBlocker = value; }
     public int InitialTop { get => initialTop; set => initialTop = value; }
     public int InitialLeft { get => initialLeft; set => initialLeft = value; }
-    public int Offset { get => offset; set => offset = value; }
+    public int OffsetY { get => offset; set => offset = value; }
     public int InitialOffsetY { get => initialOffset; set { initialOffset = value; offset = value; } }
     public Player InitialTargetPlayer { get => initialTargetPlayer; set { initialTargetPlayer = value; TargetPlayer = value; } }
     public VerticalPosition VerticalPosition { get => position; set => position = value; }
@@ -126,20 +126,16 @@ namespace FootballGame
     public static void AddPlayer(Player player)
     {
       Players.Add(player);
-      //string name = player.GetType().Name;
-      //Position positionEnum = (Position)Enum.Parse(typeof(Position), name);
-      //Players.RemoveAt((int)positionEnum);
-      //Players.Insert((int)positionEnum, player);
     }
 
     public virtual void Initialize()
     {
       if (InitialTop != -1) Top = InitialTop;
       if (InitialLeft != -1) Left = InitialLeft;
-      Offset = InitialOffsetY;
       if (InitialTargetPlayer != null) TargetPlayer = InitialTargetPlayer;
+      OffsetY = InitialOffsetY;
 
-      Player.MovePic(this);
+      Player.MovePic(this); // Place player at initial position
 
       this.TotalMoves = 0;
       this.ChangeX = 0;
@@ -184,7 +180,7 @@ namespace FootballGame
     {
       int closingIn = 16;
 
-      if (this is DefenderMiddleLineman || this is DefenderOutsideLineman) // Can't close in on target that fast with blockers
+      if (this is DefenderLineman || this is DefenderOutsideLineman) // Can't close in on target that fast with blockers
         closingIn = 8;
 
       // TODO no difference between verticle and horizontal??? Should there be?
