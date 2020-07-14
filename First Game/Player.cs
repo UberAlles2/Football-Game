@@ -71,7 +71,7 @@ namespace FootballGame
     public int InitialTop { get => initialTop; set => initialTop = value; }
     public int InitialLeft { get => initialLeft; set => initialLeft = value; }
     public int Offset { get => offset; set => offset = value; }
-    public int InitialOffset { get => initialOffset; set { initialOffset = value; offset = value; } }
+    public int InitialOffsetY { get => initialOffset; set { initialOffset = value; offset = value; } }
     public Player InitialTargetPlayer { get => initialTargetPlayer; set { initialTargetPlayer = value; TargetPlayer = value; } }
     public VerticalPosition VerticalPosition { get => position; set => position = value; }
 
@@ -136,7 +136,7 @@ namespace FootballGame
     {
       if (InitialTop != -1) Top = InitialTop;
       if (InitialLeft != -1) Left = InitialLeft;
-      Offset = InitialOffset;
+      Offset = InitialOffsetY;
       if (InitialTargetPlayer != null) TargetPlayer = InitialTargetPlayer;
 
       Player.MovePic(this);

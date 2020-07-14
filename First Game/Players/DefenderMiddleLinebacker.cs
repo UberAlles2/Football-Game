@@ -23,7 +23,7 @@ namespace FootballGame
         Intelligence = 9; // Mixed in with blocker less intelligence
         DefensiveMode = DefensiveMode.Blitz;
         Top = Game.FieldCenterY - 40;
-        Left = 200;
+        Left = InitialLeft;
       }
       else if (Random.Next(0, 10) < 8)
         DefensiveMode = DefensiveMode.Normal;
