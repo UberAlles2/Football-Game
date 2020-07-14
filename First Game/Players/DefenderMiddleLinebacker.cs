@@ -53,11 +53,11 @@ namespace FootballGame
         {
           case DefensiveMode.Normal:
             if (TargetPlayer.Left < Game.LineOfScrimagePixel - 30)
-              calculatedTargetX += (Game.LineOfScrimagePixel - 80);
+              calculatedTargetX += (Game.LineOfScrimagePixel - 90);
             break;
           case DefensiveMode.Soft:
             if (TargetPlayer.Left < Game.LineOfScrimagePixel - 30)
-              calculatedTargetX += (Game.LineOfScrimagePixel);
+              calculatedTargetX += (Game.LineOfScrimagePixel - 10);
             break;
         }
         base.MoveTowardsTarget(calculatedTargetX, TargetPlayer.Top);

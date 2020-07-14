@@ -165,7 +165,7 @@ using Drake.Tools;
       defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
       defenderOutsideLinemanTop.InitialLeft = LineOfScrimagePixel + 25;
       defenderOutsideLinemanTop.InitialTop = FieldCenterY -160;
-      defenderOutsideLinemanTop.InitialOffsetY = -260;
+      defenderOutsideLinemanTop.InitialOffsetY = -250;
       defenderOutsideLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen;
       //defenderOutsideLinemanTop.CoDefender = defenderMiddleLineman;
@@ -174,8 +174,8 @@ using Drake.Tools;
       
       DefenderLinemanUpper defenderLinemanUpper = new DefenderLinemanUpper();
       defenderLinemanUpper.InitialLeft = LineOfScrimagePixel + 25;
-      defenderLinemanUpper.InitialTop = FieldCenterY - 60;
-      defenderLinemanUpper.InitialOffsetY = -110;
+      defenderLinemanUpper.InitialTop = FieldCenterY - 61;
+      defenderLinemanUpper.InitialOffsetY = -92;
       defenderLinemanUpper.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderLinemanUpper.Initialize();
       Player.AddPlayer(defenderLinemanUpper);
@@ -192,8 +192,8 @@ using Drake.Tools;
 
       DefenderLinemanLower defenderLinemanLower = new DefenderLinemanLower();
       defenderLinemanLower.InitialLeft = LineOfScrimagePixel + 25;
-      defenderLinemanLower.InitialTop = FieldCenterY + 60;
-      defenderLinemanLower.InitialOffsetY = 110;
+      defenderLinemanLower.InitialTop = FieldCenterY + 63;
+      defenderLinemanLower.InitialOffsetY = 95;
       defenderLinemanLower.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderLinemanLower.Initialize();
       Player.AddPlayer(defenderLinemanLower);
@@ -202,7 +202,7 @@ using Drake.Tools;
       defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionBottom;
       defenderOutsideLinemanBottom.InitialLeft = LineOfScrimagePixel + 25;
       defenderOutsideLinemanBottom.InitialTop = FieldCenterY + 160;
-      defenderOutsideLinemanBottom.InitialOffsetY = 260;
+      defenderOutsideLinemanBottom.InitialOffsetY = 250;
       defenderOutsideLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen;
       defenderOutsideLinemanBottom.Initialize();
@@ -229,7 +229,7 @@ using Drake.Tools;
 
       offenderOutsideLinemanTop.InitialTargetPlayer = defenderOutsideLinemanTop;
       offenderLinemanUpper.InitialTargetPlayer = defenderLinemanUpper;
-      if(Random.Next(-10, 10) < 0)
+      if(Random.Next(0, 20) - 10 < 0)
         offenderLinemanCenter.InitialTargetPlayer = defenderLinemanUpper;
       else
         offenderLinemanCenter.InitialTargetPlayer = defenderLinemanLower;

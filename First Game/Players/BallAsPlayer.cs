@@ -99,8 +99,8 @@ namespace FootballGame
       TotalMoves = 0;
       Top = startY;  // start position
       Left = startX; // start position
-      TargetPlayer.Top  = targetY - 8 + (Random.Next(-5, 5) * (targetX / 100));  // end position with randomness
-      TargetPlayer.Left = targetX + 8 + (Random.Next(-5, 5) * (targetX / 100));  // end position with randomness
+      TargetPlayer.Top  = targetY - 8 + ((Random.Next(0, 10) - 5) * (targetX / 100));  // end position with randomness
+      TargetPlayer.Left = targetX + 8 + ((Random.Next(0, 10) - 5) * (targetX / 100));  // end position with randomness
       Player.ControllablePlayer.PicBox.Image = ParentForm.Player1.Image;
 
       GetChangeYChangeX();

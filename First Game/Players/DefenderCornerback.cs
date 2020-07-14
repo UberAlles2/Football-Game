@@ -64,9 +64,9 @@ namespace FootballGame
         if (InCoverage)
         {
           if (TargetPlayer.Top < Game.FieldCenterY)
-            base.MoveTowardsTarget(calcTargetX + Random.Next(-140, 200), TargetPlayer.Top + 40);
+            base.MoveTowardsTarget(calcTargetX + (Random.Next(0, 340) - 140), TargetPlayer.Top + 40);
           else
-            base.MoveTowardsTarget(calcTargetX + Random.Next(-140, 200), TargetPlayer.Top - 40);
+            base.MoveTowardsTarget(calcTargetX + (Random.Next(0, 340) - 140), TargetPlayer.Top - 40);
 
           if (IsThrowing && Random.Next(0, 10) > 9) // Player will move towards thrown ball
           {

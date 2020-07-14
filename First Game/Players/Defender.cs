@@ -56,7 +56,7 @@ namespace FootballGame
           break;
       }
 
-      int r = Random.Next(-10, 10);
+      int r = Random.Next(0, 20) - 10;
       if (MovingAroundBlocker == 0)
       {
         switch (collisionOrientation)
