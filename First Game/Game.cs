@@ -125,7 +125,6 @@ using Drake.Tools;
       offenderLinemanCenter.InitialLeft = LineOfScrimagePixel - 25;
       offenderLinemanCenter.InitialTop = FieldCenterY;
       offenderLinemanCenter.PicBox = AddPlayerPictureBox(ParentForm.Player1);
-      offenderLinemanCenter.Initialize();
       Player.AddPlayer(offenderLinemanCenter);
 
       OffenderLinemanLower offenderLinemanLower = new OffenderLinemanLower();
@@ -175,7 +174,7 @@ using Drake.Tools;
       DefenderLinemanUpper defenderLinemanUpper = new DefenderLinemanUpper();
       defenderLinemanUpper.InitialLeft = LineOfScrimagePixel + 25;
       defenderLinemanUpper.InitialTop = FieldCenterY - 61;
-      defenderLinemanUpper.InitialOffsetY = -94;
+      defenderLinemanUpper.InitialOffsetY = -90;
       defenderLinemanUpper.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderLinemanUpper.Initialize();
       Player.AddPlayer(defenderLinemanUpper);
@@ -193,7 +192,7 @@ using Drake.Tools;
       DefenderLinemanLower defenderLinemanLower = new DefenderLinemanLower();
       defenderLinemanLower.InitialLeft = LineOfScrimagePixel + 25;
       defenderLinemanLower.InitialTop = FieldCenterY + 63;
-      defenderLinemanLower.InitialOffsetY = 96;
+      defenderLinemanLower.InitialOffsetY = 92;
       defenderLinemanLower.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderLinemanLower.Initialize();
       Player.AddPlayer(defenderLinemanLower);
@@ -229,12 +228,12 @@ using Drake.Tools;
 
       offenderOutsideLinemanTop.InitialTargetPlayer = defenderOutsideLinemanTop;
       offenderLinemanUpper.InitialTargetPlayer = defenderLinemanUpper;
-      if(Random.Next(0, 20) - 10 < 0)
-        offenderLinemanCenter.InitialTargetPlayer = defenderLinemanUpper;
-      else
-        offenderLinemanCenter.InitialTargetPlayer = defenderLinemanLower;
+      offenderLinemanCenter.DefenseLinemanUpper = defenderLinemanUpper;
+      offenderLinemanCenter.DefenseLinemanLower = defenderLinemanLower;
       offenderLinemanLower.InitialTargetPlayer = defenderLinemanLower;
       offenderOutsideLinemanBottom.InitialTargetPlayer = defenderOutsideLinemanBottom;
+
+      offenderLinemanCenter.Initialize();
     }
 
     public PictureBox AddPlayerPictureBox(PictureBox pb)

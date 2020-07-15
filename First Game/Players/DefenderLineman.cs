@@ -17,11 +17,10 @@ namespace FootballGame
     public override void Move()
     {
       ChangeY -= 1; // Tendency to move up
-      //if (Top > Game.FieldCenterY - 80) // Top Outside lineman should not leave his zone and stay on top 
-      //{
-      //  ChangeY -= 4;
-      //}
-      OffsetY++;
+      if (Top < Game.FieldCenterY - 280) // Top Outside lineman should not leave his zone and stay on top 
+      {
+        OffsetY++;
+      }
       base.Move();
     }
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
@@ -38,11 +37,10 @@ namespace FootballGame
     public override void Move()
     {
       ChangeY += 1; // Tendency to move down
-      //if (Top < Game.FieldCenterY + 80) // Bottom lineman should not leave his zone and stay on bottom
-      //{
-      //  ChangeY += 4;
-      //}
-      OffsetY--;
+      if (Top > Game.FieldCenterY + 280) // Bottom lineman should not leave his zone and stay on bottom
+      {
+        OffsetY--;
+      }
       base.Move();
     }
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)

@@ -33,13 +33,19 @@ namespace FootballGame
   }
   class OffenderLinemanCenter : OffenderLineman
   {
+    public Player DefenseLinemanUpper;
+    public Player DefenseLinemanLower;
+
     public override void Initialize()
     {
+      if (Random.Next(0, 20) - 10 < 10)
+        TargetPlayer = DefenseLinemanUpper;
+      else
+        TargetPlayer = DefenseLinemanLower;
       base.Initialize();
     }
     public override void Move()
     {
-      ChangeY = ChangeY / 2; 
       base.Move();
     }
   }
