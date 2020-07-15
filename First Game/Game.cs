@@ -120,7 +120,7 @@ using Drake.Tools;
 
       OffenderWideReceiverBottom offenderWideReceiverBottom = new OffenderWideReceiverBottom();
       Player.AddPlayer(offenderWideReceiverBottom, initlineX, FieldCenterY + 240, ParentForm.Player1);
-      offenderWideReceiverBottom.TheBomb(); // TODO randomize
+      offenderWideReceiverBottom.FlyPattern(); // TODO randomize
 
 
       initlineX = LineOfScrimagePixel + 25;
@@ -199,7 +199,7 @@ using Drake.Tools;
         }
         CheckCollisions(Player.Players);
 
-        Thread.Sleep(20);
+        Thread.Sleep(30);  // Speed of the game, increase for easy mode
       }
     }
 

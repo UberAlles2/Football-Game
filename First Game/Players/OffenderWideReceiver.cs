@@ -12,7 +12,9 @@ namespace FootballGame
   {
     public override void Initialize()
     {
-      PicBox.MouseClick += new System.Windows.Forms.MouseEventHandler(MouseClick);
+      PicBox.MouseClick += new System.Windows.Forms.MouseEventHandler(MouseClick); //TODO put so it is initialized one time
+      AssignedPattern = ButtonHookPattern;
+      AssignedPattern(); //TODO select through dialog
       base.Initialize();
     }
     private void MouseClick(object sender, MouseEventArgs e)
@@ -34,7 +36,9 @@ namespace FootballGame
   {
     public override void Initialize()
     {
-      PicBox.MouseClick += new System.Windows.Forms.MouseEventHandler(MouseClick);
+      PicBox.MouseClick += new System.Windows.Forms.MouseEventHandler(MouseClick); //TODO put so it is initialized one time
+      AssignedPattern = FlyPattern; //TODO select through dialog
+      AssignedPattern();
       base.Initialize();
     }
     private void MouseClick(object sender, MouseEventArgs e)
@@ -55,6 +59,7 @@ namespace FootballGame
 
   class OffenderWideReceiver : Offender
   {
+    public Action AssignedPattern;
     private List<ReceiverPattern> receiverPatterns = new List<ReceiverPattern>();
     private int receiverPatternIndex;
     private bool runningPattern;
@@ -131,6 +136,7 @@ namespace FootballGame
       base.CollisionMove(collidedWithPlayer, collisionOrientation);
     }
 
+
     public void ButtonHookPattern()
     {
       receiverPatterns.Clear();
@@ -143,15 +149,15 @@ namespace FootballGame
       receiverPatterns.Add(receiverPattern);
     }
 
-    public void TheBomb()
+    public void FlyPattern()
     {
       receiverPatterns.Clear();
 
-      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "TheBomb", TargetX = 900, TargetY = this.InitialTop };
+      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "Fly", TargetX = 900, TargetY = this.InitialTop };
       receiverPatterns.Add(receiverPattern);
-      receiverPattern = new ReceiverPattern() { Name = "TheBomb", TargetX = 900, TargetY = 500 };
+      receiverPattern = new ReceiverPattern() { Name = "Fly", TargetX = 900, TargetY = 500 };
       receiverPatterns.Add(receiverPattern);
-      receiverPattern = new ReceiverPattern() { Name = "TheBomb", TargetX = 200, TargetY = 500 };
+      receiverPattern = new ReceiverPattern() { Name = "Fly", TargetX = 200, TargetY = 500 };
       receiverPatterns.Add(receiverPattern);
     }
 
