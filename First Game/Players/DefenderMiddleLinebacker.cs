@@ -18,7 +18,7 @@ namespace FootballGame
 
       base.Initialize();
 
-      if (Random.Next(0, 10) < 3)
+      if (Random.Next(0, 12) < 3)
       {
         Intelligence = 9; // Mixed in with blocker less intelligence
         DefensiveMode = DefensiveMode.Blitz;

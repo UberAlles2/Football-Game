@@ -115,7 +115,7 @@ using Drake.Tools;
       OffenderLinemanUpper offenderLinemanUpper = new OffenderLinemanUpper();
       offenderLinemanUpper.VerticalPosition = VerticalPosition.PositionMiddle;
       offenderLinemanUpper.InitialLeft = LineOfScrimagePixel - 25;
-      offenderLinemanUpper.InitialTop = FieldCenterY - 60;
+      offenderLinemanUpper.InitialTop = FieldCenterY - 58;
       offenderLinemanUpper.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderLinemanUpper.Initialize();
       Player.AddPlayer(offenderLinemanUpper);
@@ -131,7 +131,7 @@ using Drake.Tools;
       OffenderLinemanLower offenderLinemanLower = new OffenderLinemanLower();
       offenderLinemanLower.VerticalPosition = VerticalPosition.PositionMiddle;
       offenderLinemanLower.InitialLeft = LineOfScrimagePixel - 25;
-      offenderLinemanLower.InitialTop = FieldCenterY + 60;
+      offenderLinemanLower.InitialTop = FieldCenterY + 58;
       offenderLinemanLower.PicBox = AddPlayerPictureBox(ParentForm.Player1);
       offenderLinemanLower.Initialize();
       Player.AddPlayer(offenderLinemanLower);
@@ -175,14 +175,14 @@ using Drake.Tools;
       DefenderLinemanUpper defenderLinemanUpper = new DefenderLinemanUpper();
       defenderLinemanUpper.InitialLeft = LineOfScrimagePixel + 25;
       defenderLinemanUpper.InitialTop = FieldCenterY - 61;
-      defenderLinemanUpper.InitialOffsetY = -92;
+      defenderLinemanUpper.InitialOffsetY = -94;
       defenderLinemanUpper.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderLinemanUpper.Initialize();
       Player.AddPlayer(defenderLinemanUpper);
 
         // Middle Linebacker
         DefenderMiddleLinebacker defenderMiddleLinebacker = defenderOutsideLinemanTop.CloneAndUpcast<DefenderMiddleLinebacker, Player>();
-        defenderMiddleLinebacker.DefensiveMode = DefensiveMode.Normal;  // TODO randomize between coverage
+        defenderMiddleLinebacker.DefensiveMode = DefensiveMode.Normal; 
         defenderMiddleLinebacker.InitialLeft = LineOfScrimagePixel + 120; 
         defenderMiddleLinebacker.InitialTop = FieldCenterY;
         defenderMiddleLinebacker.PicBox = AddPlayerPictureBox(ParentForm.Player2);
@@ -193,7 +193,7 @@ using Drake.Tools;
       DefenderLinemanLower defenderLinemanLower = new DefenderLinemanLower();
       defenderLinemanLower.InitialLeft = LineOfScrimagePixel + 25;
       defenderLinemanLower.InitialTop = FieldCenterY + 63;
-      defenderLinemanLower.InitialOffsetY = 95;
+      defenderLinemanLower.InitialOffsetY = 96;
       defenderLinemanLower.PicBox = AddPlayerPictureBox(ParentForm.Player2);
       defenderLinemanLower.Initialize();
       Player.AddPlayer(defenderLinemanLower);
@@ -272,7 +272,7 @@ using Drake.Tools;
         }
         CheckCollisions(Player.Players);
 
-        Thread.Sleep(32);
+        Thread.Sleep(20);
       }
     }
 

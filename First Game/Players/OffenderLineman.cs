@@ -39,6 +39,7 @@ namespace FootballGame
     }
     public override void Move()
     {
+      ChangeY = ChangeY / 2; 
       base.Move();
     }
   }
@@ -89,6 +90,7 @@ namespace FootballGame
       if (VerticalPosition == VerticalPosition.PositionBottom && ControllablePlayer.Top < Top - 16 && TargetPlayer.Top < Top)
         ChangeY += -1;
 
+      // Horizontal move
       if (TargetPlayer.Left < Left + 20)
       {
         ChangeX -= 2;
@@ -103,6 +105,7 @@ namespace FootballGame
       else
         ChangeX = ChangeX / 2;
 
+      // Vertical move
       if (TargetPlayer.Top < Top + 4)
         ChangeY -= 2;
       else if (TargetPlayer.Top > Top - 4)
