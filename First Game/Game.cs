@@ -138,10 +138,15 @@ using Drake.Tools;
       Player.AddPlayer(defenderLinemanUpper, initlineX, FieldCenterY - 61, ParentForm.Player2, initialOffsetY: -90);
       defenderLinemanUpper.PicBox.BackColor = Color.LightBlue; // TODO take out
 
-      // Middle Linebacker
-      DefenderMiddleLinebacker defenderMiddleLinebacker = new DefenderMiddleLinebacker();
+        // Middle Linebacker
+        DefenderMiddleLinebacker defenderMiddleLinebacker = new DefenderMiddleLinebacker();
         Player.AddPlayer(defenderMiddleLinebacker, LineOfScrimagePixel + 120, FieldCenterY, ParentForm.Player2);
         defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen; // TODO take out
+      
+        // Safety
+        DefenderSafety defenderSafety = new DefenderSafety();
+        Player.AddPlayer(defenderSafety, LineOfScrimagePixel + 420, FieldCenterY, ParentForm.Player2);
+        defenderSafety.PicBox.BackColor = Color.HotPink; // TODO take out
 
       DefenderLinemanLower defenderLinemanLower = new DefenderLinemanLower();
       Player.AddPlayer(defenderLinemanLower, initlineX, FieldCenterY + 63, ParentForm.Player2, initialOffsetY: 92);
@@ -165,6 +170,10 @@ using Drake.Tools;
       // Setup Initial TargetPlayers
       defenderCornerbackTop.InitialTargetPlayer = offenderWideReceiverTop;
       defenderCornerbackBottom.InitialTargetPlayer = offenderWideReceiverBottom;
+      defenderSafety.OffenseWideReceiverTop = offenderWideReceiverTop; // Safty can cover 3 different player ot the ball if thrown.
+      defenderSafety.OffenseWideReceiverBottom = offenderWideReceiverBottom;
+      defenderSafety.DefenderMiddleLinebacker = defenderMiddleLinebacker;
+      defenderSafety.BallAsPlayer = ballAsPlayer;
 
       offenderOutsideLinemanTop.InitialTargetPlayer = defenderOutsideLinemanTop;
       offenderLinemanUpper.InitialTargetPlayer = defenderLinemanUpper;

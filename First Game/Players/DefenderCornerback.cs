@@ -43,7 +43,6 @@ namespace FootballGame
       Intelligence = 9;
       InCoverage = true;
       base.Initialize();
-
     }
 
     public override void Move()
@@ -70,7 +69,7 @@ namespace FootballGame
 
           if (IsThrowing && Random.Next(0, 10) > 9) // Player will move towards thrown ball
           {
-            TargetPlayer = Game.ballAsPlayer.TargetPlayer;
+            TargetPlayer = Game.ballAsPlayer;
           }
         }
         else
