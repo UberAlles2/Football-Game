@@ -65,11 +65,11 @@ using Drake.Tools;
       Player.ParentGame = this;
       Scoreboard.ParentForm = form1;
       Sideline.ParentForm = form1;
-      lineOfScrimageYard = 20; // 1 - 100;
-      yardsToGo = 10;
-
       ParentForm.pnlPlayOptions.Visible = false;
 
+      // Set initial values and Display them.
+      lineOfScrimageYard = 20; // 1 - 100; 
+      yardsToGo = 10;
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
       Sideline.InitializeDrawing();   // Draw the starting sideline
 
@@ -136,14 +136,16 @@ using Drake.Tools;
 
       DefenderLinemanUpper defenderLinemanUpper = new DefenderLinemanUpper();
       Player.AddPlayer(defenderLinemanUpper, initlineX, FieldCenterY - 61, ParentForm.Player2, initialOffsetY: -90);
+      defenderLinemanUpper.PicBox.BackColor = Color.LightBlue; // TODO take out
 
-        // Middle Linebacker
-        DefenderMiddleLinebacker defenderMiddleLinebacker = new DefenderMiddleLinebacker();
+      // Middle Linebacker
+      DefenderMiddleLinebacker defenderMiddleLinebacker = new DefenderMiddleLinebacker();
         Player.AddPlayer(defenderMiddleLinebacker, LineOfScrimagePixel + 120, FieldCenterY, ParentForm.Player2);
         defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen; // TODO take out
 
       DefenderLinemanLower defenderLinemanLower = new DefenderLinemanLower();
       Player.AddPlayer(defenderLinemanLower, initlineX, FieldCenterY + 63, ParentForm.Player2, initialOffsetY: 92);
+      defenderLinemanLower.PicBox.BackColor = Color.DarkBlue; // TODO take out
 
       DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = new DefenderOutsideLinemanBottom();
       defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionBottom;
