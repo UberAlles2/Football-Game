@@ -149,24 +149,24 @@ namespace Drake.Tools
 
     #region Object Extensions -------------------------------------------------------
 
-    public static U CloneAndUpcast<U, B>(this B b) where U : B, new()
-    {
-      U clone = new U();
+    //public static U CloneAndUpcast<U, B>(this B b) where U : B, new()
+    //{
+    //  U clone = new U();
 
-      var members = b.GetType().GetMembers(BindingFlags.GetProperty | BindingFlags.Public | BindingFlags.Instance);
-      for (int i = 0; i < members.Length; i++)
-      {
-        if (members[i].MemberType == MemberTypes.Property)
-        {
-          clone
-              .GetType()
-              .GetProperty(members[i].Name)
-              .SetValue(clone, b.GetType().GetProperty(members[i].Name).GetValue(b, null), null);
-        }
+    //  var members = b.GetType().GetMembers(BindingFlags.GetProperty | BindingFlags.Public | BindingFlags.Instance);
+    //  for (int i = 0; i < members.Length; i++)
+    //  {
+    //    if (members[i].MemberType == MemberTypes.Property)
+    //    {
+    //      clone
+    //          .GetType()
+    //          .GetProperty(members[i].Name)
+    //          .SetValue(clone, b.GetType().GetProperty(members[i].Name).GetValue(b, null), null);
+    //    }
 
-      }
-      return clone;
-    }
+    //  }
+    //  return clone;
+    //}
 
     #endregion
   }

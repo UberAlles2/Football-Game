@@ -87,139 +87,77 @@ using Drake.Tools;
 
     public void AddPlayers()
     {
+      int initlineX = LineOfScrimagePixel - 25;
+
       //--------------------- Offensive Players
       OffenderQuarterback offenderQuarterback = new OffenderQuarterback();
-      offenderQuarterback.InitialLeft = LineOfScrimagePixel - 200;
-      offenderQuarterback.InitialTop = FieldCenterY;
-      offenderQuarterback.PicBox = AddPlayerPictureBox(ParentForm.Player1);
-      offenderQuarterback.Initialize();
-      Player.AddPlayer(offenderQuarterback);
+      Player.AddPlayer(offenderQuarterback, LineOfScrimagePixel - 200, FieldCenterY, ParentForm.Player1);
       Player.ControllablePlayer = offenderQuarterback;
 
       OffenderWideReceiverTop offenderWideReceiverTop = new OffenderWideReceiverTop();
-      offenderWideReceiverTop.InitialTop = FieldCenterY - 240;
-      offenderWideReceiverTop.InitialLeft = LineOfScrimagePixel - 25;
-      offenderWideReceiverTop.PicBox = AddPlayerPictureBox(ParentForm.Player1);
+      Player.AddPlayer(offenderWideReceiverTop, initlineX, FieldCenterY - 240, ParentForm.Player1);
       offenderWideReceiverTop.ButtonHookPattern(); // TODO randomize
-      offenderWideReceiverTop.Initialize();
-      Player.AddPlayer(offenderWideReceiverTop);
 
       OffenderOutsideLinemanTop offenderOutsideLinemanTop = new OffenderOutsideLinemanTop();
       offenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
-      offenderOutsideLinemanTop.InitialLeft = LineOfScrimagePixel - 25;
-      offenderOutsideLinemanTop.InitialTop = FieldCenterY - 90;
-      offenderOutsideLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player1);
-      offenderOutsideLinemanTop.Initialize();
-      Player.AddPlayer(offenderOutsideLinemanTop);
+      Player.AddPlayer(offenderOutsideLinemanTop, initlineX, FieldCenterY - 90, ParentForm.Player1);
 
       OffenderLinemanUpper offenderLinemanUpper = new OffenderLinemanUpper();
       offenderLinemanUpper.VerticalPosition = VerticalPosition.PositionMiddle;
-      offenderLinemanUpper.InitialLeft = LineOfScrimagePixel - 25;
-      offenderLinemanUpper.InitialTop = FieldCenterY - 58;
-      offenderLinemanUpper.PicBox = AddPlayerPictureBox(ParentForm.Player1);
-      offenderLinemanUpper.Initialize();
-      Player.AddPlayer(offenderLinemanUpper);
+      Player.AddPlayer(offenderLinemanUpper, initlineX, FieldCenterY - 58, ParentForm.Player1);
 
       OffenderLinemanCenter offenderLinemanCenter = new OffenderLinemanCenter();
       offenderLinemanCenter.VerticalPosition = VerticalPosition.PositionMiddle;
-      offenderLinemanCenter.InitialLeft = LineOfScrimagePixel - 25;
-      offenderLinemanCenter.InitialTop = FieldCenterY;
-      offenderLinemanCenter.PicBox = AddPlayerPictureBox(ParentForm.Player1);
-      Player.AddPlayer(offenderLinemanCenter);
+      Player.AddPlayer(offenderLinemanCenter, initlineX, FieldCenterY, ParentForm.Player1);
 
       OffenderLinemanLower offenderLinemanLower = new OffenderLinemanLower();
       offenderLinemanLower.VerticalPosition = VerticalPosition.PositionMiddle;
-      offenderLinemanLower.InitialLeft = LineOfScrimagePixel - 25;
-      offenderLinemanLower.InitialTop = FieldCenterY + 58;
-      offenderLinemanLower.PicBox = AddPlayerPictureBox(ParentForm.Player1);
-      offenderLinemanLower.Initialize();
-      Player.AddPlayer(offenderLinemanLower);
+      Player.AddPlayer(offenderLinemanLower, initlineX, FieldCenterY + 58, ParentForm.Player1);
 
-      OffenderOutsideLinemanBottom offenderOutsideLinemanBottom = offenderOutsideLinemanTop.CloneAndUpcast<OffenderOutsideLinemanBottom, OffenderLineman>();
+      OffenderOutsideLinemanBottom offenderOutsideLinemanBottom = new OffenderOutsideLinemanBottom();
       offenderOutsideLinemanBottom.VerticalPosition = VerticalPosition.PositionBottom;
-      offenderOutsideLinemanBottom.InitialTop = FieldCenterY + 90;
-      offenderOutsideLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player1);
-      offenderOutsideLinemanBottom.Initialize();
-      Player.AddPlayer(offenderOutsideLinemanBottom);
+      Player.AddPlayer(offenderOutsideLinemanBottom, initlineX, FieldCenterY + 90, ParentForm.Player1);
 
       OffenderWideReceiverBottom offenderWideReceiverBottom = new OffenderWideReceiverBottom();
-      offenderWideReceiverBottom.InitialTop = FieldCenterY + 240;
-      offenderWideReceiverBottom.InitialLeft = LineOfScrimagePixel - 25;
-      offenderWideReceiverBottom.PicBox = AddPlayerPictureBox(ParentForm.Player1);
+      Player.AddPlayer(offenderWideReceiverBottom, initlineX, FieldCenterY + 240, ParentForm.Player1);
       offenderWideReceiverBottom.TheBomb(); // TODO randomize
-      offenderWideReceiverBottom.Initialize();
-      Player.AddPlayer(offenderWideReceiverBottom);
 
 
+      initlineX = LineOfScrimagePixel + 25;
+      
       //--------------------- Defensive Players
       DefenderCornerbackTop defenderCornerbackTop = new DefenderCornerbackTop();
-      defenderCornerbackTop.DefensiveMode = DefensiveMode.Normal;  // TODO randomize between coverage
-      defenderCornerbackTop.InitialLeft = offenderWideReceiverTop.Left + 200;
-      defenderCornerbackTop.InitialTop = offenderWideReceiverTop.Top + 30;
-      defenderCornerbackTop.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      defenderCornerbackTop.Initialize();
-      Player.AddPlayer(defenderCornerbackTop);
+      Player.AddPlayer(defenderCornerbackTop, offenderWideReceiverTop.InitialLeft + 200, offenderWideReceiverTop.InitialTop + 30, ParentForm.Player2);
 
       DefenderOutsideLinemanTop defenderOutsideLinemanTop = new DefenderOutsideLinemanTop();
       defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
-      defenderOutsideLinemanTop.InitialLeft = LineOfScrimagePixel + 25;
-      defenderOutsideLinemanTop.InitialTop = FieldCenterY -160;
-      defenderOutsideLinemanTop.InitialOffsetY = -250;
-      defenderOutsideLinemanTop.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen;
-      //defenderOutsideLinemanTop.CoDefender = defenderMiddleLineman;
-      defenderOutsideLinemanTop.Initialize();
-      Player.AddPlayer(defenderOutsideLinemanTop);
-      
+      Player.AddPlayer(defenderOutsideLinemanTop, initlineX, FieldCenterY - 160, ParentForm.Player2, initialOffsetY: -250);
+      defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen; // TODO take out
+
       DefenderLinemanUpper defenderLinemanUpper = new DefenderLinemanUpper();
-      defenderLinemanUpper.InitialLeft = LineOfScrimagePixel + 25;
-      defenderLinemanUpper.InitialTop = FieldCenterY - 61;
-      defenderLinemanUpper.InitialOffsetY = -90;
-      defenderLinemanUpper.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      defenderLinemanUpper.Initialize();
-      Player.AddPlayer(defenderLinemanUpper);
+      Player.AddPlayer(defenderLinemanUpper, initlineX, FieldCenterY - 61, ParentForm.Player2, initialOffsetY: -90);
 
         // Middle Linebacker
-        DefenderMiddleLinebacker defenderMiddleLinebacker = defenderOutsideLinemanTop.CloneAndUpcast<DefenderMiddleLinebacker, Player>();
-        defenderMiddleLinebacker.DefensiveMode = DefensiveMode.Normal; 
-        defenderMiddleLinebacker.InitialLeft = LineOfScrimagePixel + 120; 
-        defenderMiddleLinebacker.InitialTop = FieldCenterY;
-        defenderMiddleLinebacker.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-        defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen;
-        defenderMiddleLinebacker.Initialize();
-        Player.AddPlayer(defenderMiddleLinebacker);
+        DefenderMiddleLinebacker defenderMiddleLinebacker = new DefenderMiddleLinebacker();
+        Player.AddPlayer(defenderMiddleLinebacker, LineOfScrimagePixel + 120, FieldCenterY, ParentForm.Player2);
+        defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen; // TODO take out
 
       DefenderLinemanLower defenderLinemanLower = new DefenderLinemanLower();
-      defenderLinemanLower.InitialLeft = LineOfScrimagePixel + 25;
-      defenderLinemanLower.InitialTop = FieldCenterY + 63;
-      defenderLinemanLower.InitialOffsetY = 92;
-      defenderLinemanLower.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      defenderLinemanLower.Initialize();
-      Player.AddPlayer(defenderLinemanLower);
+      Player.AddPlayer(defenderLinemanLower, initlineX, FieldCenterY + 63, ParentForm.Player2, initialOffsetY: 92);
 
-      DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = defenderOutsideLinemanTop.CloneAndUpcast<DefenderOutsideLinemanBottom, DefenderOutsideLineman>();
+      DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = new DefenderOutsideLinemanBottom();
       defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionBottom;
-      defenderOutsideLinemanBottom.InitialLeft = LineOfScrimagePixel + 25;
-      defenderOutsideLinemanBottom.InitialTop = FieldCenterY + 160;
-      defenderOutsideLinemanBottom.InitialOffsetY = 250;
-      defenderOutsideLinemanBottom.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen;
-      defenderOutsideLinemanBottom.Initialize();
-      Player.AddPlayer(defenderOutsideLinemanBottom);
+      Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, FieldCenterY + 160, ParentForm.Player2, initialOffsetY: 250);
+      defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen; // TODO take out
 
       DefenderCornerbackBottom defenderCornerbackBottom = new DefenderCornerbackBottom();
       defenderCornerbackBottom.DefensiveMode = DefensiveMode.Normal;  // TODO randomize between coverage
-      defenderCornerbackBottom.InitialLeft = offenderWideReceiverBottom.Left + 200;
-      defenderCornerbackBottom.InitialTop = offenderWideReceiverBottom.Top - 30;
-      defenderCornerbackBottom.PicBox = AddPlayerPictureBox(ParentForm.Player2);
-      defenderCornerbackBottom.Initialize();
-      Player.AddPlayer(defenderCornerbackBottom);
+      Player.AddPlayer(defenderCornerbackBottom, offenderWideReceiverBottom.InitialLeft + 200, offenderWideReceiverBottom.InitialTop - 30, ParentForm.Player2);
 
       // Ball as a Player
       ballAsPlayer.InitialLeft = -999;
       ballAsPlayer.InitialTop = -999;
       ballAsPlayer.PicBox = ParentForm.picFootball;
-      ballAsPlayer.Initialize();
       Player.AddPlayer(ballAsPlayer);
 
       // Setup Initial TargetPlayers
@@ -233,21 +171,11 @@ using Drake.Tools;
       offenderLinemanLower.InitialTargetPlayer = defenderLinemanLower;
       offenderOutsideLinemanBottom.InitialTargetPlayer = defenderOutsideLinemanBottom;
 
-      offenderLinemanCenter.Initialize();
+
+      InitializePlayers();
     }
 
-    public PictureBox AddPlayerPictureBox(PictureBox pb)
-    {
-      PictureBox p = new PictureBox();
-      p.Height = pb.Height;
-      p.Width = pb.Width;
-      p.SizeMode = pb.SizeMode;
-      p.Image = pb.Image;
-      ParentForm.Controls.Add(p);
-      return p;
-    }
-
-    public void ReinitializePlayers()
+    public void InitializePlayers()
     {
       Player.Players.ForEach(p => p.Initialize());
     }
@@ -259,7 +187,7 @@ using Drake.Tools;
       {
         if(PlayEnded)
         {
-          ReinitializePlayers();
+          InitializePlayers();
           PlayEnded = false;
         }
 

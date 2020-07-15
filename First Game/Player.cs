@@ -127,6 +127,27 @@ namespace FootballGame
     {
       Players.Add(player);
     }
+    public static void AddPlayer(Player player, int initialLeft, int initialTop, PictureBox pictureBox, int initialOffsetY = 0, DefensiveMode defensiveMode = DefensiveMode.Normal)
+    {
+      player.InitialLeft = initialLeft;
+      player.InitialTop = initialTop;
+      player.PicBox = AddPlayerPictureBox(pictureBox);
+      player.InitialOffsetY = initialOffsetY;
+      if(player is Defender) (player as Defender).DefensiveMode = defensiveMode;
+      Players.Add(player);
+    }
+
+    public static PictureBox AddPlayerPictureBox(PictureBox pb)
+    {
+      PictureBox p = new PictureBox();
+      p.Height = pb.Height;
+      p.Width = pb.Width;
+      p.SizeMode = pb.SizeMode;
+      p.Image = pb.Image;
+      ParentForm.Controls.Add(p);
+      return p;
+    }
+
 
     public virtual void Initialize()
     {

@@ -54,8 +54,6 @@ namespace FootballGame
 
   class DefenderOutsideLineman : Defender
   {
-    //public Defender CoDefender;
-
     public override void Initialize()
     {
       SpeedCap = 105;
