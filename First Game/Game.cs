@@ -173,7 +173,6 @@ using Drake.Tools;
       defenderSafety.OffenseWideReceiverTop = offenderWideReceiverTop; // Safty can cover 3 different player ot the ball if thrown.
       defenderSafety.OffenseWideReceiverBottom = offenderWideReceiverBottom;
       defenderSafety.DefenderMiddleLinebacker = defenderMiddleLinebacker;
-      defenderSafety.BallAsPlayer = ballAsPlayer;
 
       offenderOutsideLinemanTop.InitialTargetPlayer = defenderOutsideLinemanTop;
       offenderLinemanUpper.InitialTargetPlayer = defenderLinemanUpper;
@@ -365,7 +364,13 @@ using Drake.Tools;
           if (!Player.IsThrowing && players[j].IsBall) 
             break;
 
-          if (!(players[i] is OffenderWideReceiver) && !(players[i] is DefenderCornerback) && !(players[i] is DefenderMiddleLinebacker) && players[j].IsBall) 
+          // If check for ball collision, the below positions are the only one who can catch the ball
+          // any other positions willl not be checked and thus the break;
+          if (!(players[i] is OffenderWideReceiver) 
+           && !(players[i] is DefenderCornerback) 
+           && !(players[i] is DefenderMiddleLinebacker) 
+           && !(players[i] is DefenderSafety) 
+           && players[j].IsBall) 
             break;
 
 

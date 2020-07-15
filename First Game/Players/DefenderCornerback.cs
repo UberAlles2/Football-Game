@@ -69,7 +69,7 @@ namespace FootballGame
 
           if (IsThrowing && Random.Next(0, 10) > 9) // Player will move towards thrown ball
           {
-            TargetPlayer = Game.ballAsPlayer;
+            TargetPlayer = Game.ballAsPlayer.TargetPlayer; // Where the ball is being thrown.
           }
         }
         else

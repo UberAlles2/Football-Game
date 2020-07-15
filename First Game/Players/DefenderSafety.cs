@@ -13,7 +13,6 @@ namespace FootballGame
     public Player OffenseWideReceiverTop;
     public Player OffenseWideReceiverBottom;
     public Player DefenderMiddleLinebacker;
-    public Player BallAsPlayer;
     public Player CoveredPlayer;
     public int CoverAfterMove;
     private bool InCoverage = true;
@@ -38,17 +37,18 @@ namespace FootballGame
       CoverAfterMove = Random.Next(10, 350); // Initially don't cover anyone but switch later on.
 
       TargetPlayer = DefenderMiddleLinebacker; // Inital zone coverage, switches later
-      if (Random.Next(0, 15) < 2)
+      if (Random.Next(0, 15) < 2) // Blitz
       {
         DefensiveMode = DefensiveMode.Blitz;
         Intelligence = 9; // Mixed in with blocker less intelligence
         TargetPlayer = ControllablePlayer;
+        CoverAfterMove = 999999; // Never switch;
         if (Random.Next(0, 15) < 7)
-          Top = Game.FieldCenterY - 320;
+          Top = Game.FieldCenterY - 200;
         else
-          Top = Game.FieldCenterY + 320;
+          Top = Game.FieldCenterY + 200;
 
-        Left = Game.LineOfScrimagePixel + 60;
+        Left = Game.LineOfScrimagePixel + 30;
       }
       else if (Random.Next(0, 10) < 10)
       {
@@ -82,13 +82,13 @@ namespace FootballGame
       }
       if (IsThrowing)
       {
-        if(TargetPlayer != BallAsPlayer)
+        if(TargetPlayer != Game.ballAsPlayer.TargetPlayer)
         {
-          TargetPlayer = BallAsPlayer; // Go for the ball.
+          TargetPlayer = Game.ballAsPlayer.TargetPlayer; // Go for the ball.
           DefensiveMode = DefensiveMode.Blitz; // Switch to tight coverage.
         }
       }
-      else if(Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
+      if(Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
         int calculatedTargetX = AI_BasicMoveTowardsTargetX();
         int calculatedTargeyY = TargetPlayer.Top;
@@ -118,6 +118,25 @@ namespace FootballGame
 
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {
+      if (collidedWithPlayer is BallAsPlayer)
+      {
+        if (BallAsPlayer.BallIsCatchable == false)
+          return;
+
+        int random = Random.Next(0, 10);
+        if (random < 9)
+        {
+          BallAsPlayer.BallIsCatchable = false; // Tipped ball, ball is uncatchable
+          BallAsPlayer.SpinDefectedBall();
+        }
+        else
+        {
+          PicBox.BackColor = System.Drawing.Color.Yellow; // TODO
+          ParentGame.EndPlay(EndPlayType.Intercepted, "Intercepted");
+          return;
+        }
+      }
+
       if (collidedWithPlayer.HasBall && !IsThrowing)
       {
         ParentGame.EndPlay(EndPlayType.Tackled, "Tackled");

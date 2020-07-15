@@ -68,6 +68,25 @@ namespace FootballGame
 
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {
+      if (collidedWithPlayer is BallAsPlayer)
+      {
+        if (BallAsPlayer.BallIsCatchable == false)
+          return;
+
+        int random = Random.Next(0, 10);
+        if (random < 9)
+        {
+          BallAsPlayer.BallIsCatchable = false; // Tipped ball, ball is uncatchable
+          BallAsPlayer.SpinDefectedBall();
+        }
+        else
+        {
+          PicBox.BackColor = System.Drawing.Color.Yellow; // TODO
+          ParentGame.EndPlay(EndPlayType.Intercepted, "Intercepted");
+          return;
+        }
+      }
+
       if (collidedWithPlayer.HasBall && !IsThrowing)
       {
         ParentGame.EndPlay(EndPlayType.Tackled, "Tackled");
