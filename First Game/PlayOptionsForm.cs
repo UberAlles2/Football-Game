@@ -26,7 +26,7 @@ namespace FootballGame
 
     private void PlayOptionsForm_Load(object sender, EventArgs e)
     {
-      SelectRandomWRPatterns();
+      SetRandomWRPatterns();
     }
 
     private void btnStartPlay_Click(object sender, EventArgs e)
@@ -36,10 +36,10 @@ namespace FootballGame
 
     private void btnChangePatterns_Click(object sender, EventArgs e)
     {
-      SelectRandomWRPatterns();
+      SetRandomWRPatterns();
     }
 
-    private void SelectRandomWRPatterns()
+    private void SetRandomWRPatterns()
     {
       int randomPattern = Game.Random.Next(0, 3);
       switch (randomPattern)

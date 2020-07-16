@@ -41,6 +41,15 @@
       this.lblBottomReceiverPattern = new System.Windows.Forms.Label();
       this.picReceiverBottom = new System.Windows.Forms.PictureBox();
       this.btnChangePatterns = new System.Windows.Forms.Button();
+      this.pnlLastPlayResults = new System.Windows.Forms.Panel();
+      this.lblResultsOfLastPlay = new System.Windows.Forms.Label();
+      this.lblGain = new System.Windows.Forms.Label();
+      this.lblTackledBy = new System.Windows.Forms.Label();
+      this.panel1 = new System.Windows.Forms.Panel();
+      this.label1 = new System.Windows.Forms.Label();
+      this.label2 = new System.Windows.Forms.Label();
+      this.label3 = new System.Windows.Forms.Label();
+      this.label4 = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.picReceiverTop)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picPostPattern)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFlyPattern)).BeginInit();
@@ -49,6 +58,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.picFlyPatternTop)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picButtonHookPatternTop)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picReceiverBottom)).BeginInit();
+      this.pnlLastPlayResults.SuspendLayout();
+      this.panel1.SuspendLayout();
       this.SuspendLayout();
       // 
       // picReceiverTop
@@ -176,12 +187,102 @@
       this.btnChangePatterns.UseVisualStyleBackColor = true;
       this.btnChangePatterns.Click += new System.EventHandler(this.btnChangePatterns_Click);
       // 
+      // pnlLastPlayResults
+      // 
+      this.pnlLastPlayResults.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.pnlLastPlayResults.Controls.Add(this.lblTackledBy);
+      this.pnlLastPlayResults.Controls.Add(this.lblGain);
+      this.pnlLastPlayResults.Controls.Add(this.lblResultsOfLastPlay);
+      this.pnlLastPlayResults.Location = new System.Drawing.Point(260, 31);
+      this.pnlLastPlayResults.Name = "pnlLastPlayResults";
+      this.pnlLastPlayResults.Size = new System.Drawing.Size(200, 90);
+      this.pnlLastPlayResults.TabIndex = 19;
+      // 
+      // lblResultsOfLastPlay
+      // 
+      this.lblResultsOfLastPlay.AutoSize = true;
+      this.lblResultsOfLastPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lblResultsOfLastPlay.Location = new System.Drawing.Point(44, 2);
+      this.lblResultsOfLastPlay.Name = "lblResultsOfLastPlay";
+      this.lblResultsOfLastPlay.Size = new System.Drawing.Size(116, 15);
+      this.lblResultsOfLastPlay.TabIndex = 0;
+      this.lblResultsOfLastPlay.Text = "Results of Last Play ";
+      // 
+      // lblGain
+      // 
+      this.lblGain.AutoSize = true;
+      this.lblGain.Location = new System.Drawing.Point(3, 44);
+      this.lblGain.Name = "lblGain";
+      this.lblGain.Size = new System.Drawing.Size(74, 13);
+      this.lblGain.TabIndex = 1;
+      this.lblGain.Text = "Yards Gained:";
+      // 
+      // lblTackledBy
+      // 
+      this.lblTackledBy.AutoSize = true;
+      this.lblTackledBy.Location = new System.Drawing.Point(2, 64);
+      this.lblTackledBy.Name = "lblTackledBy";
+      this.lblTackledBy.Size = new System.Drawing.Size(64, 13);
+      this.lblTackledBy.TabIndex = 3;
+      this.lblTackledBy.Text = "Tackled By:";
+      // 
+      // panel1
+      // 
+      this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.panel1.Controls.Add(this.label4);
+      this.panel1.Controls.Add(this.label1);
+      this.panel1.Controls.Add(this.label2);
+      this.panel1.Controls.Add(this.label3);
+      this.panel1.Location = new System.Drawing.Point(260, 144);
+      this.panel1.Name = "panel1";
+      this.panel1.Size = new System.Drawing.Size(200, 86);
+      this.panel1.TabIndex = 20;
+      // 
+      // label1
+      // 
+      this.label1.AutoSize = true;
+      this.label1.Location = new System.Drawing.Point(3, 44);
+      this.label1.Name = "label1";
+      this.label1.Size = new System.Drawing.Size(38, 13);
+      this.label1.TabIndex = 3;
+      this.label1.Text = "Down:";
+      // 
+      // label2
+      // 
+      this.label2.AutoSize = true;
+      this.label2.Location = new System.Drawing.Point(3, 63);
+      this.label2.Name = "label2";
+      this.label2.Size = new System.Drawing.Size(70, 13);
+      this.label2.TabIndex = 1;
+      this.label2.Text = "Yards To Go:";
+      // 
+      // label3
+      // 
+      this.label3.AutoSize = true;
+      this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.label3.Location = new System.Drawing.Point(59, 2);
+      this.label3.Name = "label3";
+      this.label3.Size = new System.Drawing.Size(73, 15);
+      this.label3.TabIndex = 0;
+      this.label3.Text = "Current Play";
+      // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Location = new System.Drawing.Point(3, 26);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(44, 13);
+      this.label4.TabIndex = 4;
+      this.label4.Text = "Ball On:";
+      // 
       // PlayOptionsForm
       // 
       this.AcceptButton = this.btnStartPlay;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(800, 451);
+      this.Controls.Add(this.panel1);
+      this.Controls.Add(this.pnlLastPlayResults);
       this.Controls.Add(this.btnChangePatterns);
       this.Controls.Add(this.lblBottomReceiverPattern);
       this.Controls.Add(this.picReceiverBottom);
@@ -206,6 +307,10 @@
       ((System.ComponentModel.ISupportInitialize)(this.picFlyPatternTop)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picButtonHookPatternTop)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picReceiverBottom)).EndInit();
+      this.pnlLastPlayResults.ResumeLayout(false);
+      this.pnlLastPlayResults.PerformLayout();
+      this.panel1.ResumeLayout(false);
+      this.panel1.PerformLayout();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -224,5 +329,14 @@
     private System.Windows.Forms.Label lblBottomReceiverPattern;
     public System.Windows.Forms.PictureBox picReceiverBottom;
     private System.Windows.Forms.Button btnChangePatterns;
+    private System.Windows.Forms.Panel pnlLastPlayResults;
+    private System.Windows.Forms.Label lblResultsOfLastPlay;
+    private System.Windows.Forms.Label lblGain;
+    private System.Windows.Forms.Label lblTackledBy;
+    private System.Windows.Forms.Panel panel1;
+    private System.Windows.Forms.Label label1;
+    private System.Windows.Forms.Label label2;
+    private System.Windows.Forms.Label label3;
+    private System.Windows.Forms.Label label4;
   }
 }
