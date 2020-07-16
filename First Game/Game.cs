@@ -56,6 +56,7 @@ using Drake.Tools;
     public static int LineOfScrimagePixel = 280;
     public static Random Random = new Random();
     public static bool PlayEnded = false;
+    public static PlayOptionsForm PlayOptionForm = new PlayOptionsForm();
 
     public Game(Form1 form1)
     {
@@ -65,7 +66,6 @@ using Drake.Tools;
       Player.ParentGame = this;
       Scoreboard.ParentForm = form1;
       Sideline.ParentForm = form1;
-      ParentForm.pnlPlayOptions.Visible = false;
 
       // Set initial values and Display them.
       lineOfScrimageYard = 20; // 1 - 100; 
@@ -80,9 +80,18 @@ using Drake.Tools;
 
       AddPlayers();
 
+      PlayEnded = true; // Causes PlayOptions form to be displayed
+
       // Getting keyboard input
       timer.Tick += new System.EventHandler(KeyDown);
       timer.Interval = 50;
+    }
+
+    private void ChoosePlay()
+    {
+      PlayOptionForm.ShowDialog(ParentForm);
+
+
     }
 
     public void AddPlayers()
@@ -199,6 +208,7 @@ using Drake.Tools;
         {
           InitializePlayers();
           PlayEnded = false;
+          ChoosePlay();
         }
 
         Application.DoEvents();

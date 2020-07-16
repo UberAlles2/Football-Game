@@ -51,6 +51,12 @@
   <ItemGroup>
     <Compile Include="Players\DefenderSafety.cs" />
     <Compile Include="PlayingFieldDrawing.cs" />
+    <Compile Include="PlayOptionsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayOptionsForm.Designer.cs">
+      <DependentUpon>PlayOptionsForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Sideline.cs" />
     <Compile Include="Scoreboard.cs" />
     <Compile Include="Players\DefenderMiddleLinebacker.cs" />
@@ -76,6 +82,9 @@
     <Compile Include="Tools\MyExtensions.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayOptionsForm.resx">
+      <DependentUpon>PlayOptionsForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

@@ -29,8 +29,6 @@
     private void InitializeComponent()
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
-      this.pnlPlayOptions = new System.Windows.Forms.Panel();
-      this.btnOK = new System.Windows.Forms.Button();
       this.pnlScoreboard = new System.Windows.Forms.Panel();
       this.label8 = new System.Windows.Forms.Label();
       this.label7 = new System.Windows.Forms.Label();
@@ -47,10 +45,6 @@
       this.lblBottomSideline = new System.Windows.Forms.Label();
       this.picSidelineYardage = new System.Windows.Forms.PictureBox();
       this.picFullSidelineYardage = new System.Windows.Forms.PictureBox();
-      this.picButtonHookPattern = new System.Windows.Forms.PictureBox();
-      this.picFlyPattern = new System.Windows.Forms.PictureBox();
-      this.picPostPattern = new System.Windows.Forms.PictureBox();
-      this.pnlPlayOptions.SuspendLayout();
       this.pnlScoreboard.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.picScoreboardLetters)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFootball)).BeginInit();
@@ -59,33 +53,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picSidelineYardage)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFullSidelineYardage)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picButtonHookPattern)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picFlyPattern)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picPostPattern)).BeginInit();
       this.SuspendLayout();
-      // 
-      // pnlPlayOptions
-      // 
-      this.pnlPlayOptions.BackColor = System.Drawing.Color.Gainsboro;
-      this.pnlPlayOptions.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-      this.pnlPlayOptions.Controls.Add(this.picPostPattern);
-      this.pnlPlayOptions.Controls.Add(this.picFlyPattern);
-      this.pnlPlayOptions.Controls.Add(this.picButtonHookPattern);
-      this.pnlPlayOptions.Controls.Add(this.btnOK);
-      this.pnlPlayOptions.Location = new System.Drawing.Point(250, 171);
-      this.pnlPlayOptions.Name = "pnlPlayOptions";
-      this.pnlPlayOptions.Size = new System.Drawing.Size(742, 434);
-      this.pnlPlayOptions.TabIndex = 4;
-      // 
-      // btnOK
-      // 
-      this.btnOK.BackColor = System.Drawing.Color.Silver;
-      this.btnOK.Location = new System.Drawing.Point(631, 373);
-      this.btnOK.Name = "btnOK";
-      this.btnOK.Size = new System.Drawing.Size(86, 44);
-      this.btnOK.TabIndex = 1;
-      this.btnOK.Text = "OK";
-      this.btnOK.UseVisualStyleBackColor = false;
       // 
       // pnlScoreboard
       // 
@@ -264,46 +232,14 @@
       this.picFullSidelineYardage.TabIndex = 14;
       this.picFullSidelineYardage.TabStop = false;
       // 
-      // picButtonHookPattern
-      // 
-      this.picButtonHookPattern.Image = ((System.Drawing.Image)(resources.GetObject("picButtonHookPattern.Image")));
-      this.picButtonHookPattern.Location = new System.Drawing.Point(287, 20);
-      this.picButtonHookPattern.Name = "picButtonHookPattern";
-      this.picButtonHookPattern.Size = new System.Drawing.Size(100, 100);
-      this.picButtonHookPattern.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.picButtonHookPattern.TabIndex = 2;
-      this.picButtonHookPattern.TabStop = false;
-      // 
-      // picFlyPattern
-      // 
-      this.picFlyPattern.Image = ((System.Drawing.Image)(resources.GetObject("picFlyPattern.Image")));
-      this.picFlyPattern.Location = new System.Drawing.Point(288, 125);
-      this.picFlyPattern.Name = "picFlyPattern";
-      this.picFlyPattern.Size = new System.Drawing.Size(100, 100);
-      this.picFlyPattern.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.picFlyPattern.TabIndex = 3;
-      this.picFlyPattern.TabStop = false;
-      // 
-      // picPostPattern
-      // 
-      this.picPostPattern.Image = ((System.Drawing.Image)(resources.GetObject("picPostPattern.Image")));
-      this.picPostPattern.Location = new System.Drawing.Point(287, 231);
-      this.picPostPattern.Name = "picPostPattern";
-      this.picPostPattern.Size = new System.Drawing.Size(100, 100);
-      this.picPostPattern.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-      this.picPostPattern.TabIndex = 4;
-      this.picPostPattern.TabStop = false;
-      // 
       // Form1
       // 
-      this.AcceptButton = this.btnOK;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.Green;
       this.ClientSize = new System.Drawing.Size(1260, 757);
       this.Controls.Add(this.picSidelineYardage);
       this.Controls.Add(this.pnlScoreboard);
-      this.Controls.Add(this.pnlPlayOptions);
       this.Controls.Add(this.picBearsBall);
       this.Controls.Add(this.picFootball);
       this.Controls.Add(this.Player2);
@@ -317,7 +253,6 @@
       this.Shown += new System.EventHandler(this.Form1_Shown);
       this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
       this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
-      this.pnlPlayOptions.ResumeLayout(false);
       this.pnlScoreboard.ResumeLayout(false);
       this.pnlScoreboard.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.picScoreboardLetters)).EndInit();
@@ -327,16 +262,11 @@
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picSidelineYardage)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFullSidelineYardage)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picButtonHookPattern)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picFlyPattern)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picPostPattern)).EndInit();
       this.ResumeLayout(false);
 
     }
 
     #endregion
-    private System.Windows.Forms.Button btnOK;
-    public System.Windows.Forms.Panel pnlPlayOptions;
     public System.Windows.Forms.Panel pnlScoreboard;
     public System.Windows.Forms.PictureBox picScoreboardLetters;
     private System.Windows.Forms.Label label2;
@@ -353,9 +283,6 @@
     public System.Windows.Forms.Label lblBottomSideline;
     public System.Windows.Forms.PictureBox picSidelineYardage;
     public System.Windows.Forms.PictureBox picFullSidelineYardage;
-    public System.Windows.Forms.PictureBox picButtonHookPattern;
-    public System.Windows.Forms.PictureBox picFlyPattern;
-    public System.Windows.Forms.PictureBox picPostPattern;
   }
 }
 
