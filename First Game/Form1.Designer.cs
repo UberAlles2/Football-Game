@@ -31,11 +31,6 @@
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
       this.pnlPlayOptions = new System.Windows.Forms.Panel();
       this.btnOK = new System.Windows.Forms.Button();
-      this.pnlTopReceiver = new System.Windows.Forms.Panel();
-      this.radioButton3 = new System.Windows.Forms.RadioButton();
-      this.radioButton2 = new System.Windows.Forms.RadioButton();
-      this.radioButton1 = new System.Windows.Forms.RadioButton();
-      this.label1 = new System.Windows.Forms.Label();
       this.pnlScoreboard = new System.Windows.Forms.Panel();
       this.label8 = new System.Windows.Forms.Label();
       this.label7 = new System.Windows.Forms.Label();
@@ -52,8 +47,10 @@
       this.lblBottomSideline = new System.Windows.Forms.Label();
       this.picSidelineYardage = new System.Windows.Forms.PictureBox();
       this.picFullSidelineYardage = new System.Windows.Forms.PictureBox();
+      this.picButtonHookPattern = new System.Windows.Forms.PictureBox();
+      this.picFlyPattern = new System.Windows.Forms.PictureBox();
+      this.picPostPattern = new System.Windows.Forms.PictureBox();
       this.pnlPlayOptions.SuspendLayout();
-      this.pnlTopReceiver.SuspendLayout();
       this.pnlScoreboard.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.picScoreboardLetters)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFootball)).BeginInit();
@@ -62,14 +59,19 @@
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picSidelineYardage)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFullSidelineYardage)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picButtonHookPattern)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picFlyPattern)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picPostPattern)).BeginInit();
       this.SuspendLayout();
       // 
       // pnlPlayOptions
       // 
       this.pnlPlayOptions.BackColor = System.Drawing.Color.Gainsboro;
       this.pnlPlayOptions.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+      this.pnlPlayOptions.Controls.Add(this.picPostPattern);
+      this.pnlPlayOptions.Controls.Add(this.picFlyPattern);
+      this.pnlPlayOptions.Controls.Add(this.picButtonHookPattern);
       this.pnlPlayOptions.Controls.Add(this.btnOK);
-      this.pnlPlayOptions.Controls.Add(this.pnlTopReceiver);
       this.pnlPlayOptions.Location = new System.Drawing.Point(250, 171);
       this.pnlPlayOptions.Name = "pnlPlayOptions";
       this.pnlPlayOptions.Size = new System.Drawing.Size(742, 434);
@@ -84,60 +86,6 @@
       this.btnOK.TabIndex = 1;
       this.btnOK.Text = "OK";
       this.btnOK.UseVisualStyleBackColor = false;
-      // 
-      // pnlTopReceiver
-      // 
-      this.pnlTopReceiver.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.pnlTopReceiver.Controls.Add(this.radioButton3);
-      this.pnlTopReceiver.Controls.Add(this.radioButton2);
-      this.pnlTopReceiver.Controls.Add(this.radioButton1);
-      this.pnlTopReceiver.Controls.Add(this.label1);
-      this.pnlTopReceiver.Location = new System.Drawing.Point(25, 159);
-      this.pnlTopReceiver.Name = "pnlTopReceiver";
-      this.pnlTopReceiver.Size = new System.Drawing.Size(200, 121);
-      this.pnlTopReceiver.TabIndex = 0;
-      // 
-      // radioButton3
-      // 
-      this.radioButton3.AutoSize = true;
-      this.radioButton3.Location = new System.Drawing.Point(7, 51);
-      this.radioButton3.Name = "radioButton3";
-      this.radioButton3.Size = new System.Drawing.Size(112, 17);
-      this.radioButton3.TabIndex = 3;
-      this.radioButton3.TabStop = true;
-      this.radioButton3.Text = "Long Button Hook";
-      this.radioButton3.UseVisualStyleBackColor = true;
-      // 
-      // radioButton2
-      // 
-      this.radioButton2.AutoSize = true;
-      this.radioButton2.Location = new System.Drawing.Point(7, 30);
-      this.radioButton2.Name = "radioButton2";
-      this.radioButton2.Size = new System.Drawing.Size(113, 17);
-      this.radioButton2.TabIndex = 2;
-      this.radioButton2.TabStop = true;
-      this.radioButton2.Text = "Short Button Hook";
-      this.radioButton2.UseVisualStyleBackColor = true;
-      // 
-      // radioButton1
-      // 
-      this.radioButton1.AutoSize = true;
-      this.radioButton1.Location = new System.Drawing.Point(7, 72);
-      this.radioButton1.Name = "radioButton1";
-      this.radioButton1.Size = new System.Drawing.Size(38, 17);
-      this.radioButton1.TabIndex = 1;
-      this.radioButton1.TabStop = true;
-      this.radioButton1.Text = "Fly";
-      this.radioButton1.UseVisualStyleBackColor = true;
-      // 
-      // label1
-      // 
-      this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(4, 4);
-      this.label1.Name = "label1";
-      this.label1.Size = new System.Drawing.Size(137, 13);
-      this.label1.TabIndex = 0;
-      this.label1.Text = "Top Wide Receiver Pattern";
       // 
       // pnlScoreboard
       // 
@@ -316,6 +264,36 @@
       this.picFullSidelineYardage.TabIndex = 14;
       this.picFullSidelineYardage.TabStop = false;
       // 
+      // picButtonHookPattern
+      // 
+      this.picButtonHookPattern.Image = ((System.Drawing.Image)(resources.GetObject("picButtonHookPattern.Image")));
+      this.picButtonHookPattern.Location = new System.Drawing.Point(287, 20);
+      this.picButtonHookPattern.Name = "picButtonHookPattern";
+      this.picButtonHookPattern.Size = new System.Drawing.Size(100, 100);
+      this.picButtonHookPattern.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picButtonHookPattern.TabIndex = 2;
+      this.picButtonHookPattern.TabStop = false;
+      // 
+      // picFlyPattern
+      // 
+      this.picFlyPattern.Image = ((System.Drawing.Image)(resources.GetObject("picFlyPattern.Image")));
+      this.picFlyPattern.Location = new System.Drawing.Point(288, 125);
+      this.picFlyPattern.Name = "picFlyPattern";
+      this.picFlyPattern.Size = new System.Drawing.Size(100, 100);
+      this.picFlyPattern.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picFlyPattern.TabIndex = 3;
+      this.picFlyPattern.TabStop = false;
+      // 
+      // picPostPattern
+      // 
+      this.picPostPattern.Image = ((System.Drawing.Image)(resources.GetObject("picPostPattern.Image")));
+      this.picPostPattern.Location = new System.Drawing.Point(287, 231);
+      this.picPostPattern.Name = "picPostPattern";
+      this.picPostPattern.Size = new System.Drawing.Size(100, 100);
+      this.picPostPattern.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picPostPattern.TabIndex = 4;
+      this.picPostPattern.TabStop = false;
+      // 
       // Form1
       // 
       this.AcceptButton = this.btnOK;
@@ -340,8 +318,6 @@
       this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
       this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
       this.pnlPlayOptions.ResumeLayout(false);
-      this.pnlTopReceiver.ResumeLayout(false);
-      this.pnlTopReceiver.PerformLayout();
       this.pnlScoreboard.ResumeLayout(false);
       this.pnlScoreboard.PerformLayout();
       ((System.ComponentModel.ISupportInitialize)(this.picScoreboardLetters)).EndInit();
@@ -351,17 +327,15 @@
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picSidelineYardage)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFullSidelineYardage)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picButtonHookPattern)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picFlyPattern)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picPostPattern)).EndInit();
       this.ResumeLayout(false);
 
     }
 
     #endregion
-    private System.Windows.Forms.Panel pnlTopReceiver;
-    private System.Windows.Forms.RadioButton radioButton1;
-    private System.Windows.Forms.Label label1;
     private System.Windows.Forms.Button btnOK;
-    private System.Windows.Forms.RadioButton radioButton3;
-    private System.Windows.Forms.RadioButton radioButton2;
     public System.Windows.Forms.Panel pnlPlayOptions;
     public System.Windows.Forms.Panel pnlScoreboard;
     public System.Windows.Forms.PictureBox picScoreboardLetters;
@@ -379,6 +353,9 @@
     public System.Windows.Forms.Label lblBottomSideline;
     public System.Windows.Forms.PictureBox picSidelineYardage;
     public System.Windows.Forms.PictureBox picFullSidelineYardage;
+    public System.Windows.Forms.PictureBox picButtonHookPattern;
+    public System.Windows.Forms.PictureBox picFlyPattern;
+    public System.Windows.Forms.PictureBox picPostPattern;
   }
 }
 
