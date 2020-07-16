@@ -58,6 +58,9 @@ using Drake.Tools;
     public static bool PlayEnded = false;
     public static PlayOptionsForm PlayOptionForm = new PlayOptionsForm();
 
+    OffenderWideReceiverTop offenderWideReceiverTop = new OffenderWideReceiverTop();
+    OffenderWideReceiverBottom offenderWideReceiverBottom = new OffenderWideReceiverBottom();
+
     public Game(Form1 form1)
     {
       // Set Parents
@@ -87,12 +90,6 @@ using Drake.Tools;
       timer.Interval = 50;
     }
 
-    private void ChoosePlay()
-    {
-      PlayOptionForm.Location = new Point(ParentForm.Left + 220, ParentForm.Top + 160);
-      PlayOptionForm.ShowDialog();
-    }
-
     public void AddPlayers()
     {
       int initlineX = LineOfScrimagePixel - 25;
@@ -102,9 +99,7 @@ using Drake.Tools;
       Player.AddPlayer(offenderQuarterback, LineOfScrimagePixel - 200, FieldCenterY, ParentForm.Player1);
       Player.ControllablePlayer = offenderQuarterback;
 
-      OffenderWideReceiverTop offenderWideReceiverTop = new OffenderWideReceiverTop();
       Player.AddPlayer(offenderWideReceiverTop, initlineX, FieldCenterY - 240, ParentForm.Player1);
-      offenderWideReceiverTop.ButtonHookPattern(); // TODO randomize
 
       OffenderOutsideLinemanTop offenderOutsideLinemanTop = new OffenderOutsideLinemanTop();
       offenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
@@ -126,10 +121,7 @@ using Drake.Tools;
       offenderOutsideLinemanBottom.VerticalPosition = VerticalPosition.PositionBottom;
       Player.AddPlayer(offenderOutsideLinemanBottom, initlineX, FieldCenterY + 90, ParentForm.Player1);
 
-      OffenderWideReceiverBottom offenderWideReceiverBottom = new OffenderWideReceiverBottom();
       Player.AddPlayer(offenderWideReceiverBottom, initlineX, FieldCenterY + 240, ParentForm.Player1);
-      offenderWideReceiverBottom.FlyPattern(); // TODO randomize
-
 
       initlineX = LineOfScrimagePixel + 25;
       
@@ -189,8 +181,7 @@ using Drake.Tools;
       offenderLinemanLower.InitialTargetPlayer = defenderLinemanLower;
       offenderOutsideLinemanBottom.InitialTargetPlayer = defenderOutsideLinemanBottom;
 
-
-      InitializePlayers();
+      InitializePlayers(); // Initial draw
     }
 
     public void InitializePlayers()
@@ -205,9 +196,9 @@ using Drake.Tools;
       {
         if(PlayEnded)
         {
+          ChoosePlay();
           InitializePlayers();
           PlayEnded = false;
-          ChoosePlay();
         }
 
         Application.DoEvents();
@@ -219,6 +210,37 @@ using Drake.Tools;
         CheckCollisions(Player.Players);
 
         Thread.Sleep(30);  // Speed of the game, increase for easy mode
+      }
+    }
+
+    private void ChoosePlay()
+    {
+      PlayOptionForm.Location = new Point(ParentForm.Left + 220, ParentForm.Top + 160);
+      PlayOptionForm.ShowDialog();
+
+      switch (PlayOptionForm.selectedPatternTop)
+      {
+        case OffenderWideReceiver.PatternEnum.ButtonHookPattern:
+          offenderWideReceiverTop.ButtonHookPattern();
+          break;
+        case OffenderWideReceiver.PatternEnum.FlyPattern:
+          offenderWideReceiverTop.FlyPattern();
+          break;
+        case OffenderWideReceiver.PatternEnum.PostPattern:
+          offenderWideReceiverTop.PostPatternTop();
+          break;
+      }
+      switch (PlayOptionForm.selectedPatternBottom)
+      {
+        case OffenderWideReceiver.PatternEnum.ButtonHookPattern:
+          offenderWideReceiverBottom.ButtonHookPattern();
+          break;
+        case OffenderWideReceiver.PatternEnum.FlyPattern:
+          offenderWideReceiverBottom.FlyPattern();
+          break;
+        case OffenderWideReceiver.PatternEnum.PostPattern:
+          offenderWideReceiverBottom.PostPatternBottom();
+          break;
       }
     }
 

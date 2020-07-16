@@ -12,13 +12,14 @@ namespace FootballGame
 {
   public partial class PlayOptionsForm : Form
   {
-    OffenderWideReceiver.PatternEnum selectedPatternTop;
-    OffenderWideReceiver.PatternEnum selectedPatternBottom;
+    public OffenderWideReceiver.PatternEnum selectedPatternTop;
+    public OffenderWideReceiver.PatternEnum selectedPatternBottom;
 
     public PlayOptionsForm()
     {
       InitializeComponent();
-      picButtonHookPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+      // We only have 3 pictures, the top ones are the bottom ones flipped.
+      picButtonHookPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY); 
       picFlyPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
       picPostPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
     }

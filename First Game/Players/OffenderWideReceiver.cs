@@ -13,8 +13,6 @@ namespace FootballGame
     public override void Initialize()
     {
       PicBox.MouseClick += new System.Windows.Forms.MouseEventHandler(MouseClick); //TODO put so it is initialized one time
-      AssignedPattern = ButtonHookPattern;
-      AssignedPattern(); //TODO select through dialog
       base.Initialize();
     }
     private void MouseClick(object sender, MouseEventArgs e)
@@ -37,8 +35,6 @@ namespace FootballGame
     public override void Initialize()
     {
       PicBox.MouseClick += new System.Windows.Forms.MouseEventHandler(MouseClick); //TODO put so it is initialized one time
-      AssignedPattern = FlyPattern; //TODO select through dialog
-      AssignedPattern();
       base.Initialize();
     }
     private void MouseClick(object sender, MouseEventArgs e)
@@ -57,9 +53,8 @@ namespace FootballGame
   }
 
 
-  class OffenderWideReceiver : Offender
+  public class OffenderWideReceiver : Offender
   {
-    public Action AssignedPattern;
     private List<ReceiverPattern> receiverPatterns = new List<ReceiverPattern>();
     private int receiverPatternIndex;
     private bool runningPattern;
@@ -79,8 +74,11 @@ namespace FootballGame
       PicBox.Image = ParentForm.Player1.Image;
       receiverPatternIndex = 0;
       TargetPlayer = target;
-      target.Top = receiverPatterns[0].TargetY;
-      target.Left = receiverPatterns[0].TargetX;
+      if(receiverPatterns.Count > 0)
+      {
+        target.Top = receiverPatterns[0].TargetY;
+        target.Left = receiverPatterns[0].TargetX;
+      }
       runningPattern = true;
 
       base.Initialize();
@@ -168,6 +166,28 @@ namespace FootballGame
       receiverPatterns.Add(receiverPattern);
     }
 
+    public void PostPatternTop()
+    {
+      receiverPatterns.Clear();
+
+      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "Post", TargetX = 400, TargetY = this.InitialTop };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "Post", TargetX = 1000, TargetY = InitialTop + 600 };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "Post", TargetX = 200, TargetY = InitialTop + 600 };
+      receiverPatterns.Add(receiverPattern);
+    }
+    public void PostPatternBottom()
+    {
+      receiverPatterns.Clear();
+
+      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "Post", TargetX = 400, TargetY = this.InitialTop };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "Post", TargetX = 1000, TargetY = InitialTop - 600 };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "Post", TargetX = 200, TargetY = InitialTop - 600 };
+      receiverPatterns.Add(receiverPattern);
+    }
   }
 
   class ReceiverPattern
