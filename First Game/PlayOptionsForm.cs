@@ -15,6 +15,13 @@ namespace FootballGame
     public PlayOptionsForm()
     {
       InitializeComponent();
+      picButtonHookPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+      picFlyPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+      picPostPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+    }
+
+    private void PlayOptionsForm_Load(object sender, EventArgs e)
+    {
     }
 
     private void btnStartPlay_Click(object sender, EventArgs e)
