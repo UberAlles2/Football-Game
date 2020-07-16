@@ -65,6 +65,13 @@ namespace FootballGame
     private bool runningPattern;
     private Player target = new Player();
 
+    public enum PatternEnum
+    {
+      ButtonHookPattern,
+      FlyPattern,
+      PostPattern
+    }
+
     public override void Initialize()
     {
       SpeedCap = 108;

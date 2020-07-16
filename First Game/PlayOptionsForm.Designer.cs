@@ -38,6 +38,9 @@
       this.picPostPatternTop = new System.Windows.Forms.PictureBox();
       this.picFlyPatternTop = new System.Windows.Forms.PictureBox();
       this.picButtonHookPatternTop = new System.Windows.Forms.PictureBox();
+      this.lblBottomReceiverPattern = new System.Windows.Forms.Label();
+      this.picReceiverBottom = new System.Windows.Forms.PictureBox();
+      this.btnChangePatterns = new System.Windows.Forms.Button();
       ((System.ComponentModel.ISupportInitialize)(this.picReceiverTop)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picPostPattern)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFlyPattern)).BeginInit();
@@ -45,6 +48,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.picPostPatternTop)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFlyPatternTop)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picButtonHookPatternTop)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picReceiverBottom)).BeginInit();
       this.SuspendLayout();
       // 
       // picReceiverTop
@@ -60,7 +64,7 @@
       // picPostPattern
       // 
       this.picPostPattern.Image = ((System.Drawing.Image)(resources.GetObject("picPostPattern.Image")));
-      this.picPostPattern.Location = new System.Drawing.Point(316, 238);
+      this.picPostPattern.Location = new System.Drawing.Point(-51, 261);
       this.picPostPattern.Name = "picPostPattern";
       this.picPostPattern.Size = new System.Drawing.Size(100, 100);
       this.picPostPattern.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -71,7 +75,7 @@
       // picFlyPattern
       // 
       this.picFlyPattern.Image = ((System.Drawing.Image)(resources.GetObject("picFlyPattern.Image")));
-      this.picFlyPattern.Location = new System.Drawing.Point(317, 132);
+      this.picFlyPattern.Location = new System.Drawing.Point(-50, 155);
       this.picFlyPattern.Name = "picFlyPattern";
       this.picFlyPattern.Size = new System.Drawing.Size(100, 100);
       this.picFlyPattern.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -82,7 +86,7 @@
       // picButtonHookPattern
       // 
       this.picButtonHookPattern.Image = ((System.Drawing.Image)(resources.GetObject("picButtonHookPattern.Image")));
-      this.picButtonHookPattern.Location = new System.Drawing.Point(316, 27);
+      this.picButtonHookPattern.Location = new System.Drawing.Point(-51, 50);
       this.picButtonHookPattern.Name = "picButtonHookPattern";
       this.picButtonHookPattern.Size = new System.Drawing.Size(100, 100);
       this.picButtonHookPattern.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -93,7 +97,7 @@
       // btnStartPlay
       // 
       this.btnStartPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnStartPlay.Location = new System.Drawing.Point(683, 384);
+      this.btnStartPlay.Location = new System.Drawing.Point(683, 378);
       this.btnStartPlay.Name = "btnStartPlay";
       this.btnStartPlay.Size = new System.Drawing.Size(95, 54);
       this.btnStartPlay.TabIndex = 11;
@@ -113,7 +117,7 @@
       // picPostPatternTop
       // 
       this.picPostPatternTop.Image = ((System.Drawing.Image)(resources.GetObject("picPostPatternTop.Image")));
-      this.picPostPatternTop.Location = new System.Drawing.Point(406, 241);
+      this.picPostPatternTop.Location = new System.Drawing.Point(39, 264);
       this.picPostPatternTop.Name = "picPostPatternTop";
       this.picPostPatternTop.Size = new System.Drawing.Size(100, 100);
       this.picPostPatternTop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -124,7 +128,7 @@
       // picFlyPatternTop
       // 
       this.picFlyPatternTop.Image = ((System.Drawing.Image)(resources.GetObject("picFlyPatternTop.Image")));
-      this.picFlyPatternTop.Location = new System.Drawing.Point(407, 135);
+      this.picFlyPatternTop.Location = new System.Drawing.Point(40, 158);
       this.picFlyPatternTop.Name = "picFlyPatternTop";
       this.picFlyPatternTop.Size = new System.Drawing.Size(100, 100);
       this.picFlyPatternTop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -135,7 +139,7 @@
       // picButtonHookPatternTop
       // 
       this.picButtonHookPatternTop.Image = ((System.Drawing.Image)(resources.GetObject("picButtonHookPatternTop.Image")));
-      this.picButtonHookPatternTop.Location = new System.Drawing.Point(406, 30);
+      this.picButtonHookPatternTop.Location = new System.Drawing.Point(39, 53);
       this.picButtonHookPatternTop.Name = "picButtonHookPatternTop";
       this.picButtonHookPatternTop.Size = new System.Drawing.Size(100, 100);
       this.picButtonHookPatternTop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -143,18 +147,50 @@
       this.picButtonHookPatternTop.TabStop = false;
       this.picButtonHookPatternTop.Visible = false;
       // 
+      // lblBottomReceiverPattern
+      // 
+      this.lblBottomReceiverPattern.AutoSize = true;
+      this.lblBottomReceiverPattern.Location = new System.Drawing.Point(16, 203);
+      this.lblBottomReceiverPattern.Name = "lblBottomReceiverPattern";
+      this.lblBottomReceiverPattern.Size = new System.Drawing.Size(123, 13);
+      this.lblBottomReceiverPattern.TabIndex = 17;
+      this.lblBottomReceiverPattern.Text = "Bottom Receiver Pattern";
+      // 
+      // picReceiverBottom
+      // 
+      this.picReceiverBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.picReceiverBottom.Location = new System.Drawing.Point(16, 221);
+      this.picReceiverBottom.Name = "picReceiverBottom";
+      this.picReceiverBottom.Size = new System.Drawing.Size(158, 157);
+      this.picReceiverBottom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picReceiverBottom.TabIndex = 16;
+      this.picReceiverBottom.TabStop = false;
+      // 
+      // btnChangePatterns
+      // 
+      this.btnChangePatterns.Location = new System.Drawing.Point(16, 395);
+      this.btnChangePatterns.Name = "btnChangePatterns";
+      this.btnChangePatterns.Size = new System.Drawing.Size(158, 35);
+      this.btnChangePatterns.TabIndex = 18;
+      this.btnChangePatterns.Text = "Change Patterns";
+      this.btnChangePatterns.UseVisualStyleBackColor = true;
+      this.btnChangePatterns.Click += new System.EventHandler(this.btnChangePatterns_Click);
+      // 
       // PlayOptionsForm
       // 
       this.AcceptButton = this.btnStartPlay;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(800, 450);
-      this.Controls.Add(this.picPostPatternTop);
-      this.Controls.Add(this.picFlyPatternTop);
-      this.Controls.Add(this.picButtonHookPatternTop);
+      this.ClientSize = new System.Drawing.Size(800, 451);
+      this.Controls.Add(this.btnChangePatterns);
+      this.Controls.Add(this.lblBottomReceiverPattern);
+      this.Controls.Add(this.picReceiverBottom);
       this.Controls.Add(this.lblTopReceiverPattern);
       this.Controls.Add(this.btnStartPlay);
       this.Controls.Add(this.picReceiverTop);
+      this.Controls.Add(this.picPostPatternTop);
+      this.Controls.Add(this.picFlyPatternTop);
+      this.Controls.Add(this.picButtonHookPatternTop);
       this.Controls.Add(this.picPostPattern);
       this.Controls.Add(this.picFlyPattern);
       this.Controls.Add(this.picButtonHookPattern);
@@ -169,6 +205,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.picPostPatternTop)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFlyPatternTop)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picButtonHookPatternTop)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picReceiverBottom)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -184,5 +221,8 @@
     public System.Windows.Forms.PictureBox picPostPatternTop;
     public System.Windows.Forms.PictureBox picFlyPatternTop;
     public System.Windows.Forms.PictureBox picButtonHookPatternTop;
+    private System.Windows.Forms.Label lblBottomReceiverPattern;
+    public System.Windows.Forms.PictureBox picReceiverBottom;
+    private System.Windows.Forms.Button btnChangePatterns;
   }
 }

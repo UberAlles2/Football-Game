@@ -89,27 +89,8 @@ using Drake.Tools;
 
     private void ChoosePlay()
     {
-      int randomPattern = Random.Next(1, 4); 
-      switch (randomPattern)
-      {
-        case 1:
-          PlayOptionForm.picReceiverTop.Image = PlayOptionForm.picButtonHookPatternTop.Image;
-          break;
-        case 2:
-          PlayOptionForm.picReceiverTop.Image = PlayOptionForm.picFlyPatternTop.Image;
-          break;
-        case 3:
-          PlayOptionForm.picReceiverTop.Image = PlayOptionForm.picPostPatternTop.Image;
-          break;
-        case 4:
-          PlayOptionForm.picReceiverTop.Image = PlayOptionForm.picPostPatternTop.Image;
-          break;
-      }
-
       PlayOptionForm.Location = new Point(ParentForm.Left + 220, ParentForm.Top + 160);
       PlayOptionForm.ShowDialog();
-
-
     }
 
     public void AddPlayers()
