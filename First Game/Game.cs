@@ -10,9 +10,9 @@ using System.Windows.Forms;
 using Drake.Tools;
 
 /* To Do List
- * Middle linebacker isn't intercepting and coliiding with the ball
+ * Middle linebacker isn't intercepting and colliding with the ball
  * Add ball on indicator if in opposing territory
- * 
+ * Add more WR patterns
  * 
  * 
  * 
@@ -219,6 +219,7 @@ using Drake.Tools;
     {
       PlayOptionForm.Location = new Point(ParentForm.Left + 220, ParentForm.Top + 160);
       PlayOptionForm.ShowDialog();
+      Scoreboard.CountDownTimer.Start();
 
       switch (PlayOptionForm.selectedPatternTop)
       {
@@ -250,6 +251,9 @@ using Drake.Tools;
     {
       if (PlayEnded) // Play ended by another player
         return;
+
+      if (endPlayType != EndPlayType.Tackled)
+        Scoreboard.CountDownTimer.Stop();
 
       PlayEnded = true;
       PlayOptionsFormStats.YardsGained = 0;
@@ -380,6 +384,11 @@ using Drake.Tools;
         if(!Player.IsThrowing)
           ballAsPlayer.ThrowBall(Player.ControllablePlayer.Left + 16, Player.ControllablePlayer.Top + 16, e.Location.Y, e.Location.X);   
       }
+    }
+
+    public void UpdateScoreboardClock(object sender, EventArgs e)
+    {
+    
     }
 
     public void PaintScrimmageAndFirstDownLines(object sender, PaintEventArgs e) //TODO move to PlayingFieldDrawing class

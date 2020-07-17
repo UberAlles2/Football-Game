@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -13,10 +14,13 @@ namespace FootballGame
     public static Form1 ParentForm;
     public static Image ScoreboardLetters;
     private static List<PictureBox> letterPicBoxes = new List<PictureBox>();
+    public static CountDownTimer CountDownTimer = new CountDownTimer(15, 0);
+
     public static void InitializeDrawing()
     {
       ScoreboardLetters = ParentForm.picScoreboardLetters.Image;
       ParentForm.picScoreboardLetters.Visible = false;
+      CountDownTimer.TimeChanged = DisplayClock;
 
       // Create all the pictureboxes
       for (int i = 0; i < 48; i++)
@@ -112,5 +116,102 @@ namespace FootballGame
     {
       DisplayMessage(message, 27);
     }
+    public static void DisplayClock()
+    {
+      DisplayMessage(CountDownTimer.TimeLeftMinutesString, 21);
+      DisplayMessage(CountDownTimer.TimeLeftSecondsString, 24);
+    }
+  }
+
+  public class CountDownTimer : IDisposable
+  {
+    public Stopwatch _stpWatch = new Stopwatch();
+
+    public Action TimeChanged;       // Set this delegate to an Action method that gets called when the time ticks. (Every one second default.)
+    public Action CountDownFinished; // Set this delegate to an Action method that gets called when the time expires.
+
+    public bool IsRunnign => timer.Enabled;
+
+    public int SetInterval
+    {
+      get => timer.Interval;
+      set => timer.Interval = value;
+    }
+
+    private Timer timer = new Timer();
+    private TimeSpan _max = TimeSpan.FromMilliseconds(30000);
+    public TimeSpan TimeLeft => (_max.TotalMilliseconds - _stpWatch.ElapsedMilliseconds) > 0 ? TimeSpan.FromMilliseconds(_max.TotalMilliseconds - _stpWatch.ElapsedMilliseconds) : TimeSpan.FromMilliseconds(0);
+    private bool _mustStop => (_max.TotalMilliseconds - _stpWatch.ElapsedMilliseconds) < 0;
+    public string TimeLeftString => TimeLeft.ToString(@"mm\:ss");
+    public string TimeLeftMinutesString => TimeLeft.ToString(@"mm");
+    public string TimeLeftSecondsString => TimeLeft.ToString(@"ss");
+    public string TimeLeftMillisecondsString => TimeLeft.ToString(@"mm\:ss\.fff");
+
+    private void TimerTick(object sender, EventArgs e)
+    {
+      TimeChanged?.Invoke();
+
+      if (_mustStop)
+      {
+        CountDownFinished?.Invoke();
+        _stpWatch.Stop();
+        timer.Enabled = false;
+      }
+    }
+
+    public CountDownTimer(int min, int sec)
+    {
+      SetTime(min, sec);
+      Init();
+    }
+    public CountDownTimer(TimeSpan ts)
+    {
+      SetTime(ts);
+      Init();
+    }
+    public CountDownTimer()
+    {
+      Init();
+    }
+    private void Init()
+    {
+      SetInterval = 1000; // One second default
+      timer.Tick += new EventHandler(TimerTick);
+    }
+    public void SetTime(TimeSpan ts)
+    {
+      _max = ts;
+      TimeChanged?.Invoke();
+    }
+    public void SetTime(int min, int sec = 0) => SetTime(TimeSpan.FromSeconds(min * 60 + sec));
+
+    public void Start()
+    {
+      timer.Start();
+      _stpWatch.Start();
+    }
+    public void Pause()
+    {
+      timer.Stop();
+      _stpWatch.Stop();
+    }
+    public void Stop()
+    {
+      Reset();
+      Pause();
+    }
+
+    public void Reset()
+    {
+      _stpWatch.Reset();
+    }
+
+    public void Restart()
+    {
+      _stpWatch.Reset();
+      timer.Start();
+    }
+
+    public void Dispose() => timer.Dispose();
   }
 }
