@@ -284,17 +284,17 @@ using Drake.Tools;
         PlayOptionsFormStats.Down = 1;
         PlayOptionsFormStats.ResultsOfLastPlay += "  First Down!";
       }
-
+      PlayOptionsFormStats.BallOnYard100 = LineOfScrimageYard;
       PlayOptionsFormStats.BallOnYard = LineOfScrimageYard < 50 ? LineOfScrimageYard : 100 - LineOfScrimageYard;
 
       Scoreboard.DisplayBallOn(PlayOptionsFormStats.BallOnYard.ToString("00"));
       Scoreboard.DisplayToGo(PlayOptionsFormStats.YardsToGo.ToString("00"));
       Scoreboard.DisplayDown(PlayOptionsFormStats.Down.ToString("0"));
 
-      if(PlayOptionsFormStats.YardsGained != 0)
-        MessageBox.Show(message + Environment.NewLine + $"{PlayOptionsFormStats.YardsGained,0:#.#} yards gained.");
-      else
-        MessageBox.Show(message + Environment.NewLine + "No gain");
+      //if(PlayOptionsFormStats.YardsGained != 0)
+      //  MessageBox.Show(message + Environment.NewLine + $"{PlayOptionsFormStats.YardsGained,0:#.#} yards gained.");
+      //else
+      //  MessageBox.Show(message + Environment.NewLine + "No gain");
 
       Sideline.DisplaySideline(LineOfScrimageYard);
       ParentForm.Invalidate();

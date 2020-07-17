@@ -45,13 +45,13 @@ namespace FootballGame
     {
       if (Game.PlayOptionsFormStats.YardsGained > 0)
       {
-        lblYardGainedValue.ForeColor = Color.Green;
-        lblYardGainedValue.Text = $"{Game.PlayOptionsFormStats.YardsGained,0:#.#} yards gained.";
+        lblYardGainedValue.ForeColor = Color.DarkGreen;
+        lblYardGainedValue.Text = Game.PlayOptionsFormStats.YardsGained.ToString("0.0") + " yards gained.";
       }
       else if (Game.PlayOptionsFormStats.YardsGained < 0)
       {
-        lblYardGainedValue.ForeColor = Color.Red;
-        lblYardGainedValue.Text = $"{Math.Abs(Game.PlayOptionsFormStats.YardsGained),0:#.#} yards lost.";
+        lblYardGainedValue.ForeColor = Color.DarkRed;
+        lblYardGainedValue.Text = Math.Abs(Game.PlayOptionsFormStats.YardsGained).ToString("0.0") + " yards lost.";
       }
       else
       {
@@ -65,9 +65,13 @@ namespace FootballGame
         lblTackledByValue.Text = Game.PlayOptionsFormStats.TackledBy.GetType().Name;
 
       lblResultsOfLastPlay.Text = Game.PlayOptionsFormStats.ResultsOfLastPlay;
-      lblBallOnValue.Text = Game.PlayOptionsFormStats.BallOnYard.ToString();
+      if(Game.PlayOptionsFormStats.BallOnYard100 > 50)
+        lblBallOnValue.Text = Game.PlayOptionsFormStats.BallOnYard.ToString("0.0") + "  " + '►';
+      else
+        lblBallOnValue.Text = '◀' + "  " + Game.PlayOptionsFormStats.BallOnYard.ToString("0.0");
+
       lblDownValue.Text = Game.PlayOptionsFormStats.Down.ToString();
-      lblYardsToGoValue.Text = Game.PlayOptionsFormStats.YardsToGo.ToString();
+      lblYardsToGoValue.Text = Game.PlayOptionsFormStats.YardsToGo.ToString("0.0");
     }
 
     private void SetRandomWRPatterns()

@@ -115,7 +115,7 @@
       // btnStartPlay
       // 
       this.btnStartPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnStartPlay.Location = new System.Drawing.Point(405, 376);
+      this.btnStartPlay.Location = new System.Drawing.Point(391, 376);
       this.btnStartPlay.Name = "btnStartPlay";
       this.btnStartPlay.Size = new System.Drawing.Size(95, 54);
       this.btnStartPlay.TabIndex = 11;
@@ -205,14 +205,14 @@
       this.pnlLastPlayResults.Controls.Add(this.lblResultsOfLastPlayHeading);
       this.pnlLastPlayResults.Location = new System.Drawing.Point(241, 31);
       this.pnlLastPlayResults.Name = "pnlLastPlayResults";
-      this.pnlLastPlayResults.Size = new System.Drawing.Size(259, 90);
+      this.pnlLastPlayResults.Size = new System.Drawing.Size(245, 90);
       this.pnlLastPlayResults.TabIndex = 19;
       // 
       // lblResultsOfLastPlayHeading
       // 
       this.lblResultsOfLastPlayHeading.AutoSize = true;
       this.lblResultsOfLastPlayHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lblResultsOfLastPlayHeading.Location = new System.Drawing.Point(44, 2);
+      this.lblResultsOfLastPlayHeading.Location = new System.Drawing.Point(65, 2);
       this.lblResultsOfLastPlayHeading.Name = "lblResultsOfLastPlayHeading";
       this.lblResultsOfLastPlayHeading.Size = new System.Drawing.Size(116, 15);
       this.lblResultsOfLastPlayHeading.TabIndex = 0;
@@ -248,7 +248,7 @@
       this.panel1.Controls.Add(this.label3);
       this.panel1.Location = new System.Drawing.Point(241, 144);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(259, 86);
+      this.panel1.Size = new System.Drawing.Size(245, 86);
       this.panel1.TabIndex = 20;
       // 
       // label1
@@ -273,7 +273,7 @@
       // 
       this.label3.AutoSize = true;
       this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label3.Location = new System.Drawing.Point(64, 2);
+      this.label3.Location = new System.Drawing.Point(82, 2);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(73, 15);
       this.label3.TabIndex = 0;
@@ -361,7 +361,7 @@
       this.AcceptButton = this.btnStartPlay;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(529, 451);
+      this.ClientSize = new System.Drawing.Size(508, 451);
       this.Controls.Add(this.label5);
       this.Controls.Add(this.panel1);
       this.Controls.Add(this.pnlLastPlayResults);
