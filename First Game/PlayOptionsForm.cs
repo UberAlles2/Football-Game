@@ -43,10 +43,21 @@ namespace FootballGame
     }
     private void DisplayStats()
     {
-      if (Game.PlayOptionsFormStats.YardsGained != 0)
+      if (Game.PlayOptionsFormStats.YardsGained > 0)
+      {
+        lblYardGainedValue.ForeColor = Color.Green;
         lblYardGainedValue.Text = $"{Game.PlayOptionsFormStats.YardsGained,0:#.#} yards gained.";
+      }
+      else if (Game.PlayOptionsFormStats.YardsGained < 0)
+      {
+        lblYardGainedValue.ForeColor = Color.Red;
+        lblYardGainedValue.Text = $"{Math.Abs(Game.PlayOptionsFormStats.YardsGained),0:#.#} yards lost.";
+      }
       else
+      {
+        lblYardGainedValue.ForeColor = Color.DarkBlue;
         lblYardGainedValue.Text = "No gain.";
+      }
 
       if (Game.PlayOptionsFormStats.TackledBy == null)
         lblTackledByValue.Text = "";

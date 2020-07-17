@@ -115,7 +115,7 @@
       // btnStartPlay
       // 
       this.btnStartPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnStartPlay.Location = new System.Drawing.Point(365, 376);
+      this.btnStartPlay.Location = new System.Drawing.Point(405, 376);
       this.btnStartPlay.Name = "btnStartPlay";
       this.btnStartPlay.Size = new System.Drawing.Size(95, 54);
       this.btnStartPlay.TabIndex = 11;
@@ -203,9 +203,9 @@
       this.pnlLastPlayResults.Controls.Add(this.lblTackledBy);
       this.pnlLastPlayResults.Controls.Add(this.lblGain);
       this.pnlLastPlayResults.Controls.Add(this.lblResultsOfLastPlayHeading);
-      this.pnlLastPlayResults.Location = new System.Drawing.Point(260, 31);
+      this.pnlLastPlayResults.Location = new System.Drawing.Point(241, 31);
       this.pnlLastPlayResults.Name = "pnlLastPlayResults";
-      this.pnlLastPlayResults.Size = new System.Drawing.Size(200, 90);
+      this.pnlLastPlayResults.Size = new System.Drawing.Size(259, 90);
       this.pnlLastPlayResults.TabIndex = 19;
       // 
       // lblResultsOfLastPlayHeading
@@ -221,7 +221,7 @@
       // lblGain
       // 
       this.lblGain.AutoSize = true;
-      this.lblGain.Location = new System.Drawing.Point(3, 44);
+      this.lblGain.Location = new System.Drawing.Point(2, 66);
       this.lblGain.Name = "lblGain";
       this.lblGain.Size = new System.Drawing.Size(74, 13);
       this.lblGain.TabIndex = 1;
@@ -230,7 +230,7 @@
       // lblTackledBy
       // 
       this.lblTackledBy.AutoSize = true;
-      this.lblTackledBy.Location = new System.Drawing.Point(2, 64);
+      this.lblTackledBy.Location = new System.Drawing.Point(2, 46);
       this.lblTackledBy.Name = "lblTackledBy";
       this.lblTackledBy.Size = new System.Drawing.Size(64, 13);
       this.lblTackledBy.TabIndex = 3;
@@ -246,9 +246,9 @@
       this.panel1.Controls.Add(this.label1);
       this.panel1.Controls.Add(this.label2);
       this.panel1.Controls.Add(this.label3);
-      this.panel1.Location = new System.Drawing.Point(260, 144);
+      this.panel1.Location = new System.Drawing.Point(241, 144);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(200, 86);
+      this.panel1.Size = new System.Drawing.Size(259, 86);
       this.panel1.TabIndex = 20;
       // 
       // label1
@@ -291,7 +291,7 @@
       // label5
       // 
       this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(278, 264);
+      this.label5.Location = new System.Drawing.Point(259, 264);
       this.label5.Name = "label5";
       this.label5.Size = new System.Drawing.Size(130, 13);
       this.label5.TabIndex = 21;
@@ -300,7 +300,7 @@
       // lblResultsOfLastPlay
       // 
       this.lblResultsOfLastPlay.AutoSize = true;
-      this.lblResultsOfLastPlay.Location = new System.Drawing.Point(3, 25);
+      this.lblResultsOfLastPlay.Location = new System.Drawing.Point(2, 25);
       this.lblResultsOfLastPlay.Name = "lblResultsOfLastPlay";
       this.lblResultsOfLastPlay.Size = new System.Drawing.Size(103, 13);
       this.lblResultsOfLastPlay.TabIndex = 4;
@@ -310,7 +310,7 @@
       // 
       this.lblYardGainedValue.AutoSize = true;
       this.lblYardGainedValue.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblYardGainedValue.Location = new System.Drawing.Point(74, 44);
+      this.lblYardGainedValue.Location = new System.Drawing.Point(73, 66);
       this.lblYardGainedValue.Name = "lblYardGainedValue";
       this.lblYardGainedValue.Size = new System.Drawing.Size(74, 13);
       this.lblYardGainedValue.TabIndex = 5;
@@ -320,7 +320,7 @@
       // 
       this.lblTackledByValue.AutoSize = true;
       this.lblTackledByValue.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblTackledByValue.Location = new System.Drawing.Point(63, 64);
+      this.lblTackledByValue.Location = new System.Drawing.Point(63, 46);
       this.lblTackledByValue.Name = "lblTackledByValue";
       this.lblTackledByValue.Size = new System.Drawing.Size(58, 13);
       this.lblTackledByValue.TabIndex = 6;
@@ -361,7 +361,7 @@
       this.AcceptButton = this.btnStartPlay;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(495, 451);
+      this.ClientSize = new System.Drawing.Size(529, 451);
       this.Controls.Add(this.label5);
       this.Controls.Add(this.panel1);
       this.Controls.Add(this.pnlLastPlayResults);

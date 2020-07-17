@@ -263,6 +263,8 @@ using Drake.Tools;
       else
         PlayOptionsFormStats.TackledBy = null;
 
+      PlayOptionsFormStats.ResultsOfLastPlay = message;
+
       if (LineOfScrimageYard < 0)
       {
         LineOfScrimageYard = -1; // Safety
@@ -280,12 +282,12 @@ using Drake.Tools;
       {
         PlayOptionsFormStats.YardsToGo = 10;
         PlayOptionsFormStats.Down = 1;
-        message += Environment.NewLine + "First Down!";
+        PlayOptionsFormStats.ResultsOfLastPlay += "  First Down!";
       }
 
-      float displayedLineOfScrimage = LineOfScrimageYard < 50 ? LineOfScrimageYard : 100 - LineOfScrimageYard;
+      PlayOptionsFormStats.BallOnYard = LineOfScrimageYard < 50 ? LineOfScrimageYard : 100 - LineOfScrimageYard;
 
-      Scoreboard.DisplayBallOn(displayedLineOfScrimage.ToString("00"));
+      Scoreboard.DisplayBallOn(PlayOptionsFormStats.BallOnYard.ToString("00"));
       Scoreboard.DisplayToGo(PlayOptionsFormStats.YardsToGo.ToString("00"));
       Scoreboard.DisplayDown(PlayOptionsFormStats.Down.ToString("0"));
 

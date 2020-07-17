@@ -11,7 +11,7 @@ namespace FootballGame
     public string ResultsOfLastPlay = "";
     public float YardsGained;
     public Player TackledBy = null;
-    public int BallOnYard;
+    public float BallOnYard;
     public int Down;
     public float YardsToGo;
   }
