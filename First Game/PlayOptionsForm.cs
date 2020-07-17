@@ -24,6 +24,7 @@ namespace FootballGame
       picButtonHookPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY); 
       picFlyPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
       picPostPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+      this.Icon = Game.ParentForm.Icon;
     }
 
     private void PlayOptionsForm_Load(object sender, EventArgs e)

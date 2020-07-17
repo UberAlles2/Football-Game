@@ -30,6 +30,7 @@
     {
       System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
       this.pnlScoreboard = new System.Windows.Forms.Panel();
+      this.picFullSidelineYardage = new System.Windows.Forms.PictureBox();
       this.label8 = new System.Windows.Forms.Label();
       this.label7 = new System.Windows.Forms.Label();
       this.label6 = new System.Windows.Forms.Label();
@@ -44,15 +45,14 @@
       this.Player1 = new System.Windows.Forms.PictureBox();
       this.lblBottomSideline = new System.Windows.Forms.Label();
       this.picSidelineYardage = new System.Windows.Forms.PictureBox();
-      this.picFullSidelineYardage = new System.Windows.Forms.PictureBox();
       this.pnlScoreboard.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.picFullSidelineYardage)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picScoreboardLetters)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFootball)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picBearsBall)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.Player2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picSidelineYardage)).BeginInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picFullSidelineYardage)).BeginInit();
       this.SuspendLayout();
       // 
       // pnlScoreboard
@@ -73,6 +73,15 @@
       this.pnlScoreboard.Name = "pnlScoreboard";
       this.pnlScoreboard.Size = new System.Drawing.Size(1259, 69);
       this.pnlScoreboard.TabIndex = 5;
+      // 
+      // picFullSidelineYardage
+      // 
+      this.picFullSidelineYardage.Image = ((System.Drawing.Image)(resources.GetObject("picFullSidelineYardage.Image")));
+      this.picFullSidelineYardage.Location = new System.Drawing.Point(707, 29);
+      this.picFullSidelineYardage.Name = "picFullSidelineYardage";
+      this.picFullSidelineYardage.Size = new System.Drawing.Size(462, 32);
+      this.picFullSidelineYardage.TabIndex = 14;
+      this.picFullSidelineYardage.TabStop = false;
       // 
       // label8
       // 
@@ -223,15 +232,6 @@
       this.picSidelineYardage.TabStop = false;
       this.picSidelineYardage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picSidelineYardage_MouseClick);
       // 
-      // picFullSidelineYardage
-      // 
-      this.picFullSidelineYardage.Image = ((System.Drawing.Image)(resources.GetObject("picFullSidelineYardage.Image")));
-      this.picFullSidelineYardage.Location = new System.Drawing.Point(707, 29);
-      this.picFullSidelineYardage.Name = "picFullSidelineYardage";
-      this.picFullSidelineYardage.Size = new System.Drawing.Size(462, 32);
-      this.picFullSidelineYardage.TabIndex = 14;
-      this.picFullSidelineYardage.TabStop = false;
-      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -246,6 +246,7 @@
       this.Controls.Add(this.Player1);
       this.Controls.Add(this.lblBottomSideline);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+      this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "Form1";
       this.Text = "Form1";
       this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
@@ -255,13 +256,13 @@
       this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseClick);
       this.pnlScoreboard.ResumeLayout(false);
       this.pnlScoreboard.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.picFullSidelineYardage)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picScoreboardLetters)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFootball)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picBearsBall)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.Player2)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picSidelineYardage)).EndInit();
-      ((System.ComponentModel.ISupportInitialize)(this.picFullSidelineYardage)).EndInit();
       this.ResumeLayout(false);
 
     }
