@@ -34,15 +34,13 @@ using Drake.Tools;
     Tackled,
     OutOfBounds,
     Incomplete,
+    Dropped,
     Intercepted
   }
 
   public class Game
   {
-    private static float lineOfScrimageYard = 20;
-    private static float yardsGained = 0;
-    private static float yardsToGo = 10;
-    private static float down = 1;
+    private static float LineOfScrimageYard = 20;
 
     private static bool running = true;
     private static System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
@@ -56,7 +54,8 @@ using Drake.Tools;
     public static int LineOfScrimagePixel = 280;
     public static Random Random = new Random();
     public static bool PlayEnded = false;
-    public static PlayOptionsForm PlayOptionForm = new PlayOptionsForm();
+    public static PlayOptionsForm PlayOptionForm;
+    public static PlayOptionsFormStats PlayOptionsFormStats = new PlayOptionsFormStats();
 
     OffenderWideReceiverTop offenderWideReceiverTop = new OffenderWideReceiverTop();
     OffenderWideReceiverBottom offenderWideReceiverBottom = new OffenderWideReceiverBottom();
@@ -69,10 +68,13 @@ using Drake.Tools;
       Player.ParentGame = this;
       Scoreboard.ParentForm = form1;
       Sideline.ParentForm = form1;
+      PlayOptionForm = new PlayOptionsForm(this);
 
       // Set initial values and Display them.
-      lineOfScrimageYard = 20; // 1 - 100; 
-      yardsToGo = 10;
+      LineOfScrimageYard = 20; // 1 - 100; 
+      PlayOptionsFormStats.Down = 1;
+      PlayOptionsFormStats.YardsToGo = 10;
+      PlayOptionsFormStats.BallOnYard = 20;
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
       Sideline.InitializeDrawing();   // Draw the starting sideline
 
@@ -244,52 +246,55 @@ using Drake.Tools;
       }
     }
 
-    public void EndPlay(EndPlayType endPlayType, string message)
+    public void EndPlay(EndPlayType endPlayType, Player tackledBy, string message)
     {
       if (PlayEnded) // Play ended by another player
         return;
 
       PlayEnded = true;
-      yardsGained = 0;
+      PlayOptionsFormStats.YardsGained = 0;
       if (endPlayType == EndPlayType.Tackled || endPlayType == EndPlayType.OutOfBounds)
       {
-        yardsGained = (float)(Player.ControllablePlayer.Left + Player.ControllablePlayer.PicBox.Width - LineOfScrimagePixel) / PixalsInYard;
-        lineOfScrimageYard += yardsGained;
-        yardsToGo -= yardsGained;
+        PlayOptionsFormStats.YardsGained = (float)(Player.ControllablePlayer.Left + Player.ControllablePlayer.PicBox.Width - LineOfScrimagePixel) / PixalsInYard;
+        PlayOptionsFormStats.TackledBy = tackledBy;
+        LineOfScrimageYard += PlayOptionsFormStats.YardsGained;
+        PlayOptionsFormStats.YardsToGo -= PlayOptionsFormStats.YardsGained;
+      }
+      else
+        PlayOptionsFormStats.TackledBy = null;
+
+      if (LineOfScrimageYard < 0)
+      {
+        LineOfScrimageYard = -1; // Safety
+      }
+      if (LineOfScrimageYard > 100)
+      {
+        LineOfScrimageYard = 101; // Touchdown
       }
 
-      if (lineOfScrimageYard < 0)
-      {
-        lineOfScrimageYard = -1; // Safety
-      }
-      if (lineOfScrimageYard > 100)
-      {
-        lineOfScrimageYard = 101; // Touchdown
-      }
-
-      if (down < 4)
-        down++;
+      if (PlayOptionsFormStats.Down < 4)
+        PlayOptionsFormStats.Down++;
       
 
-      if(yardsToGo < 0)
+      if(PlayOptionsFormStats.YardsToGo < 0)
       {
-        yardsToGo = 10;
-        down = 1;
+        PlayOptionsFormStats.YardsToGo = 10;
+        PlayOptionsFormStats.Down = 1;
         message += Environment.NewLine + "First Down!";
       }
 
-      float displayedLineOfScrimage = lineOfScrimageYard < 50 ? lineOfScrimageYard : 100 - lineOfScrimageYard;
+      float displayedLineOfScrimage = LineOfScrimageYard < 50 ? LineOfScrimageYard : 100 - LineOfScrimageYard;
 
       Scoreboard.DisplayBallOn(displayedLineOfScrimage.ToString("00"));
-      Scoreboard.DisplayToGo(yardsToGo.ToString("00"));
-      Scoreboard.DisplayDown(down.ToString("0"));
+      Scoreboard.DisplayToGo(PlayOptionsFormStats.YardsToGo.ToString("00"));
+      Scoreboard.DisplayDown(PlayOptionsFormStats.Down.ToString("0"));
 
-      if(yardsGained != 0)
-        MessageBox.Show(message + Environment.NewLine + $"{yardsGained,0:#.#} yards gained.");
+      if(PlayOptionsFormStats.YardsGained != 0)
+        MessageBox.Show(message + Environment.NewLine + $"{PlayOptionsFormStats.YardsGained,0:#.#} yards gained.");
       else
         MessageBox.Show(message + Environment.NewLine + "No gain");
 
-      Sideline.DisplaySideline(lineOfScrimageYard);
+      Sideline.DisplaySideline(LineOfScrimageYard);
       ParentForm.Invalidate();
     }
 
@@ -375,14 +380,14 @@ using Drake.Tools;
       }
     }
 
-    public void PaintScrimmageAndFirstDownLines(object sender, PaintEventArgs e)
+    public void PaintScrimmageAndFirstDownLines(object sender, PaintEventArgs e) //TODO move to PlayingFieldDrawing class
     {
       // Scrimmage
       Pen pen = new Pen(Color.FromArgb(255, 128, 128, 255));
       e.Graphics.DrawLine(pen, Game.LineOfScrimagePixel, 0, Game.LineOfScrimagePixel, ParentForm.Height - 62);
       // First Down
       pen = new Pen(Color.FromArgb(255, 255, 255, 0));
-      int firstDownMarker = LineOfScrimagePixel + ((int)yardsToGo * (int)PixalsInYard);
+      int firstDownMarker = LineOfScrimagePixel + ((int)PlayOptionsFormStats.YardsToGo * (int)PixalsInYard);
       e.Graphics.DrawLine(pen, firstDownMarker, 0, firstDownMarker, ParentForm.Height -62);
     }
 

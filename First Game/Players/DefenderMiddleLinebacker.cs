@@ -81,15 +81,14 @@ namespace FootballGame
         }
         else
         {
-          PicBox.BackColor = System.Drawing.Color.Yellow; // TODO
-          ParentGame.EndPlay(EndPlayType.Intercepted, "Intercepted");
+          ParentGame.EndPlay(EndPlayType.Intercepted, this, "Intercepted.");
           return;
         }
       }
 
       if (collidedWithPlayer.HasBall && !IsThrowing)
       {
-        ParentGame.EndPlay(EndPlayType.Tackled, "Tackled");
+        ParentGame.EndPlay(EndPlayType.Tackled, this, "Tackled.");
       }
 
       if (collidedWithPlayer is Offender)

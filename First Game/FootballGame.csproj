@@ -51,6 +51,7 @@
   <ItemGroup>
     <Compile Include="Players\DefenderSafety.cs" />
     <Compile Include="PlayingFieldDrawing.cs" />
+    <Compile Include="PlayOptionsFormStats.cs" />
     <Compile Include="PlayOptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>

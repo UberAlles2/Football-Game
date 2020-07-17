@@ -329,7 +329,7 @@ namespace FootballGame
           this.ChangeY = 60;
         else if (this.HasBall)
         {
-          ParentGame.EndPlay(EndPlayType.OutOfBounds, "Out of Bounds");
+          ParentGame.EndPlay(EndPlayType.OutOfBounds, null, "Out of Bounds.");
           return;
         }
         else
@@ -344,7 +344,7 @@ namespace FootballGame
           this.ChangeY = -60;
         else if (this.HasBall)
         {
-          ParentGame.EndPlay(EndPlayType.OutOfBounds, "Out of Bounds");
+          ParentGame.EndPlay(EndPlayType.OutOfBounds, null, "Out of Bounds.");
           return;
         }
         else

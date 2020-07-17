@@ -12,12 +12,14 @@ namespace FootballGame
 {
   public partial class PlayOptionsForm : Form
   {
+    private Game ParentGame;
     public OffenderWideReceiver.PatternEnum selectedPatternTop;
     public OffenderWideReceiver.PatternEnum selectedPatternBottom;
 
-    public PlayOptionsForm()
+    public PlayOptionsForm(Game parentGame)
     {
       InitializeComponent();
+      ParentGame = parentGame;
       // We only have 3 pictures, the top ones are the bottom ones flipped.
       picButtonHookPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY); 
       picFlyPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
@@ -26,6 +28,7 @@ namespace FootballGame
 
     private void PlayOptionsForm_Load(object sender, EventArgs e)
     {
+      DisplayStats();
       SetRandomWRPatterns();
     }
 
@@ -37,6 +40,23 @@ namespace FootballGame
     private void btnChangePatterns_Click(object sender, EventArgs e)
     {
       SetRandomWRPatterns();
+    }
+    private void DisplayStats()
+    {
+      if (Game.PlayOptionsFormStats.YardsGained != 0)
+        lblYardGainedValue.Text = $"{Game.PlayOptionsFormStats.YardsGained,0:#.#} yards gained.";
+      else
+        lblYardGainedValue.Text = "No gain.";
+
+      if (Game.PlayOptionsFormStats.TackledBy == null)
+        lblTackledByValue.Text = "";
+      else
+        lblTackledByValue.Text = Game.PlayOptionsFormStats.TackledBy.GetType().Name;
+
+      lblResultsOfLastPlay.Text = Game.PlayOptionsFormStats.ResultsOfLastPlay;
+      lblBallOnValue.Text = Game.PlayOptionsFormStats.BallOnYard.ToString();
+      lblDownValue.Text = Game.PlayOptionsFormStats.Down.ToString();
+      lblYardsToGoValue.Text = Game.PlayOptionsFormStats.YardsToGo.ToString();
     }
 
     private void SetRandomWRPatterns()

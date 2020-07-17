@@ -8,6 +8,7 @@ namespace FootballGame
 {
   class PlayingFieldDrawing
   {
+    //TODO draw lines here.
 
   }
 }

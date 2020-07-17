@@ -73,10 +73,16 @@ namespace FootballGame
       // Keep the ball going past the target for a bit.
       if (keepGoing > 14)
       {
-        BallIsCatchable = false;
         IsThrowing = false;
         keepGoing = 0;
-        ParentGame.EndPlay(EndPlayType.Incomplete, "Incomplete");
+        if (BallIsCatchable)
+        {
+          BallIsCatchable = false;
+          ParentGame.EndPlay(EndPlayType.Incomplete, null, "Incomplete.");
+        }
+        else
+          ParentGame.EndPlay(EndPlayType.Incomplete, null, "Broken Up.");
+
         return;
       }
 
