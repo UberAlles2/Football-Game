@@ -57,8 +57,8 @@ namespace FootballGame
     public static PlayOptionsForm PlayOptionsForm;
     public static PlayOptionsFormStats PlayOptionsFormStats = new PlayOptionsFormStats();
 
-    OffenderWideReceiverTop offenderWideReceiverTop = new OffenderWideReceiverTop();
-    OffenderWideReceiverBottom offenderWideReceiverBottom = new OffenderWideReceiverBottom();
+    public static OffenderWideReceiverTop offenderWideReceiverTop = new OffenderWideReceiverTop();
+    public static OffenderWideReceiverBottom offenderWideReceiverBottom = new OffenderWideReceiverBottom();
 
     public Game(Form1 form1)
     {
@@ -220,44 +220,6 @@ namespace FootballGame
       PlayOptionsForm.Location = new Point(ParentForm.Left + 220, ParentForm.Top + 160);
       PlayOptionsForm.ShowDialog();
       Scoreboard.CountDownTimer.Start();
-
-      switch (PlayOptionsForm.selectedPatternTop)
-      {
-        case OffenderWideReceiver.PatternEnum.ButtonHookPattern:
-          offenderWideReceiverTop.ButtonHookPattern();
-          break;
-        case OffenderWideReceiver.PatternEnum.FlyPattern:
-          offenderWideReceiverTop.FlyPattern();
-          break;
-        case OffenderWideReceiver.PatternEnum.SlantPattern:
-          //offenderWideReceiverTop.SlantPatternTop();
-          offenderWideReceiverTop.QuickOutPatternTop();
-          break;
-        case OffenderWideReceiver.PatternEnum.PostPattern:
-          offenderWideReceiverTop.PostPatternTop();
-          break;
-        case OffenderWideReceiver.PatternEnum.QuickOutPattern:
-          offenderWideReceiverTop.QuickOutPatternTop();
-          break;
-      }
-      switch (PlayOptionsForm.selectedPatternBottom)
-      {
-        case OffenderWideReceiver.PatternEnum.ButtonHookPattern:
-          offenderWideReceiverBottom.ButtonHookPattern();
-          break;
-        case OffenderWideReceiver.PatternEnum.FlyPattern:
-          offenderWideReceiverBottom.FlyPattern();
-          break;
-        case OffenderWideReceiver.PatternEnum.SlantPattern:
-          offenderWideReceiverBottom.SlantPatternBottom();
-          break;
-        case OffenderWideReceiver.PatternEnum.PostPattern:
-          offenderWideReceiverBottom.PostPatternBottom();
-          break;
-        case OffenderWideReceiver.PatternEnum.QuickOutPattern:
-          offenderWideReceiverBottom.QuickOutPatternBottom();
-          break;
-      }
     }
 
     public void EndPlay(EndPlayType endPlayType, Player tackledBy, string message)

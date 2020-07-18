@@ -13,8 +13,6 @@ namespace FootballGame
   public partial class PlayOptionsForm : Form
   {
     private Game ParentGame;
-    public OffenderWideReceiver.PatternEnum selectedPatternTop;
-    public OffenderWideReceiver.PatternEnum selectedPatternBottom;
 
     public PlayOptionsForm(Game parentGame)
     {
@@ -84,23 +82,23 @@ namespace FootballGame
       {
         case 0:
           picReceiverTop.Image = picButtonHookPatternTop.Image;
-          selectedPatternTop = OffenderWideReceiver.PatternEnum.ButtonHookPattern;
+          Game.offenderWideReceiverTop.ButtonHookPattern();
           break;
         case 1:
           picReceiverTop.Image = picFlyPatternTop.Image;
-          selectedPatternTop = OffenderWideReceiver.PatternEnum.FlyPattern;
+          Game.offenderWideReceiverTop.FlyPattern();
           break;
         case 2:
           picReceiverTop.Image = picPostPatternTop.Image;
-          selectedPatternTop = OffenderWideReceiver.PatternEnum.PostPattern;
+          Game.offenderWideReceiverTop.PostPatternTop();
           break;
         case 3:
           picReceiverTop.Image = picSlantPatternTop.Image;
-          selectedPatternTop = OffenderWideReceiver.PatternEnum.SlantPattern;
+          Game.offenderWideReceiverTop.SlantPatternTop();
           break;
         case 4:
           picReceiverTop.Image = picQuickOutPatternTop.Image;
-          selectedPatternTop = OffenderWideReceiver.PatternEnum.QuickOutPattern;
+          Game.offenderWideReceiverTop.QuickOutPatternTop();
           break;
       }
 
@@ -109,23 +107,23 @@ namespace FootballGame
       {
         case 0:
           picReceiverBottom.Image = picButtonHookPattern.Image;
-          selectedPatternBottom = OffenderWideReceiver.PatternEnum.ButtonHookPattern;
+          Game.offenderWideReceiverBottom.ButtonHookPattern();
           break;
         case 1:
           picReceiverBottom.Image = picFlyPattern.Image;
-          selectedPatternBottom = OffenderWideReceiver.PatternEnum.FlyPattern;
+          Game.offenderWideReceiverBottom.FlyPattern();
           break;
         case 2:
           picReceiverBottom.Image = picPostPattern.Image;
-          selectedPatternBottom = OffenderWideReceiver.PatternEnum.PostPattern;
+          Game.offenderWideReceiverBottom.PostPatternBottom();
           break;
         case 3:
           picReceiverBottom.Image = picSlantPattern.Image;
-          selectedPatternBottom = OffenderWideReceiver.PatternEnum.SlantPattern;
+          Game.offenderWideReceiverBottom.SlantPatternBottom();
           break;
         case 4:
           picReceiverBottom.Image = picQuickOutPattern.Image;
-          selectedPatternBottom = OffenderWideReceiver.PatternEnum.QuickOutPattern;
+          Game.offenderWideReceiverBottom.QuickOutPatternBottom();
           break;
       }
     }

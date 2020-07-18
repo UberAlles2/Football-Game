@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class OffenderWideReceiverTop : OffenderWideReceiver
+  public class OffenderWideReceiverTop : OffenderWideReceiver
   {
     public override void Initialize()
     {
@@ -30,7 +30,7 @@ namespace FootballGame
       base.CollisionMove(collidedWithPlayer, collisionOrientation);
     }
   }
-  class OffenderWideReceiverBottom : OffenderWideReceiver
+  public class OffenderWideReceiverBottom : OffenderWideReceiver
   {
     public override void Initialize()
     {
@@ -60,14 +60,14 @@ namespace FootballGame
     private bool runningPattern;
     private Player target = new Player();
 
-    public enum PatternEnum
-    {
-      ButtonHookPattern,
-      FlyPattern,
-      PostPattern,
-      SlantPattern,
-      QuickOutPattern
-    }
+    //public enum PatternEnum
+    //{
+    //  ButtonHookPattern,
+    //  FlyPattern,
+    //  PostPattern,
+    //  SlantPattern,
+    //  QuickOutPattern
+    //}
 
     public override void Initialize()
     {
