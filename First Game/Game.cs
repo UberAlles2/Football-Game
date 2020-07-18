@@ -137,7 +137,7 @@ namespace FootballGame
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen; // TODO take out
 
       DefenderLinemanUpper defenderLinemanUpper = new DefenderLinemanUpper();
-      Player.AddPlayer(defenderLinemanUpper, initlineX, FieldCenterY - 52, ParentForm.Player2, initialOffsetY: -86);
+      Player.AddPlayer(defenderLinemanUpper, initlineX, FieldCenterY - 50, ParentForm.Player2, initialOffsetY: -87);
       defenderLinemanUpper.PicBox.BackColor = Color.LightBlue; // TODO take out
 
         // Middle Linebacker
@@ -151,7 +151,7 @@ namespace FootballGame
         defenderSafety.PicBox.BackColor = Color.HotPink; // TODO take out
 
       DefenderLinemanLower defenderLinemanLower = new DefenderLinemanLower();
-      Player.AddPlayer(defenderLinemanLower, initlineX, FieldCenterY + 52, ParentForm.Player2, initialOffsetY: 88);
+      Player.AddPlayer(defenderLinemanLower, initlineX, FieldCenterY + 48, ParentForm.Player2, initialOffsetY: 87);
       defenderLinemanLower.PicBox.BackColor = Color.DarkBlue; // TODO take out
 
       DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = new DefenderOutsideLinemanBottom();

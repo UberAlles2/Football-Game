@@ -38,7 +38,7 @@ namespace FootballGame
 
     public override void Initialize()
     {
-      if (Random.Next(0, 20) - 10 < 10)
+      if (Random.Next(0, 20) < 10)
         TargetPlayer = DefenseLinemanUpper;
       else
         TargetPlayer = DefenseLinemanLower;
