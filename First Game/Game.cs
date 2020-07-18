@@ -296,36 +296,47 @@ namespace FootballGame
         return;
       }
 
-      if (IsKeyDown(Keys.Left))
+      if (IsKeyDown(Keys.Left)) // <<<-------
       {
-        if(Player.ControllablePlayer.ChangeX > 30)
+        if(Player.ControllablePlayer.ChangeX > 30) // Moving Right -->>
           Player.ControllablePlayer.ChangeX -= 14;
+        else if (Player.ControllablePlayer.ChangeX < 40) // Moving Left <<--
+          Player.ControllablePlayer.ChangeX -= 4;
         else
-          Player.ControllablePlayer.ChangeX -= 6;
+          Player.ControllablePlayer.ChangeX -= 8;
+
         keypressed = true;
       }
-      if (IsKeyDown(Keys.Right))
+      if (IsKeyDown(Keys.Right)) // ------->>>
       {
-        if (Player.ControllablePlayer.ChangeX < 30)
+        if (Player.ControllablePlayer.ChangeX < 30) // Moving Left <<--
           Player.ControllablePlayer.ChangeX += 14;
+        else if (Player.ControllablePlayer.ChangeX > 40) // Moving Right -->>
+          Player.ControllablePlayer.ChangeX += 4;
         else
-          Player.ControllablePlayer.ChangeX += 6;
+          Player.ControllablePlayer.ChangeX += 8;
+
         keypressed = true;
       }
-      if (IsKeyDown(Keys.Up))
+      if (IsKeyDown(Keys.Up)) //^^^^^
       {
-        if (Player.ControllablePlayer.ChangeY > 30)
+        if (Player.ControllablePlayer.ChangeY > 30) // Moving Down vvvv
           Player.ControllablePlayer.ChangeY -= 14;
+        else if (Player.ControllablePlayer.ChangeY < 40) // Moving Up ^^^^
+          Player.ControllablePlayer.ChangeY -= 4;
         else
-          Player.ControllablePlayer.ChangeY -= 6;
+          Player.ControllablePlayer.ChangeY -= 8;
+
         keypressed = true;
       }
-      if (IsKeyDown(Keys.Down))
+      if (IsKeyDown(Keys.Down)) //vvvvv
       {
-        if (Player.ControllablePlayer.ChangeY < 30)
+        if (Player.ControllablePlayer.ChangeY < 30) // Moving Up ^^^^
           Player.ControllablePlayer.ChangeY += 14;
+        else if (Player.ControllablePlayer.ChangeY > 40) // Moving Down ^^^^
+          Player.ControllablePlayer.ChangeY += 4;
         else
-          Player.ControllablePlayer.ChangeY += 6;
+          Player.ControllablePlayer.ChangeY += 8;
         keypressed = true;
       }
       if (keypressed == false)
@@ -334,9 +345,13 @@ namespace FootballGame
         Player.ControllablePlayer.ChangeY = Player.ControllablePlayer.ChangeY - (8 * Math.Sign(Player.ControllablePlayer.ChangeY));
       }
 
-      if (Math.Abs(Player.ControllablePlayer.ChangeX) > Player.ControllablePlayer.SpeedCap -32)
+      if (Math.Abs(Player.ControllablePlayer.ChangeX) > Player.ControllablePlayer.SpeedCap - 30)
       {
-        Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 40) * Math.Sign(Player.ControllablePlayer.ChangeX);
+        Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 36) * Math.Sign(Player.ControllablePlayer.ChangeX);
+      }
+      if (Math.Abs(Player.ControllablePlayer.ChangeY) > Player.ControllablePlayer.SpeedCap - 30)
+      {
+        Player.ControllablePlayer.ChangeY = (Player.ControllablePlayer.SpeedCap - 36) * Math.Sign(Player.ControllablePlayer.ChangeY);
       }
 
       Player.ControllablePlayer.Move();
@@ -359,11 +374,6 @@ namespace FootballGame
         if(!Player.IsThrowing)
           ballAsPlayer.ThrowBall(Player.ControllablePlayer.Left + 16, Player.ControllablePlayer.Top + 16, e.Location.Y, e.Location.X);   
       }
-    }
-
-    public void UpdateScoreboardClock(object sender, EventArgs e)
-    {
-    
     }
 
     public void PaintScrimmageAndFirstDownLines(object sender, PaintEventArgs e) //TODO move to PlayingFieldDrawing class
