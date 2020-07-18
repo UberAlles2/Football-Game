@@ -64,7 +64,9 @@ namespace FootballGame
     {
       ButtonHookPattern,
       FlyPattern,
-      PostPattern
+      PostPattern,
+      SlantPattern,
+      QuickOutPattern
     }
 
     public override void Initialize()
@@ -146,7 +148,7 @@ namespace FootballGame
     {
       receiverPatterns.Clear();
 
-      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 500, TargetY = InitialTop};
+      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 420, TargetY = InitialTop};
       receiverPatterns.Add(receiverPattern);
       receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 250, TargetY = InitialTop};
       receiverPatterns.Add(receiverPattern);
@@ -186,6 +188,52 @@ namespace FootballGame
       receiverPattern = new ReceiverPattern() { Name = "Post", TargetX = 1000, TargetY = InitialTop - 600 };
       receiverPatterns.Add(receiverPattern);
       receiverPattern = new ReceiverPattern() { Name = "Post", TargetX = 200, TargetY = InitialTop - 600 };
+      receiverPatterns.Add(receiverPattern);
+    }
+
+    public void SlantPatternTop()
+    {
+      receiverPatterns.Clear();
+
+      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "Slant", TargetX = Game.LineOfScrimagePixel + 50, TargetY = this.InitialTop };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "Slant", TargetX = 600, TargetY = InitialTop + 700 };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "Slant", TargetX = 200, TargetY = InitialTop + 700 };
+      receiverPatterns.Add(receiverPattern);
+    }
+    public void SlantPatternBottom()
+    {
+      receiverPatterns.Clear();
+
+      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "Slant", TargetX = Game.LineOfScrimagePixel + 50, TargetY = this.InitialTop };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "Slant", TargetX = 600, TargetY = InitialTop - 700 };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "Slant", TargetX = 200, TargetY = InitialTop - 700 };
+      receiverPatterns.Add(receiverPattern);
+    }
+
+    public void QuickOutPatternTop()
+    {
+      receiverPatterns.Clear();
+
+      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "QuickOut", TargetX = Game.LineOfScrimagePixel + 40, TargetY = this.InitialTop + 20 };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "QuickOut", TargetX = Game.LineOfScrimagePixel + 80, TargetY = InitialTop - 100 };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "QuickOut", TargetX = Game.LineOfScrimagePixel + 80, TargetY = InitialTop - 40};
+      receiverPatterns.Add(receiverPattern);
+    }
+    public void QuickOutPatternBottom()
+    {
+      receiverPatterns.Clear();
+
+      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "QuickOut", TargetX = Game.LineOfScrimagePixel + 40, TargetY = this.InitialTop - 20 };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "QuickOut", TargetX = Game.LineOfScrimagePixel + 80, TargetY = InitialTop + 100 };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "QuickOut", TargetX = Game.LineOfScrimagePixel + 80, TargetY = InitialTop + 40 };
       receiverPatterns.Add(receiverPattern);
     }
   }

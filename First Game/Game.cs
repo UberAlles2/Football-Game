@@ -13,13 +13,13 @@ using Drake.Tools;
  * Middle linebacker isn't intercepting and colliding with the ball
  * Add ball on indicator if in opposing territory
  * Add more WR patterns
- * 
+ * Only allow so much time, 20 seconds to choose a play.
  * 
  * 
  * 
  * 
  */
- namespace FootballGame
+namespace FootballGame
 {
   public enum CollisionOrientation
   {
@@ -54,7 +54,7 @@ using Drake.Tools;
     public static int LineOfScrimagePixel = 280;
     public static Random Random = new Random();
     public static bool PlayEnded = false;
-    public static PlayOptionsForm PlayOptionForm;
+    public static PlayOptionsForm PlayOptionsForm;
     public static PlayOptionsFormStats PlayOptionsFormStats = new PlayOptionsFormStats();
 
     OffenderWideReceiverTop offenderWideReceiverTop = new OffenderWideReceiverTop();
@@ -68,7 +68,7 @@ using Drake.Tools;
       Player.ParentGame = this;
       Scoreboard.ParentForm = form1;
       Sideline.ParentForm = form1;
-      PlayOptionForm = new PlayOptionsForm(this);
+      PlayOptionsForm = new PlayOptionsForm(this);
 
       // Set initial values and Display them.
       LineOfScrimageYard = 20; // 1 - 100; 
@@ -81,7 +81,7 @@ using Drake.Tools;
       // Initialize field dimensions
       FieldBounds = new Rectangle(0, ParentForm.pnlScoreboard.Height + 30, ParentForm.Width - ParentForm.Player1.Width, ParentForm.Height - ParentForm.pnlScoreboard.Height - 36);
       Player.FieldBounds = FieldBounds;
-      FieldCenterY = (FieldBounds.Height / 2) + ParentForm.picSidelineYardage.Height + 2; // Players go out of bounds when their botton goes out.
+      FieldCenterY = (FieldBounds.Height / 2) + ParentForm.picSidelineYardage.Height + 16; // Players go out of bounds when their botton goes out.
 
       AddPlayers();
 
@@ -101,7 +101,7 @@ using Drake.Tools;
       Player.AddPlayer(offenderQuarterback, LineOfScrimagePixel - 200, FieldCenterY, ParentForm.Player1);
       Player.ControllablePlayer = offenderQuarterback;
 
-      Player.AddPlayer(offenderWideReceiverTop, initlineX, FieldCenterY - 240, ParentForm.Player1);
+      Player.AddPlayer(offenderWideReceiverTop, initlineX, FieldCenterY - 220, ParentForm.Player1);
 
       OffenderOutsideLinemanTop offenderOutsideLinemanTop = new OffenderOutsideLinemanTop();
       offenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
@@ -123,13 +123,13 @@ using Drake.Tools;
       offenderOutsideLinemanBottom.VerticalPosition = VerticalPosition.PositionBottom;
       Player.AddPlayer(offenderOutsideLinemanBottom, initlineX, FieldCenterY + 90, ParentForm.Player1);
 
-      Player.AddPlayer(offenderWideReceiverBottom, initlineX, FieldCenterY + 240, ParentForm.Player1);
+      Player.AddPlayer(offenderWideReceiverBottom, initlineX, FieldCenterY + 220, ParentForm.Player1);
 
       initlineX = LineOfScrimagePixel + 25;
       
       //--------------------- Defensive Players
       DefenderCornerbackTop defenderCornerbackTop = new DefenderCornerbackTop();
-      Player.AddPlayer(defenderCornerbackTop, offenderWideReceiverTop.InitialLeft + 200, offenderWideReceiverTop.InitialTop + 30, ParentForm.Player2);
+      Player.AddPlayer(defenderCornerbackTop, offenderWideReceiverTop.InitialLeft + 160, offenderWideReceiverTop.InitialTop + 30, ParentForm.Player2);
 
       DefenderOutsideLinemanTop defenderOutsideLinemanTop = new DefenderOutsideLinemanTop();
       defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
@@ -161,7 +161,7 @@ using Drake.Tools;
 
       DefenderCornerbackBottom defenderCornerbackBottom = new DefenderCornerbackBottom();
       defenderCornerbackBottom.DefensiveMode = DefensiveMode.Normal;  // TODO randomize between coverage
-      Player.AddPlayer(defenderCornerbackBottom, offenderWideReceiverBottom.InitialLeft + 200, offenderWideReceiverBottom.InitialTop - 30, ParentForm.Player2);
+      Player.AddPlayer(defenderCornerbackBottom, offenderWideReceiverBottom.InitialLeft + 160, offenderWideReceiverBottom.InitialTop - 30, ParentForm.Player2);
 
       // Ball as a Player
       ballAsPlayer.InitialLeft = -999;
@@ -217,11 +217,11 @@ using Drake.Tools;
 
     private void ChoosePlay()
     {
-      PlayOptionForm.Location = new Point(ParentForm.Left + 220, ParentForm.Top + 160);
-      PlayOptionForm.ShowDialog();
+      PlayOptionsForm.Location = new Point(ParentForm.Left + 220, ParentForm.Top + 160);
+      PlayOptionsForm.ShowDialog();
       Scoreboard.CountDownTimer.Start();
 
-      switch (PlayOptionForm.selectedPatternTop)
+      switch (PlayOptionsForm.selectedPatternTop)
       {
         case OffenderWideReceiver.PatternEnum.ButtonHookPattern:
           offenderWideReceiverTop.ButtonHookPattern();
@@ -229,11 +229,18 @@ using Drake.Tools;
         case OffenderWideReceiver.PatternEnum.FlyPattern:
           offenderWideReceiverTop.FlyPattern();
           break;
+        case OffenderWideReceiver.PatternEnum.SlantPattern:
+          //offenderWideReceiverTop.SlantPatternTop();
+          offenderWideReceiverTop.QuickOutPatternTop();
+          break;
         case OffenderWideReceiver.PatternEnum.PostPattern:
           offenderWideReceiverTop.PostPatternTop();
           break;
+        case OffenderWideReceiver.PatternEnum.QuickOutPattern:
+          offenderWideReceiverTop.QuickOutPatternTop();
+          break;
       }
-      switch (PlayOptionForm.selectedPatternBottom)
+      switch (PlayOptionsForm.selectedPatternBottom)
       {
         case OffenderWideReceiver.PatternEnum.ButtonHookPattern:
           offenderWideReceiverBottom.ButtonHookPattern();
@@ -241,8 +248,14 @@ using Drake.Tools;
         case OffenderWideReceiver.PatternEnum.FlyPattern:
           offenderWideReceiverBottom.FlyPattern();
           break;
+        case OffenderWideReceiver.PatternEnum.SlantPattern:
+          offenderWideReceiverBottom.SlantPatternBottom();
+          break;
         case OffenderWideReceiver.PatternEnum.PostPattern:
           offenderWideReceiverBottom.PostPatternBottom();
+          break;
+        case OffenderWideReceiver.PatternEnum.QuickOutPattern:
+          offenderWideReceiverBottom.QuickOutPatternBottom();
           break;
       }
     }

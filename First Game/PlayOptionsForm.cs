@@ -24,6 +24,8 @@ namespace FootballGame
       picButtonHookPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY); 
       picFlyPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
       picPostPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+      picSlantPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
+      picQuickOutPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
       this.Icon = Game.ParentForm.Icon;
     }
 
@@ -63,7 +65,7 @@ namespace FootballGame
       if (Game.PlayOptionsFormStats.TackledBy == null)
         lblTackledByValue.Text = "";
       else
-        lblTackledByValue.Text = Game.PlayOptionsFormStats.TackledBy.GetType().Name;
+        lblTackledByValue.Text = Game.PlayOptionsFormStats.TackledBy.GetType().Name.Replace("Defender", "").Replace("Offender", "");
 
       lblResultsOfLastPlay.Text = Game.PlayOptionsFormStats.ResultsOfLastPlay;
       if(Game.PlayOptionsFormStats.BallOnYard100 > 50)
@@ -77,7 +79,7 @@ namespace FootballGame
 
     private void SetRandomWRPatterns()
     {
-      int randomPattern = Game.Random.Next(0, 3);
+      int randomPattern = Game.Random.Next(0, 5);
       switch (randomPattern)
       {
         case 0:
@@ -93,28 +95,37 @@ namespace FootballGame
           selectedPatternTop = OffenderWideReceiver.PatternEnum.PostPattern;
           break;
         case 3:
-          picReceiverTop.Image = picPostPatternTop.Image;
+          picReceiverTop.Image = picSlantPatternTop.Image;
+          selectedPatternTop = OffenderWideReceiver.PatternEnum.SlantPattern;
+          break;
+        case 4:
+          picReceiverTop.Image = picQuickOutPatternTop.Image;
+          selectedPatternTop = OffenderWideReceiver.PatternEnum.QuickOutPattern;
           break;
       }
 
-      randomPattern = Game.Random.Next(1, 4);
+      randomPattern = Game.Random.Next(0, 5);
       switch (randomPattern)
       {
-        case 1:
+        case 0:
           picReceiverBottom.Image = picButtonHookPattern.Image;
           selectedPatternBottom = OffenderWideReceiver.PatternEnum.ButtonHookPattern;
           break;
-        case 2:
+        case 1:
           picReceiverBottom.Image = picFlyPattern.Image;
           selectedPatternBottom = OffenderWideReceiver.PatternEnum.FlyPattern;
           break;
-        case 3:
+        case 2:
           picReceiverBottom.Image = picPostPattern.Image;
           selectedPatternBottom = OffenderWideReceiver.PatternEnum.PostPattern;
           break;
+        case 3:
+          picReceiverBottom.Image = picSlantPattern.Image;
+          selectedPatternBottom = OffenderWideReceiver.PatternEnum.SlantPattern;
+          break;
         case 4:
-          picReceiverBottom.Image = picPostPattern.Image;
-          selectedPatternBottom = OffenderWideReceiver.PatternEnum.PostPattern;
+          picReceiverBottom.Image = picQuickOutPattern.Image;
+          selectedPatternBottom = OffenderWideReceiver.PatternEnum.QuickOutPattern;
           break;
       }
     }

@@ -57,6 +57,10 @@
       this.lblBallOnValue = new System.Windows.Forms.Label();
       this.lblDownValue = new System.Windows.Forms.Label();
       this.lblYardsToGoValue = new System.Windows.Forms.Label();
+      this.picSlantPattern = new System.Windows.Forms.PictureBox();
+      this.picSlantPatternTop = new System.Windows.Forms.PictureBox();
+      this.picQuickOutPattern = new System.Windows.Forms.PictureBox();
+      this.picQuickOutPatternTop = new System.Windows.Forms.PictureBox();
       ((System.ComponentModel.ISupportInitialize)(this.picReceiverTop)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picPostPattern)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFlyPattern)).BeginInit();
@@ -67,6 +71,10 @@
       ((System.ComponentModel.ISupportInitialize)(this.picReceiverBottom)).BeginInit();
       this.pnlLastPlayResults.SuspendLayout();
       this.panel1.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.picSlantPattern)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picSlantPatternTop)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picQuickOutPattern)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picQuickOutPatternTop)).BeginInit();
       this.SuspendLayout();
       // 
       // picReceiverTop
@@ -82,7 +90,7 @@
       // picPostPattern
       // 
       this.picPostPattern.Image = ((System.Drawing.Image)(resources.GetObject("picPostPattern.Image")));
-      this.picPostPattern.Location = new System.Drawing.Point(-51, 261);
+      this.picPostPattern.Location = new System.Drawing.Point(-20, 250);
       this.picPostPattern.Name = "picPostPattern";
       this.picPostPattern.Size = new System.Drawing.Size(100, 100);
       this.picPostPattern.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -356,12 +364,60 @@
       this.lblYardsToGoValue.TabIndex = 9;
       this.lblYardsToGoValue.Text = "YardsToGo";
       // 
+      // picSlantPattern
+      // 
+      this.picSlantPattern.Image = ((System.Drawing.Image)(resources.GetObject("picSlantPattern.Image")));
+      this.picSlantPattern.Location = new System.Drawing.Point(208, 305);
+      this.picSlantPattern.Name = "picSlantPattern";
+      this.picSlantPattern.Size = new System.Drawing.Size(100, 100);
+      this.picSlantPattern.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picSlantPattern.TabIndex = 22;
+      this.picSlantPattern.TabStop = false;
+      this.picSlantPattern.Visible = false;
+      // 
+      // picSlantPatternTop
+      // 
+      this.picSlantPatternTop.Image = ((System.Drawing.Image)(resources.GetObject("picSlantPatternTop.Image")));
+      this.picSlantPatternTop.Location = new System.Drawing.Point(249, 305);
+      this.picSlantPatternTop.Name = "picSlantPatternTop";
+      this.picSlantPatternTop.Size = new System.Drawing.Size(100, 100);
+      this.picSlantPatternTop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picSlantPatternTop.TabIndex = 23;
+      this.picSlantPatternTop.TabStop = false;
+      this.picSlantPatternTop.Visible = false;
+      // 
+      // picQuickOutPattern
+      // 
+      this.picQuickOutPattern.Image = ((System.Drawing.Image)(resources.GetObject("picQuickOutPattern.Image")));
+      this.picQuickOutPattern.Location = new System.Drawing.Point(210, 330);
+      this.picQuickOutPattern.Name = "picQuickOutPattern";
+      this.picQuickOutPattern.Size = new System.Drawing.Size(100, 100);
+      this.picQuickOutPattern.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picQuickOutPattern.TabIndex = 24;
+      this.picQuickOutPattern.TabStop = false;
+      this.picQuickOutPattern.Visible = false;
+      // 
+      // picQuickOutPatternTop
+      // 
+      this.picQuickOutPatternTop.Image = ((System.Drawing.Image)(resources.GetObject("picQuickOutPatternTop.Image")));
+      this.picQuickOutPatternTop.Location = new System.Drawing.Point(247, 330);
+      this.picQuickOutPatternTop.Name = "picQuickOutPatternTop";
+      this.picQuickOutPatternTop.Size = new System.Drawing.Size(100, 100);
+      this.picQuickOutPatternTop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picQuickOutPatternTop.TabIndex = 25;
+      this.picQuickOutPatternTop.TabStop = false;
+      this.picQuickOutPatternTop.Visible = false;
+      // 
       // PlayOptionsForm
       // 
       this.AcceptButton = this.btnStartPlay;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.ClientSize = new System.Drawing.Size(508, 451);
+      this.Controls.Add(this.picQuickOutPatternTop);
+      this.Controls.Add(this.picQuickOutPattern);
+      this.Controls.Add(this.picSlantPatternTop);
+      this.Controls.Add(this.picSlantPattern);
       this.Controls.Add(this.label5);
       this.Controls.Add(this.panel1);
       this.Controls.Add(this.pnlLastPlayResults);
@@ -393,6 +449,10 @@
       this.pnlLastPlayResults.PerformLayout();
       this.panel1.ResumeLayout(false);
       this.panel1.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.picSlantPattern)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picSlantPatternTop)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picQuickOutPattern)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picQuickOutPatternTop)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -427,5 +487,9 @@
     private System.Windows.Forms.Label lblYardsToGoValue;
     private System.Windows.Forms.Label lblDownValue;
     private System.Windows.Forms.Label lblBallOnValue;
+    public System.Windows.Forms.PictureBox picSlantPattern;
+    public System.Windows.Forms.PictureBox picSlantPatternTop;
+    public System.Windows.Forms.PictureBox picQuickOutPattern;
+    public System.Windows.Forms.PictureBox picQuickOutPatternTop;
   }
 }
