@@ -42,21 +42,21 @@
       this.picReceiverBottom = new System.Windows.Forms.PictureBox();
       this.btnChangePatterns = new System.Windows.Forms.Button();
       this.pnlLastPlayResults = new System.Windows.Forms.Panel();
-      this.lblResultsOfLastPlayHeading = new System.Windows.Forms.Label();
-      this.lblGain = new System.Windows.Forms.Label();
+      this.lblTackledByValue = new System.Windows.Forms.Label();
+      this.lblYardGainedValue = new System.Windows.Forms.Label();
+      this.lblResultsOfLastPlay = new System.Windows.Forms.Label();
       this.lblTackledBy = new System.Windows.Forms.Label();
+      this.lblGain = new System.Windows.Forms.Label();
+      this.lblResultsOfLastPlayHeading = new System.Windows.Forms.Label();
       this.panel1 = new System.Windows.Forms.Panel();
+      this.lblYardsToGoValue = new System.Windows.Forms.Label();
+      this.lblDownValue = new System.Windows.Forms.Label();
+      this.lblBallOnValue = new System.Windows.Forms.Label();
+      this.label4 = new System.Windows.Forms.Label();
       this.label1 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
-      this.label4 = new System.Windows.Forms.Label();
       this.label5 = new System.Windows.Forms.Label();
-      this.lblResultsOfLastPlay = new System.Windows.Forms.Label();
-      this.lblYardGainedValue = new System.Windows.Forms.Label();
-      this.lblTackledByValue = new System.Windows.Forms.Label();
-      this.lblBallOnValue = new System.Windows.Forms.Label();
-      this.lblDownValue = new System.Windows.Forms.Label();
-      this.lblYardsToGoValue = new System.Windows.Forms.Label();
       this.picSlantPattern = new System.Windows.Forms.PictureBox();
       this.picSlantPatternTop = new System.Windows.Forms.PictureBox();
       this.picQuickOutPattern = new System.Windows.Forms.PictureBox();
@@ -123,7 +123,7 @@
       // btnStartPlay
       // 
       this.btnStartPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnStartPlay.Location = new System.Drawing.Point(391, 376);
+      this.btnStartPlay.Location = new System.Drawing.Point(377, 376);
       this.btnStartPlay.Name = "btnStartPlay";
       this.btnStartPlay.Size = new System.Drawing.Size(95, 54);
       this.btnStartPlay.TabIndex = 11;
@@ -213,18 +213,46 @@
       this.pnlLastPlayResults.Controls.Add(this.lblResultsOfLastPlayHeading);
       this.pnlLastPlayResults.Location = new System.Drawing.Point(241, 31);
       this.pnlLastPlayResults.Name = "pnlLastPlayResults";
-      this.pnlLastPlayResults.Size = new System.Drawing.Size(245, 90);
+      this.pnlLastPlayResults.Size = new System.Drawing.Size(231, 90);
       this.pnlLastPlayResults.TabIndex = 19;
       // 
-      // lblResultsOfLastPlayHeading
+      // lblTackledByValue
       // 
-      this.lblResultsOfLastPlayHeading.AutoSize = true;
-      this.lblResultsOfLastPlayHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lblResultsOfLastPlayHeading.Location = new System.Drawing.Point(65, 2);
-      this.lblResultsOfLastPlayHeading.Name = "lblResultsOfLastPlayHeading";
-      this.lblResultsOfLastPlayHeading.Size = new System.Drawing.Size(116, 15);
-      this.lblResultsOfLastPlayHeading.TabIndex = 0;
-      this.lblResultsOfLastPlayHeading.Text = "Results of Last Play ";
+      this.lblTackledByValue.AutoSize = true;
+      this.lblTackledByValue.ForeColor = System.Drawing.Color.DarkBlue;
+      this.lblTackledByValue.Location = new System.Drawing.Point(63, 46);
+      this.lblTackledByValue.Name = "lblTackledByValue";
+      this.lblTackledByValue.Size = new System.Drawing.Size(58, 13);
+      this.lblTackledByValue.TabIndex = 6;
+      this.lblTackledByValue.Text = "TackledBy";
+      // 
+      // lblYardGainedValue
+      // 
+      this.lblYardGainedValue.AutoSize = true;
+      this.lblYardGainedValue.ForeColor = System.Drawing.Color.DarkBlue;
+      this.lblYardGainedValue.Location = new System.Drawing.Point(73, 66);
+      this.lblYardGainedValue.Name = "lblYardGainedValue";
+      this.lblYardGainedValue.Size = new System.Drawing.Size(74, 13);
+      this.lblYardGainedValue.TabIndex = 5;
+      this.lblYardGainedValue.Text = "Yards Gained:";
+      // 
+      // lblResultsOfLastPlay
+      // 
+      this.lblResultsOfLastPlay.AutoSize = true;
+      this.lblResultsOfLastPlay.Location = new System.Drawing.Point(2, 25);
+      this.lblResultsOfLastPlay.Name = "lblResultsOfLastPlay";
+      this.lblResultsOfLastPlay.Size = new System.Drawing.Size(103, 13);
+      this.lblResultsOfLastPlay.TabIndex = 4;
+      this.lblResultsOfLastPlay.Text = "lblResultsOfLastPlay";
+      // 
+      // lblTackledBy
+      // 
+      this.lblTackledBy.AutoSize = true;
+      this.lblTackledBy.Location = new System.Drawing.Point(2, 46);
+      this.lblTackledBy.Name = "lblTackledBy";
+      this.lblTackledBy.Size = new System.Drawing.Size(64, 13);
+      this.lblTackledBy.TabIndex = 3;
+      this.lblTackledBy.Text = "Tackled By:";
       // 
       // lblGain
       // 
@@ -235,14 +263,15 @@
       this.lblGain.TabIndex = 1;
       this.lblGain.Text = "Yards Gained:";
       // 
-      // lblTackledBy
+      // lblResultsOfLastPlayHeading
       // 
-      this.lblTackledBy.AutoSize = true;
-      this.lblTackledBy.Location = new System.Drawing.Point(2, 46);
-      this.lblTackledBy.Name = "lblTackledBy";
-      this.lblTackledBy.Size = new System.Drawing.Size(64, 13);
-      this.lblTackledBy.TabIndex = 3;
-      this.lblTackledBy.Text = "Tackled By:";
+      this.lblResultsOfLastPlayHeading.AutoSize = true;
+      this.lblResultsOfLastPlayHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lblResultsOfLastPlayHeading.Location = new System.Drawing.Point(59, 2);
+      this.lblResultsOfLastPlayHeading.Name = "lblResultsOfLastPlayHeading";
+      this.lblResultsOfLastPlayHeading.Size = new System.Drawing.Size(116, 15);
+      this.lblResultsOfLastPlayHeading.TabIndex = 0;
+      this.lblResultsOfLastPlayHeading.Text = "Results of Last Play ";
       // 
       // panel1
       // 
@@ -256,8 +285,47 @@
       this.panel1.Controls.Add(this.label3);
       this.panel1.Location = new System.Drawing.Point(241, 144);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(245, 86);
+      this.panel1.Size = new System.Drawing.Size(231, 86);
       this.panel1.TabIndex = 20;
+      // 
+      // lblYardsToGoValue
+      // 
+      this.lblYardsToGoValue.AutoSize = true;
+      this.lblYardsToGoValue.ForeColor = System.Drawing.Color.DarkBlue;
+      this.lblYardsToGoValue.Location = new System.Drawing.Point(70, 63);
+      this.lblYardsToGoValue.Name = "lblYardsToGoValue";
+      this.lblYardsToGoValue.Size = new System.Drawing.Size(61, 13);
+      this.lblYardsToGoValue.TabIndex = 9;
+      this.lblYardsToGoValue.Text = "YardsToGo";
+      // 
+      // lblDownValue
+      // 
+      this.lblDownValue.AutoSize = true;
+      this.lblDownValue.ForeColor = System.Drawing.Color.DarkBlue;
+      this.lblDownValue.Location = new System.Drawing.Point(38, 44);
+      this.lblDownValue.Name = "lblDownValue";
+      this.lblDownValue.Size = new System.Drawing.Size(35, 13);
+      this.lblDownValue.TabIndex = 8;
+      this.lblDownValue.Text = "Down";
+      // 
+      // lblBallOnValue
+      // 
+      this.lblBallOnValue.AutoSize = true;
+      this.lblBallOnValue.ForeColor = System.Drawing.Color.DarkBlue;
+      this.lblBallOnValue.Location = new System.Drawing.Point(44, 26);
+      this.lblBallOnValue.Name = "lblBallOnValue";
+      this.lblBallOnValue.Size = new System.Drawing.Size(38, 13);
+      this.lblBallOnValue.TabIndex = 7;
+      this.lblBallOnValue.Text = "BallOn";
+      // 
+      // label4
+      // 
+      this.label4.AutoSize = true;
+      this.label4.Location = new System.Drawing.Point(3, 26);
+      this.label4.Name = "label4";
+      this.label4.Size = new System.Drawing.Size(44, 13);
+      this.label4.TabIndex = 4;
+      this.label4.Text = "Ball On:";
       // 
       // label1
       // 
@@ -281,20 +349,11 @@
       // 
       this.label3.AutoSize = true;
       this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label3.Location = new System.Drawing.Point(82, 2);
+      this.label3.Location = new System.Drawing.Point(78, 2);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(73, 15);
       this.label3.TabIndex = 0;
       this.label3.Text = "Current Play";
-      // 
-      // label4
-      // 
-      this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(3, 26);
-      this.label4.Name = "label4";
-      this.label4.Size = new System.Drawing.Size(44, 13);
-      this.label4.TabIndex = 4;
-      this.label4.Text = "Ball On:";
       // 
       // label5
       // 
@@ -304,65 +363,6 @@
       this.label5.Size = new System.Drawing.Size(130, 13);
       this.label5.TabIndex = 21;
       this.label5.Text = "TODO Current Drive Stats";
-      // 
-      // lblResultsOfLastPlay
-      // 
-      this.lblResultsOfLastPlay.AutoSize = true;
-      this.lblResultsOfLastPlay.Location = new System.Drawing.Point(2, 25);
-      this.lblResultsOfLastPlay.Name = "lblResultsOfLastPlay";
-      this.lblResultsOfLastPlay.Size = new System.Drawing.Size(103, 13);
-      this.lblResultsOfLastPlay.TabIndex = 4;
-      this.lblResultsOfLastPlay.Text = "lblResultsOfLastPlay";
-      // 
-      // lblYardGainedValue
-      // 
-      this.lblYardGainedValue.AutoSize = true;
-      this.lblYardGainedValue.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblYardGainedValue.Location = new System.Drawing.Point(73, 66);
-      this.lblYardGainedValue.Name = "lblYardGainedValue";
-      this.lblYardGainedValue.Size = new System.Drawing.Size(74, 13);
-      this.lblYardGainedValue.TabIndex = 5;
-      this.lblYardGainedValue.Text = "Yards Gained:";
-      // 
-      // lblTackledByValue
-      // 
-      this.lblTackledByValue.AutoSize = true;
-      this.lblTackledByValue.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblTackledByValue.Location = new System.Drawing.Point(63, 46);
-      this.lblTackledByValue.Name = "lblTackledByValue";
-      this.lblTackledByValue.Size = new System.Drawing.Size(58, 13);
-      this.lblTackledByValue.TabIndex = 6;
-      this.lblTackledByValue.Text = "TackledBy";
-      // 
-      // lblBallOnValue
-      // 
-      this.lblBallOnValue.AutoSize = true;
-      this.lblBallOnValue.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblBallOnValue.Location = new System.Drawing.Point(44, 26);
-      this.lblBallOnValue.Name = "lblBallOnValue";
-      this.lblBallOnValue.Size = new System.Drawing.Size(38, 13);
-      this.lblBallOnValue.TabIndex = 7;
-      this.lblBallOnValue.Text = "BallOn";
-      // 
-      // lblDownValue
-      // 
-      this.lblDownValue.AutoSize = true;
-      this.lblDownValue.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblDownValue.Location = new System.Drawing.Point(38, 44);
-      this.lblDownValue.Name = "lblDownValue";
-      this.lblDownValue.Size = new System.Drawing.Size(35, 13);
-      this.lblDownValue.TabIndex = 8;
-      this.lblDownValue.Text = "Down";
-      // 
-      // lblYardsToGoValue
-      // 
-      this.lblYardsToGoValue.AutoSize = true;
-      this.lblYardsToGoValue.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblYardsToGoValue.Location = new System.Drawing.Point(70, 63);
-      this.lblYardsToGoValue.Name = "lblYardsToGoValue";
-      this.lblYardsToGoValue.Size = new System.Drawing.Size(61, 13);
-      this.lblYardsToGoValue.TabIndex = 9;
-      this.lblYardsToGoValue.Text = "YardsToGo";
       // 
       // picSlantPattern
       // 
@@ -413,7 +413,7 @@
       this.AcceptButton = this.btnStartPlay;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(508, 451);
+      this.ClientSize = new System.Drawing.Size(493, 451);
       this.Controls.Add(this.picQuickOutPatternTop);
       this.Controls.Add(this.picQuickOutPattern);
       this.Controls.Add(this.picSlantPatternTop);

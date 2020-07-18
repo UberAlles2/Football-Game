@@ -105,11 +105,11 @@ namespace FootballGame
 
       OffenderOutsideLinemanTop offenderOutsideLinemanTop = new OffenderOutsideLinemanTop();
       offenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
-      Player.AddPlayer(offenderOutsideLinemanTop, initlineX, FieldCenterY - 90, ParentForm.Player1);
+      Player.AddPlayer(offenderOutsideLinemanTop, initlineX, FieldCenterY - 96, ParentForm.Player1);
 
       OffenderLinemanUpper offenderLinemanUpper = new OffenderLinemanUpper();
       offenderLinemanUpper.VerticalPosition = VerticalPosition.PositionMiddle;
-      Player.AddPlayer(offenderLinemanUpper, initlineX, FieldCenterY - 58, ParentForm.Player1);
+      Player.AddPlayer(offenderLinemanUpper, initlineX, FieldCenterY - 52, ParentForm.Player1);
 
       OffenderLinemanCenter offenderLinemanCenter = new OffenderLinemanCenter();
       offenderLinemanCenter.VerticalPosition = VerticalPosition.PositionMiddle;
@@ -117,11 +117,11 @@ namespace FootballGame
 
       OffenderLinemanLower offenderLinemanLower = new OffenderLinemanLower();
       offenderLinemanLower.VerticalPosition = VerticalPosition.PositionMiddle;
-      Player.AddPlayer(offenderLinemanLower, initlineX, FieldCenterY + 58, ParentForm.Player1);
+      Player.AddPlayer(offenderLinemanLower, initlineX, FieldCenterY + 52, ParentForm.Player1);
 
       OffenderOutsideLinemanBottom offenderOutsideLinemanBottom = new OffenderOutsideLinemanBottom();
       offenderOutsideLinemanBottom.VerticalPosition = VerticalPosition.PositionBottom;
-      Player.AddPlayer(offenderOutsideLinemanBottom, initlineX, FieldCenterY + 90, ParentForm.Player1);
+      Player.AddPlayer(offenderOutsideLinemanBottom, initlineX, FieldCenterY + 96, ParentForm.Player1);
 
       Player.AddPlayer(offenderWideReceiverBottom, initlineX, FieldCenterY + 220, ParentForm.Player1);
 
@@ -133,11 +133,11 @@ namespace FootballGame
 
       DefenderOutsideLinemanTop defenderOutsideLinemanTop = new DefenderOutsideLinemanTop();
       defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
-      Player.AddPlayer(defenderOutsideLinemanTop, initlineX, FieldCenterY - 160, ParentForm.Player2, initialOffsetY: -250);
+      Player.AddPlayer(defenderOutsideLinemanTop, initlineX, FieldCenterY - 152, ParentForm.Player2, initialOffsetY: -250);
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen; // TODO take out
 
       DefenderLinemanUpper defenderLinemanUpper = new DefenderLinemanUpper();
-      Player.AddPlayer(defenderLinemanUpper, initlineX, FieldCenterY - 61, ParentForm.Player2, initialOffsetY: -90);
+      Player.AddPlayer(defenderLinemanUpper, initlineX, FieldCenterY - 60, ParentForm.Player2, initialOffsetY: -90);
       defenderLinemanUpper.PicBox.BackColor = Color.LightBlue; // TODO take out
 
         // Middle Linebacker
@@ -151,12 +151,12 @@ namespace FootballGame
         defenderSafety.PicBox.BackColor = Color.HotPink; // TODO take out
 
       DefenderLinemanLower defenderLinemanLower = new DefenderLinemanLower();
-      Player.AddPlayer(defenderLinemanLower, initlineX, FieldCenterY + 63, ParentForm.Player2, initialOffsetY: 92);
+      Player.AddPlayer(defenderLinemanLower, initlineX, FieldCenterY + 62, ParentForm.Player2, initialOffsetY: 92);
       defenderLinemanLower.PicBox.BackColor = Color.DarkBlue; // TODO take out
 
       DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = new DefenderOutsideLinemanBottom();
       defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionBottom;
-      Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, FieldCenterY + 160, ParentForm.Player2, initialOffsetY: 250);
+      Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, FieldCenterY + 152, ParentForm.Player2, initialOffsetY: 250);
       defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen; // TODO take out
 
       DefenderCornerbackBottom defenderCornerbackBottom = new DefenderCornerbackBottom();
@@ -217,7 +217,7 @@ namespace FootballGame
 
     private void ChoosePlay()
     {
-      PlayOptionsForm.Location = new Point(ParentForm.Left + 220, ParentForm.Top + 160);
+      PlayOptionsForm.Location = new Point(ParentForm.Left + 660, ParentForm.Top + 160);
       PlayOptionsForm.ShowDialog();
       Scoreboard.CountDownTimer.Start();
     }
