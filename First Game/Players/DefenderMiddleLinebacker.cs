@@ -12,20 +12,28 @@ namespace FootballGame
   {
     public override void Initialize()
     {
+      int shortYardage = 0;
+      
       SpeedCap = 116;
       Intelligence = 10;
       TargetPlayer = ControllablePlayer;
 
       base.Initialize();
 
-      if (Random.Next(0, 12) < 3)
+      if(Game.PlayOptionsFormStats.YardsToGo < 2) // Short yardage play
+      {
+        Left = InitialLeft - 80;
+        ChangeX = -12;
+        shortYardage = 3; // More likely to blitz
+      }
+
+      if (Random.Next(0, 12) < 3 + shortYardage)
       {
         Intelligence = 9; // Mixed in with blocker less intelligence
         DefensiveMode = DefensiveMode.Blitz;
         Top = Game.FieldCenterY - 40;
-        Left = InitialLeft;
       }
-      else if (Random.Next(0, 10) < 8)
+      else if (Random.Next(0, 10) < 8 + shortYardage)
         DefensiveMode = DefensiveMode.Normal;
       else
         DefensiveMode = DefensiveMode.Soft;

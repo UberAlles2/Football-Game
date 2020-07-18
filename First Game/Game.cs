@@ -137,7 +137,7 @@ namespace FootballGame
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen; // TODO take out
 
       DefenderLinemanUpper defenderLinemanUpper = new DefenderLinemanUpper();
-      Player.AddPlayer(defenderLinemanUpper, initlineX, FieldCenterY - 60, ParentForm.Player2, initialOffsetY: -90);
+      Player.AddPlayer(defenderLinemanUpper, initlineX, FieldCenterY - 52, ParentForm.Player2, initialOffsetY: -88);
       defenderLinemanUpper.PicBox.BackColor = Color.LightBlue; // TODO take out
 
         // Middle Linebacker
@@ -151,7 +151,7 @@ namespace FootballGame
         defenderSafety.PicBox.BackColor = Color.HotPink; // TODO take out
 
       DefenderLinemanLower defenderLinemanLower = new DefenderLinemanLower();
-      Player.AddPlayer(defenderLinemanLower, initlineX, FieldCenterY + 62, ParentForm.Player2, initialOffsetY: 92);
+      Player.AddPlayer(defenderLinemanLower, initlineX, FieldCenterY + 52, ParentForm.Player2, initialOffsetY: 90);
       defenderLinemanLower.PicBox.BackColor = Color.DarkBlue; // TODO take out
 
       DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = new DefenderOutsideLinemanBottom();
@@ -257,7 +257,7 @@ namespace FootballGame
         PlayOptionsFormStats.Down++;
       
 
-      if(PlayOptionsFormStats.YardsToGo < 0)
+      if(PlayOptionsFormStats.YardsToGo < 0.05)
       {
         PlayOptionsFormStats.YardsToGo = 10;
         PlayOptionsFormStats.Down = 1;
@@ -299,7 +299,7 @@ namespace FootballGame
       if (IsKeyDown(Keys.Left)) // <<<-------
       {
         if(Player.ControllablePlayer.ChangeX > 30) // Moving Right -->>
-          Player.ControllablePlayer.ChangeX -= 14;
+          Player.ControllablePlayer.ChangeX -= 16;
         else if (Player.ControllablePlayer.ChangeX < 40) // Moving Left <<--
           Player.ControllablePlayer.ChangeX -= 4;
         else
@@ -310,7 +310,7 @@ namespace FootballGame
       if (IsKeyDown(Keys.Right)) // ------->>>
       {
         if (Player.ControllablePlayer.ChangeX < 30) // Moving Left <<--
-          Player.ControllablePlayer.ChangeX += 14;
+          Player.ControllablePlayer.ChangeX += 16;
         else if (Player.ControllablePlayer.ChangeX > 40) // Moving Right -->>
           Player.ControllablePlayer.ChangeX += 4;
         else
@@ -321,7 +321,7 @@ namespace FootballGame
       if (IsKeyDown(Keys.Up)) //^^^^^
       {
         if (Player.ControllablePlayer.ChangeY > 30) // Moving Down vvvv
-          Player.ControllablePlayer.ChangeY -= 14;
+          Player.ControllablePlayer.ChangeY -= 16;
         else if (Player.ControllablePlayer.ChangeY < 40) // Moving Up ^^^^
           Player.ControllablePlayer.ChangeY -= 4;
         else
@@ -332,7 +332,7 @@ namespace FootballGame
       if (IsKeyDown(Keys.Down)) //vvvvv
       {
         if (Player.ControllablePlayer.ChangeY < 30) // Moving Up ^^^^
-          Player.ControllablePlayer.ChangeY += 14;
+          Player.ControllablePlayer.ChangeY += 16;
         else if (Player.ControllablePlayer.ChangeY > 40) // Moving Down ^^^^
           Player.ControllablePlayer.ChangeY += 4;
         else
@@ -345,14 +345,20 @@ namespace FootballGame
         Player.ControllablePlayer.ChangeY = Player.ControllablePlayer.ChangeY - (8 * Math.Sign(Player.ControllablePlayer.ChangeY));
       }
 
-      if (Math.Abs(Player.ControllablePlayer.ChangeX) > Player.ControllablePlayer.SpeedCap - 30)
+      if (Math.Abs(Player.ControllablePlayer.ChangeX) + Math.Abs(Player.ControllablePlayer.ChangeY) > Player.ControllablePlayer.SpeedCap * 2 - 60)
       {
         Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 36) * Math.Sign(Player.ControllablePlayer.ChangeX);
-      }
-      if (Math.Abs(Player.ControllablePlayer.ChangeY) > Player.ControllablePlayer.SpeedCap - 30)
-      {
         Player.ControllablePlayer.ChangeY = (Player.ControllablePlayer.SpeedCap - 36) * Math.Sign(Player.ControllablePlayer.ChangeY);
       }
+
+      //if (Math.Abs(Player.ControllablePlayer.ChangeX) > Player.ControllablePlayer.SpeedCap - 30)
+      //{
+      //  Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 36) * Math.Sign(Player.ControllablePlayer.ChangeX);
+      //}
+      //if (Math.Abs(Player.ControllablePlayer.ChangeY) > Player.ControllablePlayer.SpeedCap - 30)
+      //{
+      //  Player.ControllablePlayer.ChangeY = (Player.ControllablePlayer.SpeedCap - 36) * Math.Sign(Player.ControllablePlayer.ChangeY);
+      //}
 
       Player.ControllablePlayer.Move();
 
