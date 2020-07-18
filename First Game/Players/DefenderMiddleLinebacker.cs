@@ -24,16 +24,23 @@ namespace FootballGame
       {
         Left = InitialLeft - 80;
         ChangeX = -12;
-        shortYardage = 3; // More likely to blitz
+        shortYardage = 4; // More likely to blitz
+      }
+      if (Game.PlayOptionsFormStats.YardsToGo > 12) // Long yardage play
+      {
+        Left = InitialLeft + 20;
+        ChangeX = +6;
+        shortYardage = -4; // More likely to play soft
       }
 
-      if (Random.Next(0, 12) < 3 + shortYardage)
+      int r = Random.Next(0, 12);
+      if (r < (3 + shortYardage))
       {
         Intelligence = 9; // Mixed in with blocker less intelligence
         DefensiveMode = DefensiveMode.Blitz;
         Top = Game.FieldCenterY - 40;
       }
-      else if (Random.Next(0, 10) < 8 + shortYardage)
+      else if (r < (9 + shortYardage))
         DefensiveMode = DefensiveMode.Normal;
       else
         DefensiveMode = DefensiveMode.Soft;

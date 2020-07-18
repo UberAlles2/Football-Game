@@ -126,6 +126,7 @@ namespace FootballGame
           }
           else
           { // Caught, run with ball.
+            SpeedCap = 104; // run a slight bit slower.
             ControllablePlayer.HasBall = false;
             HasBall = true;
             PicBox.Image = ParentForm.picBearsBall.Image;
