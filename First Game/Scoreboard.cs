@@ -20,7 +20,7 @@ namespace FootballGame
     {
       ScoreboardLetters = ParentForm.picScoreboardLetters.Image;
       ParentForm.picScoreboardLetters.Visible = false;
-      CountDownTimer.TimeChanged = DisplayClock;
+      CountDownTimer.TimeChanged = DisplayClock; 
 
       // Create all the pictureboxes
       for (int i = 0; i < 48; i++)
@@ -127,8 +127,8 @@ namespace FootballGame
   {
     public Stopwatch _stpWatch = new Stopwatch();
 
-    public Action TimeChanged;       // Set this delegate to an Action method that gets called when the time ticks. (Every one second default.)
-    public Action CountDownFinished; // Set this delegate to an Action method that gets called when the time expires.
+    public Action TimeChanged; // Set this delegate to an Action method that gets called when the time ticks. (Every one second default.)
+    public Action TimeExpired; // Set this delegate to an Action method that gets called when the time expires.
 
     public bool IsRunnign => timer.Enabled;
 
@@ -153,7 +153,7 @@ namespace FootballGame
 
       if (_mustStop)
       {
-        CountDownFinished?.Invoke();
+        TimeExpired?.Invoke();
         _stpWatch.Stop();
         timer.Enabled = false;
       }

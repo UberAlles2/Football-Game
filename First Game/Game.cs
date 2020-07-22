@@ -10,11 +10,11 @@ using System.Windows.Forms;
 using Drake.Tools;
 
 /* To Do List
- * Middle linebacker isn't intercepting and colliding with the ball
- * Add ball on indicator if in opposing territory
+ * 
+ * 
  * Add more WR patterns
  * Only allow so much time, 20 seconds to choose a play.
- * 
+ * Draw end zones 
  * 
  * 
  * 
@@ -314,7 +314,7 @@ namespace FootballGame
     {
       bool keypressed = false;
 
-      if (PlayEnded) // Stop the player from moving after pay ends.
+      if (PlayEnded) // Stop the player from moving after play ends.
       {
         Player.ControllablePlayer.ChangeX = 0; 
         Player.ControllablePlayer.ChangeY = 0;
@@ -323,12 +323,12 @@ namespace FootballGame
 
       if (IsKeyDown(Keys.Left)) // <<<-------
       {
-        if(Player.ControllablePlayer.ChangeX > 30) // Moving Right -->>
+        if(Player.ControllablePlayer.ChangeX > 30) // Moving Right -->> // Easier to hit the brakes and change speed.
           Player.ControllablePlayer.ChangeX -= 16;
-        else if (Player.ControllablePlayer.ChangeX < 40) // Moving Left <<--
+        else if (Player.ControllablePlayer.ChangeX < 40) // Moving Left <<-- // Harder to gain speed when approching max speed.
           Player.ControllablePlayer.ChangeX -= 4;
         else
-          Player.ControllablePlayer.ChangeX -= 8;
+          Player.ControllablePlayer.ChangeX -= 8; // Normal speed change
 
         keypressed = true;
       }
@@ -370,20 +370,12 @@ namespace FootballGame
         Player.ControllablePlayer.ChangeY = Player.ControllablePlayer.ChangeY - (8 * Math.Sign(Player.ControllablePlayer.ChangeY));
       }
 
+      // lessen the speed if near maxing x and Y movement.
       if (Math.Abs(Player.ControllablePlayer.ChangeX) + Math.Abs(Player.ControllablePlayer.ChangeY) > Player.ControllablePlayer.SpeedCap * 2 - 60)
       {
         Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 36) * Math.Sign(Player.ControllablePlayer.ChangeX);
         Player.ControllablePlayer.ChangeY = (Player.ControllablePlayer.SpeedCap - 36) * Math.Sign(Player.ControllablePlayer.ChangeY);
       }
-
-      //if (Math.Abs(Player.ControllablePlayer.ChangeX) > Player.ControllablePlayer.SpeedCap - 30)
-      //{
-      //  Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 36) * Math.Sign(Player.ControllablePlayer.ChangeX);
-      //}
-      //if (Math.Abs(Player.ControllablePlayer.ChangeY) > Player.ControllablePlayer.SpeedCap - 30)
-      //{
-      //  Player.ControllablePlayer.ChangeY = (Player.ControllablePlayer.SpeedCap - 36) * Math.Sign(Player.ControllablePlayer.ChangeY);
-      //}
 
       Player.ControllablePlayer.Move();
 

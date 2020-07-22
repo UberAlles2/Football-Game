@@ -12,12 +12,11 @@ namespace FootballGame
 {
   public partial class PlayOptionsForm : Form
   {
-    private Game ParentGame;
+    public static CountDownTimer CountDownTimer;
 
     public PlayOptionsForm(Game parentGame)
     {
       InitializeComponent();
-      ParentGame = parentGame;
       // We only have 3 pictures, the top ones are the bottom ones flipped.
       picButtonHookPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY); 
       picFlyPatternTop.Image.RotateFlip(RotateFlipType.RotateNoneFlipY);
@@ -31,6 +30,19 @@ namespace FootballGame
     {
       DisplayStats();
       SetRandomWRPatterns();
+      CountDownTimer = new CountDownTimer(0, 20); // 20 seconds to choose a play.
+      CountDownTimer.TimeChanged = TimeChanged;
+      CountDownTimer.TimeExpired = TimeExpired;
+      CountDownTimer.Start();
+    }
+
+    public void TimeChanged()
+    {
+      lblTimeLeft.Text = CountDownTimer.TimeLeftSecondsString;
+    }
+    public void TimeExpired()
+    {
+      btnStartPlay_Click(this, null);
     }
 
     private void btnStartPlay_Click(object sender, EventArgs e)
