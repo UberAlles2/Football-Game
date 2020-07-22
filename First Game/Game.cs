@@ -35,7 +35,8 @@ namespace FootballGame
     OutOfBounds,
     Incomplete,
     Dropped,
-    Intercepted
+    Intercepted,
+    Punted
   }
 
   public class Game
@@ -72,7 +73,7 @@ namespace FootballGame
 
       // Set initial values and Display them.
       LineOfScrimageYard = 20; // 1 - 100; 
-      PlayOptionsFormStats.Down = 1;
+      PlayOptionsFormStats.Down = 4;
       PlayOptionsFormStats.YardsToGo = 10;
       PlayOptionsFormStats.BallOnYard = 20;
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
@@ -198,6 +199,16 @@ namespace FootballGame
       {
         if(PlayEnded)
         {
+          if(PlayOptionsFormStats.Down == 4)
+          {
+            DialogResult result =  MessageBox.Show("Punt?", "Football", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            if(result == DialogResult.Yes)
+            {
+              PlayEnded = false;
+              EndPlay(EndPlayType.Punted, null, "");
+            }
+          }
+
           ChoosePlay();
           InitializePlayers();
           PlayEnded = false;
@@ -226,11 +237,13 @@ namespace FootballGame
     {
       if (PlayEnded) // Play ended by another player
         return;
+      else 
+        PlayEnded = true;
 
-      if (endPlayType != EndPlayType.Tackled)
+      // Stopping the clock   
+      if (endPlayType != EndPlayType.Tackled || endPlayType != EndPlayType.Intercepted || endPlayType != EndPlayType.Punted || endPlayType == EndPlayType.OutOfBounds)
         Scoreboard.CountDownTimer.Stop();
 
-      PlayEnded = true;
       PlayOptionsFormStats.YardsGained = 0;
       if (endPlayType == EndPlayType.Tackled || endPlayType == EndPlayType.OutOfBounds)
       {
@@ -238,6 +251,19 @@ namespace FootballGame
         PlayOptionsFormStats.TackledBy = tackledBy;
         LineOfScrimageYard += PlayOptionsFormStats.YardsGained;
         PlayOptionsFormStats.YardsToGo -= PlayOptionsFormStats.YardsGained;
+      }
+      else if (endPlayType == EndPlayType.Punted)
+      {
+        if(PlayOptionsFormStats.BallOnYard < 20)
+          PlayOptionsFormStats.YardsGained -= (13 + Random.Next(0, 5));
+        else
+          PlayOptionsFormStats.YardsGained -= (18 + Random.Next(0, 5));
+
+        PlayOptionsFormStats.TackledBy = null;
+        LineOfScrimageYard += (PlayOptionsFormStats.YardsGained);
+        PlayOptionsFormStats.YardsToGo = 10;
+        PlayOptionsFormStats.Down = 0;
+        message = "Punted, a loss of " + Math.Abs(PlayOptionsFormStats.YardsGained).ToString("00") + " yards on change of possesion."; 
       }
       else
         PlayOptionsFormStats.TackledBy = null;
@@ -255,7 +281,6 @@ namespace FootballGame
 
       if (PlayOptionsFormStats.Down < 4)
         PlayOptionsFormStats.Down++;
-      
 
       if(PlayOptionsFormStats.YardsToGo < 0.05)
       {

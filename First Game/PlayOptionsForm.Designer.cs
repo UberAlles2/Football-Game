@@ -123,7 +123,7 @@
       // btnStartPlay
       // 
       this.btnStartPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnStartPlay.Location = new System.Drawing.Point(377, 376);
+      this.btnStartPlay.Location = new System.Drawing.Point(415, 376);
       this.btnStartPlay.Name = "btnStartPlay";
       this.btnStartPlay.Size = new System.Drawing.Size(95, 54);
       this.btnStartPlay.TabIndex = 11;
@@ -213,7 +213,7 @@
       this.pnlLastPlayResults.Controls.Add(this.lblResultsOfLastPlayHeading);
       this.pnlLastPlayResults.Location = new System.Drawing.Point(241, 31);
       this.pnlLastPlayResults.Name = "pnlLastPlayResults";
-      this.pnlLastPlayResults.Size = new System.Drawing.Size(231, 90);
+      this.pnlLastPlayResults.Size = new System.Drawing.Size(269, 90);
       this.pnlLastPlayResults.TabIndex = 19;
       // 
       // lblTackledByValue
@@ -285,7 +285,7 @@
       this.panel1.Controls.Add(this.label3);
       this.panel1.Location = new System.Drawing.Point(241, 144);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(231, 86);
+      this.panel1.Size = new System.Drawing.Size(269, 86);
       this.panel1.TabIndex = 20;
       // 
       // lblYardsToGoValue
@@ -413,7 +413,7 @@
       this.AcceptButton = this.btnStartPlay;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(493, 451);
+      this.ClientSize = new System.Drawing.Size(530, 451);
       this.Controls.Add(this.picQuickOutPatternTop);
       this.Controls.Add(this.picQuickOutPattern);
       this.Controls.Add(this.picSlantPatternTop);
