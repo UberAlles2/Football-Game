@@ -47,7 +47,7 @@ namespace FootballGame
 
     private void btnStartPlay_Click(object sender, EventArgs e)
     {
-      Close();
+      this.Close();
     }
 
     private void btnChangePatterns_Click(object sender, EventArgs e)

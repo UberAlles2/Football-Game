@@ -45,11 +45,6 @@ namespace FootballGame
       MouseEventArgs mouseEventArgs = new MouseEventArgs(MouseButtons.Left, 1, e.Location.X, e.Location.Y + 64, 0);
       Form1_MouseClick(sender, mouseEventArgs);
     }
-    //private void lblTopSideline_MouseClick(object sender, MouseEventArgs e)
-    //{
-    //  MouseEventArgs mouseEventArgs = new MouseEventArgs(MouseButtons.Left, 1, e.Location.X, e.Location.Y + 64, 0);
-    //  Form1_MouseClick(sender, mouseEventArgs);
-    //}
     private void lblBottomSideline_MouseClick(object sender, MouseEventArgs e)
     {
       MouseEventArgs mouseEventArgs = new MouseEventArgs(MouseButtons.Left, 1, e.Location.X, e.Location.Y + Height - 56, 0);
@@ -58,7 +53,16 @@ namespace FootballGame
 
     private void Form1_Paint(object sender, PaintEventArgs e)
     {
-      game.PaintScrimmageAndFirstDownLines(sender, e);       
+      DrawPlayingField.PaintScrimmageAndFirstDownLines(sender, e);       
+    }
+
+    private void picEndZoneLeft_Paint(object sender, PaintEventArgs e)
+    {
+      Graphics g = e.Graphics;
+
+      Player.ControllablePlayer.PicBox.SendToBack();
+      if(picEndZoneLeft.Bounds.IntersectsWith(Player.ControllablePlayer.PicBox.Bounds))
+        g.DrawImage(Player.ControllablePlayer.PicBox.Image, Player.ControllablePlayer.PicBox.Location.X - picEndZoneLeft.Left, Player.ControllablePlayer.PicBox.Location.Y - picEndZoneLeft.Top, Player.ControllablePlayer.PicBox.Width, Player.ControllablePlayer.PicBox.Height);
     }
   }
 }

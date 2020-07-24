@@ -13,7 +13,7 @@ using Drake.Tools;
  * 
  * 
  * Add more WR patterns
- * Only allow so much time, 20 seconds to choose a play.
+ * 
  * Draw end zones 
  * 
  * 
@@ -68,16 +68,16 @@ namespace FootballGame
       Player.ParentForm = form1;
       Player.ParentGame = this;
       Scoreboard.ParentForm = form1;
-      Sideline.ParentForm = form1;
-      PlayOptionsForm = new PlayOptionsForm(this);
+      DrawPlayingField.ParentForm = form1;
+      DrawPlayingField.ParentGame = this;
 
       // Set initial values and Display them.
-      LineOfScrimageYard = 20; // 1 - 100; 
-      PlayOptionsFormStats.Down = 4;
+      LineOfScrimageYard = 2; // 1 - 100; 
+      PlayOptionsFormStats.Down = 1;
       PlayOptionsFormStats.YardsToGo = 10;
-      PlayOptionsFormStats.BallOnYard = 20;
+      PlayOptionsFormStats.BallOnYard = 1; // 1 - 50
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
-      Sideline.InitializeDrawing();   // Draw the starting sideline
+      DrawPlayingField.InitializeDrawing(LineOfScrimageYard);   // Draw the starting sideline
 
       // Initialize field dimensions
       FieldBounds = new Rectangle(0, ParentForm.pnlScoreboard.Height + 30, ParentForm.Width - ParentForm.Player1.Width, ParentForm.Height - ParentForm.pnlScoreboard.Height - 36);
@@ -228,6 +228,7 @@ namespace FootballGame
 
     private void ChoosePlay()
     {
+      PlayOptionsForm = new PlayOptionsForm(this);
       PlayOptionsForm.Location = new Point(ParentForm.Left + 660, ParentForm.Top + 160);
       PlayOptionsForm.ShowDialog();
       Scoreboard.CountDownTimer.Start();
@@ -272,11 +273,11 @@ namespace FootballGame
 
       if (LineOfScrimageYard < 0)
       {
-        LineOfScrimageYard = -1; // Safety
+        LineOfScrimageYard = 0; // Safety
       }
       if (LineOfScrimageYard > 100)
       {
-        LineOfScrimageYard = 101; // Touchdown
+        LineOfScrimageYard = 100; // Touchdown
       }
 
       if (PlayOptionsFormStats.Down < 4)
@@ -300,7 +301,7 @@ namespace FootballGame
       //else
       //  MessageBox.Show(message + Environment.NewLine + "No gain");
 
-      Sideline.DisplaySideline(LineOfScrimageYard);
+      DrawPlayingField.DrawTopSideline(LineOfScrimageYard);
       ParentForm.Invalidate();
     }
 
@@ -397,17 +398,6 @@ namespace FootballGame
         if(!Player.IsThrowing)
           ballAsPlayer.ThrowBall(Player.ControllablePlayer.Left + 16, Player.ControllablePlayer.Top + 16, e.Location.Y, e.Location.X);   
       }
-    }
-
-    public void PaintScrimmageAndFirstDownLines(object sender, PaintEventArgs e) //TODO move to PlayingFieldDrawing class
-    {
-      // Scrimmage
-      Pen pen = new Pen(Color.FromArgb(255, 128, 128, 255));
-      e.Graphics.DrawLine(pen, Game.LineOfScrimagePixel, 0, Game.LineOfScrimagePixel, ParentForm.Height - 62);
-      // First Down
-      pen = new Pen(Color.FromArgb(255, 255, 255, 0));
-      int firstDownMarker = LineOfScrimagePixel + ((int)PlayOptionsFormStats.YardsToGo * (int)PixalsInYard);
-      e.Graphics.DrawLine(pen, firstDownMarker, 0, firstDownMarker, ParentForm.Height -62);
     }
 
     public void CheckCollisions(List<Player> players)

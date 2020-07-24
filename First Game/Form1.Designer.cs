@@ -45,6 +45,8 @@
       this.Player1 = new System.Windows.Forms.PictureBox();
       this.lblBottomSideline = new System.Windows.Forms.Label();
       this.picSidelineYardage = new System.Windows.Forms.PictureBox();
+      this.picEndZoneLeft = new System.Windows.Forms.PictureBox();
+      this.lblLeftSideLine = new System.Windows.Forms.Label();
       this.pnlScoreboard.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.picFullSidelineYardage)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picScoreboardLetters)).BeginInit();
@@ -53,6 +55,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.Player2)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picSidelineYardage)).BeginInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picEndZoneLeft)).BeginInit();
       this.SuspendLayout();
       // 
       // pnlScoreboard
@@ -172,8 +175,9 @@
       // 
       // picFootball
       // 
+      this.picFootball.BackColor = System.Drawing.Color.Transparent;
       this.picFootball.Image = ((System.Drawing.Image)(resources.GetObject("picFootball.Image")));
-      this.picFootball.Location = new System.Drawing.Point(29, 299);
+      this.picFootball.Location = new System.Drawing.Point(105, 337);
       this.picFootball.Name = "picFootball";
       this.picFootball.Size = new System.Drawing.Size(24, 24);
       this.picFootball.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -182,8 +186,9 @@
       // 
       // picBearsBall
       // 
+      this.picBearsBall.BackColor = System.Drawing.Color.Transparent;
       this.picBearsBall.Image = ((System.Drawing.Image)(resources.GetObject("picBearsBall.Image")));
-      this.picBearsBall.Location = new System.Drawing.Point(21, 261);
+      this.picBearsBall.Location = new System.Drawing.Point(146, 312);
       this.picBearsBall.Name = "picBearsBall";
       this.picBearsBall.Size = new System.Drawing.Size(32, 32);
       this.picBearsBall.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -193,6 +198,7 @@
       // 
       // Player2
       // 
+      this.Player2.BackColor = System.Drawing.Color.Transparent;
       this.Player2.Image = ((System.Drawing.Image)(resources.GetObject("Player2.Image")));
       this.Player2.Location = new System.Drawing.Point(21, 329);
       this.Player2.Name = "Player2";
@@ -204,8 +210,9 @@
       // 
       // Player1
       // 
+      this.Player1.BackColor = System.Drawing.Color.Transparent;
       this.Player1.Image = ((System.Drawing.Image)(resources.GetObject("Player1.Image")));
-      this.Player1.Location = new System.Drawing.Point(29, 223);
+      this.Player1.Location = new System.Drawing.Point(146, 243);
       this.Player1.Name = "Player1";
       this.Player1.Size = new System.Drawing.Size(32, 32);
       this.Player1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -232,19 +239,41 @@
       this.picSidelineYardage.TabStop = false;
       this.picSidelineYardage.MouseClick += new System.Windows.Forms.MouseEventHandler(this.picSidelineYardage_MouseClick);
       // 
+      // picEndZoneLeft
+      // 
+      this.picEndZoneLeft.BackColor = System.Drawing.Color.Transparent;
+      this.picEndZoneLeft.Image = ((System.Drawing.Image)(resources.GetObject("picEndZoneLeft.Image")));
+      this.picEndZoneLeft.Location = new System.Drawing.Point(117, 140);
+      this.picEndZoneLeft.Name = "picEndZoneLeft";
+      this.picEndZoneLeft.Size = new System.Drawing.Size(86, 553);
+      this.picEndZoneLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+      this.picEndZoneLeft.TabIndex = 9;
+      this.picEndZoneLeft.TabStop = false;
+      this.picEndZoneLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.picEndZoneLeft_Paint);
+      // 
+      // lblLeftSideLine
+      // 
+      this.lblLeftSideLine.BackColor = System.Drawing.Color.White;
+      this.lblLeftSideLine.Location = new System.Drawing.Point(87, 95);
+      this.lblLeftSideLine.Name = "lblLeftSideLine";
+      this.lblLeftSideLine.Size = new System.Drawing.Size(3, 629);
+      this.lblLeftSideLine.TabIndex = 10;
+      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
       this.BackColor = System.Drawing.Color.Green;
       this.ClientSize = new System.Drawing.Size(1260, 757);
-      this.Controls.Add(this.picSidelineYardage);
-      this.Controls.Add(this.pnlScoreboard);
+      this.Controls.Add(this.Player2);
       this.Controls.Add(this.picBearsBall);
       this.Controls.Add(this.picFootball);
-      this.Controls.Add(this.Player2);
       this.Controls.Add(this.Player1);
+      this.Controls.Add(this.picSidelineYardage);
+      this.Controls.Add(this.pnlScoreboard);
       this.Controls.Add(this.lblBottomSideline);
+      this.Controls.Add(this.lblLeftSideLine);
+      this.Controls.Add(this.picEndZoneLeft);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
       this.Name = "Form1";
@@ -263,6 +292,7 @@
       ((System.ComponentModel.ISupportInitialize)(this.Player2)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.Player1)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picSidelineYardage)).EndInit();
+      ((System.ComponentModel.ISupportInitialize)(this.picEndZoneLeft)).EndInit();
       this.ResumeLayout(false);
 
     }
@@ -284,6 +314,8 @@
     public System.Windows.Forms.Label lblBottomSideline;
     public System.Windows.Forms.PictureBox picSidelineYardage;
     public System.Windows.Forms.PictureBox picFullSidelineYardage;
+    public System.Windows.Forms.Label lblLeftSideLine;
+    public System.Windows.Forms.PictureBox picEndZoneLeft;
   }
 }
 

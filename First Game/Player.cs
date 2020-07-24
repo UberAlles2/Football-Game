@@ -132,6 +132,7 @@ namespace FootballGame
       player.InitialLeft = initialLeft;
       player.InitialTop = initialTop;
       player.PicBox = AddPlayerPictureBox(pictureBox);
+      player.PicBox.BringToFront();
       player.InitialOffsetY = initialOffsetY;
       if(player is Defender) (player as Defender).DefensiveMode = defensiveMode;
       Players.Add(player);
@@ -169,6 +170,7 @@ namespace FootballGame
       CheckFieldBoundries();
       MovePic(this);
       Application.DoEvents();
+      ParentForm.picEndZoneLeft.Invalidate();
     }
     public static void MovePic(Player player)
     {
