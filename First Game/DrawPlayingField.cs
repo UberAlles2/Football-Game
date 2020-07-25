@@ -30,15 +30,19 @@ namespace FootballGame
       int firstDownMarker = Game.LineOfScrimagePixel + ((int)Game.CurrentGameState.YardsToGo * (int)Game.PixalsInYard);
       e.Graphics.DrawLine(pen, firstDownMarker, 0, firstDownMarker, ParentForm.Height - 62);
       // Left Goal Line 
-      pen = new Pen(Color.White);
-      int goalLineMarker = Game.LineOfScrimagePixel - (int)(Game.CurrentGameState.BallOnYard100 * (int)Game.PixalsInYard);
-      e.Graphics.DrawLine(pen, goalLineMarker, 0, goalLineMarker, ParentForm.Height - 62);
+      if (Game.CurrentGameState.BallOnYard100 < 9)
+      {
+        pen = new Pen(Color.White);
+        int goalLineMarker = Game.LineOfScrimagePixel - (int)(Game.CurrentGameState.BallOnYard100 * (int)Game.PixalsInYard);
+        e.Graphics.DrawLine(pen, goalLineMarker, 0, goalLineMarker, ParentForm.Height - 62);
+      }
     }
 
     public static void PaintEndZones(object sender, PaintEventArgs e)
     {
       Graphics g = e.Graphics;
 
+      // Left End Zone Image
       if (Game.CurrentGameState.BallOnYard100 < 6)
       {
         if (ParentForm.picEndZoneLeft.Bounds.IntersectsWith(Player.ControllablePlayer.PicBox.Bounds))
