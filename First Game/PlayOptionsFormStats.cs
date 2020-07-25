@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FootballGame
 {
-  public class PlayOptionsFormStats
+  public class CurrentGameState
   {
     public string ResultsOfLastPlay = "";
     public float YardsGained;

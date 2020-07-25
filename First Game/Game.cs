@@ -41,8 +41,6 @@ namespace FootballGame
 
   public class Game
   {
-    private static float LineOfScrimageYard = 20;
-
     private static bool running = true;
     private static System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
 
@@ -56,7 +54,7 @@ namespace FootballGame
     public static Random Random = new Random();
     public static bool PlayEnded = false;
     public static PlayOptionsForm PlayOptionsForm;
-    public static PlayOptionsFormStats PlayOptionsFormStats = new PlayOptionsFormStats();
+    public static CurrentGameState CurrentGameState = new CurrentGameState();
 
     public static OffenderWideReceiverTop offenderWideReceiverTop = new OffenderWideReceiverTop();
     public static OffenderWideReceiverBottom offenderWideReceiverBottom = new OffenderWideReceiverBottom();
@@ -69,15 +67,14 @@ namespace FootballGame
       Player.ParentGame = this;
       Scoreboard.ParentForm = form1;
       DrawPlayingField.ParentForm = form1;
-      DrawPlayingField.ParentGame = this;
 
       // Set initial values and Display them.
-      LineOfScrimageYard = 2; // 1 - 100; 
-      PlayOptionsFormStats.Down = 1;
-      PlayOptionsFormStats.YardsToGo = 10;
-      PlayOptionsFormStats.BallOnYard = 1; // 1 - 50
+      CurrentGameState.Down = 1;
+      CurrentGameState.YardsToGo = 10;
+      CurrentGameState.BallOnYard = 1; // 1 - 50
+      CurrentGameState.BallOnYard100 = 1;
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
-      DrawPlayingField.InitializeDrawing(LineOfScrimageYard);   // Draw the starting sideline
+      DrawPlayingField.InitializeDrawing(CurrentGameState.BallOnYard100);   // Draw the starting sideline
 
       // Initialize field dimensions
       FieldBounds = new Rectangle(0, ParentForm.pnlScoreboard.Height + 30, ParentForm.Width - ParentForm.Player1.Width, ParentForm.Height - ParentForm.pnlScoreboard.Height - 36);
@@ -199,7 +196,7 @@ namespace FootballGame
       {
         if(PlayEnded)
         {
-          if(PlayOptionsFormStats.Down == 4)
+          if(CurrentGameState.Down == 4)
           {
             DialogResult result =  MessageBox.Show("Punt?", "Football", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if(result == DialogResult.Yes)
@@ -245,63 +242,64 @@ namespace FootballGame
       if (endPlayType != EndPlayType.Tackled || endPlayType != EndPlayType.Intercepted || endPlayType != EndPlayType.Punted || endPlayType == EndPlayType.OutOfBounds)
         Scoreboard.CountDownTimer.Stop();
 
-      PlayOptionsFormStats.YardsGained = 0;
+      CurrentGameState.YardsGained = 0;
       if (endPlayType == EndPlayType.Tackled || endPlayType == EndPlayType.OutOfBounds)
       {
-        PlayOptionsFormStats.YardsGained = (float)(Player.ControllablePlayer.Left + Player.ControllablePlayer.PicBox.Width - LineOfScrimagePixel) / PixalsInYard;
-        PlayOptionsFormStats.TackledBy = tackledBy;
-        LineOfScrimageYard += PlayOptionsFormStats.YardsGained;
-        PlayOptionsFormStats.YardsToGo -= PlayOptionsFormStats.YardsGained;
+        CurrentGameState.YardsGained = (float)(Player.ControllablePlayer.Left + Player.ControllablePlayer.PicBox.Width - LineOfScrimagePixel) / PixalsInYard;
+        CurrentGameState.TackledBy = tackledBy;
+        CurrentGameState.BallOnYard100 += CurrentGameState.YardsGained;
+        CurrentGameState.YardsToGo -= CurrentGameState.YardsGained;
       }
       else if (endPlayType == EndPlayType.Punted)
       {
-        if(PlayOptionsFormStats.BallOnYard < 20)
-          PlayOptionsFormStats.YardsGained -= (13 + Random.Next(0, 5));
+        if(CurrentGameState.BallOnYard < 20)
+          CurrentGameState.YardsGained -= (13 + Random.Next(0, 5));
         else
-          PlayOptionsFormStats.YardsGained -= (18 + Random.Next(0, 5));
+          CurrentGameState.YardsGained -= (18 + Random.Next(0, 5));
 
-        PlayOptionsFormStats.TackledBy = null;
-        LineOfScrimageYard += (PlayOptionsFormStats.YardsGained);
-        PlayOptionsFormStats.YardsToGo = 10;
-        PlayOptionsFormStats.Down = 0;
-        message = "Punted, a loss of " + Math.Abs(PlayOptionsFormStats.YardsGained).ToString("00") + " yards on change of possesion."; 
+        CurrentGameState.TackledBy = null;
+        CurrentGameState.BallOnYard100 += (CurrentGameState.YardsGained);
+        CurrentGameState.YardsToGo = 10;
+        CurrentGameState.Down = 0;
+        message = "Punted, a loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("00") + " yards on change of possesion."; 
       }
       else
-        PlayOptionsFormStats.TackledBy = null;
+        CurrentGameState.TackledBy = null;
 
-      PlayOptionsFormStats.ResultsOfLastPlay = message;
+      CurrentGameState.ResultsOfLastPlay = message;
 
-      if (LineOfScrimageYard < 0)
+      if (CurrentGameState.BallOnYard100 < 0)
       {
-        LineOfScrimageYard = 0; // Safety
+        CurrentGameState.BallOnYard100 = 0; // Safety
       }
-      if (LineOfScrimageYard > 100)
+      if (CurrentGameState.BallOnYard100 > 100)
       {
-        LineOfScrimageYard = 100; // Touchdown
+        CurrentGameState.BallOnYard100 = 100; // Touchdown
       }
 
-      if (PlayOptionsFormStats.Down < 4)
-        PlayOptionsFormStats.Down++;
+      if (CurrentGameState.Down < 4)
+        CurrentGameState.Down++;
 
-      if(PlayOptionsFormStats.YardsToGo < 0.05)
+      if(CurrentGameState.YardsToGo < 0.05)
       {
-        PlayOptionsFormStats.YardsToGo = 10;
-        PlayOptionsFormStats.Down = 1;
-        PlayOptionsFormStats.ResultsOfLastPlay += "  First Down!";
+        CurrentGameState.YardsToGo = 10;
+        CurrentGameState.Down = 1;
+        CurrentGameState.ResultsOfLastPlay += "  First Down!";
       }
-      PlayOptionsFormStats.BallOnYard100 = LineOfScrimageYard;
-      PlayOptionsFormStats.BallOnYard = LineOfScrimageYard < 50 ? LineOfScrimageYard : 100 - LineOfScrimageYard;
+      CurrentGameState.BallOnYard100 = CurrentGameState.BallOnYard100;
+      CurrentGameState.BallOnYard = CurrentGameState.BallOnYard100 < 50 ? CurrentGameState.BallOnYard100 : 100 - CurrentGameState.BallOnYard100;
 
-      Scoreboard.DisplayBallOn(PlayOptionsFormStats.BallOnYard.ToString("00"));
-      Scoreboard.DisplayToGo(PlayOptionsFormStats.YardsToGo.ToString("00"));
-      Scoreboard.DisplayDown(PlayOptionsFormStats.Down.ToString("0"));
+      Scoreboard.DisplayBallOn(CurrentGameState.BallOnYard.ToString("00"));
+      Scoreboard.DisplayToGo(CurrentGameState.YardsToGo.ToString("00"));
+      Scoreboard.DisplayDown(CurrentGameState.Down.ToString("0"));
 
       //if(PlayOptionsFormStats.YardsGained != 0)
       //  MessageBox.Show(message + Environment.NewLine + $"{PlayOptionsFormStats.YardsGained,0:#.#} yards gained.");
       //else
       //  MessageBox.Show(message + Environment.NewLine + "No gain");
 
-      DrawPlayingField.DrawTopSideline(LineOfScrimageYard);
+      DrawPlayingField.DrawField(CurrentGameState.BallOnYard100);
+
       ParentForm.Invalidate();
     }
 

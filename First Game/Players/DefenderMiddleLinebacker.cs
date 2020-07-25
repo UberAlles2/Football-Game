@@ -20,13 +20,13 @@ namespace FootballGame
 
       base.Initialize();
 
-      if(Game.PlayOptionsFormStats.YardsToGo < 2) // Short yardage play
+      if(Game.CurrentGameState.YardsToGo < 2) // Short yardage play
       {
         Left = InitialLeft - 80;
         ChangeX = -12;
         shortYardage = 4; // More likely to blitz
       }
-      if (Game.PlayOptionsFormStats.YardsToGo > 12) // Long yardage play
+      if (Game.CurrentGameState.YardsToGo > 12) // Long yardage play
       {
         Left = InitialLeft + 20;
         ChangeX = +6;

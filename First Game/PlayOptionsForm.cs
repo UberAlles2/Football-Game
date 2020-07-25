@@ -56,15 +56,15 @@ namespace FootballGame
     }
     private void DisplayStats()
     {
-      if (Game.PlayOptionsFormStats.YardsGained > 0)
+      if (Game.CurrentGameState.YardsGained > 0)
       {
         lblYardGainedValue.ForeColor = Color.DarkGreen;
-        lblYardGainedValue.Text = Game.PlayOptionsFormStats.YardsGained.ToString("0.0") + " yards gained.";
+        lblYardGainedValue.Text = Game.CurrentGameState.YardsGained.ToString("0.0") + " yards gained.";
       }
-      else if (Game.PlayOptionsFormStats.YardsGained < 0)
+      else if (Game.CurrentGameState.YardsGained < 0)
       {
         lblYardGainedValue.ForeColor = Color.DarkRed;
-        lblYardGainedValue.Text = Math.Abs(Game.PlayOptionsFormStats.YardsGained).ToString("0.0") + " yards lost.";
+        lblYardGainedValue.Text = Math.Abs(Game.CurrentGameState.YardsGained).ToString("0.0") + " yards lost.";
       }
       else
       {
@@ -72,19 +72,19 @@ namespace FootballGame
         lblYardGainedValue.Text = "No gain.";
       }
 
-      if (Game.PlayOptionsFormStats.TackledBy == null)
+      if (Game.CurrentGameState.TackledBy == null)
         lblTackledByValue.Text = "";
       else
-        lblTackledByValue.Text = Game.PlayOptionsFormStats.TackledBy.GetType().Name.Replace("Defender", "").Replace("Offender", "");
+        lblTackledByValue.Text = Game.CurrentGameState.TackledBy.GetType().Name.Replace("Defender", "").Replace("Offender", "");
 
-      lblResultsOfLastPlay.Text = Game.PlayOptionsFormStats.ResultsOfLastPlay;
-      if(Game.PlayOptionsFormStats.BallOnYard100 > 50)
-        lblBallOnValue.Text = Game.PlayOptionsFormStats.BallOnYard.ToString("0.0") + "  " + '►';
+      lblResultsOfLastPlay.Text = Game.CurrentGameState.ResultsOfLastPlay;
+      if(Game.CurrentGameState.BallOnYard100 > 50)
+        lblBallOnValue.Text = Game.CurrentGameState.BallOnYard.ToString("0.0") + "  " + '►';
       else
-        lblBallOnValue.Text = '◀' + "  " + Game.PlayOptionsFormStats.BallOnYard.ToString("0.0");
+        lblBallOnValue.Text = '◀' + "  " + Game.CurrentGameState.BallOnYard.ToString("0.0");
 
-      lblDownValue.Text = Game.PlayOptionsFormStats.Down.ToString();
-      lblYardsToGoValue.Text = Game.PlayOptionsFormStats.YardsToGo.ToString("0.0");
+      lblDownValue.Text = Game.CurrentGameState.Down.ToString();
+      lblYardsToGoValue.Text = Game.CurrentGameState.YardsToGo.ToString("0.0");
     }
 
     private void SetRandomWRPatterns()

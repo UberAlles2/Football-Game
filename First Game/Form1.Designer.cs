@@ -46,7 +46,6 @@
       this.lblBottomSideline = new System.Windows.Forms.Label();
       this.picSidelineYardage = new System.Windows.Forms.PictureBox();
       this.picEndZoneLeft = new System.Windows.Forms.PictureBox();
-      this.lblLeftSideLine = new System.Windows.Forms.Label();
       this.pnlScoreboard.SuspendLayout();
       ((System.ComponentModel.ISupportInitialize)(this.picFullSidelineYardage)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picScoreboardLetters)).BeginInit();
@@ -251,14 +250,6 @@
       this.picEndZoneLeft.TabStop = false;
       this.picEndZoneLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.picEndZoneLeft_Paint);
       // 
-      // lblLeftSideLine
-      // 
-      this.lblLeftSideLine.BackColor = System.Drawing.Color.White;
-      this.lblLeftSideLine.Location = new System.Drawing.Point(87, 95);
-      this.lblLeftSideLine.Name = "lblLeftSideLine";
-      this.lblLeftSideLine.Size = new System.Drawing.Size(3, 629);
-      this.lblLeftSideLine.TabIndex = 10;
-      // 
       // Form1
       // 
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,7 +263,6 @@
       this.Controls.Add(this.picSidelineYardage);
       this.Controls.Add(this.pnlScoreboard);
       this.Controls.Add(this.lblBottomSideline);
-      this.Controls.Add(this.lblLeftSideLine);
       this.Controls.Add(this.picEndZoneLeft);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -314,7 +304,6 @@
     public System.Windows.Forms.Label lblBottomSideline;
     public System.Windows.Forms.PictureBox picSidelineYardage;
     public System.Windows.Forms.PictureBox picFullSidelineYardage;
-    public System.Windows.Forms.Label lblLeftSideLine;
     public System.Windows.Forms.PictureBox picEndZoneLeft;
   }
 }

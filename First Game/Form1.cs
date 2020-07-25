@@ -58,11 +58,7 @@ namespace FootballGame
 
     private void picEndZoneLeft_Paint(object sender, PaintEventArgs e)
     {
-      Graphics g = e.Graphics;
-
-      Player.ControllablePlayer.PicBox.SendToBack();
-      if(picEndZoneLeft.Bounds.IntersectsWith(Player.ControllablePlayer.PicBox.Bounds))
-        g.DrawImage(Player.ControllablePlayer.PicBox.Image, Player.ControllablePlayer.PicBox.Location.X - picEndZoneLeft.Left, Player.ControllablePlayer.PicBox.Location.Y - picEndZoneLeft.Top, Player.ControllablePlayer.PicBox.Width, Player.ControllablePlayer.PicBox.Height);
+      DrawPlayingField.PaintEndZones(sender, e);
     }
   }
 }
