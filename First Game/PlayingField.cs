@@ -3,10 +3,16 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  public class DrawPlayingField
+  public class PlayingField
   {
     public static Form1 ParentForm;
     public static Image FullSidelineYardage;
+    public static float PixalsInYard = 32;
+    public static int FieldHeight;
+    public static int FieldCenterY;
+    public static int LineOfScrimagePixel = 280;
+
+
     public static void InitializeDrawing(double lineOfScrimageYard) // 1 - 100
     {
       FullSidelineYardage = ParentForm.picFullSidelineYardage.Image;
@@ -24,16 +30,16 @@ namespace FootballGame
     {
       // Scrimmage
       Pen pen = new Pen(Color.Blue);
-      e.Graphics.DrawLine(pen, Game.LineOfScrimagePixel, 0, Game.LineOfScrimagePixel, ParentForm.Height - 62);
+      e.Graphics.DrawLine(pen, PlayingField.LineOfScrimagePixel, 0, PlayingField.LineOfScrimagePixel, ParentForm.Height - 62);
       // First Down
       pen = new Pen(Color.Yellow);
-      int firstDownMarker = Game.LineOfScrimagePixel + ((int)Game.CurrentGameState.YardsToGo * (int)Game.PixalsInYard);
+      int firstDownMarker = PlayingField.LineOfScrimagePixel + ((int)Game.CurrentGameState.YardsToGo * (int)PixalsInYard);
       e.Graphics.DrawLine(pen, firstDownMarker, 0, firstDownMarker, ParentForm.Height - 62);
       // Left Goal Line 
       if (Game.CurrentGameState.BallOnYard100 < 9)
       {
         pen = new Pen(Color.White);
-        int goalLineMarker = Game.LineOfScrimagePixel - (int)(Game.CurrentGameState.BallOnYard100 * (int)Game.PixalsInYard);
+        int goalLineMarker = PlayingField.LineOfScrimagePixel - (int)(Game.CurrentGameState.BallOnYard100 * (int)PixalsInYard);
         e.Graphics.DrawLine(pen, goalLineMarker, 0, goalLineMarker, ParentForm.Height - 62);
       }
     }
@@ -55,7 +61,7 @@ namespace FootballGame
 
     public static void DrawTopSideline(double lineOfScrimageYard)
     {
-      double leftPosition = (lineOfScrimageYard * Game.PixalsInYard) + (Game.LineOfScrimagePixel - 211);
+      double leftPosition = (lineOfScrimageYard * PixalsInYard) + (PlayingField.LineOfScrimagePixel - 211);
       ParentForm.picSidelineYardage.Image = GetPartOfBiggerImage(leftPosition);
     }
 
@@ -68,7 +74,7 @@ namespace FootballGame
           ParentForm.picEndZoneLeft.Visible = true;
         }
 
-        double leftPosition = 120 - (lineOfScrimageYard * Game.PixalsInYard);
+        double leftPosition = 120 - (lineOfScrimageYard * PixalsInYard);
         ParentForm.picEndZoneLeft.Left = (int)leftPosition;
       }
       else

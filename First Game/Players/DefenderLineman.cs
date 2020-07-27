@@ -17,7 +17,7 @@ namespace FootballGame
     public override void Move()
     {
       ChangeY -= 1; // Tendency to move up
-      if (Top < Game.FieldCenterY - 280) // Top Outside lineman should not leave his zone and stay on top 
+      if (Top < PlayingField.FieldCenterY - 280) // Top Outside lineman should not leave his zone and stay on top 
       {
         OffsetY++;
       }
@@ -37,7 +37,7 @@ namespace FootballGame
     public override void Move()
     {
       ChangeY += 1; // Tendency to move down
-      if (Top > Game.FieldCenterY + 280) // Bottom lineman should not leave his zone and stay on bottom
+      if (Top > PlayingField.FieldCenterY + 280) // Bottom lineman should not leave his zone and stay on bottom
       {
         OffsetY--;
       }
@@ -66,7 +66,7 @@ namespace FootballGame
       if (TargetPlayer != Player.ControllablePlayer) // if catch is made
         TargetPlayer = Player.ControllablePlayer;
 
-      if (Player.ControllablePlayer.Left > Game.LineOfScrimagePixel + 8)
+      if (Player.ControllablePlayer.Left > PlayingField.LineOfScrimagePixel + 8)
       {
         Intelligence = 11; // Once the runner get past the line of scrimage, this defender doen't have to worry about the blockers.
         SpeedCap = 110;

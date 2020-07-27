@@ -53,12 +53,12 @@ namespace FootballGame
 
     private void Form1_Paint(object sender, PaintEventArgs e)
     {
-      DrawPlayingField.PaintScrimmageAndFirstDownLines(sender, e);       
+      PlayingField.PaintScrimmageAndFirstDownLines(sender, e);       
     }
 
     private void picEndZoneLeft_Paint(object sender, PaintEventArgs e)
     {
-      DrawPlayingField.PaintEndZones(sender, e);
+      PlayingField.PaintEndZones(sender, e);
     }
   }
 }

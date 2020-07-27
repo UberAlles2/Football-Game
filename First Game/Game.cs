@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using Drake.Tools;
 
 /* To Do List
- * 
+ * MouseClick of opposing players for passing not working, need to bubble
  * 
  * Add more WR patterns
  * 
@@ -36,28 +36,25 @@ namespace FootballGame
     Incomplete,
     Dropped,
     Intercepted,
-    Punted
+    Punted,
+    Safety
   }
 
   public class Game
   {
     private static bool running = true;
-    private static System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer();
+    private static System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer(); // For keyboard arrows
 
-    public static float PixalsInYard = 32;
     public static Form1 ParentForm;
-    public static BallAsPlayer ballAsPlayer = new BallAsPlayer();
-    public static Rectangle FieldBounds;
-    public static int FieldHeight;
-    public static int FieldCenterY;
-    public static int LineOfScrimagePixel = 280;
-    public static Random Random = new Random();
-    public static bool PlayEnded = false;
     public static PlayOptionsForm PlayOptionsForm;
-    public static CurrentGameState CurrentGameState = new CurrentGameState();
-
+    public static BallAsPlayer ballAsPlayer = new BallAsPlayer();
     public static OffenderWideReceiverTop offenderWideReceiverTop = new OffenderWideReceiverTop();
     public static OffenderWideReceiverBottom offenderWideReceiverBottom = new OffenderWideReceiverBottom();
+    public static Random Random = new Random();
+    public static Rectangle FieldBounds;
+    public static CurrentGameState CurrentGameState = new CurrentGameState();
+    public static bool PlayEnded = false;
+
 
     public Game(Form1 form1)
     {
@@ -66,7 +63,7 @@ namespace FootballGame
       Player.ParentForm = form1;
       Player.ParentGame = this;
       Scoreboard.ParentForm = form1;
-      DrawPlayingField.ParentForm = form1;
+      PlayingField.ParentForm = form1;
 
       // Set initial values and Display them.
       CurrentGameState.Down = 1;
@@ -74,12 +71,12 @@ namespace FootballGame
       CurrentGameState.BallOnYard = 1; // 1 - 50
       CurrentGameState.BallOnYard100 = 1;
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
-      DrawPlayingField.InitializeDrawing(CurrentGameState.BallOnYard100);   // Draw the starting sideline
+      PlayingField.InitializeDrawing(CurrentGameState.BallOnYard100);   // Draw the starting sideline
 
       // Initialize field dimensions
       FieldBounds = new Rectangle(0, ParentForm.pnlScoreboard.Height + 30, ParentForm.Width - ParentForm.Player1.Width, ParentForm.Height - ParentForm.pnlScoreboard.Height - 36);
       Player.FieldBounds = FieldBounds;
-      FieldCenterY = (FieldBounds.Height / 2) + ParentForm.picSidelineYardage.Height + 16; // Players go out of bounds when their botton goes out.
+      PlayingField.FieldCenterY = (FieldBounds.Height / 2) + ParentForm.picSidelineYardage.Height + 16; // Players go out of bounds when their botton goes out.
 
       AddPlayers();
 
@@ -92,38 +89,38 @@ namespace FootballGame
 
     public void AddPlayers()
     {
-      int initlineX = LineOfScrimagePixel - 25;
+      int initlineX = PlayingField.LineOfScrimagePixel - 25;
 
       //--------------------- Offensive Players
       OffenderQuarterback offenderQuarterback = new OffenderQuarterback();
-      Player.AddPlayer(offenderQuarterback, LineOfScrimagePixel - 200, FieldCenterY, ParentForm.Player1);
+      Player.AddPlayer(offenderQuarterback, PlayingField.LineOfScrimagePixel - 200, PlayingField.FieldCenterY, ParentForm.Player1);
       Player.ControllablePlayer = offenderQuarterback;
 
-      Player.AddPlayer(offenderWideReceiverTop, initlineX, FieldCenterY - 220, ParentForm.Player1);
+      Player.AddPlayer(offenderWideReceiverTop, initlineX, PlayingField.FieldCenterY - 220, ParentForm.Player1);
 
       OffenderOutsideLinemanTop offenderOutsideLinemanTop = new OffenderOutsideLinemanTop();
       offenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
-      Player.AddPlayer(offenderOutsideLinemanTop, initlineX, FieldCenterY - 96, ParentForm.Player1);
+      Player.AddPlayer(offenderOutsideLinemanTop, initlineX, PlayingField.FieldCenterY - 96, ParentForm.Player1);
 
       OffenderLinemanUpper offenderLinemanUpper = new OffenderLinemanUpper();
       offenderLinemanUpper.VerticalPosition = VerticalPosition.PositionMiddle;
-      Player.AddPlayer(offenderLinemanUpper, initlineX, FieldCenterY - 52, ParentForm.Player1);
+      Player.AddPlayer(offenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 52, ParentForm.Player1);
 
       OffenderLinemanCenter offenderLinemanCenter = new OffenderLinemanCenter();
       offenderLinemanCenter.VerticalPosition = VerticalPosition.PositionMiddle;
-      Player.AddPlayer(offenderLinemanCenter, initlineX, FieldCenterY, ParentForm.Player1);
+      Player.AddPlayer(offenderLinemanCenter, initlineX, PlayingField.FieldCenterY, ParentForm.Player1);
 
       OffenderLinemanLower offenderLinemanLower = new OffenderLinemanLower();
       offenderLinemanLower.VerticalPosition = VerticalPosition.PositionMiddle;
-      Player.AddPlayer(offenderLinemanLower, initlineX, FieldCenterY + 52, ParentForm.Player1);
+      Player.AddPlayer(offenderLinemanLower, initlineX, PlayingField.FieldCenterY + 52, ParentForm.Player1);
 
       OffenderOutsideLinemanBottom offenderOutsideLinemanBottom = new OffenderOutsideLinemanBottom();
       offenderOutsideLinemanBottom.VerticalPosition = VerticalPosition.PositionBottom;
-      Player.AddPlayer(offenderOutsideLinemanBottom, initlineX, FieldCenterY + 96, ParentForm.Player1);
+      Player.AddPlayer(offenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 96, ParentForm.Player1);
 
-      Player.AddPlayer(offenderWideReceiverBottom, initlineX, FieldCenterY + 220, ParentForm.Player1);
+      Player.AddPlayer(offenderWideReceiverBottom, initlineX, PlayingField.FieldCenterY + 220, ParentForm.Player1);
 
-      initlineX = LineOfScrimagePixel + 25;
+      initlineX = PlayingField.LineOfScrimagePixel + 25;
       
       //--------------------- Defensive Players
       DefenderCornerbackTop defenderCornerbackTop = new DefenderCornerbackTop();
@@ -131,30 +128,30 @@ namespace FootballGame
 
       DefenderOutsideLinemanTop defenderOutsideLinemanTop = new DefenderOutsideLinemanTop();
       defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
-      Player.AddPlayer(defenderOutsideLinemanTop, initlineX, FieldCenterY - 152, ParentForm.Player2, initialOffsetY: -250);
+      Player.AddPlayer(defenderOutsideLinemanTop, initlineX, PlayingField.FieldCenterY - 152, ParentForm.Player2, initialOffsetY: -250);
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen; // TODO take out
 
       DefenderLinemanUpper defenderLinemanUpper = new DefenderLinemanUpper();
-      Player.AddPlayer(defenderLinemanUpper, initlineX, FieldCenterY - 50, ParentForm.Player2, initialOffsetY: -87);
+      Player.AddPlayer(defenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 50, ParentForm.Player2, initialOffsetY: -87);
       defenderLinemanUpper.PicBox.BackColor = Color.LightBlue; // TODO take out
 
         // Middle Linebacker
         DefenderMiddleLinebacker defenderMiddleLinebacker = new DefenderMiddleLinebacker();
-        Player.AddPlayer(defenderMiddleLinebacker, LineOfScrimagePixel + 120, FieldCenterY, ParentForm.Player2);
+        Player.AddPlayer(defenderMiddleLinebacker, PlayingField.LineOfScrimagePixel + 120, PlayingField.FieldCenterY, ParentForm.Player2);
         defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen; // TODO take out
       
         // Safety
         DefenderSafety defenderSafety = new DefenderSafety();
-        Player.AddPlayer(defenderSafety, LineOfScrimagePixel + 420, FieldCenterY, ParentForm.Player2);
+        Player.AddPlayer(defenderSafety, PlayingField.LineOfScrimagePixel + 420, PlayingField.FieldCenterY, ParentForm.Player2);
         defenderSafety.PicBox.BackColor = Color.HotPink; // TODO take out
 
       DefenderLinemanLower defenderLinemanLower = new DefenderLinemanLower();
-      Player.AddPlayer(defenderLinemanLower, initlineX, FieldCenterY + 48, ParentForm.Player2, initialOffsetY: 87);
+      Player.AddPlayer(defenderLinemanLower, initlineX, PlayingField.FieldCenterY + 48, ParentForm.Player2, initialOffsetY: 87);
       defenderLinemanLower.PicBox.BackColor = Color.DarkBlue; // TODO take out
 
       DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = new DefenderOutsideLinemanBottom();
       defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionBottom;
-      Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, FieldCenterY + 152, ParentForm.Player2, initialOffsetY: 250);
+      Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 152, ParentForm.Player2, initialOffsetY: 250);
       defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen; // TODO take out
 
       DefenderCornerbackBottom defenderCornerbackBottom = new DefenderCornerbackBottom();
@@ -245,7 +242,7 @@ namespace FootballGame
       CurrentGameState.YardsGained = 0;
       if (endPlayType == EndPlayType.Tackled || endPlayType == EndPlayType.OutOfBounds)
       {
-        CurrentGameState.YardsGained = (float)(Player.ControllablePlayer.Left + Player.ControllablePlayer.PicBox.Width - LineOfScrimagePixel) / PixalsInYard;
+        CurrentGameState.YardsGained = (float)(Player.ControllablePlayer.Left + Player.ControllablePlayer.PicBox.Width - PlayingField.LineOfScrimagePixel) / PlayingField.PixalsInYard;
         CurrentGameState.TackledBy = tackledBy;
         CurrentGameState.BallOnYard100 += CurrentGameState.YardsGained;
         CurrentGameState.YardsToGo -= CurrentGameState.YardsGained;
@@ -292,7 +289,7 @@ namespace FootballGame
       Scoreboard.DisplayToGo(CurrentGameState.YardsToGo.ToString("00"));
       Scoreboard.DisplayDown(CurrentGameState.Down.ToString("0"));
 
-      DrawPlayingField.DrawField(CurrentGameState.BallOnYard100);
+      PlayingField.DrawField(CurrentGameState.BallOnYard100);
 
       ParentForm.Invalidate();
     }

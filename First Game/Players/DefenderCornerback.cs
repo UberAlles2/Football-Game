@@ -13,7 +13,7 @@ namespace FootballGame
   {
     public override void Move()
     {
-      if (Top > Game.FieldCenterY - 120) // Top man should not leave his zone and stay on top 
+      if (Top > PlayingField.FieldCenterY - 120) // Top man should not leave his zone and stay on top 
       {
         ChangeY -= 6;
       }
@@ -24,7 +24,7 @@ namespace FootballGame
   {
     public override void Move()
     {
-      if (Top < Game.FieldCenterY + 120) // Bottom man should not leave his zone and stay on bottom 
+      if (Top < PlayingField.FieldCenterY + 120) // Bottom man should not leave his zone and stay on bottom 
       {
         ChangeY += 6;
       }
@@ -48,7 +48,7 @@ namespace FootballGame
     public override void Move()
     {
       // Running back / quarterback has cross the scrimmage line. Change the target to the running back
-      if (ControllablePlayer.Left > Game.LineOfScrimagePixel && InCoverage == true)
+      if (ControllablePlayer.Left > PlayingField.LineOfScrimagePixel && InCoverage == true)
       {
         TargetPlayer = ControllablePlayer;
         ChangeX += 20;
@@ -62,7 +62,7 @@ namespace FootballGame
 
         if (InCoverage)
         {
-          if (TargetPlayer.Top < Game.FieldCenterY)
+          if (TargetPlayer.Top < PlayingField.FieldCenterY)
             base.MoveTowardsTarget(calcTargetX + (Random.Next(0, 340) - 140), TargetPlayer.Top + 40);
           else
             base.MoveTowardsTarget(calcTargetX + (Random.Next(0, 340) - 140), TargetPlayer.Top - 40);

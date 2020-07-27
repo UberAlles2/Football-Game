@@ -58,7 +58,7 @@
     <Compile Include="PlayOptionsForm.Designer.cs">
       <DependentUpon>PlayOptionsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="DrawPlayingField.cs" />
+    <Compile Include="PlayingField.cs" />
     <Compile Include="Scoreboard.cs" />
     <Compile Include="Players\DefenderMiddleLinebacker.cs" />
     <Compile Include="Players\BallAsPlayer.cs" />

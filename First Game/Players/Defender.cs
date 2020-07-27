@@ -105,14 +105,14 @@ namespace FootballGame
       }
       else if (this.DefensiveMode == DefensiveMode.Normal)
       {
-        if (TargetPlayer.Left < Game.LineOfScrimagePixel)
+        if (TargetPlayer.Left < PlayingField.LineOfScrimagePixel)
             targetX = TargetPlayer.Left + 30;
         else
           targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + (diffY / 3);
       }
       else if (this.DefensiveMode == DefensiveMode.Soft)
       {
-        if (TargetPlayer.Left < Game.LineOfScrimagePixel)
+        if (TargetPlayer.Left < PlayingField.LineOfScrimagePixel)
             targetX = TargetPlayer.Left + 60;
         else
           targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + (diffY / 2);

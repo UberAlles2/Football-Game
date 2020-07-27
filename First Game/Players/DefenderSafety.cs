@@ -44,22 +44,22 @@ namespace FootballGame
         TargetPlayer = ControllablePlayer;
         CoverAfterMove = 999999; // Never switch;
         if (Random.Next(0, 15) < 7)
-          Top = Game.FieldCenterY - 200;
+          Top = PlayingField.FieldCenterY - 200;
         else
-          Top = Game.FieldCenterY + 200;
+          Top = PlayingField.FieldCenterY + 200;
 
-        Left = Game.LineOfScrimagePixel + 30;
+        Left = PlayingField.LineOfScrimagePixel + 30;
       }
       else if (Random.Next(0, 10) < 10)
       {
         DefensiveMode = DefensiveMode.Normal;
-        Left = Game.LineOfScrimagePixel + 300;
+        Left = PlayingField.LineOfScrimagePixel + 300;
         Top += Random.Next(0, 200) - 100;
       }
       else
       {
         DefensiveMode = DefensiveMode.Soft;
-        Left = Game.LineOfScrimagePixel + 500;
+        Left = PlayingField.LineOfScrimagePixel + 500;
         Top += Random.Next(0, 200) - 100;
       }
     }
@@ -67,7 +67,7 @@ namespace FootballGame
     public override void Move()
     {
       // Either quarterback is running or ball was caught 
-      if (ControllablePlayer.Left > Game.LineOfScrimagePixel - 30 && InCoverage == true)
+      if (ControllablePlayer.Left > PlayingField.LineOfScrimagePixel - 30 && InCoverage == true)
       {
         TargetPlayer = ControllablePlayer;
         DefensiveMode = DefensiveMode.Soft;
@@ -95,10 +95,10 @@ namespace FootballGame
         if(TargetPlayer == DefenderMiddleLinebacker)
         {
           calculatedTargetX += 50;
-          if (TargetPlayer.Top < Game.FieldCenterY)
-            calculatedTargeyY = Game.FieldCenterY + 10;
+          if (TargetPlayer.Top < PlayingField.FieldCenterY)
+            calculatedTargeyY = PlayingField.FieldCenterY + 10;
           else
-            calculatedTargeyY = Game.FieldCenterY - 10;
+            calculatedTargeyY = PlayingField.FieldCenterY - 10;
         }
 
         switch (DefensiveMode)

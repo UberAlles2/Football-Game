@@ -84,7 +84,7 @@ namespace FootballGame
 
     public override void Move()
     {
-      if (ControllablePlayer.Left > Game.LineOfScrimagePixel && TargetPlayer != ControllablePlayer)
+      if (ControllablePlayer.Left > PlayingField.LineOfScrimagePixel && TargetPlayer != ControllablePlayer)
       {
         TargetPlayer = ControllablePlayer;
         ChangeX += 20;

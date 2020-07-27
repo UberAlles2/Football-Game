@@ -38,7 +38,7 @@ namespace FootballGame
       {
         Intelligence = 9; // Mixed in with blocker less intelligence
         DefensiveMode = DefensiveMode.Blitz;
-        Top = Game.FieldCenterY - 40;
+        Top = PlayingField.FieldCenterY - 40;
       }
       else if (r < (9 + shortYardage))
         DefensiveMode = DefensiveMode.Normal;
@@ -67,12 +67,12 @@ namespace FootballGame
         switch(DefensiveMode)
         {
           case DefensiveMode.Normal:
-            if (TargetPlayer.Left < Game.LineOfScrimagePixel - 30)
-              calculatedTargetX += (Game.LineOfScrimagePixel - 90);
+            if (TargetPlayer.Left < PlayingField.LineOfScrimagePixel - 30)
+              calculatedTargetX += (PlayingField.LineOfScrimagePixel - 90);
             break;
           case DefensiveMode.Soft:
-            if (TargetPlayer.Left < Game.LineOfScrimagePixel - 30)
-              calculatedTargetX += (Game.LineOfScrimagePixel - 10);
+            if (TargetPlayer.Left < PlayingField.LineOfScrimagePixel - 30)
+              calculatedTargetX += (PlayingField.LineOfScrimagePixel - 10);
             break;
         }
         base.MoveTowardsTarget(calculatedTargetX, TargetPlayer.Top);
