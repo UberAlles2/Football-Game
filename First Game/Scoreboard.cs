@@ -62,14 +62,18 @@ namespace FootballGame
       ScrollTimer = new System.Windows.Forms.Timer();
       ScrollTimer.Interval = 200;
       ScrollTimer.Tick += new EventHandler(TimerScrollMessageEvent);
+      ScrollMessageTicks = 0;
       ScrollTimer.Start();
     }
 
     public static void DisplayScrollMessage(int timerTicks)
     {
       if (timerTicks > ScrollMessagePaddedLength - 1)
+      {
         ScrollTimer.Stop();
-      
+        ScrollTimer.Dispose();
+      }
+
       string currentMessagePart = MessageToScroll.Substring(timerTicks, ScrollMessageLength);
       DisplayMessage(currentMessagePart, 31);
     }
