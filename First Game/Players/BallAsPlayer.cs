@@ -54,7 +54,7 @@ namespace FootballGame
         return;
 
       // Is the ball close to the ending target.  Ball is catchable while this is going on. 
-      if (!BallIsCatchable && keepGoing == 0 && Game.DetectCloseCollision(this, TargetPlayer, 90)) 
+      if (!BallIsCatchable && keepGoing == 0 && Player.DetectCloseCollision(this, TargetPlayer, 90)) 
       {
         keepGoing = 1;
         BallIsCatchable = true;

@@ -74,7 +74,7 @@ namespace FootballGame
 
       if(Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
-        if (Game.DetectCloseCollision(this, TargetPlayer, 90))
+        if (Player.DetectCloseCollision(this, TargetPlayer, 90))
         {
           calculatedTargetY = TargetPlayer.Top;
         }

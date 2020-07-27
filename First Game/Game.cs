@@ -217,7 +217,7 @@ namespace FootballGame
           Application.DoEvents();
           p.Move();
         }
-        CheckCollisions(Player.Players);
+        Player.CheckCollisions();
 
         Thread.Sleep(30);  // Speed of the game, increase for easy mode
       }
@@ -286,17 +286,11 @@ namespace FootballGame
         CurrentGameState.Down = 1;
         CurrentGameState.ResultsOfLastPlay += "  First Down!";
       }
-      CurrentGameState.BallOnYard100 = CurrentGameState.BallOnYard100;
       CurrentGameState.BallOnYard = CurrentGameState.BallOnYard100 < 50 ? CurrentGameState.BallOnYard100 : 100 - CurrentGameState.BallOnYard100;
 
       Scoreboard.DisplayBallOn(CurrentGameState.BallOnYard.ToString("00"));
       Scoreboard.DisplayToGo(CurrentGameState.YardsToGo.ToString("00"));
       Scoreboard.DisplayDown(CurrentGameState.Down.ToString("0"));
-
-      //if(PlayOptionsFormStats.YardsGained != 0)
-      //  MessageBox.Show(message + Environment.NewLine + $"{PlayOptionsFormStats.YardsGained,0:#.#} yards gained.");
-      //else
-      //  MessageBox.Show(message + Environment.NewLine + "No gain");
 
       DrawPlayingField.DrawField(CurrentGameState.BallOnYard100);
 
@@ -396,78 +390,6 @@ namespace FootballGame
         if(!Player.IsThrowing)
           ballAsPlayer.ThrowBall(Player.ControllablePlayer.Left + 16, Player.ControllablePlayer.Top + 16, e.Location.Y, e.Location.X);   
       }
-    }
-
-    public void CheckCollisions(List<Player> players)
-    {
-      for (int i = 0; i < Player.Players.Count - 1; i++)
-      {
-        for (int j = i + 1; j < Player.Players.Count; j++)
-        {
-          if (!Player.IsThrowing && players[j].IsBall) 
-            break;
-
-          // If check for ball collision, the below positions are the only one who can catch the ball
-          // any other positions willl not be checked and thus the break;
-          if (!(players[i] is OffenderWideReceiver) 
-           && !(players[i] is DefenderCornerback) 
-           && !(players[i] is DefenderMiddleLinebacker) 
-           && !(players[i] is DefenderSafety) 
-           && players[j].IsBall) 
-            break;
-
-
-          //if (players[j].IsBall && (players[i] is DefenderCornerback) && ballAsPlayer.BallIsCatchable) // TODO take out
-          //  players[j].IsBall = players[j].IsBall;
-
-          // If player is hitting another player
-          if (DetectCollision(players[i], players[j]))
-          {
-            // Hitting above or below another player
-            if (Math.Abs(players[i].Left - players[j].Left) < Math.Abs(players[i].Top - players[j].Top))
-            {
-              //  | |
-              //
-              //  | |
-              if (players[i].Top < players[j].Top)
-              {
-                players[j].CollisionMove(players[i], CollisionOrientation.Below);
-                players[i].CollisionMove(players[j], CollisionOrientation.Above);
-              }
-              else
-              {
-                players[j].CollisionMove(players[i], CollisionOrientation.Above);
-                players[i].CollisionMove(players[j], CollisionOrientation.Below);
-              }
-            }
-            else // Hitting to the left or right of another player
-            {
-              //  | |   | |
-              if (players[i].Left < players[j].Left)
-              {
-                players[j].CollisionMove(players[i], CollisionOrientation.ToRight);
-                players[i].CollisionMove(players[j], CollisionOrientation.ToLeft);
-              }
-              else
-              {
-                players[j].CollisionMove(players[i], CollisionOrientation.ToLeft);
-                players[i].CollisionMove(players[j], CollisionOrientation.ToRight);
-              }
-            }
-            Player.MovePic(players[j]);
-            Player.MovePic(players[i]);
-          }
-        }
-      }
-    }
-
-    public static bool DetectCollision(Player player1, Player player2)
-    {
-      return Math.Abs(player1.Left - player2.Left) < player1.PlayerWidth - 1 && Math.Abs(player1.Top - player2.Top) < player1.PlayerHeight - 1;
-    }
-    public static bool DetectCloseCollision(Player player1, Player player2, int howClose)
-    {
-      return Math.Abs(player1.Left - player2.Left - 1) < howClose && Math.Abs(player1.Top - player2.Top - 1) < howClose;
     }
   }
 }

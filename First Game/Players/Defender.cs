@@ -95,7 +95,7 @@ namespace FootballGame
       int diffY = Math.Abs(TargetPlayer.Top - this.Top);
 
       if (diffY < 60)
-        if (Game.DetectCloseCollision(this, TargetPlayer, 60))
+        if (Player.DetectCloseCollision(this, TargetPlayer, 60))
           closeToTackle = true; // Move right towards player
 
       // Go right towards target if close to target or are blitzing

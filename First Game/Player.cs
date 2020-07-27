@@ -355,5 +355,77 @@ namespace FootballGame
         this.Top = FieldBounds.Height - 1;
       }
     }
+
+    public static void CheckCollisions()
+    {
+      for (int i = 0; i < Player.Players.Count - 1; i++)
+      {
+        for (int j = i + 1; j < Player.Players.Count; j++)
+        {
+          if (!Player.IsThrowing && Players[j].IsBall)
+            break;
+
+          // If check for ball collision, the below positions are the only one who can catch the ball
+          // any other positions willl not be checked and thus the break;
+          if (!(Players[i] is OffenderWideReceiver)
+           && !(Players[i] is DefenderCornerback)
+           && !(Players[i] is DefenderMiddleLinebacker)
+           && !(Players[i] is DefenderSafety)
+           && Players[j].IsBall)
+            break;
+
+
+          //if (players[j].IsBall && (players[i] is DefenderCornerback) && ballAsPlayer.BallIsCatchable) // TODO take out
+          //  players[j].IsBall = players[j].IsBall;
+
+          // If player is hitting another player
+          if (DetectCollision(Players[i], Players[j]))
+          {
+            // Hitting above or below another player
+            if (Math.Abs(Players[i].Left - Players[j].Left) < Math.Abs(Players[i].Top - Players[j].Top))
+            {
+              //  | |
+              //
+              //  | |
+              if (Players[i].Top < Players[j].Top)
+              {
+                Players[j].CollisionMove(Players[i], CollisionOrientation.Below);
+                Players[i].CollisionMove(Players[j], CollisionOrientation.Above);
+              }
+              else
+              {
+                Players[j].CollisionMove(Players[i], CollisionOrientation.Above);
+                Players[i].CollisionMove(Players[j], CollisionOrientation.Below);
+              }
+            }
+            else // Hitting to the left or right of another player
+            {
+              //  | |   | |
+              if (Players[i].Left < Players[j].Left)
+              {
+                Players[j].CollisionMove(Players[i], CollisionOrientation.ToRight);
+                Players[i].CollisionMove(Players[j], CollisionOrientation.ToLeft);
+              }
+              else
+              {
+                Players[j].CollisionMove(Players[i], CollisionOrientation.ToLeft);
+                Players[i].CollisionMove(Players[j], CollisionOrientation.ToRight);
+              }
+            }
+            Player.MovePic(Players[j]);
+            Player.MovePic(Players[i]);
+          }
+        }
+      }
+    }
+
+    public static bool DetectCollision(Player player1, Player player2)
+    {
+      return Math.Abs(player1.Left - player2.Left) < player1.PlayerWidth - 1 && Math.Abs(player1.Top - player2.Top) < player1.PlayerHeight - 1;
+    }
+    public static bool DetectCloseCollision(Player player1, Player player2, int howClose)
+    {
+      return Math.Abs(player1.Left - player2.Left - 1) < howClose && Math.Abs(player1.Top - player2.Top - 1) < howClose;
+    }
   }
 }

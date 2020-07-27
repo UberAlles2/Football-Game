@@ -91,7 +91,7 @@ namespace FootballGame
       
       if(runningPattern == true)
       {
-        if (Game.DetectCloseCollision(this, target, 40))
+        if (Player.DetectCloseCollision(this, target, 40))
         {
           target.Top = receiverPatterns[receiverPatternIndex].TargetY;
           target.Left = receiverPatterns[receiverPatternIndex].TargetX;
