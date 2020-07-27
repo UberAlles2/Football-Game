@@ -49,7 +49,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CountDownTimer.cs" />
+    <Compile Include="Tools\CountDownTimer.cs" />
     <Compile Include="Players\DefenderSafety.cs" />
     <Compile Include="PlayOptionsFormStats.cs" />
     <Compile Include="PlayOptionsForm.cs">
