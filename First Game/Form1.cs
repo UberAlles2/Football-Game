@@ -38,7 +38,7 @@ namespace FootballGame
 
     private void Form1_MouseClick(object sender, MouseEventArgs e)
     {
-      game.MouseClick(sender, e);
+      game.MouseClick(sender, e, null);
     }
     private void picSidelineYardage_MouseClick(object sender, MouseEventArgs e)
     {

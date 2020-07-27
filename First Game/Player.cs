@@ -113,10 +113,13 @@ namespace FootballGame
        
     }
 
-    //public static Player Get(Position position)
-    //{
-    //  return Players[(int)position];
-    //}
+    //-------------- Events
+    public virtual void MouseClick(object sender, MouseEventArgs e)
+    {
+      MouseEventArgs mouseEventArgs = new MouseEventArgs(MouseButtons.Left, 1, Left + 16, Top + 16, 0);
+      ParentGame.MouseClick(sender, mouseEventArgs, this);
+    }
+
     public static Player Get(Type type)
     {
       Player player = Players.Where(p => p.GetType() == type).FirstOrDefault();
@@ -133,6 +136,8 @@ namespace FootballGame
       player.InitialTop = initialTop;
       player.PicBox = AddPlayerPictureBox(pictureBox);
       player.PicBox.BringToFront();
+      player.PicBox.MouseClick += new System.Windows.Forms.MouseEventHandler(player.MouseClick); 
+
       player.InitialOffsetY = initialOffsetY;
       if(player is Defender) (player as Defender).DefensiveMode = defensiveMode;
       Players.Add(player);

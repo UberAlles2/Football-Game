@@ -12,13 +12,7 @@ namespace FootballGame
   {
     public override void Initialize()
     {
-      PicBox.MouseClick += new System.Windows.Forms.MouseEventHandler(MouseClick); //TODO put so it is initialized one time
       base.Initialize();
-    }
-    private void MouseClick(object sender, MouseEventArgs e)
-    {
-      MouseEventArgs mouseEventArgs = new MouseEventArgs(MouseButtons.Left, 1, Left + 16, Top + 16, 0);
-      ParentGame.MouseClick(sender, mouseEventArgs);
     }
 
     public override void Move()
@@ -34,14 +28,9 @@ namespace FootballGame
   {
     public override void Initialize()
     {
-      PicBox.MouseClick += new System.Windows.Forms.MouseEventHandler(MouseClick); //TODO put so it is initialized one time
       base.Initialize();
     }
-    private void MouseClick(object sender, MouseEventArgs e)
-    {
-      MouseEventArgs mouseEventArgs = new MouseEventArgs(MouseButtons.Left, 1, Left + 16, Top + 16, 0);
-      ParentGame.MouseClick(sender, mouseEventArgs);
-    }
+
     public override void Move()
     {
       base.Move();
@@ -52,22 +41,12 @@ namespace FootballGame
     }
   }
 
-
   public class OffenderWideReceiver : Offender
   {
     private List<ReceiverPattern> receiverPatterns = new List<ReceiverPattern>();
     private int receiverPatternIndex;
     private bool runningPattern;
     private Player target = new Player();
-
-    //public enum PatternEnum
-    //{
-    //  ButtonHookPattern,
-    //  FlyPattern,
-    //  PostPattern,
-    //  SlantPattern,
-    //  QuickOutPattern
-    //}
 
     public override void Initialize()
     {
@@ -144,6 +123,8 @@ namespace FootballGame
       base.CollisionMove(collidedWithPlayer, collisionOrientation);
     }
 
+    //*****************************************************************************************
+    //                                       PATTERNS
 
     public void ButtonHookPattern()
     {

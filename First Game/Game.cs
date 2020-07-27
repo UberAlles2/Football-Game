@@ -51,7 +51,6 @@ namespace FootballGame
     public static OffenderWideReceiverTop offenderWideReceiverTop = new OffenderWideReceiverTop();
     public static OffenderWideReceiverBottom offenderWideReceiverBottom = new OffenderWideReceiverBottom();
     public static Random Random = new Random();
-    public static Rectangle FieldBounds;
     public static CurrentGameState CurrentGameState = new CurrentGameState();
     public static bool PlayEnded = false;
 
@@ -70,17 +69,15 @@ namespace FootballGame
       CurrentGameState.YardsToGo = 10;
       CurrentGameState.BallOnYard = 1; // 1 - 50
       CurrentGameState.BallOnYard100 = 1;
+      
+      // Draw the scoreboard and field.
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
-      PlayingField.InitializeDrawing(CurrentGameState.BallOnYard100);   // Draw the starting sideline
-
-      // Initialize field dimensions
-      FieldBounds = new Rectangle(0, ParentForm.pnlScoreboard.Height + 30, ParentForm.Width - ParentForm.Player1.Width, ParentForm.Height - ParentForm.pnlScoreboard.Height - 36);
-      Player.FieldBounds = FieldBounds;
-      PlayingField.FieldCenterY = (FieldBounds.Height / 2) + ParentForm.picSidelineYardage.Height + 16; // Players go out of bounds when their botton goes out.
+      PlayingField.InitializeDrawing(CurrentGameState.BallOnYard100); // Draw the starting sideline and other playing field objects
+      Player.FieldBounds = PlayingField.FieldBounds;
 
       AddPlayers();
 
-      PlayEnded = true; // Causes PlayOptions form to be displayed
+      PlayEnded = true; // Causes PlayOptions form to be displayed from main loop
 
       // Getting keyboard input
       timer.Tick += new System.EventHandler(KeyDown);
@@ -379,7 +376,7 @@ namespace FootballGame
     [DllImport("user32.dll")]
     public extern static Int16 GetKeyState(Int16 nVirtKey);
 
-    public void MouseClick(object sender, MouseEventArgs e)
+    public void MouseClick(object sender, MouseEventArgs e, Player player)
     {
       if (e.Button == MouseButtons.Left)
       {

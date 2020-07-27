@@ -7,6 +7,7 @@ namespace FootballGame
   {
     public static Form1 ParentForm;
     public static Image FullSidelineYardage;
+    public static Rectangle FieldBounds;
     public static float PixalsInYard = 32;
     public static int FieldHeight;
     public static int FieldCenterY;
@@ -18,6 +19,11 @@ namespace FootballGame
       FullSidelineYardage = ParentForm.picFullSidelineYardage.Image;
       ParentForm.picFullSidelineYardage.Visible = false;
       ParentForm.picScoreboardLetters.Visible = false;
+
+      // Initialize field dimensions
+      FieldBounds = new Rectangle(0, ParentForm.pnlScoreboard.Height + 30, ParentForm.Width - ParentForm.Player1.Width, ParentForm.Height - ParentForm.pnlScoreboard.Height - 36);
+      FieldCenterY = (FieldBounds.Height / 2) + ParentForm.picSidelineYardage.Height + 16; // Players go out of bounds when their botton goes out.
+
       DrawField(lineOfScrimageYard);
     }
     public static void DrawField(double lineOfScrimageYard)
