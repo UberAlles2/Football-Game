@@ -10,7 +10,6 @@ using System.Windows.Forms;
 using Drake.Tools;
 
 /* To Do List
- * MouseClick of opposing players for passing not working, need to bubble
  * 
  * Add more WR patterns
  * 
@@ -279,6 +278,7 @@ namespace FootballGame
         CurrentGameState.YardsToGo = 10;
         CurrentGameState.Down = 1;
         CurrentGameState.ResultsOfLastPlay += "  First Down!";
+        Scoreboard.ScrollMessage("First Down!");
       }
       CurrentGameState.BallOnYard = CurrentGameState.BallOnYard100 < 50 ? CurrentGameState.BallOnYard100 : 100 - CurrentGameState.BallOnYard100;
 

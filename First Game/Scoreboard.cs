@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Windows.Forms;
 
 namespace FootballGame
@@ -13,12 +14,18 @@ namespace FootballGame
     public static Image ScoreboardLetters;
     private static List<PictureBox> letterPicBoxes = new List<PictureBox>();
     public static CountDownTimer CountDownTimer = new CountDownTimer(15, 0);
+    public static System.Windows.Forms.Timer ScrollTimer;
+    
+    public static string MessageToScroll = "";
+    public static int ScrollMessageLength = 16;
+    public static int ScrollMessagePaddedLength;
+    public static int ScrollMessageTicks = 0;
 
     public static void InitializeDrawing()
     {
       ScoreboardLetters = ParentForm.picScoreboardLetters.Image;
       ParentForm.picScoreboardLetters.Visible = false;
-      CountDownTimer.TimeChanged = DisplayClock; 
+      CountDownTimer.TimeChanged = DisplayClock;
 
       // Create all the pictureboxes
       for (int i = 0; i < 48; i++)
@@ -45,6 +52,26 @@ namespace FootballGame
       p.Height = 34;
       ParentForm.pnlScoreboard.Controls.Add(p);
       return p;
+    }
+
+    public static void ScrollMessage(string message)
+    {
+      MessageToScroll = new string(' ', ScrollMessageLength + 1) + message.ToUpper() + new string(' ', 60);
+      ScrollMessagePaddedLength = (ScrollMessageLength * 2) + message.Length;
+
+      ScrollTimer = new System.Windows.Forms.Timer();
+      ScrollTimer.Interval = 200;
+      ScrollTimer.Tick += new EventHandler(TimerScrollMessageEvent);
+      ScrollTimer.Start();
+    }
+
+    public static void DisplayScrollMessage(int timerTicks)
+    {
+      if (timerTicks > ScrollMessagePaddedLength - 1)
+        ScrollTimer.Stop();
+      
+      string currentMessagePart = MessageToScroll.Substring(timerTicks, ScrollMessageLength);
+      DisplayMessage(currentMessagePart, 31);
     }
 
     public static void DisplayMessage(string message, int startPosition)
@@ -114,10 +141,16 @@ namespace FootballGame
     {
       DisplayMessage(message, 27);
     }
+
     public static void DisplayClock()
     {
       DisplayMessage(CountDownTimer.TimeLeftMinutesString, 21);
       DisplayMessage(CountDownTimer.TimeLeftSecondsString, 24);
+    }
+    public static void TimerScrollMessageEvent(object sender, EventArgs e)
+    {
+      ScrollMessageTicks++;
+      DisplayScrollMessage(ScrollMessageTicks);
     }
   }
 }
