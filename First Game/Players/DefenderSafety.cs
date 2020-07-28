@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class DefenderSafety : Defender
+  public class DefenderSafety : Defender
   {
     public Player CoveredPlayer;
     public int CoverAfterMove;

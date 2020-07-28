@@ -64,6 +64,7 @@ namespace FootballGame
     public static DefenderOutsideLinemanTop    defenderOutsideLinemanTop = new DefenderOutsideLinemanTop();
     public static DefenderLinemanUpper         defenderLinemanUpper = new DefenderLinemanUpper();
     public static DefenderMiddleLinebacker     defenderMiddleLinebacker = new DefenderMiddleLinebacker();
+    public static DefenderSafety               defenderSafety = new DefenderSafety();
     public static DefenderLinemanLower         defenderLinemanLower = new DefenderLinemanLower();
     public static DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = new DefenderOutsideLinemanBottom();
     public static DefenderCornerbackBottom     defenderCornerbackBottom = new DefenderCornerbackBottom();
@@ -80,9 +81,8 @@ namespace FootballGame
       // Set initial values and Display them.
       CurrentGameState.Down = 1;
       CurrentGameState.YardsToGo = 10;
-      CurrentGameState.BallOnYard = 1; // 1 - 50
-      CurrentGameState.BallOnYard100 = 1;
-      
+      CurrentGameState.BallOnYard100 = 20; // 1 - 100
+
       // Draw the scoreboard and field.
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
       PlayingField.InitializeDrawing(CurrentGameState.BallOnYard100); // Draw the starting sideline and other playing field objects
@@ -99,6 +99,9 @@ namespace FootballGame
 
     public void AddPlayers()
     {
+      // Ball as a Player
+      Player.AddPlayer(ballAsPlayer, -999, -999, ParentForm.picFootball);
+
       //--------------------- Offensive Players
       int initlineX = PlayingField.LineOfScrimagePixel - 25; // All offensive X values
 
@@ -106,62 +109,40 @@ namespace FootballGame
       Player.ControllablePlayer = offenderQuarterback;
 
       Player.AddPlayer(offenderWideReceiverTop, initlineX, PlayingField.FieldCenterY - 220, ParentForm.Player1, VerticalPosition.PositionTop);
-
       Player.AddPlayer(offenderOutsideLinemanTop, initlineX, PlayingField.FieldCenterY - 96, ParentForm.Player1, VerticalPosition.PositionTop);
-
       Player.AddPlayer(offenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 52, ParentForm.Player1, VerticalPosition.PositionMiddle);
-
       Player.AddPlayer(offenderLinemanCenter, initlineX, PlayingField.FieldCenterY, ParentForm.Player1, VerticalPosition.PositionMiddle);
-
       Player.AddPlayer(offenderLinemanLower, initlineX, PlayingField.FieldCenterY + 56, ParentForm.Player1, VerticalPosition.PositionMiddle);
-
       Player.AddPlayer(offenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 96, ParentForm.Player1, VerticalPosition.PositionBottom);
-
       Player.AddPlayer(offenderWideReceiverBottom, initlineX, PlayingField.FieldCenterY + 220, ParentForm.Player1, VerticalPosition.PositionBottom);
 
       //--------------------- Defensive Players
       initlineX = PlayingField.LineOfScrimagePixel + 25; // All defensive X values
 
       Player.AddPlayer(defenderCornerbackTop, offenderWideReceiverTop.InitialLeft + 160, offenderWideReceiverTop.InitialTop + 30, ParentForm.Player2, VerticalPosition.PositionTop);
-
       Player.AddPlayer(defenderOutsideLinemanTop, initlineX, PlayingField.FieldCenterY - 152, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -250);
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen; // TODO take out
-
-      
       Player.AddPlayer(defenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 50, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -88);
       defenderLinemanUpper.PicBox.BackColor = Color.LightBlue; // TODO take out
-
         // Middle Linebacker
         Player.AddPlayer(defenderMiddleLinebacker, PlayingField.LineOfScrimagePixel + 120, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
         defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen; // TODO take out
-      
         // Safety
-        DefenderSafety defenderSafety = new DefenderSafety();
         Player.AddPlayer(defenderSafety, PlayingField.LineOfScrimagePixel + 420, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
         defenderSafety.PicBox.BackColor = Color.HotPink; // TODO take out
-
       Player.AddPlayer(defenderLinemanLower, initlineX, PlayingField.FieldCenterY + 47, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 85);
       defenderLinemanLower.PicBox.BackColor = Color.DarkBlue; // TODO take out
-
       Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 152, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 250);
       defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen; // TODO take out
-
-      defenderCornerbackBottom.DefensiveMode = DefensiveMode.Normal;  // TODO randomize between coverage
       Player.AddPlayer(defenderCornerbackBottom, offenderWideReceiverBottom.InitialLeft + 160, offenderWideReceiverBottom.InitialTop - 30, ParentForm.Player2, VerticalPosition.PositionBottom);
 
-      // Ball as a Player
-      ballAsPlayer.InitialLeft = -999;
-      ballAsPlayer.InitialTop = -999;
-      ballAsPlayer.PicBox = ParentForm.picFootball;
-      Player.AddPlayer(ballAsPlayer);
-
       // Setup Initial TargetPlayers
-      defenderCornerbackTop.InitialTargetPlayer = offenderWideReceiverTop;
-      defenderCornerbackBottom.InitialTargetPlayer = offenderWideReceiverBottom;
+      defenderCornerbackTop.InitialTargetPlayer        = offenderWideReceiverTop;
+      defenderCornerbackBottom.InitialTargetPlayer     = offenderWideReceiverBottom;
 
-      offenderOutsideLinemanTop.InitialTargetPlayer = defenderOutsideLinemanTop;
-      offenderLinemanUpper.InitialTargetPlayer = defenderLinemanUpper;
-      offenderLinemanLower.InitialTargetPlayer = defenderLinemanLower;
+      offenderOutsideLinemanTop.InitialTargetPlayer    = defenderOutsideLinemanTop;
+      offenderLinemanUpper.InitialTargetPlayer         = defenderLinemanUpper;
+      offenderLinemanLower.InitialTargetPlayer         = defenderLinemanLower;
       offenderOutsideLinemanBottom.InitialTargetPlayer = defenderOutsideLinemanBottom;
 
       InitializePlayers(); // Initial draw
@@ -235,7 +216,7 @@ namespace FootballGame
       }
       else if (endPlayType == EndPlayType.Punted)
       {
-        if(CurrentGameState.BallOnYard < 20)
+        if(CurrentGameState.BallOnYard100 < 20)
           CurrentGameState.YardsGained -= (13 + Random.Next(0, 5));
         else
           CurrentGameState.YardsGained -= (18 + Random.Next(0, 5));
@@ -270,7 +251,6 @@ namespace FootballGame
         CurrentGameState.ResultsOfLastPlay += "  First Down!";
         Scoreboard.ScrollMessage("First Down!");
       }
-      CurrentGameState.BallOnYard = CurrentGameState.BallOnYard100 < 50 ? CurrentGameState.BallOnYard100 : 100 - CurrentGameState.BallOnYard100;
 
       Scoreboard.DisplayBallOn(CurrentGameState.BallOnYard.ToString("00"));
       Scoreboard.DisplayToGo(CurrentGameState.YardsToGo.ToString("00"));
@@ -287,6 +267,8 @@ namespace FootballGame
       _running = false;
     }
 
+    //----------------------------------------------------------------------------------------------------------
+    //                                     Keyboard and Mouse Input
     public void KeyDown(object sender, EventArgs e)
     {
       bool keypressed = false;
@@ -347,7 +329,7 @@ namespace FootballGame
         Player.ControllablePlayer.ChangeY = Player.ControllablePlayer.ChangeY - (8 * Math.Sign(Player.ControllablePlayer.ChangeY));
       }
 
-      // lessen the speed if near maxing x and Y movement.
+      // Lessen the speed if near maxing x and Y movement.
       if (Math.Abs(Player.ControllablePlayer.ChangeX) + Math.Abs(Player.ControllablePlayer.ChangeY) > Player.ControllablePlayer.SpeedCap * 2 - 60)
       {
         Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 36) * Math.Sign(Player.ControllablePlayer.ChangeX);
@@ -370,7 +352,7 @@ namespace FootballGame
     {
       if (e.Button == MouseButtons.Left)
       {
-        // Pass the ball. Ball is really another player.
+        // Pass the ball. Ball is really another Player object.
         if(!Player.IsThrowing)
           ballAsPlayer.ThrowBall(Player.ControllablePlayer.Left + 16, Player.ControllablePlayer.Top + 16, e.Location.Y, e.Location.X);   
       }

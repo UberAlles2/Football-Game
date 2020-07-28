@@ -11,9 +11,19 @@ namespace FootballGame
     public string ResultsOfLastPlay = "";
     public float YardsGained;
     public Player TackledBy = null;
-    public float BallOnYard100;
     public float BallOnYard;
     public int Down;
     public float YardsToGo;
+
+    private float ballOnYard100;
+    public float BallOnYard100 
+    { 
+      get => ballOnYard100;
+      set
+      {
+        ballOnYard100 = value;
+        BallOnYard = ballOnYard100 < 50 ? ballOnYard100 : 100 - ballOnYard100;
+      }
+    }
   }
 }

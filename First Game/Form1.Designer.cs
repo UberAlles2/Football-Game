@@ -182,6 +182,7 @@
       this.picFootball.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
       this.picFootball.TabIndex = 2;
       this.picFootball.TabStop = false;
+      this.picFootball.Visible = false;
       // 
       // picBearsBall
       // 
