@@ -41,11 +41,15 @@ namespace FootballGame
 
   public class Game
   {
-    private static bool running = true;
-    private static System.Windows.Forms.Timer timer = new System.Windows.Forms.Timer(); // For keyboard arrows
+    private static bool _running = true;
+    private static bool _playEnded = false;
+    private static System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer(); // For keyboard arrows
+    private static PlayOptionsForm _playOptionsForm;
 
     public static Form1 ParentForm;
-    public static PlayOptionsForm PlayOptionsForm;
+    public static Random Random = new Random();
+    public static CurrentGameState CurrentGameState = new CurrentGameState();
+
     // Player instances
     public static BallAsPlayer                 ballAsPlayer = new BallAsPlayer();
     public static OffenderQuarterback          offenderQuarterback = new OffenderQuarterback();
@@ -63,11 +67,6 @@ namespace FootballGame
     public static DefenderLinemanLower         defenderLinemanLower = new DefenderLinemanLower();
     public static DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = new DefenderOutsideLinemanBottom();
     public static DefenderCornerbackBottom     defenderCornerbackBottom = new DefenderCornerbackBottom();
-
-    public static Random Random = new Random();
-    public static CurrentGameState CurrentGameState = new CurrentGameState();
-    public static bool PlayEnded = false;
-
 
     public Game(Form1 form1)
     {
@@ -91,11 +90,11 @@ namespace FootballGame
 
       AddPlayers();
 
-      PlayEnded = true; // Causes PlayOptions form to be displayed from main loop
+      _playEnded = true; // Causes PlayOptions form to be displayed from main loop
 
       // Getting keyboard input
-      timer.Tick += new System.EventHandler(KeyDown);
-      timer.Interval = 50;
+      _timer.Tick += new System.EventHandler(KeyDown);
+      _timer.Interval = 50;
     }
 
     public void AddPlayers()
@@ -175,24 +174,24 @@ namespace FootballGame
 
     public void Run()
     {
-      timer.Start();
-      while (running)
+      _timer.Start();
+      while (_running)
       {
-        if(PlayEnded)
+        if(_playEnded)
         {
           if(CurrentGameState.Down == 4)
           {
             DialogResult result =  MessageBox.Show("Punt?", "Football", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if(result == DialogResult.Yes)
             {
-              PlayEnded = false;
+              _playEnded = false;
               EndPlay(EndPlayType.Punted, null, "");
             }
           }
 
           ChoosePlay();
           InitializePlayers();
-          PlayEnded = false;
+          _playEnded = false;
         }
 
         Application.DoEvents();
@@ -209,18 +208,18 @@ namespace FootballGame
 
     private void ChoosePlay()
     {
-      PlayOptionsForm = new PlayOptionsForm(this);
-      PlayOptionsForm.Location = new Point(ParentForm.Left + 660, ParentForm.Top + 160);
-      PlayOptionsForm.ShowDialog();
+      _playOptionsForm = new PlayOptionsForm(this);
+      _playOptionsForm.Location = new Point(ParentForm.Left + 660, ParentForm.Top + 160);
+      _playOptionsForm.ShowDialog();
       Scoreboard.CountDownTimer.Start();
     }
 
     public void EndPlay(EndPlayType endPlayType, Player tackledBy, string message)
     {
-      if (PlayEnded) // Play ended by another player
+      if (_playEnded) // Play ended by another player
         return;
       else 
-        PlayEnded = true;
+        _playEnded = true;
 
       // Stopping the clock   
       if (endPlayType != EndPlayType.Tackled || endPlayType != EndPlayType.Intercepted || endPlayType != EndPlayType.Punted || endPlayType == EndPlayType.OutOfBounds)
@@ -284,15 +283,15 @@ namespace FootballGame
 
     public void Stop()
     {
-      timer.Stop();
-      running = false;
+      _timer.Stop();
+      _running = false;
     }
 
     public void KeyDown(object sender, EventArgs e)
     {
       bool keypressed = false;
 
-      if (PlayEnded) // Stop the player from moving after play ends.
+      if (_playEnded) // Stop the player from moving after play ends.
       {
         Player.ControllablePlayer.ChangeX = 0; 
         Player.ControllablePlayer.ChangeY = 0;
