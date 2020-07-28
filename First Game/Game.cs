@@ -46,9 +46,24 @@ namespace FootballGame
 
     public static Form1 ParentForm;
     public static PlayOptionsForm PlayOptionsForm;
-    public static BallAsPlayer ballAsPlayer = new BallAsPlayer();
-    public static OffenderWideReceiverTop offenderWideReceiverTop = new OffenderWideReceiverTop();
-    public static OffenderWideReceiverBottom offenderWideReceiverBottom = new OffenderWideReceiverBottom();
+    // Player instances
+    public static BallAsPlayer                 ballAsPlayer = new BallAsPlayer();
+    public static OffenderQuarterback          offenderQuarterback = new OffenderQuarterback();
+    public static OffenderOutsideLinemanTop    offenderOutsideLinemanTop = new OffenderOutsideLinemanTop();
+    public static OffenderLinemanUpper         offenderLinemanUpper = new OffenderLinemanUpper();
+    public static OffenderLinemanCenter        offenderLinemanCenter = new OffenderLinemanCenter();
+    public static OffenderLinemanLower         offenderLinemanLower = new OffenderLinemanLower();
+    public static OffenderOutsideLinemanBottom offenderOutsideLinemanBottom = new OffenderOutsideLinemanBottom();
+    public static OffenderWideReceiverTop      offenderWideReceiverTop = new OffenderWideReceiverTop();
+    public static OffenderWideReceiverBottom   offenderWideReceiverBottom = new OffenderWideReceiverBottom();
+    public static DefenderCornerbackTop        defenderCornerbackTop = new DefenderCornerbackTop();
+    public static DefenderOutsideLinemanTop    defenderOutsideLinemanTop = new DefenderOutsideLinemanTop();
+    public static DefenderLinemanUpper         defenderLinemanUpper = new DefenderLinemanUpper();
+    public static DefenderMiddleLinebacker     defenderMiddleLinebacker = new DefenderMiddleLinebacker();
+    public static DefenderLinemanLower         defenderLinemanLower = new DefenderLinemanLower();
+    public static DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = new DefenderOutsideLinemanBottom();
+    public static DefenderCornerbackBottom     defenderCornerbackBottom = new DefenderCornerbackBottom();
+
     public static Random Random = new Random();
     public static CurrentGameState CurrentGameState = new CurrentGameState();
     public static bool PlayEnded = false;
@@ -85,74 +100,55 @@ namespace FootballGame
 
     public void AddPlayers()
     {
-      int initlineX = PlayingField.LineOfScrimagePixel - 25;
-
       //--------------------- Offensive Players
-      OffenderQuarterback offenderQuarterback = new OffenderQuarterback();
+      int initlineX = PlayingField.LineOfScrimagePixel - 25; // All offensive X values
+
       Player.AddPlayer(offenderQuarterback, PlayingField.LineOfScrimagePixel - 200, PlayingField.FieldCenterY, ParentForm.Player1);
       Player.ControllablePlayer = offenderQuarterback;
 
-      Player.AddPlayer(offenderWideReceiverTop, initlineX, PlayingField.FieldCenterY - 220, ParentForm.Player1);
+      Player.AddPlayer(offenderWideReceiverTop, initlineX, PlayingField.FieldCenterY - 220, ParentForm.Player1, VerticalPosition.PositionTop);
 
-      OffenderOutsideLinemanTop offenderOutsideLinemanTop = new OffenderOutsideLinemanTop();
-      offenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
-      Player.AddPlayer(offenderOutsideLinemanTop, initlineX, PlayingField.FieldCenterY - 96, ParentForm.Player1);
+      Player.AddPlayer(offenderOutsideLinemanTop, initlineX, PlayingField.FieldCenterY - 96, ParentForm.Player1, VerticalPosition.PositionTop);
 
-      OffenderLinemanUpper offenderLinemanUpper = new OffenderLinemanUpper();
-      offenderLinemanUpper.VerticalPosition = VerticalPosition.PositionMiddle;
-      Player.AddPlayer(offenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 52, ParentForm.Player1);
+      Player.AddPlayer(offenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 52, ParentForm.Player1, VerticalPosition.PositionMiddle);
 
-      OffenderLinemanCenter offenderLinemanCenter = new OffenderLinemanCenter();
-      offenderLinemanCenter.VerticalPosition = VerticalPosition.PositionMiddle;
-      Player.AddPlayer(offenderLinemanCenter, initlineX, PlayingField.FieldCenterY, ParentForm.Player1);
+      Player.AddPlayer(offenderLinemanCenter, initlineX, PlayingField.FieldCenterY, ParentForm.Player1, VerticalPosition.PositionMiddle);
 
-      OffenderLinemanLower offenderLinemanLower = new OffenderLinemanLower();
-      offenderLinemanLower.VerticalPosition = VerticalPosition.PositionMiddle;
-      Player.AddPlayer(offenderLinemanLower, initlineX, PlayingField.FieldCenterY + 52, ParentForm.Player1);
+      Player.AddPlayer(offenderLinemanLower, initlineX, PlayingField.FieldCenterY + 56, ParentForm.Player1, VerticalPosition.PositionMiddle);
 
-      OffenderOutsideLinemanBottom offenderOutsideLinemanBottom = new OffenderOutsideLinemanBottom();
-      offenderOutsideLinemanBottom.VerticalPosition = VerticalPosition.PositionBottom;
-      Player.AddPlayer(offenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 96, ParentForm.Player1);
+      Player.AddPlayer(offenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 96, ParentForm.Player1, VerticalPosition.PositionBottom);
 
-      Player.AddPlayer(offenderWideReceiverBottom, initlineX, PlayingField.FieldCenterY + 220, ParentForm.Player1);
+      Player.AddPlayer(offenderWideReceiverBottom, initlineX, PlayingField.FieldCenterY + 220, ParentForm.Player1, VerticalPosition.PositionBottom);
 
-      initlineX = PlayingField.LineOfScrimagePixel + 25;
-      
       //--------------------- Defensive Players
-      DefenderCornerbackTop defenderCornerbackTop = new DefenderCornerbackTop();
-      Player.AddPlayer(defenderCornerbackTop, offenderWideReceiverTop.InitialLeft + 160, offenderWideReceiverTop.InitialTop + 30, ParentForm.Player2);
+      initlineX = PlayingField.LineOfScrimagePixel + 25; // All defensive X values
 
-      DefenderOutsideLinemanTop defenderOutsideLinemanTop = new DefenderOutsideLinemanTop();
-      defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionTop;
-      Player.AddPlayer(defenderOutsideLinemanTop, initlineX, PlayingField.FieldCenterY - 152, ParentForm.Player2, initialOffsetY: -250);
+      Player.AddPlayer(defenderCornerbackTop, offenderWideReceiverTop.InitialLeft + 160, offenderWideReceiverTop.InitialTop + 30, ParentForm.Player2, VerticalPosition.PositionTop);
+
+      Player.AddPlayer(defenderOutsideLinemanTop, initlineX, PlayingField.FieldCenterY - 152, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -250);
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen; // TODO take out
 
-      DefenderLinemanUpper defenderLinemanUpper = new DefenderLinemanUpper();
-      Player.AddPlayer(defenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 50, ParentForm.Player2, initialOffsetY: -87);
+      
+      Player.AddPlayer(defenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 50, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -88);
       defenderLinemanUpper.PicBox.BackColor = Color.LightBlue; // TODO take out
 
         // Middle Linebacker
-        DefenderMiddleLinebacker defenderMiddleLinebacker = new DefenderMiddleLinebacker();
-        Player.AddPlayer(defenderMiddleLinebacker, PlayingField.LineOfScrimagePixel + 120, PlayingField.FieldCenterY, ParentForm.Player2);
+        Player.AddPlayer(defenderMiddleLinebacker, PlayingField.LineOfScrimagePixel + 120, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
         defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen; // TODO take out
       
         // Safety
         DefenderSafety defenderSafety = new DefenderSafety();
-        Player.AddPlayer(defenderSafety, PlayingField.LineOfScrimagePixel + 420, PlayingField.FieldCenterY, ParentForm.Player2);
+        Player.AddPlayer(defenderSafety, PlayingField.LineOfScrimagePixel + 420, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
         defenderSafety.PicBox.BackColor = Color.HotPink; // TODO take out
 
-      DefenderLinemanLower defenderLinemanLower = new DefenderLinemanLower();
-      Player.AddPlayer(defenderLinemanLower, initlineX, PlayingField.FieldCenterY + 48, ParentForm.Player2, initialOffsetY: 87);
+      Player.AddPlayer(defenderLinemanLower, initlineX, PlayingField.FieldCenterY + 47, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 85);
       defenderLinemanLower.PicBox.BackColor = Color.DarkBlue; // TODO take out
 
-      DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = new DefenderOutsideLinemanBottom();
-      defenderOutsideLinemanTop.VerticalPosition = VerticalPosition.PositionBottom;
-      Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 152, ParentForm.Player2, initialOffsetY: 250);
+      Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 152, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 250);
       defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen; // TODO take out
 
-      DefenderCornerbackBottom defenderCornerbackBottom = new DefenderCornerbackBottom();
       defenderCornerbackBottom.DefensiveMode = DefensiveMode.Normal;  // TODO randomize between coverage
-      Player.AddPlayer(defenderCornerbackBottom, offenderWideReceiverBottom.InitialLeft + 160, offenderWideReceiverBottom.InitialTop - 30, ParentForm.Player2);
+      Player.AddPlayer(defenderCornerbackBottom, offenderWideReceiverBottom.InitialLeft + 160, offenderWideReceiverBottom.InitialTop - 30, ParentForm.Player2, VerticalPosition.PositionBottom);
 
       // Ball as a Player
       ballAsPlayer.InitialLeft = -999;
@@ -163,14 +159,9 @@ namespace FootballGame
       // Setup Initial TargetPlayers
       defenderCornerbackTop.InitialTargetPlayer = offenderWideReceiverTop;
       defenderCornerbackBottom.InitialTargetPlayer = offenderWideReceiverBottom;
-      defenderSafety.OffenseWideReceiverTop = offenderWideReceiverTop; // Safty can cover 3 different player ot the ball if thrown.
-      defenderSafety.OffenseWideReceiverBottom = offenderWideReceiverBottom;
-      defenderSafety.DefenderMiddleLinebacker = defenderMiddleLinebacker;
 
       offenderOutsideLinemanTop.InitialTargetPlayer = defenderOutsideLinemanTop;
       offenderLinemanUpper.InitialTargetPlayer = defenderLinemanUpper;
-      offenderLinemanCenter.DefenseLinemanUpper = defenderLinemanUpper;
-      offenderLinemanCenter.DefenseLinemanLower = defenderLinemanLower;
       offenderLinemanLower.InitialTargetPlayer = defenderLinemanLower;
       offenderOutsideLinemanBottom.InitialTargetPlayer = defenderOutsideLinemanBottom;
 

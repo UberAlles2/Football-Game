@@ -56,6 +56,7 @@ namespace FootballGame
     private PictureBox pictureBox;
 
     public Player TargetPlayer;
+    public int TotalMoves;
 
     public int SpeedCap { get => cap; set => cap = value; }
     public int Team { get => team; set => team = value; }
@@ -76,7 +77,6 @@ namespace FootballGame
     public VerticalPosition VerticalPosition { get => position; set => position = value; }
 
 
-    public int TotalMoves;
 
     public int Top
     {
@@ -130,7 +130,7 @@ namespace FootballGame
     {
       Players.Add(player);
     }
-    public static void AddPlayer(Player player, int initialLeft, int initialTop, PictureBox pictureBox, int initialOffsetY = 0, DefensiveMode defensiveMode = DefensiveMode.Normal)
+    public static void AddPlayer(Player player, int initialLeft, int initialTop, PictureBox pictureBox, VerticalPosition verticalPosition = VerticalPosition.PositionMiddle, int initialOffsetY = 0, DefensiveMode defensiveMode = DefensiveMode.Normal)
     {
       player.InitialLeft = initialLeft;
       player.InitialTop = initialTop;

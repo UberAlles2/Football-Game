@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class Defender : Player
+  public class Defender : Player
   {
     public int Intelligence = 10;
     public DefensiveMode DefensiveMode = DefensiveMode.Normal;

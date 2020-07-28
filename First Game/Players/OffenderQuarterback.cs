@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class OffenderQuarterback : Offender
+  public class OffenderQuarterback : Offender
   {
     public override void Initialize()
     {

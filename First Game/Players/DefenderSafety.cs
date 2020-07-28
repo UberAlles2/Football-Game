@@ -10,9 +10,6 @@ namespace FootballGame
 {
   class DefenderSafety : Defender
   {
-    public Player OffenseWideReceiverTop;
-    public Player OffenseWideReceiverBottom;
-    public Player DefenderMiddleLinebacker;
     public Player CoveredPlayer;
     public int CoverAfterMove;
     private bool InCoverage = true;
@@ -28,15 +25,15 @@ namespace FootballGame
       // Cover one of the wide receivers
       if (Random.Next(0, 16) < 8)
       {
-        CoveredPlayer = OffenseWideReceiverTop;
+        CoveredPlayer = Game.offenderWideReceiverTop;
       }
       else
       {
-        CoveredPlayer = OffenseWideReceiverBottom;
+        CoveredPlayer = Game.offenderWideReceiverBottom;
       }
       CoverAfterMove = Random.Next(10, 350); // Initially don't cover anyone but switch later on.
 
-      TargetPlayer = DefenderMiddleLinebacker; // Inital zone coverage, switches later
+      TargetPlayer = Game.defenderMiddleLinebacker; // Inital zone coverage, switches later
       if (Random.Next(0, 15) < 2) // Blitz
       {
         DefensiveMode = DefensiveMode.Blitz;
@@ -92,7 +89,7 @@ namespace FootballGame
       {
         int calculatedTargetX = AI_BasicMoveTowardsTargetX();
         int calculatedTargeyY = TargetPlayer.Top;
-        if(TargetPlayer == DefenderMiddleLinebacker)
+        if(TargetPlayer == Game.defenderMiddleLinebacker)
         {
           calculatedTargetX += 50;
           if (TargetPlayer.Top < PlayingField.FieldCenterY)

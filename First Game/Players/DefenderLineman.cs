@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class DefenderLinemanUpper : DefenderLineman
+  public class DefenderLinemanUpper : DefenderLineman
   {
     public override void Initialize()
     {
@@ -28,7 +28,7 @@ namespace FootballGame
       base.CollisionMove(collidedWithPlayer, collisionOrientation);
     }
   }
-  class DefenderLinemanLower : DefenderLineman
+  public class DefenderLinemanLower : DefenderLineman
   {
     public override void Initialize()
     {
@@ -49,7 +49,7 @@ namespace FootballGame
     }
   }
 
-  class DefenderLineman : Defender
+  public class DefenderLineman : Defender
   {
     public override void Initialize()
     {

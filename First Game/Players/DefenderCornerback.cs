@@ -9,7 +9,7 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class DefenderCornerbackTop : DefenderCornerback 
+  public class DefenderCornerbackTop : DefenderCornerback 
   {
     public override void Move()
     {
@@ -20,7 +20,7 @@ namespace FootballGame
       base.Move();
     }
   }
-  class DefenderCornerbackBottom : DefenderCornerback 
+  public class DefenderCornerbackBottom : DefenderCornerback 
   {
     public override void Move()
     {
@@ -32,7 +32,7 @@ namespace FootballGame
     }
   }
 
-  class DefenderCornerback : Defender
+  public class DefenderCornerback : Defender
   {
     private bool InCoverage = true;
     

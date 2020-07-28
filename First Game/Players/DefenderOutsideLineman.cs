@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class DefenderOutsideLinemanTop : DefenderOutsideLineman 
+  public class DefenderOutsideLinemanTop : DefenderOutsideLineman 
   {
     public override void Initialize()
     {
@@ -17,7 +17,7 @@ namespace FootballGame
     public override void Move()
     {
       ChangeY -= 1; // Tendency to move up
-      if (Top > PlayingField.FieldCenterY - 80) // Top Outside lineman should not leave his zone and stay on top 
+      if (Top > PlayingField.FieldCenterY - 80 - 16) // Top Outside lineman should not leave his zone and stay on top 
       {
         ChangeY -= 4;
       }
@@ -30,7 +30,7 @@ namespace FootballGame
     }
   }
 
-  class DefenderOutsideLinemanBottom : DefenderOutsideLineman 
+  public class DefenderOutsideLinemanBottom : DefenderOutsideLineman 
   {
     public override void Initialize()
     {
@@ -38,12 +38,12 @@ namespace FootballGame
     }
     public override void Move()
     {
-      if (Top < PlayingField.FieldCenterY + 80) // Bottom Outside lineman should not leave his zone and stay on bottom
+      ChangeY += 1; // Tendency to move down
+      if (Top < PlayingField.FieldCenterY + 80 - 16) // Bottom Outside lineman should not leave his zone and stay on bottom
       {
         ChangeY += 4;
       }
       OffsetY--;
-      ChangeY += 1; // Tendency to move down
       base.Move(); 
     }
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
@@ -52,7 +52,7 @@ namespace FootballGame
     }
   }
 
-  class DefenderOutsideLineman : Defender
+  public class DefenderOutsideLineman : Defender
   {
     public override void Initialize()
     {

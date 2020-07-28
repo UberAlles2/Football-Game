@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace FootballGame
 {
-  class OffenderOutsideLinemanTop : OffenderLineman 
+  public class OffenderOutsideLinemanTop : OffenderLineman 
   {
     public override void Initialize()
     {
@@ -20,7 +20,7 @@ namespace FootballGame
       base.Move();
     }
   }
-  class OffenderLinemanUpper : OffenderLineman
+  public class OffenderLinemanUpper : OffenderLineman
   {
     public override void Initialize()
     {
@@ -31,17 +31,18 @@ namespace FootballGame
       base.Move();
     }
   }
-  class OffenderLinemanCenter : OffenderLineman
+  public class OffenderLinemanCenter : OffenderLineman
   {
-    public Player DefenseLinemanUpper;
-    public Player DefenseLinemanLower;
+    public override void Initialize()
+    {
+      int r = Random.Next(0, 25);
+      if (r < 10)
+        TargetPlayer = Game.defenderLinemanUpper;
+      else if (r < 20)
+        TargetPlayer = Game.defenderLinemanLower;
+      else 
+        TargetPlayer = Game.defenderMiddleLinebacker;
 
-    public override void Initialize()
-    {
-      if (Random.Next(0, 20) < 10)
-        TargetPlayer = DefenseLinemanUpper;
-      else
-        TargetPlayer = DefenseLinemanLower;
       base.Initialize();
     }
     public override void Move()
@@ -49,7 +50,7 @@ namespace FootballGame
       base.Move();
     }
   }
-  class OffenderLinemanLower : OffenderLineman
+  public class OffenderLinemanLower : OffenderLineman
   {
     public override void Initialize()
     {
@@ -60,7 +61,7 @@ namespace FootballGame
       base.Move();
     }
   }
-  class OffenderOutsideLinemanBottom : OffenderLineman 
+  public class OffenderOutsideLinemanBottom : OffenderLineman 
   {
     public override void Initialize()
     {
@@ -73,7 +74,7 @@ namespace FootballGame
     }
   }
 
-  class OffenderLineman : Offender
+  public class OffenderLineman : Offender
   {
     public override void Initialize()
     {

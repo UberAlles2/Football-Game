@@ -46,7 +46,6 @@ namespace FootballGame
     private List<ReceiverPattern> receiverPatterns = new List<ReceiverPattern>();
     private int receiverPatternIndex;
     private bool runningPattern;
-    private Player target = new Player();
 
     public override void Initialize()
     {
@@ -54,11 +53,11 @@ namespace FootballGame
       HasBall = false;
       PicBox.Image = ParentForm.Player1.Image;
       receiverPatternIndex = 0;
-      TargetPlayer = target;
+      base.TargetPlayer = new Player();
       if(receiverPatterns.Count > 0)
       {
-        target.Top = receiverPatterns[0].TargetY;
-        target.Left = receiverPatterns[0].TargetX;
+        TargetPlayer.Top = receiverPatterns[0].TargetY;
+        TargetPlayer.Left = receiverPatterns[0].TargetX;
       }
       runningPattern = true;
 
@@ -70,10 +69,10 @@ namespace FootballGame
       
       if(runningPattern == true)
       {
-        if (Player.DetectCloseCollision(this, target, 40))
+        if (Player.DetectCloseCollision(this, TargetPlayer, 40))
         {
-          target.Top = receiverPatterns[receiverPatternIndex].TargetY;
-          target.Left = receiverPatterns[receiverPatternIndex].TargetX;
+          TargetPlayer.Top = receiverPatterns[receiverPatternIndex].TargetY;
+          TargetPlayer.Left = receiverPatterns[receiverPatternIndex].TargetX;
 
           if (receiverPatternIndex < receiverPatterns.Count - 1)
             receiverPatternIndex++;
@@ -82,11 +81,11 @@ namespace FootballGame
         }
         if (IsThrowing && Random.Next(0, 10) > 7) // Player will move towards thrown ball
         {
-          target.Top  = (target.Top + Game.ballAsPlayer.TargetPlayer.Top) / 2;
-          target.Left = (target.Left + Game.ballAsPlayer.TargetPlayer.Left) / 2;
+          TargetPlayer.Top  = (TargetPlayer.Top + Game.ballAsPlayer.TargetPlayer.Top) / 2;
+          TargetPlayer.Left = (TargetPlayer.Left + Game.ballAsPlayer.TargetPlayer.Left) / 2;
         }
 
-        base.MoveTowardsTarget(target.Left, target.Top);
+        base.MoveTowardsTarget(TargetPlayer.Left, TargetPlayer.Top);
       }
 
       base.Move();

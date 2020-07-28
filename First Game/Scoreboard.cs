@@ -14,8 +14,8 @@ namespace FootballGame
     public static Image ScoreboardLetters;
     private static List<PictureBox> letterPicBoxes = new List<PictureBox>();
     public static CountDownTimer CountDownTimer = new CountDownTimer(15, 0);
+
     public static System.Windows.Forms.Timer ScrollTimer;
-    
     public static string MessageToScroll = "";
     public static int ScrollMessageLength = 16;
     public static int ScrollMessagePaddedLength;
