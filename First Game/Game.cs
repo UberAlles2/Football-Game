@@ -203,8 +203,8 @@ namespace FootballGame
         _playEnded = true;
 
       // Stopping the clock   
-      if (endPlayType != EndPlayType.Tackled || endPlayType != EndPlayType.Intercepted || endPlayType != EndPlayType.Punted || endPlayType == EndPlayType.OutOfBounds)
-        Scoreboard.CountDownTimer.Stop();
+      if (endPlayType != EndPlayType.Tackled)
+        Scoreboard.CountDownTimer.Pause();
 
       CurrentGameState.YardsGained = 0;
       if (endPlayType == EndPlayType.Tackled || endPlayType == EndPlayType.OutOfBounds)
