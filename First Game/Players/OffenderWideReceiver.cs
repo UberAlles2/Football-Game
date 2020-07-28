@@ -129,7 +129,7 @@ namespace FootballGame
     {
       receiverPatterns.Clear();
 
-      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 420, TargetY = InitialTop};
+      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 520, TargetY = InitialTop};
       receiverPatterns.Add(receiverPattern);
       receiverPattern = new ReceiverPattern() { Name = "ButtonHook", TargetX = 250, TargetY = InitialTop};
       receiverPatterns.Add(receiverPattern);
