@@ -14,7 +14,7 @@ using Drake.Tools;
  * Add more WR patterns
  * 
  * Draw end zones 
- * 
+ * Timeouts
  * 
  * 
  */
@@ -36,6 +36,7 @@ namespace FootballGame
     Dropped,
     Intercepted,
     Punted,
+    FieldGoal,
     Safety
   }
 
@@ -43,6 +44,7 @@ namespace FootballGame
   {
     private static bool _running = true;
     private static bool _playEnded = false;
+    private static bool _attemptFieldGoal = false;
     private static System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer(); // For keyboard arrows
     private static PlayOptionsForm _playOptionsForm;
 
@@ -79,9 +81,9 @@ namespace FootballGame
       PlayingField.ParentForm = form1;
 
       // Set initial values and Display them.
-      CurrentGameState.Down = 1;
+      CurrentGameState.Down = 4;
       CurrentGameState.YardsToGo = 10;
-      CurrentGameState.BallOnYard100 = 20; // 1 - 100
+      CurrentGameState.BallOnYard100 = 51; // 1 - 100
 
       // Draw the scoreboard and field.
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
@@ -120,9 +122,9 @@ namespace FootballGame
       initlineX = PlayingField.LineOfScrimagePixel + 25; // All defensive X values
 
       Player.AddPlayer(defenderCornerbackTop, offenderWideReceiverTop.InitialLeft + 160, offenderWideReceiverTop.InitialTop + 30, ParentForm.Player2, VerticalPosition.PositionTop);
-      Player.AddPlayer(defenderOutsideLinemanTop, initlineX, PlayingField.FieldCenterY - 152, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -250);
+      Player.AddPlayer(defenderOutsideLinemanTop, initlineX, PlayingField.FieldCenterY - 152, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -245);
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen; // TODO take out
-      Player.AddPlayer(defenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 50, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -88);
+      Player.AddPlayer(defenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 50, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -85);
       defenderLinemanUpper.PicBox.BackColor = Color.LightBlue; // TODO take out
         // Middle Linebacker
         Player.AddPlayer(defenderMiddleLinebacker, PlayingField.LineOfScrimagePixel + 120, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
@@ -130,9 +132,9 @@ namespace FootballGame
         // Safety
         Player.AddPlayer(defenderSafety, PlayingField.LineOfScrimagePixel + 420, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
         defenderSafety.PicBox.BackColor = Color.HotPink; // TODO take out
-      Player.AddPlayer(defenderLinemanLower, initlineX, PlayingField.FieldCenterY + 47, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 85);
+      Player.AddPlayer(defenderLinemanLower, initlineX, PlayingField.FieldCenterY + 47, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 82);
       defenderLinemanLower.PicBox.BackColor = Color.DarkBlue; // TODO take out
-      Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 152, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 250);
+      Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 152, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 245);
       defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen; // TODO take out
       Player.AddPlayer(defenderCornerbackBottom, offenderWideReceiverBottom.InitialLeft + 160, offenderWideReceiverBottom.InitialTop - 30, ParentForm.Player2, VerticalPosition.PositionBottom);
 
@@ -160,15 +162,29 @@ namespace FootballGame
       {
         if(_playEnded)
         {
-          if(CurrentGameState.Down == 4)
-          {
-            DialogResult result =  MessageBox.Show("Punt?", "Football", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-            if(result == DialogResult.Yes)
-            {
-              _playEnded = false;
-              EndPlay(EndPlayType.Punted, null, "");
-            }
-          }
+          //if(CurrentGameState.Down == 4)
+          //{
+          //  DialogResult result;
+          //  if (CurrentGameState.BallOnYard100 > 45)
+          //  {
+          //    result = MessageBox.Show("Field Goal Attempt?", "Football", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+          //    if (result == DialogResult.Yes)
+          //    {
+          //      _attemptFieldGoal = true;
+          //      _playEnded = false;
+          //    }
+          //  }
+
+          //  if(_playEnded) // If not field goal attemp, ask for punt.
+          //  {
+          //    result = MessageBox.Show("Punt?", "Football", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+          //    if (result == DialogResult.Yes)
+          //    {
+          //      _playEnded = false;
+          //      EndPlay(EndPlayType.Punted, null, "");
+          //    }
+          //  }
+          //}
 
           ChoosePlay();
           InitializePlayers();
@@ -187,11 +203,24 @@ namespace FootballGame
       }
     }
 
+    private void AttemptFieldGoal()
+    {
+
+    }
+
     private void ChoosePlay()
     {
       _playOptionsForm = new PlayOptionsForm(this);
       _playOptionsForm.Location = new Point(ParentForm.Left + 660, ParentForm.Top + 160);
       _playOptionsForm.ShowDialog();
+
+      if(PlayOptionsForm.PlayOption == PlayOptionsForm.PlayOptionType.Punt)
+      {
+        _playEnded = false;
+        EndPlay(EndPlayType.Punted, null, ""); // takes yardage away and possession goes back to offense
+        ChoosePlay();
+      }
+
       Scoreboard.CountDownTimer.Start();
     }
 

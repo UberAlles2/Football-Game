@@ -48,18 +48,26 @@ namespace FootballGame
         int goalLineMarker = PlayingField.LineOfScrimagePixel - (int)(Game.CurrentGameState.BallOnYard100 * (int)PixalsInYard);
         e.Graphics.DrawLine(pen, goalLineMarker, 0, goalLineMarker, ParentForm.Height - 62);
       }
+
+      // Left Goal Post
+      if (Game.CurrentGameState.BallOnYard100 < 6)
+      {
+        pen = new Pen(Color.Yellow);
+        // Draw ellipse to screen.
+        double leftPosition = 30 - (Game.CurrentGameState.BallOnYard100 * PixalsInYard); 
+        e.Graphics.DrawEllipse(pen, new Rectangle((int)leftPosition, FieldCenterY - 50, 10, 10));
+      }
     }
 
     public static void PaintEndZones(object sender, PaintEventArgs e)
     {
-      Graphics g = e.Graphics;
-
       // Left End Zone Image
       if (Game.CurrentGameState.BallOnYard100 < 6)
       {
         if (ParentForm.picEndZoneLeft.Bounds.IntersectsWith(Player.ControllablePlayer.PicBox.Bounds))
         {
           Player.ControllablePlayer.PicBox.SendToBack();
+          Graphics g = e.Graphics;
           g.DrawImage(Player.ControllablePlayer.PicBox.Image, Player.ControllablePlayer.PicBox.Location.X - ParentForm.picEndZoneLeft.Left, Player.ControllablePlayer.PicBox.Location.Y - ParentForm.picEndZoneLeft.Top, Player.ControllablePlayer.PicBox.Width, Player.ControllablePlayer.PicBox.Height);
         }
       }

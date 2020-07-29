@@ -12,7 +12,15 @@ namespace FootballGame
 {
   public partial class PlayOptionsForm : Form
   {
+    public enum PlayOptionType
+    {
+      StartPlay,
+      Punt,
+      FieldGoal
+    }
+    
     public static CountDownTimer CountDownTimer;
+    public static PlayOptionType PlayOption = PlayOptionType.StartPlay;
 
     public PlayOptionsForm(Game parentGame)
     {
@@ -30,6 +38,18 @@ namespace FootballGame
     {
       DisplayStats();
       SetRandomWRPatterns();
+
+      btnPunt.Enabled = btnFieldGoal.Enabled = false;
+
+      if (Game.CurrentGameState.Down == 4 || Scoreboard.CountDownTimer.TimeLeft.TotalSeconds < 60)
+      {
+        btnPunt.Enabled = true;
+        if(Game.CurrentGameState.BallOnYard100 > 55)
+        {
+          btnFieldGoal.Enabled = true;
+        }
+      }
+
       CountDownTimer = new CountDownTimer(0, 20); // 20 seconds to choose a play.
       CountDownTimer.TimeChanged = TimeChanged;
       CountDownTimer.TimeExpired = TimeExpired;
@@ -44,9 +64,19 @@ namespace FootballGame
     {
       btnStartPlay_Click(this, null);
     }
-
     private void btnStartPlay_Click(object sender, EventArgs e)
     {
+      PlayOption = PlayOptionType.StartPlay;
+      this.Close();
+    }
+    private void btnPunt_Click(object sender, EventArgs e)
+    {
+      PlayOption = PlayOptionType.Punt;
+      this.Close();
+    }
+    private void btnFieldGoal_Click(object sender, EventArgs e)
+    {
+      PlayOption = PlayOptionType.FieldGoal;
       this.Close();
     }
 

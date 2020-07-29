@@ -63,6 +63,8 @@
       this.picQuickOutPatternTop = new System.Windows.Forms.PictureBox();
       this.label6 = new System.Windows.Forms.Label();
       this.lblTimeLeft = new System.Windows.Forms.Label();
+      this.btnPunt = new System.Windows.Forms.Button();
+      this.btnFieldGoal = new System.Windows.Forms.Button();
       ((System.ComponentModel.ISupportInitialize)(this.picReceiverTop)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picPostPattern)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFlyPattern)).BeginInit();
@@ -84,7 +86,7 @@
       this.picReceiverTop.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.picReceiverTop.Location = new System.Drawing.Point(16, 31);
       this.picReceiverTop.Name = "picReceiverTop";
-      this.picReceiverTop.Size = new System.Drawing.Size(158, 157);
+      this.picReceiverTop.Size = new System.Drawing.Size(175, 169);
       this.picReceiverTop.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
       this.picReceiverTop.TabIndex = 10;
       this.picReceiverTop.TabStop = false;
@@ -125,9 +127,9 @@
       // btnStartPlay
       // 
       this.btnStartPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnStartPlay.Location = new System.Drawing.Point(415, 376);
+      this.btnStartPlay.Location = new System.Drawing.Point(388, 427);
       this.btnStartPlay.Name = "btnStartPlay";
-      this.btnStartPlay.Size = new System.Drawing.Size(95, 54);
+      this.btnStartPlay.Size = new System.Drawing.Size(122, 35);
       this.btnStartPlay.TabIndex = 11;
       this.btnStartPlay.Text = "Start Play";
       this.btnStartPlay.UseVisualStyleBackColor = true;
@@ -178,7 +180,7 @@
       // lblBottomReceiverPattern
       // 
       this.lblBottomReceiverPattern.AutoSize = true;
-      this.lblBottomReceiverPattern.Location = new System.Drawing.Point(16, 203);
+      this.lblBottomReceiverPattern.Location = new System.Drawing.Point(16, 217);
       this.lblBottomReceiverPattern.Name = "lblBottomReceiverPattern";
       this.lblBottomReceiverPattern.Size = new System.Drawing.Size(123, 13);
       this.lblBottomReceiverPattern.TabIndex = 17;
@@ -187,16 +189,16 @@
       // picReceiverBottom
       // 
       this.picReceiverBottom.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-      this.picReceiverBottom.Location = new System.Drawing.Point(16, 221);
+      this.picReceiverBottom.Location = new System.Drawing.Point(16, 237);
       this.picReceiverBottom.Name = "picReceiverBottom";
-      this.picReceiverBottom.Size = new System.Drawing.Size(158, 157);
+      this.picReceiverBottom.Size = new System.Drawing.Size(175, 168);
       this.picReceiverBottom.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
       this.picReceiverBottom.TabIndex = 16;
       this.picReceiverBottom.TabStop = false;
       // 
       // btnChangePatterns
       // 
-      this.btnChangePatterns.Location = new System.Drawing.Point(16, 395);
+      this.btnChangePatterns.Location = new System.Drawing.Point(19, 427);
       this.btnChangePatterns.Name = "btnChangePatterns";
       this.btnChangePatterns.Size = new System.Drawing.Size(158, 35);
       this.btnChangePatterns.TabIndex = 18;
@@ -360,7 +362,7 @@
       // label5
       // 
       this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(259, 264);
+      this.label5.Location = new System.Drawing.Point(301, 250);
       this.label5.Name = "label5";
       this.label5.Size = new System.Drawing.Size(130, 13);
       this.label5.TabIndex = 21;
@@ -413,7 +415,7 @@
       // label6
       // 
       this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(248, 378);
+      this.label6.Location = new System.Drawing.Point(248, 410);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(114, 13);
       this.label6.TabIndex = 26;
@@ -423,19 +425,43 @@
       // 
       this.lblTimeLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.lblTimeLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lblTimeLeft.Location = new System.Drawing.Point(283, 397);
+      this.lblTimeLeft.Location = new System.Drawing.Point(283, 429);
       this.lblTimeLeft.Name = "lblTimeLeft";
       this.lblTimeLeft.Size = new System.Drawing.Size(32, 26);
       this.lblTimeLeft.TabIndex = 27;
       this.lblTimeLeft.Text = "20";
       this.lblTimeLeft.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
       // 
+      // btnPunt
+      // 
+      this.btnPunt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnPunt.Location = new System.Drawing.Point(388, 346);
+      this.btnPunt.Name = "btnPunt";
+      this.btnPunt.Size = new System.Drawing.Size(122, 35);
+      this.btnPunt.TabIndex = 28;
+      this.btnPunt.Text = "Punt";
+      this.btnPunt.UseVisualStyleBackColor = true;
+      this.btnPunt.Click += new System.EventHandler(this.btnPunt_Click);
+      // 
+      // btnFieldGoal
+      // 
+      this.btnFieldGoal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnFieldGoal.Location = new System.Drawing.Point(388, 387);
+      this.btnFieldGoal.Name = "btnFieldGoal";
+      this.btnFieldGoal.Size = new System.Drawing.Size(122, 35);
+      this.btnFieldGoal.TabIndex = 29;
+      this.btnFieldGoal.Text = "Field Goal";
+      this.btnFieldGoal.UseVisualStyleBackColor = true;
+      this.btnFieldGoal.Click += new System.EventHandler(this.btnFieldGoal_Click);
+      // 
       // PlayOptionsForm
       // 
       this.AcceptButton = this.btnStartPlay;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(530, 451);
+      this.ClientSize = new System.Drawing.Size(540, 474);
+      this.Controls.Add(this.btnFieldGoal);
+      this.Controls.Add(this.btnPunt);
       this.Controls.Add(this.lblTimeLeft);
       this.Controls.Add(this.picReceiverBottom);
       this.Controls.Add(this.btnChangePatterns);
@@ -517,5 +543,7 @@
     public System.Windows.Forms.PictureBox picQuickOutPatternTop;
     private System.Windows.Forms.Label label6;
     private System.Windows.Forms.Label lblTimeLeft;
+    private System.Windows.Forms.Button btnPunt;
+    private System.Windows.Forms.Button btnFieldGoal;
   }
 }

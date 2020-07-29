@@ -267,6 +267,7 @@
       this.Controls.Add(this.picEndZoneLeft);
       this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
       this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+      this.MaximizeBox = false;
       this.Name = "Form1";
       this.Text = "Form1";
       this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
