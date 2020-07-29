@@ -67,7 +67,7 @@ namespace FootballGame
           else
             base.MoveTowardsTarget(calcTargetX + (Random.Next(0, 340) - 140), TargetPlayer.Top - 40);
 
-          if (IsThrowing && Random.Next(0, 10) > 9) // Player will move towards thrown ball
+          if (IsThrowingOrKicking && Random.Next(0, 10) > 9) // Player will move towards thrown ball
           {
             TargetPlayer = Game.ballAsPlayer.TargetPlayer; // Where the ball is being thrown.
           }
@@ -102,7 +102,7 @@ namespace FootballGame
         }
       }
 
-      if (collidedWithPlayer.HasBall && !IsThrowing)
+      if (collidedWithPlayer.HasBall && !IsThrowingOrKicking)
       {
         ParentGame.EndPlay(EndPlayType.Tackled, this, "Tackled.");
       }

@@ -41,7 +41,7 @@ namespace FootballGame
       TargetPlayer = new Player();
       TargetPlayer.Top = -999;  // end position
       TargetPlayer.Left = -999; // end position
-      IsThrowing = false;
+      IsThrowingOrKicking = false;
       BallIsCatchable = false;
       keepGoing = 0;
 
@@ -50,7 +50,7 @@ namespace FootballGame
 
     public override void Move()
     {
-      if (!IsThrowing)
+      if (!IsThrowingOrKicking)
         return;
 
       // Is the ball close to the ending target.  Ball is catchable while this is going on. 
@@ -73,7 +73,7 @@ namespace FootballGame
       // Keep the ball going past the target for a bit.
       if (keepGoing > 14)
       {
-        IsThrowing = false;
+        IsThrowingOrKicking = false;
         keepGoing = 0;
         if (BallIsCatchable)
         {
@@ -103,14 +103,25 @@ namespace FootballGame
     public void ThrowBall(int startX, int startY, int targetY, int targetX)
     {
       TotalMoves = 0;
+      if (ThrowingType == ThrowType.Throw)
+      {
+        int randomX = Random.Next(0, 10) - 5;
+        int randomY = Random.Next(0, 10) - 5;
+      }
+      if (ThrowingType == ThrowType.Kick)
+      {
+        int randomX = Random.Next(0, 30) - 5;
+        int randomY = Random.Next(0, 30) - 5;
+      }
+
       Top = startY;  // start position
       Left = startX; // start position
-      TargetPlayer.Top  = targetY - 8 + ((Random.Next(0, 10) - 5) * (targetX / 100));  // end position with randomness
-      TargetPlayer.Left = targetX + 8 + ((Random.Next(0, 10) - 5) * (targetX / 100));  // end position with randomness
+      TargetPlayer.Top  = targetY + 12 + ((Random.Next(0, 10) - 5) * (targetX / 100));  // end position with randomness
+      TargetPlayer.Left = targetX + 12 + ((Random.Next(0, 10) - 5) * (targetX / 100));  // end position with randomness
       Player.ControllablePlayer.PicBox.Image = ParentForm.Player1.Image;
 
       GetChangeYChangeX();
-      IsThrowing = true;
+      IsThrowingOrKicking = true;
     }
 
     private void GetChangeYChangeX()

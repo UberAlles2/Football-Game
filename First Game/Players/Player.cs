@@ -25,6 +25,12 @@ namespace FootballGame
 
   public class Player
   {
+    public enum ThrowType
+    {
+      Throw,
+      Kick
+    }
+
     public static Player ControllablePlayer = new Player();
     public static Random Random = new Random();
     public static Form1 ParentForm;
@@ -32,7 +38,8 @@ namespace FootballGame
     public static Rectangle FieldBounds;
     //public static List<Player> Players = new List<Player>(new Player[Enum.GetValues(typeof(Position)).Cast<int>().Max() + 1]);
     public static List<Player> Players = new List<Player>();
-    public static bool IsThrowing;
+    public static bool IsThrowingOrKicking;
+    public static ThrowType ThrowingType;
 
     private int changeX;
     private int changeY;
@@ -367,7 +374,7 @@ namespace FootballGame
       {
         for (int j = i + 1; j < Player.Players.Count; j++)
         {
-          if (!Player.IsThrowing && Players[j].IsBall)
+          if (!Player.IsThrowingOrKicking && Players[j].IsBall)
             break;
 
           // If check for ball collision, the below positions are the only one who can catch the ball

@@ -13,7 +13,6 @@ namespace FootballGame
     public static int FieldCenterY;
     public static int LineOfScrimagePixel = 280;
 
-
     public static void InitializeDrawing(double lineOfScrimageYard) // 1 - 100
     {
       FullSidelineYardage = ParentForm.picFullSidelineYardage.Image;
@@ -50,12 +49,16 @@ namespace FootballGame
       }
 
       // Left Goal Post
-      if (Game.CurrentGameState.BallOnYard100 < 6)
+      if (Game.CurrentGameState.BallOnYard100 > 0) // TODO
       {
         pen = new Pen(Color.Yellow);
-        // Draw ellipse to screen.
-        double leftPosition = 30 - (Game.CurrentGameState.BallOnYard100 * PixalsInYard); 
-        e.Graphics.DrawEllipse(pen, new Rectangle((int)leftPosition, FieldCenterY - 50, 10, 10));
+        // Draw post ends
+        double leftPosition = FieldBounds.Left + FieldBounds.Width - 30;
+        double top = FieldCenterY - (Game.CurrentGameState.BallOnYard100); // 99 = 49; 80 = 30
+        double bottom = FieldCenterY + (Game.CurrentGameState.BallOnYard100);
+
+        e.Graphics.DrawEllipse(pen, new Rectangle((int)leftPosition, (int)top, 10, 10));
+        e.Graphics.DrawEllipse(pen, new Rectangle((int)leftPosition, (int)bottom, 10, 10));
       }
     }
 

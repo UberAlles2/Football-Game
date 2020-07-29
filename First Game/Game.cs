@@ -44,13 +44,13 @@ namespace FootballGame
   {
     private static bool _running = true;
     private static bool _playEnded = false;
-    private static bool _attemptFieldGoal = false;
     private static System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer(); // For keyboard arrows
     private static PlayOptionsForm _playOptionsForm;
 
     public static Form1 ParentForm;
     public static Random Random = new Random();
     public static CurrentGameState CurrentGameState = new CurrentGameState();
+    public static bool AttemptingFieldGoal = false; 
 
     // Player instances
     public static BallAsPlayer                 ballAsPlayer = new BallAsPlayer();
@@ -83,7 +83,7 @@ namespace FootballGame
       // Set initial values and Display them.
       CurrentGameState.Down = 4;
       CurrentGameState.YardsToGo = 10;
-      CurrentGameState.BallOnYard100 = 51; // 1 - 100
+      CurrentGameState.BallOnYard100 = 81; // 1 - 100
 
       // Draw the scoreboard and field.
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
@@ -162,31 +162,7 @@ namespace FootballGame
       {
         if(_playEnded)
         {
-          //if(CurrentGameState.Down == 4)
-          //{
-          //  DialogResult result;
-          //  if (CurrentGameState.BallOnYard100 > 45)
-          //  {
-          //    result = MessageBox.Show("Field Goal Attempt?", "Football", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-          //    if (result == DialogResult.Yes)
-          //    {
-          //      _attemptFieldGoal = true;
-          //      _playEnded = false;
-          //    }
-          //  }
-
-          //  if(_playEnded) // If not field goal attemp, ask for punt.
-          //  {
-          //    result = MessageBox.Show("Punt?", "Football", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
-          //    if (result == DialogResult.Yes)
-          //    {
-          //      _playEnded = false;
-          //      EndPlay(EndPlayType.Punted, null, "");
-          //    }
-          //  }
-          //}
-
-          ChoosePlay();
+           ChoosePlay();
           InitializePlayers();
           _playEnded = false;
         }
@@ -203,11 +179,6 @@ namespace FootballGame
       }
     }
 
-    private void AttemptFieldGoal()
-    {
-
-    }
-
     private void ChoosePlay()
     {
       _playOptionsForm = new PlayOptionsForm(this);
@@ -219,6 +190,11 @@ namespace FootballGame
         _playEnded = false;
         EndPlay(EndPlayType.Punted, null, ""); // takes yardage away and possession goes back to offense
         ChoosePlay();
+      }
+
+      if (PlayOptionsForm.PlayOption == PlayOptionsForm.PlayOptionType.FieldGoal)
+      {
+        Player.ThrowingType = Player.ThrowType.Kick;
       }
 
       Scoreboard.CountDownTimer.Start();
@@ -382,7 +358,7 @@ namespace FootballGame
       if (e.Button == MouseButtons.Left)
       {
         // Pass the ball. Ball is really another Player object.
-        if(!Player.IsThrowing)
+        if(!Player.IsThrowingOrKicking)
           ballAsPlayer.ThrowBall(Player.ControllablePlayer.Left + 16, Player.ControllablePlayer.Top + 16, e.Location.Y, e.Location.X);   
       }
     }

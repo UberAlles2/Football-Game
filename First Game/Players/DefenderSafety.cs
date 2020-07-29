@@ -77,7 +77,7 @@ namespace FootballGame
         TargetPlayer = CoveredPlayer;
         CoverAfterMove = 99999999; // Never switch again
       }
-      if (IsThrowing)
+      if (IsThrowingOrKicking)
       {
         if(TargetPlayer != Game.ballAsPlayer.TargetPlayer)
         {
@@ -133,7 +133,7 @@ namespace FootballGame
         }
       }
 
-      if (collidedWithPlayer.HasBall && !IsThrowing)
+      if (collidedWithPlayer.HasBall && !IsThrowingOrKicking)
       {
         ParentGame.EndPlay(EndPlayType.Tackled, this, "Tackled.");
       }

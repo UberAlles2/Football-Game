@@ -51,7 +51,7 @@ namespace FootballGame
       if (TargetPlayer != Player.ControllablePlayer) // If a catch is made by offensive player
         TargetPlayer = Player.ControllablePlayer;    // Change your target
 
-      if (IsThrowing)
+      if (IsThrowingOrKicking)
       {
         DefensiveMode = DefensiveMode.Blitz; // Switch to tight coverage.
         ChangeX += 10; // If the ball is thrown go out where the receivers are.
@@ -101,7 +101,7 @@ namespace FootballGame
         }
       }
 
-      if (collidedWithPlayer.HasBall && !IsThrowing)
+      if (collidedWithPlayer.HasBall && !IsThrowingOrKicking)
       {
         ParentGame.EndPlay(EndPlayType.Tackled, this, "Tackled.");
       }
