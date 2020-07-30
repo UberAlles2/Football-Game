@@ -37,6 +37,7 @@ namespace FootballGame
     Intercepted,
     Punted,
     FieldGoal,
+    FieldGoalMiss,
     Safety
   }
 
@@ -50,7 +51,6 @@ namespace FootballGame
     public static Form1 ParentForm;
     public static Random Random = new Random();
     public static CurrentGameState CurrentGameState = new CurrentGameState();
-    public static bool AttemptingFieldGoal = false; 
 
     // Player instances
     public static BallAsPlayer                 ballAsPlayer = new BallAsPlayer();
@@ -83,7 +83,7 @@ namespace FootballGame
       // Set initial values and Display them.
       CurrentGameState.Down = 4;
       CurrentGameState.YardsToGo = 10;
-      CurrentGameState.BallOnYard100 = 61; // 1 - 100
+      CurrentGameState.BallOnYard100 = 71; // 1 - 100
 
       // Draw the scoreboard and field.
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard

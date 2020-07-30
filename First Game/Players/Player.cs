@@ -440,5 +440,9 @@ namespace FootballGame
     {
       return Math.Abs(player1.Left - player2.Left - 1) < howClose && Math.Abs(player1.Top - player2.Top - 1) < howClose;
     }
+    public static bool DetectCloseCollision(Player player, int X, int Y, int howClose)
+    {
+      return Math.Abs(player.Left - player.Left - 1) < howClose && Math.Abs(player.Top - Y - 1) < howClose;
+    }
   }
 }

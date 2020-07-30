@@ -101,6 +101,7 @@ namespace FootballGame
           {
             BallAsPlayer.SpinDefectedBall();
             ParentGame.EndPlay(EndPlayType.Incomplete, null, "Dropped.");
+            return;
           }
           else
           { // Caught, run with ball.

@@ -136,6 +136,7 @@ namespace FootballGame
       if (collidedWithPlayer.HasBall && !IsThrowingOrKicking)
       {
         ParentGame.EndPlay(EndPlayType.Tackled, this, "Tackled.");
+        return;
       }
 
       if (collidedWithPlayer is Offender)

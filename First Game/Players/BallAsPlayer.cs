@@ -15,25 +15,6 @@ namespace FootballGame
 
     private int keepGoing;
 
-    public static void SpinDefectedBall()
-    {
-      Game.ballAsPlayer.PicBox.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
-      Game.ballAsPlayer.PicBox.Invalidate();
-      Thread.Sleep(100);
-      Game.ballAsPlayer.PicBox.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
-      Game.ballAsPlayer.PicBox.Invalidate();
-      Application.DoEvents();
-      Thread.Sleep(100);
-      Game.ballAsPlayer.PicBox.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
-      Game.ballAsPlayer.PicBox.Invalidate();
-      Application.DoEvents();
-      Thread.Sleep(100);
-      Game.ballAsPlayer.PicBox.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
-      Game.ballAsPlayer.PicBox.Invalidate();
-      Application.DoEvents();
-      Thread.Sleep(100);
-    }
-
     public override void Initialize()
     {
       SpeedCap = 400;
@@ -70,11 +51,20 @@ namespace FootballGame
       if (keepGoing > 0)
         keepGoing++;
 
-      // Keep the ball going past the target for a bit.
-      if (keepGoing > 14)
+      // Field Goal 
+      if (ThrowingType == ThrowType.FieldGoal && keepGoing == 5)
       {
+        EvaluateFieldGoalTry(); // Missed or Good. EndPlay()
+        return;
+      }
+
+      // Keep the ball going past the target for a bit.
+      if (keepGoing > 14) // Go past target for 14 moves
+      {
+        // stopping movement
         IsThrowingOrKicking = false;
         keepGoing = 0;
+
         if (BallIsCatchable)
         {
           BallIsCatchable = false;
@@ -107,18 +97,20 @@ namespace FootballGame
       int randomY = 0;
       if (ThrowingType == ThrowType.Throw)
       {
-        randomX = Random.Next(0, 10) - 5;
-        randomY = Random.Next(0, 10) - 5;
+        randomX = Random.Next(0, 8) - 4;
+        randomY = Random.Next(0, 8) - 4;
       }
-      if (ThrowingType == ThrowType.FieldGoal)
+      else if (ThrowingType == ThrowType.FieldGoal)
       {
-        randomX = Random.Next(0, 30) - 15; // Less accurate
-        randomY = Random.Next(0, 30) - 15; // Less accurate
+        randomX = Random.Next(0, 4) - 2;  // More accurate
+        randomY = Random.Next(0, 20) - 10; // Less accurate
 
         if (targetX > 1200 && targetX < 1280)
           targetX = 1260;
-        if (Game.CurrentGameState.BallOnYard100 < 65) // long field goal 52+
-          targetX -= 5; // Could be short
+        if (Game.CurrentGameState.BallOnYard100 < 71) // 47 yards or greater
+          targetX += ((int)Game.CurrentGameState.BallOnYard100 - 62); // Could be short, longer it is the more possible it is short
+        else // 49-
+          targetX += 32; 
       }
 
       Top = startY;  // start position
@@ -144,6 +136,53 @@ namespace FootballGame
         ChangeY *= 2;
       if (Math.Abs(ChangeX) > 20 && Math.Abs(ChangeX) < 34)
         ChangeX *= 2;
+    }
+
+    private void EvaluateFieldGoalTry()
+    {
+      if (this.Left < PlayingField.FieldGoalPostLeft)
+      {
+        ParentGame.EndPlay(EndPlayType.FieldGoalMiss, null, "Missed Field Goal Short.");
+      }
+
+      this.Left = PlayingField.FieldGoalPostLeft + 4;
+
+      if (DetectCloseCollision(this, PlayingField.FieldGoalPostLeft, PlayingField.FieldGoalPostTop - 8, 12) // Hit goal Post?
+       || DetectCloseCollision(this, PlayingField.FieldGoalPostLeft, PlayingField.FieldGoalPostBottom - 8, 12))
+      {
+        SpinDefectedBall();
+        if (Random.Next(0, 20) > 9)
+          ParentGame.EndPlay(EndPlayType.FieldGoal, null, "Field Goal! Went through.");
+        else
+          ParentGame.EndPlay(EndPlayType.FieldGoalMiss, null, "Missed Field Goal. Hit Post.");
+      }
+      else if (this.Top > PlayingField.FieldGoalPostTop && this.Top < PlayingField.FieldGoalPostBottom) // Most common result
+      {
+        ParentGame.EndPlay(EndPlayType.FieldGoal, null, "Field Goal!");
+      }
+      else
+      {
+        ParentGame.EndPlay(EndPlayType.FieldGoalMiss, null, "Missed Field Goal Wide.");
+      }
+    }
+
+    public static void SpinDefectedBall()
+    {
+      Game.ballAsPlayer.PicBox.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+      Game.ballAsPlayer.PicBox.Invalidate();
+      Thread.Sleep(100);
+      Game.ballAsPlayer.PicBox.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+      Game.ballAsPlayer.PicBox.Invalidate();
+      Application.DoEvents();
+      Thread.Sleep(100);
+      Game.ballAsPlayer.PicBox.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+      Game.ballAsPlayer.PicBox.Invalidate();
+      Application.DoEvents();
+      Thread.Sleep(100);
+      Game.ballAsPlayer.PicBox.Image.RotateFlip(System.Drawing.RotateFlipType.Rotate90FlipNone);
+      Game.ballAsPlayer.PicBox.Invalidate();
+      Application.DoEvents();
+      Thread.Sleep(100);
     }
   }
 }

@@ -12,6 +12,9 @@ namespace FootballGame
     public static int FieldHeight;
     public static int FieldCenterY;
     public static int LineOfScrimagePixel = 280;
+    public static int FieldGoalPostLeft = 0;
+    public static int FieldGoalPostTop = 0;
+    public static int FieldGoalPostBottom = 0;
 
     public static void InitializeDrawing(double lineOfScrimageYard) // 1 - 100
     {
@@ -71,9 +74,13 @@ namespace FootballGame
           bottom = FieldCenterY + 74;
         }
 
-        e.Graphics.DrawEllipse(pen, new Rectangle((int)leftPosition, (int)top, 8, 8));
-        e.Graphics.DrawEllipse(pen, new Rectangle((int)leftPosition, (int)bottom, 8, 8));
-        e.Graphics.DrawLine(pen, (int)leftPosition + 4, (int)top + 8, (int)leftPosition + 4, (int)bottom);
+        FieldGoalPostLeft = (int)leftPosition;
+        FieldGoalPostTop = (int)top;
+        FieldGoalPostBottom = (int)bottom;
+
+        e.Graphics.DrawEllipse(pen, new Rectangle(FieldGoalPostLeft, FieldGoalPostTop, 8, 8));
+        e.Graphics.DrawEllipse(pen, new Rectangle(FieldGoalPostLeft, FieldGoalPostBottom, 8, 8));
+        e.Graphics.DrawLine(pen, FieldGoalPostLeft + 4, FieldGoalPostTop + 8, FieldGoalPostLeft + 4, FieldGoalPostBottom);
       }
     }
 
