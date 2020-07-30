@@ -83,7 +83,7 @@ namespace FootballGame
       // Set initial values and Display them.
       CurrentGameState.Down = 4;
       CurrentGameState.YardsToGo = 10;
-      CurrentGameState.BallOnYard100 = 71; // 1 - 100
+      CurrentGameState.BallOnYard100 = 60; // 1 - 100
 
       // Draw the scoreboard and field.
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
