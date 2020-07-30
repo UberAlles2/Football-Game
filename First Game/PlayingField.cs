@@ -49,16 +49,31 @@ namespace FootballGame
       }
 
       // Left Goal Post
-      if (Game.CurrentGameState.BallOnYard100 > 0) // TODO
+      if (Game.CurrentGameState.BallOnYard100 > 45) 
       {
-        pen = new Pen(Color.Yellow);
         // Draw post ends
-        double leftPosition = FieldBounds.Left + FieldBounds.Width - 30;
-        double top = FieldCenterY - (Game.CurrentGameState.BallOnYard100); // 99 = 49; 80 = 30
-        double bottom = FieldCenterY + (Game.CurrentGameState.BallOnYard100);
+        pen = new Pen(Color.Yellow, 3);
+        double leftPosition; 
+        double top;
+        double bottom;
+        if (Game.CurrentGameState.BallOnYard100 < 78) // Outside the 22 yard line
+        {
+          leftPosition = FieldBounds.Left + FieldBounds.Width - 30; // Far back next to form's right edge
+          // Make narrower the farther away
+          top = FieldCenterY - (Game.CurrentGameState.BallOnYard100 * .9); 
+          bottom = FieldCenterY + (Game.CurrentGameState.BallOnYard100 * .9);
+        }
+        else
+        {
+          leftPosition = LineOfScrimagePixel - 5 + (110 - Game.CurrentGameState.BallOnYard100) * PixalsInYard; // 10 yards back of goal line, yard 110
+          // Keep at 148 wide
+          top = FieldCenterY - 74; 
+          bottom = FieldCenterY + 74;
+        }
 
-        e.Graphics.DrawEllipse(pen, new Rectangle((int)leftPosition, (int)top, 10, 10));
-        e.Graphics.DrawEllipse(pen, new Rectangle((int)leftPosition, (int)bottom, 10, 10));
+        e.Graphics.DrawEllipse(pen, new Rectangle((int)leftPosition, (int)top, 8, 8));
+        e.Graphics.DrawEllipse(pen, new Rectangle((int)leftPosition, (int)bottom, 8, 8));
+        e.Graphics.DrawLine(pen, (int)leftPosition + 4, (int)top + 8, (int)leftPosition + 4, (int)bottom);
       }
     }
 

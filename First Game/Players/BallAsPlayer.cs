@@ -103,21 +103,28 @@ namespace FootballGame
     public void ThrowBall(int startX, int startY, int targetY, int targetX)
     {
       TotalMoves = 0;
+      int randomX = 0;
+      int randomY = 0;
       if (ThrowingType == ThrowType.Throw)
       {
-        int randomX = Random.Next(0, 10) - 5;
-        int randomY = Random.Next(0, 10) - 5;
+        randomX = Random.Next(0, 10) - 5;
+        randomY = Random.Next(0, 10) - 5;
       }
       if (ThrowingType == ThrowType.Kick)
       {
-        int randomX = Random.Next(0, 30) - 5;
-        int randomY = Random.Next(0, 30) - 5;
+        randomX = Random.Next(0, 30) - 15;
+        randomY = Random.Next(0, 30) - 15;
+
+        if (targetX > 1200 && targetX < 1280)
+          targetX = 1260;
+        if (Game.CurrentGameState.BallOnYard100 < 65) // long field goal 52+
+          targetX -= 5;
       }
 
       Top = startY;  // start position
       Left = startX; // start position
-      TargetPlayer.Top  = targetY + 12 + ((Random.Next(0, 10) - 5) * (targetX / 100));  // end position with randomness
-      TargetPlayer.Left = targetX + 12 + ((Random.Next(0, 10) - 5) * (targetX / 100));  // end position with randomness
+      TargetPlayer.Left = targetX + 12 + ((int)randomX * (targetX / 100));  // end position with randomness
+      TargetPlayer.Top  = targetY + 12 + ((int)randomY * (targetX / 100));  // end position with randomness
       Player.ControllablePlayer.PicBox.Image = ParentForm.Player1.Image;
 
       GetChangeYChangeX();
