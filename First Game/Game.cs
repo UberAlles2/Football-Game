@@ -185,16 +185,20 @@ namespace FootballGame
       _playOptionsForm.Location = new Point(ParentForm.Left + 660, ParentForm.Top + 160);
       _playOptionsForm.ShowDialog();
 
-      if(PlayOptionsForm.PlayOption == PlayOptionsForm.PlayOptionType.Punt)
+      switch (PlayOptionsForm.PlayOption)
       {
-        _playEnded = false;
-        EndPlay(EndPlayType.Punted, null, ""); // takes yardage away and possession goes back to offense
-        ChoosePlay();
-      }
-
-      if (PlayOptionsForm.PlayOption == PlayOptionsForm.PlayOptionType.FieldGoal)
-      {
-        Player.ThrowingType = Player.ThrowType.Kick;
+        case PlayOptionsForm.PlayOptionType.NormalPlay:
+          Player.ThrowingType = Player.ThrowType.Throw;
+          break;
+        case PlayOptionsForm.PlayOptionType.Punt:
+          Player.ThrowingType = Player.ThrowType.Punt; // Not used for anything yet.
+          _playEnded = false;
+          EndPlay(EndPlayType.Punted, null, ""); // takes yardage away and possession goes back to offense
+          ChoosePlay();
+          break;
+        case PlayOptionsForm.PlayOptionType.FieldGoal:
+          Player.ThrowingType = Player.ThrowType.FieldGoal;
+          break;
       }
 
       Scoreboard.CountDownTimer.Start();

@@ -28,7 +28,8 @@ namespace FootballGame
     public enum ThrowType
     {
       Throw,
-      Kick
+      Punt,
+      FieldGoal
     }
 
     public static Player ControllablePlayer = new Player();

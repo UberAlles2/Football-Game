@@ -34,7 +34,7 @@ namespace FootballGame
       }
 
       int r = Random.Next(0, 12);
-      if (r < (3 + shortYardage))
+      if (r < (3 + shortYardage) || Player.ThrowingType == ThrowType.Punt || Player.ThrowingType == ThrowType.FieldGoal)
       {
         Intelligence = 9; // Mixed in with blocker less intelligence
         DefensiveMode = DefensiveMode.Blitz;

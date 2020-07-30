@@ -110,7 +110,7 @@ namespace FootballGame
         randomX = Random.Next(0, 10) - 5;
         randomY = Random.Next(0, 10) - 5;
       }
-      if (ThrowingType == ThrowType.Kick)
+      if (ThrowingType == ThrowType.FieldGoal)
       {
         randomX = Random.Next(0, 30) - 15; // Less accurate
         randomY = Random.Next(0, 30) - 15; // Less accurate

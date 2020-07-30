@@ -14,13 +14,13 @@ namespace FootballGame
   {
     public enum PlayOptionType
     {
-      StartPlay,
+      NormalPlay,
       Punt,
       FieldGoal
     }
     
     public static CountDownTimer CountDownTimer;
-    public static PlayOptionType PlayOption = PlayOptionType.StartPlay;
+    public static PlayOptionType PlayOption = PlayOptionType.NormalPlay;
 
     public PlayOptionsForm(Game parentGame)
     {
@@ -66,7 +66,7 @@ namespace FootballGame
     }
     private void btnStartPlay_Click(object sender, EventArgs e)
     {
-      PlayOption = PlayOptionType.StartPlay;
+      PlayOption = PlayOptionType.NormalPlay;
       this.Close();
     }
     private void btnPunt_Click(object sender, EventArgs e)
@@ -77,6 +77,8 @@ namespace FootballGame
     private void btnFieldGoal_Click(object sender, EventArgs e)
     {
       PlayOption = PlayOptionType.FieldGoal;
+      Game.offenderWideReceiverTop.FieldGoalTop();
+      Game.offenderWideReceiverBottom.FieldGoalBottom();
       this.Close();
     }
 

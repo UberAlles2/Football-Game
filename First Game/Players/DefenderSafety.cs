@@ -34,7 +34,7 @@ namespace FootballGame
       CoverAfterMove = Random.Next(10, 350); // Initially don't cover anyone but switch later on.
 
       TargetPlayer = Game.defenderMiddleLinebacker; // Inital zone coverage, switches later
-      if (Random.Next(0, 15) < 2) // Blitz
+      if (Random.Next(0, 15) < 2 || Player.ThrowingType ==  ThrowType.Punt || Player.ThrowingType == ThrowType.FieldGoal) // Blitz
       {
         DefensiveMode = DefensiveMode.Blitz;
         Intelligence = 9; // Mixed in with blocker less intelligence

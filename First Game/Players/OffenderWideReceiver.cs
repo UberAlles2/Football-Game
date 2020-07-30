@@ -217,6 +217,24 @@ namespace FootballGame
       receiverPattern = new ReceiverPattern() { Name = "QuickOut", TargetX = PlayingField.LineOfScrimagePixel + 80, TargetY = InitialTop + 40 };
       receiverPatterns.Add(receiverPattern);
     }
+    public void FieldGoalTop()
+    {
+      receiverPatterns.Clear();
+
+      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "Post", TargetX = 230, TargetY = this.InitialTop + 120 };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "Post", TargetX = 80, TargetY = InitialTop + 100 };
+      receiverPatterns.Add(receiverPattern);
+    }
+    public void FieldGoalBottom()
+    {
+      receiverPatterns.Clear();
+
+      ReceiverPattern receiverPattern = new ReceiverPattern() { Name = "Post", TargetX = 230, TargetY = this.InitialTop - 120 };
+      receiverPatterns.Add(receiverPattern);
+      receiverPattern = new ReceiverPattern() { Name = "Post", TargetX = 80, TargetY = InitialTop - 100 };
+      receiverPatterns.Add(receiverPattern);
+    }
   }
 
   class ReceiverPattern
