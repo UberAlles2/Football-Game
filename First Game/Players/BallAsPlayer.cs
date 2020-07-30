@@ -112,13 +112,13 @@ namespace FootballGame
       }
       if (ThrowingType == ThrowType.Kick)
       {
-        randomX = Random.Next(0, 30) - 15;
-        randomY = Random.Next(0, 30) - 15;
+        randomX = Random.Next(0, 30) - 15; // Less accurate
+        randomY = Random.Next(0, 30) - 15; // Less accurate
 
         if (targetX > 1200 && targetX < 1280)
           targetX = 1260;
         if (Game.CurrentGameState.BallOnYard100 < 65) // long field goal 52+
-          targetX -= 5;
+          targetX -= 5; // Could be short
       }
 
       Top = startY;  // start position
