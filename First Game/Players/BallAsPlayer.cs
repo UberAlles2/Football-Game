@@ -105,8 +105,8 @@ namespace FootballGame
         randomX = Random.Next(0, 5) - 2;  // More accurate
         randomY = Random.Next(0, 15) - 10; // Less accurate
 
-        if (targetX > 1200 && targetX < 1280)
-          targetX = 1260;
+        targetX = PlayingField.FieldGoalPostLeft + 20;
+
         if (Game.CurrentGameState.BallOnYard100 < 65) // 52 yards or greater
         {
           int diff = (((int)Game.CurrentGameState.BallOnYard100 - 65) * 2) + 4;
@@ -150,7 +150,7 @@ namespace FootballGame
 
       this.Left = PlayingField.FieldGoalPostLeft + 4;
 
-      if (DetectCloseCollision(this, PlayingField.FieldGoalPostLeft, PlayingField.FieldGoalPostTop - 8, 12) // Hit goal Post?
+      if (DetectCloseCollision(this, PlayingField.FieldGoalPostLeft, PlayingField.FieldGoalPostTop - 12, 12) // Hit goal Post?
        || DetectCloseCollision(this, PlayingField.FieldGoalPostLeft, PlayingField.FieldGoalPostBottom - 8, 12))
       {
         SpinDefectedBall();

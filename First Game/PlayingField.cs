@@ -59,7 +59,7 @@ namespace FootballGame
         double leftPosition; 
         double top;
         double bottom;
-        if (Game.CurrentGameState.BallOnYard100 < 79) // Outside the 21 yard line
+        if (Game.CurrentGameState.BallOnYard100 < 82) // Outside the 18 yard line
         {
           leftPosition = FieldBounds.Left + FieldBounds.Width - 30; // Far back next to form's right edge
           // Make narrower the farther away
@@ -70,8 +70,8 @@ namespace FootballGame
         {
           leftPosition = LineOfScrimagePixel - 5 + (110 - Game.CurrentGameState.BallOnYard100) * PixalsInYard; // 10 yards back of goal line, yard 110
           // Keep at 148 wide
-          top = FieldCenterY - 78; 
-          bottom = FieldCenterY + 78;
+          top = FieldCenterY - 79; 
+          bottom = FieldCenterY + 79;
         }
 
         FieldGoalPostLeft = (int)leftPosition;
