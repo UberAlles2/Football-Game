@@ -181,6 +181,7 @@ namespace FootballGame
     {
       TotalMoves++;
       CheckFieldBoundries();
+      CheckForTouchdown();
       MovePic(this);
       Application.DoEvents();
       ParentForm.picEndZoneLeft.Invalidate();
@@ -219,8 +220,6 @@ namespace FootballGame
       if (this is DefenderLineman || this is DefenderOutsideLineman) // Can't close in on target that fast with blockers
         closingIn = 8;
 
-      // TODO no difference between verticle and horizontal??? Should there be?
-      
       // Vertical move, the target player if either way above or below chasing player, Y should change more 
       if (Math.Abs(this.Left - X) < Math.Abs(this.Top - Y))
       {
@@ -366,6 +365,19 @@ namespace FootballGame
           this.ChangeY = 0;
 
         this.Top = FieldBounds.Height - 1;
+      }
+    }
+
+    private void CheckForTouchdown()
+    {
+      if (this != ControllablePlayer)
+        return;
+      
+      int touchDownLine = PlayingField.PixelFromYard(100); 
+
+      if (this.Left + 28 > touchDownLine) // 28 is tip of ball crossing, not Left
+      {
+        ParentGame.EndPlay(EndPlayType.Touchdown, this, "Touchdown!");
       }
     }
 

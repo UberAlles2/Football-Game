@@ -8,6 +8,8 @@ namespace FootballGame
 {
   public class CurrentGameState
   {
+    public int HomeScore = 0;
+    public int GuestScore = 0;
     public string ResultsOfLastPlay = "";
     public float YardsGained;
     public Player TackledBy = null;

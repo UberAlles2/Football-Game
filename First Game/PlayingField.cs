@@ -43,12 +43,18 @@ namespace FootballGame
       pen = new Pen(Color.Yellow);
       int firstDownMarker = PlayingField.LineOfScrimagePixel + ((int)Game.CurrentGameState.YardsToGo * (int)PixalsInYard);
       e.Graphics.DrawLine(pen, firstDownMarker, 0, firstDownMarker, ParentForm.Height - 62);
-      // Left Goal Line 
-      if (Game.CurrentGameState.BallOnYard100 < 9)
+      
+      // Goal Lines 
+      if (Game.CurrentGameState.BallOnYard100 < 9 || Game.CurrentGameState.BallOnYard100 > 89)
       {
-        pen = new Pen(Color.White);
-        int goalLineMarker = PlayingField.LineOfScrimagePixel - (int)(Game.CurrentGameState.BallOnYard100 * (int)PixalsInYard);
-        e.Graphics.DrawLine(pen, goalLineMarker, 0, goalLineMarker, ParentForm.Height - 62);
+        pen = new Pen(Color.White, 3);
+        int goal;
+        if(Game.CurrentGameState.BallOnYard100 < 50)  
+          goal = PixelFromYard(0);
+        else
+          goal = PixelFromYard(100);
+
+        e.Graphics.DrawLine(pen, goal, 0, goal, ParentForm.Height - 62);
       }
 
       // Left Goal Post
@@ -132,6 +138,10 @@ namespace FootballGame
       Bitmap bmpCrop = bmpImage.Clone(cropArea, bmpImage.PixelFormat);
 
       return (Image)(bmpCrop);
+    }
+    public static int PixelFromYard(int Yard)
+    {
+      return (int)LineOfScrimagePixel + (int)((Yard - Game.CurrentGameState.BallOnYard100) * PlayingField.PixalsInYard);
     }
   }
 }

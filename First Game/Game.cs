@@ -38,6 +38,7 @@ namespace FootballGame
     Punted,
     FieldGoal,
     FieldGoalMiss,
+    Touchdown,
     Safety
   }
 
@@ -83,7 +84,7 @@ namespace FootballGame
       // Set initial values and Display them.
       CurrentGameState.Down = 4;
       CurrentGameState.YardsToGo = 10;
-      CurrentGameState.BallOnYard100 = 86; // 1 - 100
+      CurrentGameState.BallOnYard100 = 8.2F; // 1 - 100
 
       // Draw the scoreboard and field.
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
@@ -122,7 +123,7 @@ namespace FootballGame
       initlineX = PlayingField.LineOfScrimagePixel + 25; // All defensive X values
 
       Player.AddPlayer(defenderCornerbackTop, offenderWideReceiverTop.InitialLeft + 160, offenderWideReceiverTop.InitialTop + 30, ParentForm.Player2, VerticalPosition.PositionTop);
-      Player.AddPlayer(defenderOutsideLinemanTop, initlineX, PlayingField.FieldCenterY - 152, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -245);
+      Player.AddPlayer(defenderOutsideLinemanTop, initlineX, PlayingField.FieldCenterY - 152, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -235);
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen; // TODO take out
       Player.AddPlayer(defenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 50, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -85);
       defenderLinemanUpper.PicBox.BackColor = Color.LightBlue; // TODO take out
@@ -132,9 +133,9 @@ namespace FootballGame
         // Safety
         Player.AddPlayer(defenderSafety, PlayingField.LineOfScrimagePixel + 420, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
         defenderSafety.PicBox.BackColor = Color.HotPink; // TODO take out
-      Player.AddPlayer(defenderLinemanLower, initlineX, PlayingField.FieldCenterY + 47, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 82);
+      Player.AddPlayer(defenderLinemanLower, initlineX, PlayingField.FieldCenterY + 47, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 78);
       defenderLinemanLower.PicBox.BackColor = Color.DarkBlue; // TODO take out
-      Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 152, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 245);
+      Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 152, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 235);
       defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen; // TODO take out
       Player.AddPlayer(defenderCornerbackBottom, offenderWideReceiverBottom.InitialLeft + 160, offenderWideReceiverBottom.InitialTop - 30, ParentForm.Player2, VerticalPosition.PositionBottom);
 
@@ -214,6 +215,7 @@ namespace FootballGame
       // Stopping the clock   
       if (endPlayType != EndPlayType.Tackled)
         Scoreboard.CountDownTimer.Pause();
+         
 
       CurrentGameState.YardsGained = 0;
       if (endPlayType == EndPlayType.Tackled || endPlayType == EndPlayType.OutOfBounds)
@@ -235,6 +237,18 @@ namespace FootballGame
         CurrentGameState.YardsToGo = 10;
         CurrentGameState.Down = 0;
         message = "Punted, a loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("00") + " yards on change of possesion."; 
+      }
+      if (endPlayType == EndPlayType.FieldGoal || endPlayType == EndPlayType.FieldGoalMiss)
+      {
+        if (endPlayType == EndPlayType.FieldGoal)
+          CurrentGameState.HomeScore += 3;
+
+        CurrentGameState.YardsGained = 0;
+        CurrentGameState.TackledBy = null;
+        CurrentGameState.BallOnYard100 = 20;
+        CurrentGameState.YardsToGo = 10;
+        CurrentGameState.Down = 0;
+        Scoreboard.DisplayBearsScore(CurrentGameState.HomeScore.ToString(" 0"));
       }
       else
         CurrentGameState.TackledBy = null;
