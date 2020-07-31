@@ -102,14 +102,14 @@ namespace FootballGame
       }
       else if (ThrowingType == ThrowType.FieldGoal)
       {
-        randomX = Random.Next(0, 4) - 2;  // More accurate
+        randomX = Random.Next(0, 5) - 2;  // More accurate
         randomY = Random.Next(0, 15) - 10; // Less accurate
 
         if (targetX > 1200 && targetX < 1280)
           targetX = 1260;
-        if (Game.CurrentGameState.BallOnYard100 < 66) // 52 yards or greater
+        if (Game.CurrentGameState.BallOnYard100 < 65) // 52 yards or greater
         {
-          int diff = (((int)Game.CurrentGameState.BallOnYard100 - 66) * 2) + 4;
+          int diff = (((int)Game.CurrentGameState.BallOnYard100 - 65) * 2) + 4;
           targetX += diff; // Could be short, longer it is the more possible it is short
         }
         else // 49-
