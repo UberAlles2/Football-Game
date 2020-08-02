@@ -97,7 +97,7 @@ namespace FootballGame
       {
         if(BallAsPlayer.BallIsCatchable)
         {
-          if (Random.Next(0, 10) > 7)
+          if (Random.Next(0, 100) > 80) // 20% dropped
           {
             BallAsPlayer.SpinDefectedBall();
             ParentGame.EndPlay(EndPlayType.Incomplete, null, "Dropped.");

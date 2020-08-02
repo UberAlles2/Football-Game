@@ -16,7 +16,7 @@ namespace FootballGame
 
     public override void Initialize()
     {
-      SpeedCap = 128;
+      SpeedCap = 132;
       Intelligence = 11;
       InCoverage = true;
 
@@ -66,13 +66,16 @@ namespace FootballGame
       // Either quarterback is running or ball was caught 
       if (ControllablePlayer.Left > PlayingField.LineOfScrimagePixel - 30 && InCoverage == true)
       {
+        // One time deal when switching
+        Intelligence = 11;
+        MovingAroundBlocker = 0;
         TargetPlayer = ControllablePlayer;
         DefensiveMode = DefensiveMode.Soft;
         ChangeX += 10;
         base.MoveTowardsTarget(TargetPlayer.Left + 320, TargetPlayer.Top);
-        InCoverage = false;
+        InCoverage = false; // No longer in coverage.
       }
-      if(InCoverage && TotalMoves > CoverAfterMove) // Swicth to covering wide receivers
+      if(InCoverage && TotalMoves > CoverAfterMove) // Switch to covering wide receivers
       {
         Intelligence = 6; // while in coverage, you don't always keep up with player
         TargetPlayer = CoveredPlayer;

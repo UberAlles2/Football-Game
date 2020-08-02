@@ -332,6 +332,12 @@ namespace FootballGame
       {
         if (this is Defender)
           this.ChangeX = 0;
+        else if (this.HasBall)
+        {
+          this.Left += Random.Next(60, 360);
+          ParentGame.EndPlay(EndPlayType.Tackled, null, "Tackled after extra yards.");
+          return;
+        }
         else
           this.ChangeX = 0;
 

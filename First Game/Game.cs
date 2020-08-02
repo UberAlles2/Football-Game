@@ -103,7 +103,7 @@ namespace FootballGame
 
       // Getting keyboard input
       _timer.Tick += new System.EventHandler(KeyDown);
-      _timer.Interval = 84;
+      _timer.Interval = 82;
     }
 
     public void AddPlayers()
@@ -199,7 +199,7 @@ namespace FootballGame
         }
         Player.CheckCollisions();
 
-        Thread.Sleep(12);  // Speed of the game, increase for easy mode
+        Thread.Sleep(20);  // Speed of the game, increase for easy mode
       }
     }
 
@@ -293,9 +293,9 @@ namespace FootballGame
           break;
         case EndPlayType.Punted:
           if (CurrentGameState.BallOnYard100 < 20)
-            CurrentGameState.YardsGained -= (13 + Random.Next(0, 5));
+            CurrentGameState.YardsGained -= (12 + Random.Next(0, 6));
           else
-            CurrentGameState.YardsGained -= (18 + Random.Next(0, 5));
+            CurrentGameState.YardsGained -= (16 + Random.Next(0, 6));
 
           CurrentGameState.BallOnYard100 += (CurrentGameState.YardsGained);
 
@@ -309,20 +309,20 @@ namespace FootballGame
             }
             else
             {
-              message = "Guest scored a fieldgoal.";
+              message = "Guest scored a field goal.";
               CurrentGameState.GuestScore += 3;
             }
             CurrentGameState.YardsGained = 0;
             CurrentGameState.BallOnYard100 = 20;
-            CurrentGameState.YardsToGo = 10;
-            CurrentGameState.Down = 0;
             Scoreboard.ScrollMessage(message);
             Scoreboard.DisplayGuestScore(CurrentGameState.GuestScore.ToString(" 0"));
           }
-
+          else
+          {
+            message = "Punted, a loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("00") + " yards on change of possesion.";
+          }
           CurrentGameState.YardsToGo = 10;
           CurrentGameState.Down = 0;
-          message = "Punted, a loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("00") + " yards on change of possesion.";
           break;
         case EndPlayType.FieldGoal:
         case EndPlayType.FieldGoalMiss:
@@ -385,44 +385,44 @@ namespace FootballGame
       if (IsKeyDown(Keys.Left)) // <<<-------
       {
         if(Player.ControllablePlayer.ChangeX > 16) // Moving Right -->> // Easier to hit the brakes and change speed.
-          Player.ControllablePlayer.ChangeX -= 18;
+          Player.ControllablePlayer.ChangeX -= 24;
         else if (Player.ControllablePlayer.ChangeX < 40) // Moving Left <<-- // Harder to gain speed when approching max speed.
           Player.ControllablePlayer.ChangeX -= 4;
         else
-          Player.ControllablePlayer.ChangeX -= 8; // Normal speed change
+          Player.ControllablePlayer.ChangeX -= 12; // Normal speed change
 
         keypressed = true;
       }
       if (IsKeyDown(Keys.Right)) // ------->>>
       {
         if (Player.ControllablePlayer.ChangeX < -16) // Moving Left <<--
-          Player.ControllablePlayer.ChangeX += 18;
+          Player.ControllablePlayer.ChangeX += 24;
         else if (Player.ControllablePlayer.ChangeX > 40) // Moving Right -->>
           Player.ControllablePlayer.ChangeX += 4;
         else
-          Player.ControllablePlayer.ChangeX += 8;
+          Player.ControllablePlayer.ChangeX += 12;
 
         keypressed = true;
       }
       if (IsKeyDown(Keys.Up)) //^^^^^
       {
         if (Player.ControllablePlayer.ChangeY > 16) // Moving Down vvvv
-          Player.ControllablePlayer.ChangeY -= 18;
+          Player.ControllablePlayer.ChangeY -= 24;
         else if (Player.ControllablePlayer.ChangeY < 40) // Moving Up ^^^^
-          Player.ControllablePlayer.ChangeY -= 4;
+          Player.ControllablePlayer.ChangeY -= 6;
         else
-          Player.ControllablePlayer.ChangeY -= 8;
+          Player.ControllablePlayer.ChangeY -= 12;
 
         keypressed = true;
       }
       if (IsKeyDown(Keys.Down)) //vvvvv
       {
         if (Player.ControllablePlayer.ChangeY < -16) // Moving Up ^^^^
-          Player.ControllablePlayer.ChangeY += 18;
+          Player.ControllablePlayer.ChangeY += 24;
         else if (Player.ControllablePlayer.ChangeY > 40) // Moving Down ^^^^
-          Player.ControllablePlayer.ChangeY += 4;
+          Player.ControllablePlayer.ChangeY += 6;
         else
-          Player.ControllablePlayer.ChangeY += 8;
+          Player.ControllablePlayer.ChangeY += 12;
         keypressed = true;
       }
       if (keypressed == false)
