@@ -46,6 +46,7 @@ namespace FootballGame
   public class Game
   {
     private static bool _running = true;
+    private static bool _timeExpired = false;
     private static bool _playEnded = false;
     private static System.Windows.Forms.Timer _timer = new System.Windows.Forms.Timer(); // For keyboard arrows
     private static PlayOptionsForm _playOptionsForm;
@@ -83,9 +84,13 @@ namespace FootballGame
       PlayingField.ParentForm = form1;
 
       // Set initial values and Display them.
-      CurrentGameState.Down = 4;
+      CurrentGameState.Down = 1;
       CurrentGameState.YardsToGo = 10;
-      CurrentGameState.BallOnYard100 = 2.9F; // 1 - 100
+      CurrentGameState.BallOnYard100 = 20.0F; // 1 - 100
+      CurrentGameState.GuestScore = 3;
+      CurrentGameState.Quarter = 4;
+
+      Scoreboard.CountDownTimer.SetTime(0, 8);
 
       // Draw the scoreboard and field.
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
@@ -164,7 +169,24 @@ namespace FootballGame
       {
         if (_playEnded)
         {
-          ChoosePlay();
+          if (_timeExpired)
+          {
+            DisplayEndGameMessage();
+            return;
+          }
+          else
+          {
+            ChoosePlay();
+            if (_timeExpired)
+            {
+              DisplayEndGameMessage();
+              return;
+            }
+          }
+
+          if (!_running) // Game ended while chosing a play.
+            return;
+
           InitializePlayers();
           _playEnded = false;
         }
@@ -179,6 +201,31 @@ namespace FootballGame
 
         Thread.Sleep(12);  // Speed of the game, increase for easy mode
       }
+    }
+
+    public static void EndGame()
+    {
+      _timeExpired = true;
+      PlayOptionsForm.CountDownTimer.Stop();
+      _playOptionsForm.Close();
+      Scoreboard.ScrollMessage("Game Ended");
+    }
+
+    public static void DisplayEndGameMessage()
+    {
+      _running = false;
+      _timer.Stop();
+      Scoreboard.ScrollTimer.Stop();
+      _playOptionsForm.Close();
+
+      string message = "Game Ended.\n";
+      if (CurrentGameState.HomeScore > CurrentGameState.GuestScore)
+        message += "Bears Won!\n";
+      else if (CurrentGameState.HomeScore < CurrentGameState.GuestScore)
+        message += "Bears Lost.\n";
+      else
+        message += "Tie Game.\n";
+      MessageBox.Show(message, "Game Ended", MessageBoxButtons.OK);
     }
 
     private void ChoosePlay()
@@ -203,7 +250,8 @@ namespace FootballGame
           break;
       }
 
-      Scoreboard.CountDownTimer.Start();
+      if(!_timeExpired)
+        Scoreboard.CountDownTimer.Start();
     }
 
     public void EndPlay(EndPlayType endPlayType, Player tackledBy, string message)
@@ -250,6 +298,28 @@ namespace FootballGame
             CurrentGameState.YardsGained -= (18 + Random.Next(0, 5));
 
           CurrentGameState.BallOnYard100 += (CurrentGameState.YardsGained);
+
+          if(CurrentGameState.BallOnYard100 < 12)
+          {
+            // Other team scored.
+            if (CurrentGameState.BallOnYard100 < 3)
+            {
+              message = "Guest scored a touchdown.";
+              CurrentGameState.GuestScore += 7;
+            }
+            else
+            {
+              message = "Guest scored a fieldgoal.";
+              CurrentGameState.GuestScore += 3;
+            }
+            CurrentGameState.YardsGained = 0;
+            CurrentGameState.BallOnYard100 = 20;
+            CurrentGameState.YardsToGo = 10;
+            CurrentGameState.Down = 0;
+            Scoreboard.ScrollMessage(message);
+            Scoreboard.DisplayGuestScore(CurrentGameState.GuestScore.ToString(" 0"));
+          }
+
           CurrentGameState.YardsToGo = 10;
           CurrentGameState.Down = 0;
           message = "Punted, a loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("00") + " yards on change of possesion.";

@@ -26,6 +26,7 @@ namespace FootballGame
       ScoreboardLetters = ParentForm.picScoreboardLetters.Image;
       ParentForm.picScoreboardLetters.Visible = false;
       CountDownTimer.TimeChanged = DisplayClock;
+      CountDownTimer.TimeExpired = ClockTimeExired;
       CountDownTimer.SetInterval = 500;
       // Create all the pictureboxes
       for (int i = 0; i < 48; i++)
@@ -36,11 +37,10 @@ namespace FootballGame
       DisplayDown("1");
       DisplayToGo("10");
       DisplayBallOn("20");
-      DisplayQtr("1");
-      DisplayBearsScore(" 0");
-      DisplayTimeMin("15");
-      DisplayTimeSec("00");
-      DisplayGuestScore(" 0");
+      DisplayQtr(Game.CurrentGameState.Quarter.ToString(" 0"));
+      DisplayClock();
+      DisplayBearsScore(Game.CurrentGameState.HomeScore.ToString(" 0"));
+      DisplayGuestScore(Game.CurrentGameState.GuestScore.ToString(" 0"));
     }
 
     public static PictureBox CreateLetterPictureBox(int left)
@@ -150,6 +150,11 @@ namespace FootballGame
     {
       DisplayMessage(CountDownTimer.TimeLeftMinutesString, 21);
       DisplayMessage(CountDownTimer.TimeLeftSecondsString, 24);
+    }
+    public static void ClockTimeExired()
+    {
+      CountDownTimer.Stop();
+      Game.EndGame();
     }
     public static void TimerScrollMessageEvent(object sender, EventArgs e)
     {
