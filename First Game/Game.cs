@@ -90,7 +90,7 @@ namespace FootballGame
       CurrentGameState.GuestScore = 3;
       CurrentGameState.Quarter = 4;
 
-      Scoreboard.CountDownTimer.SetTime(0, 8);
+      Scoreboard.CountDownTimer.SetTime(15, 0);
 
       // Draw the scoreboard and field.
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
@@ -103,7 +103,7 @@ namespace FootballGame
 
       // Getting keyboard input
       _timer.Tick += new System.EventHandler(KeyDown);
-      _timer.Interval = 90;
+      _timer.Interval = 88;
     }
 
     public void AddPlayers()
@@ -384,8 +384,8 @@ namespace FootballGame
 
       if (IsKeyDown(Keys.Left)) // <<<-------
       {
-        if(Player.ControllablePlayer.ChangeX > 30) // Moving Right -->> // Easier to hit the brakes and change speed.
-          Player.ControllablePlayer.ChangeX -= 16;
+        if(Player.ControllablePlayer.ChangeX > 24) // Moving Right -->> // Easier to hit the brakes and change speed.
+          Player.ControllablePlayer.ChangeX -= 18;
         else if (Player.ControllablePlayer.ChangeX < 40) // Moving Left <<-- // Harder to gain speed when approching max speed.
           Player.ControllablePlayer.ChangeX -= 4;
         else
@@ -395,8 +395,8 @@ namespace FootballGame
       }
       if (IsKeyDown(Keys.Right)) // ------->>>
       {
-        if (Player.ControllablePlayer.ChangeX < -30) // Moving Left <<--
-          Player.ControllablePlayer.ChangeX += 16;
+        if (Player.ControllablePlayer.ChangeX < -24) // Moving Left <<--
+          Player.ControllablePlayer.ChangeX += 18;
         else if (Player.ControllablePlayer.ChangeX > 40) // Moving Right -->>
           Player.ControllablePlayer.ChangeX += 4;
         else
@@ -406,8 +406,8 @@ namespace FootballGame
       }
       if (IsKeyDown(Keys.Up)) //^^^^^
       {
-        if (Player.ControllablePlayer.ChangeY > 30) // Moving Down vvvv
-          Player.ControllablePlayer.ChangeY -= 16;
+        if (Player.ControllablePlayer.ChangeY > 24) // Moving Down vvvv
+          Player.ControllablePlayer.ChangeY -= 18;
         else if (Player.ControllablePlayer.ChangeY < 40) // Moving Up ^^^^
           Player.ControllablePlayer.ChangeY -= 4;
         else
@@ -417,8 +417,8 @@ namespace FootballGame
       }
       if (IsKeyDown(Keys.Down)) //vvvvv
       {
-        if (Player.ControllablePlayer.ChangeY < -30) // Moving Up ^^^^
-          Player.ControllablePlayer.ChangeY += 16;
+        if (Player.ControllablePlayer.ChangeY < -24) // Moving Up ^^^^
+          Player.ControllablePlayer.ChangeY += 18;
         else if (Player.ControllablePlayer.ChangeY > 40) // Moving Down ^^^^
           Player.ControllablePlayer.ChangeY += 4;
         else

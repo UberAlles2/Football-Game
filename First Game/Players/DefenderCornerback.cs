@@ -40,7 +40,7 @@ namespace FootballGame
     public override void Initialize()
     {
       SpeedCap = 132;
-      Intelligence = 9;
+      Intelligence = 6;
       InCoverage = true;
       base.Initialize();
     }
@@ -74,6 +74,7 @@ namespace FootballGame
         }
         else
         {
+          Intelligence = 11;
           base.MoveTowardsTarget(calcTargetX, TargetPlayer.Top);
         }
       }

@@ -74,6 +74,7 @@ namespace FootballGame
       }
       if(InCoverage && TotalMoves > CoverAfterMove) // Swicth to covering wide receivers
       {
+        Intelligence = 6; // while in coverage, you don't always keep up with player
         TargetPlayer = CoveredPlayer;
         CoverAfterMove = 99999999; // Never switch again
       }

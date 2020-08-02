@@ -79,7 +79,7 @@ namespace FootballGame
           else
             receiverPatternIndex = 0; // loop through again
         }
-        if (IsThrowingOrKicking && Random.Next(0, 10) > 6) // Player will move towards thrown ball
+        if (IsThrowingOrKicking && Random.Next(0, 10) > 4) // Player will move towards thrown ball
         {
           TargetPlayer.Top  = (TargetPlayer.Top + Game.ballAsPlayer.TargetPlayer.Top) / 2;
           TargetPlayer.Left = (TargetPlayer.Left + Game.ballAsPlayer.TargetPlayer.Left) / 2;
