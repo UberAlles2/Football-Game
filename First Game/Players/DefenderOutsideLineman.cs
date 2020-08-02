@@ -21,7 +21,13 @@ namespace FootballGame
       {
         ChangeY -= 4;
       }
-      OffsetY++;
+      if (TargetPlayer.Top > Top - 16) // Top Outside need to stay above than the ball runner
+      {
+        ChangeX -= 6;
+        ChangeY -= 6;
+      }
+      if (OffsetY < -8)
+        OffsetY++;
       base.Move();
     }
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
@@ -43,7 +49,13 @@ namespace FootballGame
       {
         ChangeY += 4;
       }
-      OffsetY--;
+      if (TargetPlayer.Top > Top - 16) // Bottom Outside need to stay ;ower than the ball runner
+      {
+        ChangeX += 6;
+        ChangeY += 6;
+      }
+      if(OffsetY > 8)
+        OffsetY--;
       base.Move(); 
     }
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
@@ -56,7 +68,7 @@ namespace FootballGame
   {
     public override void Initialize()
     {
-      SpeedCap = 105;
+      SpeedCap = 106;
       Intelligence = 8;
       TargetPlayer = Player.ControllablePlayer;
       DefensiveMode = DefensiveMode.Blitz;

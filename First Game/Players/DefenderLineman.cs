@@ -53,7 +53,7 @@ namespace FootballGame
   {
     public override void Initialize()
     {
-      SpeedCap = 102;
+      SpeedCap = 104;
       Intelligence = 8;
       TargetPlayer = Player.ControllablePlayer;
       base.Initialize();

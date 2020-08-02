@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -84,7 +85,7 @@ namespace FootballGame
       // Set initial values and Display them.
       CurrentGameState.Down = 4;
       CurrentGameState.YardsToGo = 10;
-      CurrentGameState.BallOnYard100 = 89.9F; // 1 - 100
+      CurrentGameState.BallOnYard100 = 2.9F; // 1 - 100
 
       // Draw the scoreboard and field.
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
@@ -97,7 +98,7 @@ namespace FootballGame
 
       // Getting keyboard input
       _timer.Tick += new System.EventHandler(KeyDown);
-      _timer.Interval = 50;
+      _timer.Interval = 60;
     }
 
     public void AddPlayers()
@@ -176,7 +177,7 @@ namespace FootballGame
         }
         Player.CheckCollisions();
 
-        Thread.Sleep(30);  // Speed of the game, increase for easy mode
+        Thread.Sleep(20);  // Speed of the game, increase for easy mode
       }
     }
 
@@ -225,13 +226,14 @@ namespace FootballGame
         case EndPlayType.OutOfBounds:
           if (Player.ControllablePlayer.Left + 28 < PlayingField.PixelFromYard(0)) // 28 is tip of ball
           {
-            message = "Safty.";
             CurrentGameState.GuestScore += 2;
             CurrentGameState.YardsGained = 0;
             CurrentGameState.BallOnYard100 = 20;
             CurrentGameState.YardsToGo = 10;
             CurrentGameState.Down = 0;
             Scoreboard.DisplayGuestScore(CurrentGameState.GuestScore.ToString(" 0"));
+            message = "Safty.";
+            Scoreboard.ScrollMessage(message);
           }
           else
           {
@@ -360,11 +362,24 @@ namespace FootballGame
       }
 
       // Lessen the speed if near maxing x and Y movement.
-      if (Math.Abs(Player.ControllablePlayer.ChangeX) + Math.Abs(Player.ControllablePlayer.ChangeY) > Player.ControllablePlayer.SpeedCap * 2 - 60)
+      int totalMovement = Math.Abs(Player.ControllablePlayer.ChangeX) + Math.Abs(Player.ControllablePlayer.ChangeY); // total movement x + y
+      if (totalMovement > Player.ControllablePlayer.SpeedCap * 2 - 36)
       {
-        Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 36) * Math.Sign(Player.ControllablePlayer.ChangeX);
-        Player.ControllablePlayer.ChangeY = (Player.ControllablePlayer.SpeedCap - 36) * Math.Sign(Player.ControllablePlayer.ChangeY);
+        if (totalMovement > Player.ControllablePlayer.SpeedCap * 2 - 16)
+        {
+          Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 12) * Math.Sign(Player.ControllablePlayer.ChangeX);
+          Player.ControllablePlayer.ChangeY = (Player.ControllablePlayer.SpeedCap - 12) * Math.Sign(Player.ControllablePlayer.ChangeY);
+        }
+        else
+        {
+          Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 20) * Math.Sign(Player.ControllablePlayer.ChangeX);
+          Player.ControllablePlayer.ChangeY = (Player.ControllablePlayer.SpeedCap - 20) * Math.Sign(Player.ControllablePlayer.ChangeY);
+        }
       }
+
+      Debug.WriteLine(Player.ControllablePlayer.ChangeX);
+      Debug.WriteLine(Player.ControllablePlayer.ChangeY);
+      Debug.WriteLine("--------------");
 
       Player.ControllablePlayer.Move();
 

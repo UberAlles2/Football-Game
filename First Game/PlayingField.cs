@@ -98,12 +98,12 @@ namespace FootballGame
       // Left End Zone Image
       if (Game.CurrentGameState.BallOnYard100 < 6)
       {
-        if (ParentForm.picEndZoneLeft.Bounds.IntersectsWith(Player.ControllablePlayer.PicBox.Bounds))
-        {
-          Player.ControllablePlayer.PicBox.SendToBack();
-          Graphics g = e.Graphics;
-          g.DrawImage(Player.ControllablePlayer.PicBox.Image, Player.ControllablePlayer.PicBox.Location.X - ParentForm.picEndZoneLeft.Left, Player.ControllablePlayer.PicBox.Location.Y - ParentForm.picEndZoneLeft.Top, Player.ControllablePlayer.PicBox.Width, Player.ControllablePlayer.PicBox.Height);
-        }
+        //if (ParentForm.picEndZoneLeft.Bounds.IntersectsWith(Player.ControllablePlayer.PicBox.Bounds))
+        //{
+        //  Player.ControllablePlayer.PicBox.SendToBack();
+        //  Graphics g = e.Graphics;
+        //  g.DrawImage(Player.ControllablePlayer.PicBox.Image, Player.ControllablePlayer.PicBox.Location.X - ParentForm.picEndZoneLeft.Left, Player.ControllablePlayer.PicBox.Location.Y - ParentForm.picEndZoneLeft.Top, Player.ControllablePlayer.PicBox.Width, Player.ControllablePlayer.PicBox.Height);
+        //}
       }
     }
 

@@ -49,7 +49,7 @@ namespace FootballGame
 
     public override void Initialize()
     {
-      SpeedCap = 108;
+      SpeedCap = 110;
       HasBall = false;
       PicBox.Image = ParentForm.Player1.Image;
       receiverPatternIndex = 0;

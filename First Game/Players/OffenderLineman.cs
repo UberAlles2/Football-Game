@@ -78,8 +78,7 @@ namespace FootballGame
   {
     public override void Initialize()
     {
-      SpeedCap = 90;
-
+      SpeedCap = 96;
       base.Initialize();
     }
 

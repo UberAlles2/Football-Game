@@ -39,7 +39,7 @@ namespace FootballGame
 
     public override void Initialize()
     {
-      SpeedCap = 136;
+      SpeedCap = 132;
       Intelligence = 9;
       InCoverage = true;
       base.Initialize();

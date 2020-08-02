@@ -14,7 +14,7 @@ namespace FootballGame
     {
       int shortYardage = 0;
       
-      SpeedCap = 116;
+      SpeedCap = 118;
       Intelligence = 10;
       TargetPlayer = ControllablePlayer;
 
@@ -42,8 +42,8 @@ namespace FootballGame
       }
       else if (r < (9 + shortYardage))
         DefensiveMode = DefensiveMode.Normal;
-      else
-        DefensiveMode = DefensiveMode.Soft;
+      //else 
+      //  DefensiveMode = DefensiveMode.Soft; // never play soft
     }
 
     public override void Move()
