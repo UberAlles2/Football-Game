@@ -97,8 +97,8 @@ namespace FootballGame
       int randomY = 0;
       if (ThrowingType == ThrowType.Throw)
       {
-        randomX = Random.Next(0, 8) - 4;
-        randomY = Random.Next(0, 8) - 4;
+        randomX = Random.Next(0, 6) - 3;
+        randomY = Random.Next(0, 6) - 3;
       }
       else if (ThrowingType == ThrowType.FieldGoal)
       {

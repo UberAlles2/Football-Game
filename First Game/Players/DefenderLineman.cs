@@ -53,7 +53,7 @@ namespace FootballGame
   {
     public override void Initialize()
     {
-      SpeedCap = 104;
+      SpeedCap = 102;
       Intelligence = 8;
       TargetPlayer = Player.ControllablePlayer;
       base.Initialize();
@@ -68,8 +68,8 @@ namespace FootballGame
 
       if (Player.ControllablePlayer.Left > PlayingField.LineOfScrimagePixel + 8)
       {
-        Intelligence = 11; // Once the runner get past the line of scrimage, this defender doen't have to worry about the blockers.
-        SpeedCap = 110;
+        Intelligence = 10; // Once the runner get past the line of scrimage, this defender doen't have to worry about the blockers.
+        SpeedCap = 106;
       }
 
       if(Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)

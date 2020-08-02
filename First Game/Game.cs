@@ -103,7 +103,7 @@ namespace FootballGame
 
       // Getting keyboard input
       _timer.Tick += new System.EventHandler(KeyDown);
-      _timer.Interval = 88;
+      _timer.Interval = 84;
     }
 
     public void AddPlayers()
@@ -384,7 +384,7 @@ namespace FootballGame
 
       if (IsKeyDown(Keys.Left)) // <<<-------
       {
-        if(Player.ControllablePlayer.ChangeX > 24) // Moving Right -->> // Easier to hit the brakes and change speed.
+        if(Player.ControllablePlayer.ChangeX > 16) // Moving Right -->> // Easier to hit the brakes and change speed.
           Player.ControllablePlayer.ChangeX -= 18;
         else if (Player.ControllablePlayer.ChangeX < 40) // Moving Left <<-- // Harder to gain speed when approching max speed.
           Player.ControllablePlayer.ChangeX -= 4;
@@ -395,7 +395,7 @@ namespace FootballGame
       }
       if (IsKeyDown(Keys.Right)) // ------->>>
       {
-        if (Player.ControllablePlayer.ChangeX < -24) // Moving Left <<--
+        if (Player.ControllablePlayer.ChangeX < -16) // Moving Left <<--
           Player.ControllablePlayer.ChangeX += 18;
         else if (Player.ControllablePlayer.ChangeX > 40) // Moving Right -->>
           Player.ControllablePlayer.ChangeX += 4;
@@ -406,7 +406,7 @@ namespace FootballGame
       }
       if (IsKeyDown(Keys.Up)) //^^^^^
       {
-        if (Player.ControllablePlayer.ChangeY > 24) // Moving Down vvvv
+        if (Player.ControllablePlayer.ChangeY > 16) // Moving Down vvvv
           Player.ControllablePlayer.ChangeY -= 18;
         else if (Player.ControllablePlayer.ChangeY < 40) // Moving Up ^^^^
           Player.ControllablePlayer.ChangeY -= 4;
@@ -417,7 +417,7 @@ namespace FootballGame
       }
       if (IsKeyDown(Keys.Down)) //vvvvv
       {
-        if (Player.ControllablePlayer.ChangeY < -24) // Moving Up ^^^^
+        if (Player.ControllablePlayer.ChangeY < -16) // Moving Up ^^^^
           Player.ControllablePlayer.ChangeY += 18;
         else if (Player.ControllablePlayer.ChangeY > 40) // Moving Down ^^^^
           Player.ControllablePlayer.ChangeY += 4;
