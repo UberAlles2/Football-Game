@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
@@ -56,7 +57,10 @@ namespace FootballGame
       }
       if(OffsetY > 8)
         OffsetY--;
-      base.Move(); 
+      base.Move();
+      //Debug.WriteLine(this.ChangeX);
+      //Debug.WriteLine(this.ChangeY);
+      //Debug.WriteLine("--------------");
     }
     public override void CollisionMove(Player collidedWithPlayer, CollisionOrientation collisionOrientation)
     {

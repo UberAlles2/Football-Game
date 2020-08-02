@@ -98,7 +98,7 @@ namespace FootballGame
 
       // Getting keyboard input
       _timer.Tick += new System.EventHandler(KeyDown);
-      _timer.Interval = 60;
+      _timer.Interval = 90;
     }
 
     public void AddPlayers()
@@ -177,7 +177,7 @@ namespace FootballGame
         }
         Player.CheckCollisions();
 
-        Thread.Sleep(20);  // Speed of the game, increase for easy mode
+        Thread.Sleep(12);  // Speed of the game, increase for easy mode
       }
     }
 
@@ -325,7 +325,7 @@ namespace FootballGame
       }
       if (IsKeyDown(Keys.Right)) // ------->>>
       {
-        if (Player.ControllablePlayer.ChangeX < 30) // Moving Left <<--
+        if (Player.ControllablePlayer.ChangeX < -30) // Moving Left <<--
           Player.ControllablePlayer.ChangeX += 16;
         else if (Player.ControllablePlayer.ChangeX > 40) // Moving Right -->>
           Player.ControllablePlayer.ChangeX += 4;
@@ -347,7 +347,7 @@ namespace FootballGame
       }
       if (IsKeyDown(Keys.Down)) //vvvvv
       {
-        if (Player.ControllablePlayer.ChangeY < 30) // Moving Up ^^^^
+        if (Player.ControllablePlayer.ChangeY < -30) // Moving Up ^^^^
           Player.ControllablePlayer.ChangeY += 16;
         else if (Player.ControllablePlayer.ChangeY > 40) // Moving Down ^^^^
           Player.ControllablePlayer.ChangeY += 4;
@@ -376,10 +376,6 @@ namespace FootballGame
           Player.ControllablePlayer.ChangeY = (Player.ControllablePlayer.SpeedCap - 20) * Math.Sign(Player.ControllablePlayer.ChangeY);
         }
       }
-
-      Debug.WriteLine(Player.ControllablePlayer.ChangeX);
-      Debug.WriteLine(Player.ControllablePlayer.ChangeY);
-      Debug.WriteLine("--------------");
 
       Player.ControllablePlayer.Move();
 

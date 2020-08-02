@@ -218,24 +218,24 @@ namespace FootballGame
       int closingIn = 16;
 
       if (this is DefenderLineman || this is DefenderOutsideLineman) // Can't close in on target that fast with blockers
-        closingIn = 8;
+        closingIn = 12;
 
       // Vertical move, the target player if either way above or below chasing player, Y should change more 
       if (Math.Abs(this.Left - X) < Math.Abs(this.Top - Y))
       {
-        if (Y < Top)
+        if (Y < Top) // Target is above
         {
-          if(ChangeY > 30)
-            ChangeY -= (closingIn + 2);
+          if(ChangeY > 30) // Player is moving down, reverse
+            ChangeY -= (closingIn + 4); 
           else
-            ChangeY -= (closingIn - 2);
+            ChangeY -= (closingIn - 4);
         }
-        if (Y > Top)
+        if (Y > Top) // Target is below
         {
-          if (ChangeY < -30)
-            ChangeY += (closingIn + 2); 
+          if (ChangeY < -30) // Player is moving up, reverse
+            ChangeY += (closingIn + 4); 
           else
-            ChangeY += (closingIn - 2); 
+            ChangeY += (closingIn - 4); 
         }
         if (X < this.Left)
         {
@@ -271,16 +271,16 @@ namespace FootballGame
         if (X < this.Left)
         {
           if (ChangeX > 30)
-            ChangeX -= (closingIn + 2);
+            ChangeX -= (closingIn + 4);
           else
-            ChangeX -= (closingIn - 2);
+            ChangeX -= (closingIn - 4);
         }
         if (X > this.Left)
         {
           if (ChangeX < -30)
-            ChangeX += (closingIn + 2);
+            ChangeX += (closingIn + 4);
           else
-            ChangeX += (closingIn - 2);
+            ChangeX += (closingIn - 4);
         }
       }
     }

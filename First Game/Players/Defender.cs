@@ -65,7 +65,7 @@ namespace FootballGame
           case CollisionOrientation.Below:
             if (TargetPlayer.Left < Left - 90 && ChangeX < -40) // The target is way to the left and this is moving left, keep moving left
               ChangeX -= 8;
-            else if (TargetPlayer.Left > Left + 90 && ChangeX > 40) // The target is way to the right and this is moving right, keep moving right
+            else if (TargetPlayer.Left > Left - 10 && ChangeX > 20) // The target is to the right and this is moving right, keep moving right
               ChangeX += 8;
             else // Else, randomly go left or right.
               ChangeX = 8 * r;
