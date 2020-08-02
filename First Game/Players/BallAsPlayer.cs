@@ -71,7 +71,9 @@ namespace FootballGame
           ParentGame.EndPlay(EndPlayType.Incomplete, null, "Incomplete.");
         }
         else
+        {
           ParentGame.EndPlay(EndPlayType.Incomplete, null, "Pass Broken Up.");
+        }
 
         return;
       }

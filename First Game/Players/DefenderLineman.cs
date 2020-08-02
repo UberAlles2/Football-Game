@@ -74,7 +74,7 @@ namespace FootballGame
 
       if(Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
-        if (Player.DetectCloseCollision(this, TargetPlayer, 90))
+        if (DetectCloseCollision(this, TargetPlayer, 90))
         {
           calculatedTargetY = TargetPlayer.Top;
         }
@@ -93,7 +93,7 @@ namespace FootballGame
     {
       if (collidedWithPlayer.HasBall && !IsThrowingOrKicking)
       {
-        if (Random.Next(0, 10) > 1) // Allow a missed tackle 10% of time.
+        if (Random.Next(0, 100) > 10) // Allow a missed tackle 10% of time.
         {
           ParentGame.EndPlay(EndPlayType.Tackled, this, "Tackled.");
           return;
@@ -103,9 +103,9 @@ namespace FootballGame
       if (collidedWithPlayer is Offender)
       {
         if (collisionOrientation == CollisionOrientation.ToLeft || collisionOrientation == CollisionOrientation.ToRight)
-          ChangeX = ChangeX/2;
+          ChangeX = ChangeX / 2;
         if (collisionOrientation == CollisionOrientation.Above || collisionOrientation == CollisionOrientation.Below)
-          ChangeY = ChangeY/2;
+          ChangeY = ChangeY / 2;
 
         base.MoveAroundPlayer(collisionOrientation);
         return;

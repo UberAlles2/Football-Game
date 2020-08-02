@@ -448,7 +448,19 @@ namespace FootballGame
 
     public static bool DetectCollision(Player player1, Player player2)
     {
-      return Math.Abs(player1.Left - player2.Left) < player1.PlayerWidth - 1 && Math.Abs(player1.Top - player2.Top) < player1.PlayerHeight - 1;
+      int distanceX = Math.Abs(player1.Left - player2.Left);
+      int distanceY = Math.Abs(player1.Top - player2.Top);
+
+      if (distanceX > player2.PlayerWidth)
+        return false;
+
+      if (distanceY > player2.PlayerWidth)
+        return false;
+
+      if (distanceX + distanceY > (player2.PlayerWidth << 1) - 10) // Cutting corners, not true math, but close. "<<" is a fast * 2
+        return false;
+
+      return distanceX < player2.PlayerWidth - 1 && distanceY < player2.PlayerHeight - 1;
     }
     public static bool DetectCloseCollision(Player player1, Player player2, int howClose)
     {

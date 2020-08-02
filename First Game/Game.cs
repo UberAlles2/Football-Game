@@ -132,7 +132,7 @@ namespace FootballGame
       Player.AddPlayer(defenderOutsideLinemanTop, initlineX, PlayingField.FieldCenterY - 152, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -235);
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen; // TODO take out
       Player.AddPlayer(defenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 50, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -85);
-      defenderLinemanUpper.PicBox.BackColor = Color.LightBlue; // TODO take out
+      //defenderLinemanUpper.PicBox.BackColor = Color.LightBlue; // TODO take out
                                                                // Middle Linebacker
       Player.AddPlayer(defenderMiddleLinebacker, PlayingField.LineOfScrimagePixel + 120, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
       defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen; // TODO take out
@@ -140,9 +140,9 @@ namespace FootballGame
       Player.AddPlayer(defenderSafety, PlayingField.LineOfScrimagePixel + 420, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
       defenderSafety.PicBox.BackColor = Color.HotPink; // TODO take out
       Player.AddPlayer(defenderLinemanLower, initlineX, PlayingField.FieldCenterY + 47, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 78);
-      defenderLinemanLower.PicBox.BackColor = Color.DarkBlue; // TODO take out
+      //defenderLinemanLower.PicBox.BackColor = Color.DarkBlue; // TODO take out
       Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 152, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 235);
-      defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen; // TODO take out
+      //defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen; // TODO take out
       Player.AddPlayer(defenderCornerbackBottom, offenderWideReceiverBottom.InitialLeft + 160, offenderWideReceiverBottom.InitialTop - 30, ParentForm.Player2, VerticalPosition.PositionBottom);
 
       // Setup Initial TargetPlayers
@@ -302,12 +302,15 @@ namespace FootballGame
           }
           break;
         case EndPlayType.Punted:
-          if (CurrentGameState.BallOnYard100 < 20)
+        case EndPlayType.Intercepted:
+          if(endPlayType == EndPlayType.Intercepted)
+            CurrentGameState.YardsGained -= (Random.Next(0, 16) - 6); 
+          else if (CurrentGameState.BallOnYard100 < 20)
             CurrentGameState.YardsGained -= (12 + Random.Next(0, 6));
           else
             CurrentGameState.YardsGained -= (16 + Random.Next(0, 6));
 
-          CurrentGameState.BallOnYard100 += (CurrentGameState.YardsGained);
+          CurrentGameState.BallOnYard100 += CurrentGameState.YardsGained;
 
           if(CurrentGameState.BallOnYard100 < 12)
           {
@@ -329,7 +332,8 @@ namespace FootballGame
           }
           else
           {
-            message = "Punted, a loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("00") + " yards on change of possesion.";
+            // "Intercepted" or "Punted"  
+            message = Enum.GetName(typeof(EndPlayType), endPlayType) + ", a loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("00") + " yards on change of possesion.";
           }
           CurrentGameState.YardsToGo = 10;
           CurrentGameState.Down = 0;

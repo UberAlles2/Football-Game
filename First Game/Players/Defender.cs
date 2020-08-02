@@ -57,6 +57,8 @@ namespace FootballGame
       }
 
       int r = Random.Next(0, 20) - 10;
+      if(Math.Abs(r) < 5) // Try to move around more. Give it a second try to be greater than -4 or 4
+        r = Random.Next(0, 20) - 10;
       if (MovingAroundBlocker == 0)
       {
         switch (collisionOrientation)
@@ -72,7 +74,7 @@ namespace FootballGame
             break;
           case CollisionOrientation.ToLeft:
           case CollisionOrientation.ToRight:
-            if(Math.Abs(OffsetY) > 40) // For defensive linemen
+            if(Math.Abs(OffsetY) > 30) // For defensive linemen
               ChangeY = 8 * r;
             else if (TargetPlayer.Top < Top - 90 && ChangeY < -40)
               ChangeY -= 8;
