@@ -54,23 +54,23 @@ namespace FootballGame
     public static CurrentGameState CurrentGameState = new CurrentGameState();
 
     // Player instances
-    public static BallAsPlayer                 ballAsPlayer = new BallAsPlayer();
-    public static OffenderQuarterback          offenderQuarterback = new OffenderQuarterback();
-    public static OffenderOutsideLinemanTop    offenderOutsideLinemanTop = new OffenderOutsideLinemanTop();
-    public static OffenderLinemanUpper         offenderLinemanUpper = new OffenderLinemanUpper();
-    public static OffenderLinemanCenter        offenderLinemanCenter = new OffenderLinemanCenter();
-    public static OffenderLinemanLower         offenderLinemanLower = new OffenderLinemanLower();
+    public static BallAsPlayer ballAsPlayer = new BallAsPlayer();
+    public static OffenderQuarterback offenderQuarterback = new OffenderQuarterback();
+    public static OffenderOutsideLinemanTop offenderOutsideLinemanTop = new OffenderOutsideLinemanTop();
+    public static OffenderLinemanUpper offenderLinemanUpper = new OffenderLinemanUpper();
+    public static OffenderLinemanCenter offenderLinemanCenter = new OffenderLinemanCenter();
+    public static OffenderLinemanLower offenderLinemanLower = new OffenderLinemanLower();
     public static OffenderOutsideLinemanBottom offenderOutsideLinemanBottom = new OffenderOutsideLinemanBottom();
-    public static OffenderWideReceiverTop      offenderWideReceiverTop = new OffenderWideReceiverTop();
-    public static OffenderWideReceiverBottom   offenderWideReceiverBottom = new OffenderWideReceiverBottom();
-    public static DefenderCornerbackTop        defenderCornerbackTop = new DefenderCornerbackTop();
-    public static DefenderOutsideLinemanTop    defenderOutsideLinemanTop = new DefenderOutsideLinemanTop();
-    public static DefenderLinemanUpper         defenderLinemanUpper = new DefenderLinemanUpper();
-    public static DefenderMiddleLinebacker     defenderMiddleLinebacker = new DefenderMiddleLinebacker();
-    public static DefenderSafety               defenderSafety = new DefenderSafety();
-    public static DefenderLinemanLower         defenderLinemanLower = new DefenderLinemanLower();
+    public static OffenderWideReceiverTop offenderWideReceiverTop = new OffenderWideReceiverTop();
+    public static OffenderWideReceiverBottom offenderWideReceiverBottom = new OffenderWideReceiverBottom();
+    public static DefenderCornerbackTop defenderCornerbackTop = new DefenderCornerbackTop();
+    public static DefenderOutsideLinemanTop defenderOutsideLinemanTop = new DefenderOutsideLinemanTop();
+    public static DefenderLinemanUpper defenderLinemanUpper = new DefenderLinemanUpper();
+    public static DefenderMiddleLinebacker defenderMiddleLinebacker = new DefenderMiddleLinebacker();
+    public static DefenderSafety defenderSafety = new DefenderSafety();
+    public static DefenderLinemanLower defenderLinemanLower = new DefenderLinemanLower();
     public static DefenderOutsideLinemanBottom defenderOutsideLinemanBottom = new DefenderOutsideLinemanBottom();
-    public static DefenderCornerbackBottom     defenderCornerbackBottom = new DefenderCornerbackBottom();
+    public static DefenderCornerbackBottom defenderCornerbackBottom = new DefenderCornerbackBottom();
 
     public Game(Form1 form1)
     {
@@ -127,12 +127,12 @@ namespace FootballGame
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen; // TODO take out
       Player.AddPlayer(defenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 50, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -85);
       defenderLinemanUpper.PicBox.BackColor = Color.LightBlue; // TODO take out
-        // Middle Linebacker
-        Player.AddPlayer(defenderMiddleLinebacker, PlayingField.LineOfScrimagePixel + 120, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
-        defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen; // TODO take out
-        // Safety
-        Player.AddPlayer(defenderSafety, PlayingField.LineOfScrimagePixel + 420, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
-        defenderSafety.PicBox.BackColor = Color.HotPink; // TODO take out
+                                                               // Middle Linebacker
+      Player.AddPlayer(defenderMiddleLinebacker, PlayingField.LineOfScrimagePixel + 120, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
+      defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen; // TODO take out
+                                                                   // Safety
+      Player.AddPlayer(defenderSafety, PlayingField.LineOfScrimagePixel + 420, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
+      defenderSafety.PicBox.BackColor = Color.HotPink; // TODO take out
       Player.AddPlayer(defenderLinemanLower, initlineX, PlayingField.FieldCenterY + 47, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 78);
       defenderLinemanLower.PicBox.BackColor = Color.DarkBlue; // TODO take out
       Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 152, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 235);
@@ -140,12 +140,12 @@ namespace FootballGame
       Player.AddPlayer(defenderCornerbackBottom, offenderWideReceiverBottom.InitialLeft + 160, offenderWideReceiverBottom.InitialTop - 30, ParentForm.Player2, VerticalPosition.PositionBottom);
 
       // Setup Initial TargetPlayers
-      defenderCornerbackTop.InitialTargetPlayer        = offenderWideReceiverTop;
-      defenderCornerbackBottom.InitialTargetPlayer     = offenderWideReceiverBottom;
+      defenderCornerbackTop.InitialTargetPlayer = offenderWideReceiverTop;
+      defenderCornerbackBottom.InitialTargetPlayer = offenderWideReceiverBottom;
 
-      offenderOutsideLinemanTop.InitialTargetPlayer    = defenderOutsideLinemanTop;
-      offenderLinemanUpper.InitialTargetPlayer         = defenderLinemanUpper;
-      offenderLinemanLower.InitialTargetPlayer         = defenderLinemanLower;
+      offenderOutsideLinemanTop.InitialTargetPlayer = defenderOutsideLinemanTop;
+      offenderLinemanUpper.InitialTargetPlayer = defenderLinemanUpper;
+      offenderLinemanLower.InitialTargetPlayer = defenderLinemanLower;
       offenderOutsideLinemanBottom.InitialTargetPlayer = defenderOutsideLinemanBottom;
 
       InitializePlayers(); // Initial draw
@@ -161,9 +161,9 @@ namespace FootballGame
       _timer.Start();
       while (_running)
       {
-        if(_playEnded)
+        if (_playEnded)
         {
-           ChoosePlay();
+          ChoosePlay();
           InitializePlayers();
           _playEnded = false;
         }
@@ -209,69 +209,76 @@ namespace FootballGame
     {
       if (_playEnded) // Play ended by another player
         return;
-      else 
+      else
         _playEnded = true;
 
       // Stopping the clock   
       if (endPlayType != EndPlayType.Tackled)
         Scoreboard.CountDownTimer.Pause();
-         
+
 
       CurrentGameState.YardsGained = 0;
-      if (endPlayType == EndPlayType.Tackled || endPlayType == EndPlayType.OutOfBounds)
+      CurrentGameState.TackledBy = tackledBy;
+      switch(endPlayType)
       {
-        CurrentGameState.YardsGained = (float)(Player.ControllablePlayer.Left + Player.ControllablePlayer.PicBox.Width - PlayingField.LineOfScrimagePixel) / PlayingField.PixalsInYard;
-        CurrentGameState.TackledBy = tackledBy;
-        CurrentGameState.BallOnYard100 += CurrentGameState.YardsGained;
-        CurrentGameState.YardsToGo -= CurrentGameState.YardsGained;
-      }
-      else if (endPlayType == EndPlayType.Punted)
-      {
-        if(CurrentGameState.BallOnYard100 < 20)
-          CurrentGameState.YardsGained -= (13 + Random.Next(0, 5));
-        else
-          CurrentGameState.YardsGained -= (18 + Random.Next(0, 5));
+        case EndPlayType.Tackled:
+        case EndPlayType.OutOfBounds:
+          if (Player.ControllablePlayer.Left + 28 < PlayingField.PixelFromYard(0)) // 28 is tip of ball
+          {
+            message = "Safty.";
+            CurrentGameState.GuestScore += 2;
+            CurrentGameState.YardsGained = 0;
+            CurrentGameState.BallOnYard100 = 20;
+            CurrentGameState.YardsToGo = 10;
+            CurrentGameState.Down = 0;
+            Scoreboard.DisplayGuestScore(CurrentGameState.GuestScore.ToString(" 0"));
+          }
+          else
+          {
+            float newYard = PlayingField.YardFromPixel(Player.ControllablePlayer.Left + 28);
+            CurrentGameState.YardsGained = newYard - CurrentGameState.BallOnYard100;
+            CurrentGameState.BallOnYard100 = newYard;
+            CurrentGameState.YardsToGo -= CurrentGameState.YardsGained;
+          }
+          break;
+        case EndPlayType.Punted:
+          if (CurrentGameState.BallOnYard100 < 20)
+            CurrentGameState.YardsGained -= (13 + Random.Next(0, 5));
+          else
+            CurrentGameState.YardsGained -= (18 + Random.Next(0, 5));
 
-        CurrentGameState.TackledBy = null;
-        CurrentGameState.BallOnYard100 += (CurrentGameState.YardsGained);
-        CurrentGameState.YardsToGo = 10;
-        CurrentGameState.Down = 0;
-        message = "Punted, a loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("00") + " yards on change of possesion."; 
-      }
-      if (endPlayType == EndPlayType.FieldGoal || endPlayType == EndPlayType.FieldGoalMiss)
-      {
-        if (endPlayType == EndPlayType.FieldGoal)
-          CurrentGameState.HomeScore += 3;
+          CurrentGameState.BallOnYard100 += (CurrentGameState.YardsGained);
+          CurrentGameState.YardsToGo = 10;
+          CurrentGameState.Down = 0;
+          message = "Punted, a loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("00") + " yards on change of possesion.";
+          break;
+        case EndPlayType.FieldGoal:
+        case EndPlayType.FieldGoalMiss:
+        case EndPlayType.Touchdown:
+          if (endPlayType == EndPlayType.FieldGoal)
+            CurrentGameState.HomeScore += 3;
+          if (endPlayType == EndPlayType.Touchdown)
+            CurrentGameState.HomeScore += 7;
 
-        CurrentGameState.YardsGained = 0;
-        CurrentGameState.TackledBy = null;
-        CurrentGameState.BallOnYard100 = 20;
-        CurrentGameState.YardsToGo = 10;
-        CurrentGameState.Down = 0;
-        Scoreboard.DisplayBearsScore(CurrentGameState.HomeScore.ToString(" 0"));
+          CurrentGameState.YardsGained = 0;
+          CurrentGameState.BallOnYard100 = 20;
+          CurrentGameState.YardsToGo = 10;
+          CurrentGameState.Down = 0;
+          Scoreboard.DisplayBearsScore(CurrentGameState.HomeScore.ToString(" 0"));
+          Scoreboard.ScrollMessage(message);
+          break;
       }
-      else
-        CurrentGameState.TackledBy = null;
 
       CurrentGameState.ResultsOfLastPlay = message;
-
-      if (CurrentGameState.BallOnYard100 < 0)
-      {
-        CurrentGameState.BallOnYard100 = 0; // Safety
-      }
-      if (CurrentGameState.BallOnYard100 > 100)
-      {
-        CurrentGameState.BallOnYard100 = 100; // Touchdown
-      }
 
       if (CurrentGameState.Down < 4)
         CurrentGameState.Down++;
 
-      if(CurrentGameState.YardsToGo < 0.05)
+      if(CurrentGameState.YardsToGo < 0.02)
       {
         CurrentGameState.YardsToGo = 10;
         CurrentGameState.Down = 1;
-        CurrentGameState.ResultsOfLastPlay += "  First Down!";
+        CurrentGameState.ResultsOfLastPlay += "First Down!";
         Scoreboard.ScrollMessage("First Down!");
       }
 

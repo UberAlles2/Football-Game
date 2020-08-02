@@ -146,5 +146,9 @@ namespace FootballGame
     {
       return (int)LineOfScrimagePixel + (int)((Yard - Game.CurrentGameState.BallOnYard100) * PlayingField.PixalsInYard);
     }
+    public static float YardFromPixel(int pixel)
+    {
+      return Game.CurrentGameState.BallOnYard100 + (pixel - LineOfScrimagePixel) / PlayingField.PixalsInYard;
+    }
   }
 }

@@ -181,7 +181,7 @@ namespace FootballGame
     {
       TotalMoves++;
       CheckFieldBoundries();
-      CheckForTouchdown();
+      CheckForTouchdownOrSafety();
       MovePic(this);
       Application.DoEvents();
       ParentForm.picEndZoneLeft.Invalidate();
@@ -368,17 +368,13 @@ namespace FootballGame
       }
     }
 
-    private void CheckForTouchdown()
+    private void CheckForTouchdownOrSafety()
     {
       if (this != ControllablePlayer)
         return;
       
-      int touchDownLine = PlayingField.PixelFromYard(100); 
-
-      if (this.Left + 28 > touchDownLine) // 28 is tip of ball crossing, not Left
-      {
+      if (this.Left + 28 > PlayingField.PixelFromYard(100)) // 28 is tip of ball crossing, not Left
         ParentGame.EndPlay(EndPlayType.Touchdown, this, "Touchdown!");
-      }
     }
 
     public static void CheckCollisions()
