@@ -37,10 +37,13 @@ namespace FootballGame
     Dropped,
     Intercepted,
     Punted,
+    LossOfPossessionOnDowns,
     FieldGoal,
     FieldGoalMiss,
     Touchdown,
-    Safety
+    Safety,
+    OffensivePenalty,
+    DefensivePenalty
   }
 
   public class Game
@@ -84,9 +87,9 @@ namespace FootballGame
       PlayingField.ParentForm = form1;
 
       // Set initial values and Display them.
-      CurrentGameState.Down = 1;
-      CurrentGameState.YardsToGo = 10;
-      CurrentGameState.BallOnYard100 = 83.0F; // 1 - 100
+      CurrentGameState.Down = 4;
+      CurrentGameState.YardsToGo = 2;
+      CurrentGameState.BallOnYard100 = 85.0F; // 1 - 100
       CurrentGameState.GuestScore = 3;
       CurrentGameState.Quarter = 4;
 
@@ -133,12 +136,12 @@ namespace FootballGame
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen; // TODO take out
       Player.AddPlayer(defenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 50, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -85);
       //defenderLinemanUpper.PicBox.BackColor = Color.LightBlue; // TODO take out
-                                                               // Middle Linebacker
+      // Middle Linebacker
       Player.AddPlayer(defenderMiddleLinebacker, PlayingField.LineOfScrimagePixel + 120, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
       defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen; // TODO take out
-                                                                   // Safety
+      // Safety
       Player.AddPlayer(defenderSafety, PlayingField.LineOfScrimagePixel + 420, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
-      defenderSafety.PicBox.BackColor = Color.HotPink; // TODO take out
+      defenderSafety.PicBox.BackColor = Color.DarkBlue; // TODO take out
       Player.AddPlayer(defenderLinemanLower, initlineX, PlayingField.FieldCenterY + 47, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 78);
       //defenderLinemanLower.PicBox.BackColor = Color.DarkBlue; // TODO take out
       Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 152, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 235);
@@ -275,8 +278,15 @@ namespace FootballGame
         CurrentGameState.YardsGained = 100 - CurrentGameState.BallOnYard100;
       }
 
+      CurrentGameState.Down++;
+      if (CurrentGameState.Down > 4 && !IsFirstDown()) // Loss of possession on downs if not first down.
+      {
+        endPlayType = EndPlayType.LossOfPossessionOnDowns;
+      }
+
       switch (endPlayType)
       {
+        // These 2 cases below are the only cases for yards gained / loss and also a first down made.
         case EndPlayType.Tackled:
         case EndPlayType.OutOfBounds:
           if (Player.ControllablePlayer.Left + 28 < PlayingField.PixelFromYard(0)) // Safety, (28 is tip of ball)
@@ -285,7 +295,7 @@ namespace FootballGame
             CurrentGameState.YardsGained = 0;
             CurrentGameState.BallOnYard100 = 20;
             CurrentGameState.YardsToGo = 10;
-            CurrentGameState.Down = 0;
+            CurrentGameState.Down = 1;
             Scoreboard.DisplayGuestScore(CurrentGameState.GuestScore.ToString(" 0"));
             message = "Safety.";
             Scoreboard.ScrollMessage(message);
@@ -295,15 +305,15 @@ namespace FootballGame
             float newYard = PlayingField.YardFromPixel(Player.ControllablePlayer.Left + 28);
             CurrentGameState.YardsGained = newYard - CurrentGameState.BallOnYard100;
             CurrentGameState.BallOnYard100 = newYard;
-            if(CurrentGameState.BallOnYard100 > 90)              
-              CurrentGameState.YardsToGo = 100 - CurrentGameState.BallOnYard100;
-            else
-              CurrentGameState.YardsToGo -= CurrentGameState.YardsGained;
+            CurrentGameState.YardsToGo -= CurrentGameState.YardsGained;
           }
           break;
         case EndPlayType.Punted:
         case EndPlayType.Intercepted:
-          if(endPlayType == EndPlayType.Intercepted)
+        case EndPlayType.LossOfPossessionOnDowns:
+          if (endPlayType == EndPlayType.LossOfPossessionOnDowns)
+            CurrentGameState.YardsGained -= (Random.Next(10, 26));
+          else if (endPlayType == EndPlayType.Intercepted)
             CurrentGameState.YardsGained -= (Random.Next(0, 16) - 6); 
           else if (CurrentGameState.BallOnYard100 < 20)
             CurrentGameState.YardsGained -= (12 + Random.Next(0, 6));
@@ -332,11 +342,14 @@ namespace FootballGame
           }
           else
           {
-            // "Intercepted" or "Punted"  
-            message = Enum.GetName(typeof(EndPlayType), endPlayType) + ", a loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("00") + " yards on change of possesion.";
+            // "Intercepted" or "Punted" or "LossOfPossessionOnDowns"  
+            if (endPlayType == EndPlayType.LossOfPossessionOnDowns)
+              message = "Loss of possession on downs,\na loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("00") + " yards on change of possesion.";
+            else
+              message = Enum.GetName(typeof(EndPlayType), endPlayType) + ", a loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("00") + " yards on change of possesion.";
           }
           CurrentGameState.YardsToGo = 10;
-          CurrentGameState.Down = 0;
+          CurrentGameState.Down = 1;
           break;
         case EndPlayType.FieldGoal:
         case EndPlayType.FieldGoalMiss:
@@ -349,7 +362,7 @@ namespace FootballGame
           CurrentGameState.TackledBy = null;
           CurrentGameState.BallOnYard100 = 20;
           CurrentGameState.YardsToGo = 10;
-          CurrentGameState.Down = 0;
+          CurrentGameState.Down = 1;
           Scoreboard.DisplayBearsScore(CurrentGameState.HomeScore.ToString(" 0"));
           Scoreboard.ScrollMessage(message);
           break;
@@ -357,14 +370,15 @@ namespace FootballGame
 
       CurrentGameState.ResultsOfLastPlay = message;
 
-      if (CurrentGameState.Down < 4)
-        CurrentGameState.Down++;
-
-      if(CurrentGameState.YardsToGo < 0.02)
+      if (CurrentGameState.YardsToGo < 0.02)
       {
-        CurrentGameState.YardsToGo = 10;
+        if (CurrentGameState.BallOnYard100 > 90)
+          CurrentGameState.YardsToGo = 100 - CurrentGameState.BallOnYard100;
+        else
+          CurrentGameState.YardsToGo = 10;
+
         CurrentGameState.Down = 1;
-        CurrentGameState.ResultsOfLastPlay += "First Down!";
+        CurrentGameState.ResultsOfLastPlay += "  First Down!";
         Scoreboard.ScrollMessage("First Down!");
       }
 
@@ -375,6 +389,13 @@ namespace FootballGame
       PlayingField.DrawField(CurrentGameState.BallOnYard100);
 
       ParentForm.Invalidate();
+    }
+
+    private bool IsFirstDown()
+    {
+      float newYard = PlayingField.YardFromPixel(Player.ControllablePlayer.Left + 28);
+      float yardsGained = newYard - CurrentGameState.BallOnYard100;
+      return CurrentGameState.YardsToGo - yardsGained < 0.1;
     }
 
     public void Stop()

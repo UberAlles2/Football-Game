@@ -217,14 +217,14 @@
       this.pnlLastPlayResults.Controls.Add(this.lblResultsOfLastPlayHeading);
       this.pnlLastPlayResults.Location = new System.Drawing.Point(241, 31);
       this.pnlLastPlayResults.Name = "pnlLastPlayResults";
-      this.pnlLastPlayResults.Size = new System.Drawing.Size(269, 90);
+      this.pnlLastPlayResults.Size = new System.Drawing.Size(269, 93);
       this.pnlLastPlayResults.TabIndex = 19;
       // 
       // lblTackledByValue
       // 
       this.lblTackledByValue.AutoSize = true;
       this.lblTackledByValue.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblTackledByValue.Location = new System.Drawing.Point(63, 46);
+      this.lblTackledByValue.Location = new System.Drawing.Point(63, 50);
       this.lblTackledByValue.Name = "lblTackledByValue";
       this.lblTackledByValue.Size = new System.Drawing.Size(58, 13);
       this.lblTackledByValue.TabIndex = 6;
@@ -234,7 +234,7 @@
       // 
       this.lblYardGainedValue.AutoSize = true;
       this.lblYardGainedValue.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblYardGainedValue.Location = new System.Drawing.Point(73, 66);
+      this.lblYardGainedValue.Location = new System.Drawing.Point(73, 70);
       this.lblYardGainedValue.Name = "lblYardGainedValue";
       this.lblYardGainedValue.Size = new System.Drawing.Size(74, 13);
       this.lblYardGainedValue.TabIndex = 5;
@@ -243,7 +243,7 @@
       // lblResultsOfLastPlay
       // 
       this.lblResultsOfLastPlay.AutoSize = true;
-      this.lblResultsOfLastPlay.Location = new System.Drawing.Point(2, 25);
+      this.lblResultsOfLastPlay.Location = new System.Drawing.Point(2, 23);
       this.lblResultsOfLastPlay.Name = "lblResultsOfLastPlay";
       this.lblResultsOfLastPlay.Size = new System.Drawing.Size(103, 13);
       this.lblResultsOfLastPlay.TabIndex = 4;
@@ -252,7 +252,7 @@
       // lblTackledBy
       // 
       this.lblTackledBy.AutoSize = true;
-      this.lblTackledBy.Location = new System.Drawing.Point(2, 46);
+      this.lblTackledBy.Location = new System.Drawing.Point(2, 50);
       this.lblTackledBy.Name = "lblTackledBy";
       this.lblTackledBy.Size = new System.Drawing.Size(64, 13);
       this.lblTackledBy.TabIndex = 3;
@@ -261,7 +261,7 @@
       // lblGain
       // 
       this.lblGain.AutoSize = true;
-      this.lblGain.Location = new System.Drawing.Point(2, 66);
+      this.lblGain.Location = new System.Drawing.Point(2, 70);
       this.lblGain.Name = "lblGain";
       this.lblGain.Size = new System.Drawing.Size(74, 13);
       this.lblGain.TabIndex = 1;

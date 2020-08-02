@@ -347,7 +347,7 @@ namespace FootballGame
       {
         if (this is Defender)
           this.ChangeY = 60;
-        else if (this.HasBall)
+        else if (this.HasBall && !Player.IsThrowingOrKicking)
         {
           ParentGame.EndPlay(EndPlayType.OutOfBounds, null, "Out of Bounds.");
           return;
