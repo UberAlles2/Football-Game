@@ -86,7 +86,7 @@ namespace FootballGame
       // Set initial values and Display them.
       CurrentGameState.Down = 1;
       CurrentGameState.YardsToGo = 10;
-      CurrentGameState.BallOnYard100 = 20.0F; // 1 - 100
+      CurrentGameState.BallOnYard100 = 83.0F; // 1 - 100
       CurrentGameState.GuestScore = 3;
       CurrentGameState.Quarter = 4;
 
@@ -268,11 +268,18 @@ namespace FootballGame
 
       CurrentGameState.YardsGained = 0;
       CurrentGameState.TackledBy = tackledBy;
-      switch(endPlayType)
+
+      if (Player.ControllablePlayer.Left + 28 > PlayingField.PixelFromYard(100)) // TouchDown, (28 is tip of ball)
+      {
+        endPlayType = EndPlayType.Touchdown;
+        CurrentGameState.YardsGained = 100 - CurrentGameState.BallOnYard100;
+      }
+
+      switch (endPlayType)
       {
         case EndPlayType.Tackled:
         case EndPlayType.OutOfBounds:
-          if (Player.ControllablePlayer.Left + 28 < PlayingField.PixelFromYard(0)) // 28 is tip of ball
+          if (Player.ControllablePlayer.Left + 28 < PlayingField.PixelFromYard(0)) // Safety, (28 is tip of ball)
           {
             CurrentGameState.GuestScore += 2;
             CurrentGameState.YardsGained = 0;
@@ -280,7 +287,7 @@ namespace FootballGame
             CurrentGameState.YardsToGo = 10;
             CurrentGameState.Down = 0;
             Scoreboard.DisplayGuestScore(CurrentGameState.GuestScore.ToString(" 0"));
-            message = "Safty.";
+            message = "Safety.";
             Scoreboard.ScrollMessage(message);
           }
           else
@@ -288,7 +295,10 @@ namespace FootballGame
             float newYard = PlayingField.YardFromPixel(Player.ControllablePlayer.Left + 28);
             CurrentGameState.YardsGained = newYard - CurrentGameState.BallOnYard100;
             CurrentGameState.BallOnYard100 = newYard;
-            CurrentGameState.YardsToGo -= CurrentGameState.YardsGained;
+            if(CurrentGameState.BallOnYard100 > 90)              
+              CurrentGameState.YardsToGo = 100 - CurrentGameState.BallOnYard100;
+            else
+              CurrentGameState.YardsToGo -= CurrentGameState.YardsGained;
           }
           break;
         case EndPlayType.Punted:
@@ -332,7 +342,7 @@ namespace FootballGame
           if (endPlayType == EndPlayType.Touchdown)
             CurrentGameState.HomeScore += 7;
 
-          CurrentGameState.YardsGained = 0;
+          CurrentGameState.TackledBy = null;
           CurrentGameState.BallOnYard100 = 20;
           CurrentGameState.YardsToGo = 10;
           CurrentGameState.Down = 0;
