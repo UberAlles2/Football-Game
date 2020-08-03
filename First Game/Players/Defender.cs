@@ -122,5 +122,35 @@ namespace FootballGame
 
       return targetX;
     }
+
+    protected bool IsInterception(Player player)
+    {
+      int normalDeflectionOdds = 60;
+      int normalInterceptionOdds = 10;
+
+      if (player is DefenderMiddleLinebacker)
+      {
+        normalDeflectionOdds = 50;
+        normalInterceptionOdds = 20;
+      }
+      if (player is DefenderSafety)
+      {
+        normalDeflectionOdds = 45;
+        normalInterceptionOdds = 25;
+      }
+
+      int random = Random.Next(0, 100);
+      if (random > 100 - normalInterceptionOdds) // 10% - 25% for Safety. Percent of the time the defender intercepts the ball 
+      {
+        return true;
+      }
+      else if (random > 100 - normalDeflectionOdds) // 60% - 40% for Safety. Percent of the time the defender deflects the ball 
+      {
+        BallAsPlayer.BallIsCatchable = false; // Tipped ball, ball is uncatchable
+        BallAsPlayer.SpinDefectedBall();
+      }
+      // 30% ball goes by defender
+      return false;
+    }
   }
 }

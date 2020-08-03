@@ -124,13 +124,7 @@ namespace FootballGame
         if (BallAsPlayer.BallIsCatchable == false)
           return;
 
-        int random = Random.Next(0, 10);
-        if (random < 9)
-        {
-          BallAsPlayer.BallIsCatchable = false; // Tipped ball, ball is uncatchable
-          BallAsPlayer.SpinDefectedBall();
-        }
-        else
+        if (IsInterception(this))
         {
           ParentGame.EndPlay(EndPlayType.Intercepted, this, "Intercepted.");
           return;

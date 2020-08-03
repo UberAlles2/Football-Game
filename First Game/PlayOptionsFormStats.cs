@@ -17,7 +17,9 @@ namespace FootballGame
     public float BallOnYard;
     public int Down;
     public float YardsToGo;
+    public bool FirstDown;
 
+    public float TackledAt100;
     private float ballOnYard100;
     public float BallOnYard100 
     { 

@@ -259,6 +259,8 @@ namespace FootballGame
 
     public void EndPlay(EndPlayType endPlayType, Player tackledBy, string message)
     {
+      CurrentGameState.FirstDown = false;
+
       if (_playEnded) // Play ended by another player
         return;
       else
@@ -279,11 +281,8 @@ namespace FootballGame
       }
 
       CurrentGameState.Down++;
-      if (CurrentGameState.Down > 4 && !IsFirstDown()) // Loss of possession on downs if not first down.
-      {
-        endPlayType = EndPlayType.LossOfPossessionOnDowns;
-      }
 
+ReevaluateEndPlayCase:
       switch (endPlayType)
       {
         // These 2 cases below are the only cases for yards gained / loss and also a first down made.
@@ -302,19 +301,21 @@ namespace FootballGame
           }
           else
           {
-            float newYard = PlayingField.YardFromPixel(Player.ControllablePlayer.Left + 28);
-            CurrentGameState.YardsGained = newYard - CurrentGameState.BallOnYard100;
-            CurrentGameState.BallOnYard100 = newYard;
-            CurrentGameState.YardsToGo -= CurrentGameState.YardsGained;
+            Update_TackledAt_YardsGained_BallOnYard100_YardsToGo_FirstDown();
+            if (CurrentGameState.Down > 4 && !CurrentGameState.FirstDown) // Loss of possession on downs if not first down.
+            {
+              endPlayType = EndPlayType.LossOfPossessionOnDowns;
+              goto ReevaluateEndPlayCase; //GOTO ===^^^^
+            }
           }
           break;
         case EndPlayType.Punted:
         case EndPlayType.Intercepted:
         case EndPlayType.LossOfPossessionOnDowns:
           if (endPlayType == EndPlayType.LossOfPossessionOnDowns)
-            CurrentGameState.YardsGained -= (Random.Next(10, 26));
+            CurrentGameState.YardsGained -= (Random.Next(0, 26));
           else if (endPlayType == EndPlayType.Intercepted)
-            CurrentGameState.YardsGained -= (Random.Next(0, 16) - 6); 
+            CurrentGameState.YardsGained = PlayingField.YardFromPixel(ballAsPlayer.Left) - Random.Next(0, 26); 
           else if (CurrentGameState.BallOnYard100 < 20)
             CurrentGameState.YardsGained -= (12 + Random.Next(0, 6));
           else
@@ -370,7 +371,7 @@ namespace FootballGame
 
       CurrentGameState.ResultsOfLastPlay = message;
 
-      if (CurrentGameState.YardsToGo < 0.02)
+      if (CurrentGameState.FirstDown)
       {
         if (CurrentGameState.BallOnYard100 > 90)
           CurrentGameState.YardsToGo = 100 - CurrentGameState.BallOnYard100;
@@ -391,11 +392,18 @@ namespace FootballGame
       ParentForm.Invalidate();
     }
 
-    private bool IsFirstDown()
+    private void Update_TackledAt_YardsGained_BallOnYard100_YardsToGo_FirstDown()
     {
-      float newYard = PlayingField.YardFromPixel(Player.ControllablePlayer.Left + 28);
-      float yardsGained = newYard - CurrentGameState.BallOnYard100;
-      return CurrentGameState.YardsToGo - yardsGained < 0.1;
+      CurrentGameState.TackledAt100 = GetTackledAt();
+      CurrentGameState.YardsGained = CurrentGameState.TackledAt100 - CurrentGameState.BallOnYard100;
+      CurrentGameState.BallOnYard100 = CurrentGameState.TackledAt100;
+      CurrentGameState.YardsToGo -= CurrentGameState.YardsGained;
+      CurrentGameState.FirstDown = CurrentGameState.YardsToGo < .01;
+    }
+
+    private float GetTackledAt()
+    {
+      return PlayingField.YardFromPixel(Player.ControllablePlayer.Left + 28);
     }
 
     public void Stop()

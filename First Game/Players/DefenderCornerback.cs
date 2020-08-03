@@ -88,19 +88,12 @@ namespace FootballGame
       {
         if (BallAsPlayer.BallIsCatchable == false)
           return;
-        
-        int random = Random.Next(0, 100);
-        if (random > 40) // 60% of the time the defender deflects the ball 
+
+        if(IsInterception(this))
         {
-          BallAsPlayer.BallIsCatchable = false; // Tipped ball, ball is uncatchable
-          BallAsPlayer.SpinDefectedBall();
-        }
-        else if (random > 90) // 10% of the time the defender intercepts the ball 
-        {
-          ParentGame.EndPlay(EndPlayType.Intercepted, this,  "Intercepted.");
+          ParentGame.EndPlay(EndPlayType.Intercepted, this, "Intercepted.");
           return;
         }
-        // 30% ball goes by defender
       }
 
       if (collidedWithPlayer.HasBall && !IsThrowingOrKicking)
