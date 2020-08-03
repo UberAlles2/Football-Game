@@ -99,8 +99,9 @@ namespace FootballGame
       int randomY = 0;
       if (ThrowingType == ThrowType.Throw)
       {
-        randomX = Random.Next(0, 6) - 3;
-        randomY = Random.Next(0, 6) - 3;
+        float PassRun = (5 - (PlayOptionsForm.RunPassTendency / 2)); // PassRun will be 0 when passing, up to 5 when running
+        randomX = Random.Next(0, (int)(3 + PassRun)) - (int)(1.5 + PassRun / 2);
+        randomY = Random.Next(0, (int)(3 + PassRun)) - (int)(1.5 + PassRun / 2);
       }
       else if (ThrowingType == ThrowType.FieldGoal)
       {
