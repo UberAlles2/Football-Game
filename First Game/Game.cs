@@ -352,20 +352,27 @@ ReevaluateEndPlayCase:
           }
           CurrentGameState.YardsToGo = 10;
           CurrentGameState.Down = 1;
-          
-          if(Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 140)
-            Scoreboard.CountDownTimer.SubtractTime(2, 0); // Subtract 2 minutes off the clock
+
+          if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 240)
+            Scoreboard.CountDownTimer.SubtractTime(2, 0); 
+          else if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 160)
+            Scoreboard.CountDownTimer.SubtractTime(1, 28); // Subtract 88 second off the clock, 2 minute warning was employed
           else
           {
-            MessageBox.Show("Needed to use timeouts to stop the clock.", "Time Outs Used", MessageBoxButtons.OK);
-            if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 100)
+            MessageBox.Show("Needed to use timeouts to stop the clock.", "Time Outs Used", MessageBoxButtons.OK); // TODO different messages based on time out situation.
+            if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 120)
             {
-              Scoreboard.CountDownTimer.SubtractTime(0, 30); // Subtract 30 seconds minutes off the clock
-              // TODO use 1 timeout 
+              Scoreboard.CountDownTimer.SubtractTime(0, 58); // Subtract 58 seconds off the clock, 2 minute warning was employed
+              // TODO use 1 timeout if available
+            }
+            else if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 80)
+            {
+              Scoreboard.CountDownTimer.SubtractTime(0, 59); // Subtract 60 seconds off the clock
+              // TODO use 2 timeouts if available
             }
             else
             {
-              // TODO use 2 timeouts, if available 
+              // TODO Time expired no matter what, end game or leave 5 seconds on the clock.
             }
           }
           break; 
