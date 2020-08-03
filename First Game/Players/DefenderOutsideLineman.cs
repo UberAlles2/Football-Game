@@ -22,10 +22,9 @@ namespace FootballGame
       {
         ChangeY -= 4;
       }
-      if (TargetPlayer.Top > Top - 16) // Top Outside need to stay above than the ball runner
+      if (TargetPlayer.Top < Top + 16) // Top Outside need to stay above than the ball runner
       {
-        ChangeX -= 6;
-        ChangeY -= 6;
+        ChangeY -= 4;
       }
       if (OffsetY < -8)
         OffsetY++;
@@ -52,8 +51,7 @@ namespace FootballGame
       }
       if (TargetPlayer.Top > Top - 16) // Bottom Outside need to stay ;ower than the ball runner
       {
-        ChangeX += 6;
-        ChangeY += 6;
+        ChangeY += 4;
       }
       if(OffsetY > 8)
         OffsetY--;

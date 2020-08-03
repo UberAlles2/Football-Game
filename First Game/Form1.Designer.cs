@@ -249,6 +249,7 @@
       this.picEndZoneLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
       this.picEndZoneLeft.TabIndex = 9;
       this.picEndZoneLeft.TabStop = false;
+      this.picEndZoneLeft.Visible = false;
       this.picEndZoneLeft.Paint += new System.Windows.Forms.PaintEventHandler(this.picEndZoneLeft_Paint);
       // 
       // Form1

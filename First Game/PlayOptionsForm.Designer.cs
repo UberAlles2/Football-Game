@@ -761,7 +761,6 @@
     private System.Windows.Forms.Label label10;
     private System.Windows.Forms.Label label11;
     private System.Windows.Forms.Label lblCurrentDrive;
-    private System.Windows.Forms.TrackBar trackBarRunPass;
     private System.Windows.Forms.Label label12;
     private System.Windows.Forms.Label label13;
     private System.Windows.Forms.Button button1;
@@ -771,5 +770,6 @@
     public System.Windows.Forms.CheckBox chkTimeOut3;
     private System.Windows.Forms.Label lblDriveTime;
     private System.Windows.Forms.Label label16;
+    public System.Windows.Forms.TrackBar trackBarRunPass;
   }
 }

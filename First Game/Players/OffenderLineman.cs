@@ -13,7 +13,10 @@ namespace FootballGame
     public override void Initialize()
     {
       base.Initialize();
-      ChangeX = -80;
+      Top += (2 -PlayOptionsForm.RunPassTendency); // 0-10, 0 better running, 10 better passing
+      Left -= (2 - PlayOptionsForm.RunPassTendency); // 0-10, 0 better running, 10 better passing
+      ChangeX -= 70 + (PlayOptionsForm.RunPassTendency); // 0-10, 0 better running, 10 better passing;
+      ChangeY += (PlayOptionsForm.RunPassTendency); // 0-10, 0 better running, 10 better passing;
     }
     public override void Move()
     {
@@ -66,7 +69,10 @@ namespace FootballGame
     public override void Initialize()
     {
       base.Initialize();
-      ChangeX = -80;
+      Top -= (2 - PlayOptionsForm.RunPassTendency); // 0-10, 0 better running, 10 better passing
+      Left -= (2 - PlayOptionsForm.RunPassTendency); // 0-10, 0 better running, 10 better passing
+      ChangeX -= 70 + (PlayOptionsForm.RunPassTendency); // 0-10, 0 better running, 10 better passing;
+      ChangeY -= (PlayOptionsForm.RunPassTendency); // 0-10, 0 better running, 10 better passing;
     }
     public override void Move()
     {
@@ -84,6 +90,7 @@ namespace FootballGame
 
     public override void Move()
     {
+      // QB passed line of scrimmage
       if (ControllablePlayer.Left > PlayingField.LineOfScrimagePixel && TargetPlayer != ControllablePlayer)
       {
         TargetPlayer = ControllablePlayer;
@@ -92,11 +99,16 @@ namespace FootballGame
       }
 
       if (VerticalPosition == VerticalPosition.PositionTop && ControllablePlayer.Top > Top + 16 && TargetPlayer.Top > Top)
-        ChangeY += 1;
+        ChangeY += 2;
       if (VerticalPosition == VerticalPosition.PositionBottom && ControllablePlayer.Top < Top - 16 && TargetPlayer.Top < Top)
-        ChangeY += -1;
+        ChangeY -= 2;
 
-      // Horizontal move
+      //-------------------------------- Horizontal move
+
+      // Passing tendacy, fall back
+      if (PlayOptionsForm.RunPassTendency > 6 && Left > 100) // 0-10, 0 better running, 10 better passing;
+        ChangeX -= 1;
+
       if (TargetPlayer.Left < Left + 20)
       {
         ChangeX -= 2;
@@ -111,10 +123,24 @@ namespace FootballGame
       else
         ChangeX = ChangeX / 2;
 
-      // Vertical move
-      if (TargetPlayer.Top < Top + 4)
+      // stay off left edge of field
+      if(Left < 100)
+        ChangeX += 5; 
+
+      //-------------------------------------------- Vertical move
+
+      // Passing tendacy, move towards QB
+      if (PlayOptionsForm.RunPassTendency > 6) // 0-10, 0 better running, 10 better passing;
+      {
+        if(ControllablePlayer.Top < Top)
+          ChangeY -= 2;
+        else
+          ChangeY += 2;
+      }
+
+      if (TargetPlayer.Top < Top + 6)
         ChangeY -= 2;
-      else if (TargetPlayer.Top > Top - 4)
+      else if (TargetPlayer.Top > Top - 6)
         ChangeY += 2;
       else
         ChangeY = ChangeY / 2;

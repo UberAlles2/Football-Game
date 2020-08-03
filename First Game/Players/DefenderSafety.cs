@@ -41,6 +41,7 @@ namespace FootballGame
         Intelligence = 9; // Mixed in with blocker less intelligence
         TargetPlayer = ControllablePlayer;
         CoverAfterMove = 999999; // Never switch;
+        SpeedCap -= 16; // In blockers, less speed
         if (Random.Next(0, 15) < 7)
           Top = PlayingField.FieldCenterY - 200;
         else

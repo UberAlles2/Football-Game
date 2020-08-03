@@ -58,7 +58,7 @@ namespace FootballGame
 
     private void picEndZoneLeft_Paint(object sender, PaintEventArgs e)
     {
-      PlayingField.PaintEndZones(sender, e);
+      //PlayingField.PaintEndZones(sender, e);
     }
   }
 }

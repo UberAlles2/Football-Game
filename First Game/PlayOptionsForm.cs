@@ -21,6 +21,7 @@ namespace FootballGame
     
     public static CountDownTimer CountDownTimer;
     public static PlayOptionType PlayOption = PlayOptionType.NormalPlay;
+    public static int RunPassTendency = 5;
 
     public PlayOptionsForm(Game parentGame)
     {
@@ -70,6 +71,7 @@ namespace FootballGame
     private void btnStartPlay_Click(object sender, EventArgs e)
     {
       PlayOption = PlayOptionType.NormalPlay;
+      RunPassTendency = trackBarRunPass.Value;
       this.Close();
     }
     private void btnPunt_Click(object sender, EventArgs e)

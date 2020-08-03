@@ -115,23 +115,23 @@ namespace FootballGame
 
     public static void DrawLeftEndZone(double lineOfScrimageYard)
     {
-      if (Game.CurrentGameState.BallOnYard100 < 6)
-      {
-        if (ParentForm.picEndZoneLeft.Visible == false)
-        {
-          ParentForm.picEndZoneLeft.Visible = true;
-        }
+      //if (Game.CurrentGameState.BallOnYard100 < 6)
+      //{
+      //  if (ParentForm.picEndZoneLeft.Visible == false)
+      //  {
+      //    ParentForm.picEndZoneLeft.Visible = true;
+      //  }
 
-        double leftPosition = 120 - (lineOfScrimageYard * PixalsInYard);
-        ParentForm.picEndZoneLeft.Left = (int)leftPosition;
-      }
-      else
-      {
-        if (ParentForm.picEndZoneLeft.Visible == true)
-        {
-          ParentForm.picEndZoneLeft.Visible = false;
-        }
-      }
+      //  double leftPosition = 120 - (lineOfScrimageYard * PixalsInYard);
+      //  ParentForm.picEndZoneLeft.Left = (int)leftPosition;
+      //}
+      //else
+      //{
+      //  if (ParentForm.picEndZoneLeft.Visible == true)
+      //  {
+      //    ParentForm.picEndZoneLeft.Visible = false;
+      //  }
+      //}
     }
 
     public static Image GetPartOfBiggerImage(double leftPosition)
