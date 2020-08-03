@@ -43,7 +43,9 @@ namespace FootballGame
         TargetPlayer = Game.defenderLinemanUpper;
       else if (r < 20)
         TargetPlayer = Game.defenderLinemanLower;
-      else 
+      else if (PlayOptionsForm.RunPassTendency > 6)
+        TargetPlayer = Game.offenderQuarterback;
+      else
         TargetPlayer = Game.defenderMiddleLinebacker;
 
       base.Initialize();
@@ -106,7 +108,7 @@ namespace FootballGame
       //-------------------------------- Horizontal move
 
       // Passing tendacy, fall back
-      if (PlayOptionsForm.RunPassTendency > 6 && Left > 100) // 0-10, 0 better running, 10 better passing;
+      if (PlayOptionsForm.RunPassTendency > 6 && Left > 120) // 0-10, 0 better running, 10 better passing;
         ChangeX -= 1;
 
       if (TargetPlayer.Left < Left + 20)
