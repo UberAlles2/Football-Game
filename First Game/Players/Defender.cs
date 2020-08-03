@@ -105,14 +105,14 @@ namespace FootballGame
       // Go right towards target if close to target or are blitzing
       if (this.DefensiveMode == DefensiveMode.Blitz || closeToTackle)
       {
-        targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2);
+        targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + (diffY / 2);
       }
       else if (this.DefensiveMode == DefensiveMode.Normal)
       {
         if (TargetPlayer.Left < PlayingField.LineOfScrimagePixel)
-            targetX = TargetPlayer.Left + 30;
+            targetX = TargetPlayer.Left + 30 + (diffY / 2); 
         else
-          targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + (diffY / 3);
+          targetX = TargetPlayer.Left + (TargetPlayer.ChangeX / 2) + (diffY / 2);
       }
       else if (this.DefensiveMode == DefensiveMode.Soft)
       {
@@ -138,12 +138,12 @@ namespace FootballGame
       if (player is DefenderMiddleLinebacker)
       {
         normalDeflectionOdds = 50;
-        normalInterceptionOdds = 20;
+        normalInterceptionOdds = 15;
       }
       if (player is DefenderSafety)
       {
         normalDeflectionOdds = 45;
-        normalInterceptionOdds = 99; // TODO
+        normalInterceptionOdds = 20;
       }
 
       int random = Random.Next(0, 100);

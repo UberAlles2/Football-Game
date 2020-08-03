@@ -87,9 +87,9 @@ namespace FootballGame
       PlayingField.ParentForm = form1;
 
       // Set initial values and Display them.
-      CurrentGameState.Down = 4;
-      CurrentGameState.YardsToGo = 2;
-      CurrentGameState.BallOnYard100 = 85.0F; // 1 - 100
+      CurrentGameState.Down = 1;
+      CurrentGameState.YardsToGo = 10;
+      CurrentGameState.BallOnYard100 = 20.0F; // 1 - 100
       CurrentGameState.GuestScore = 3;
       CurrentGameState.Quarter = 4;
 
@@ -106,7 +106,7 @@ namespace FootballGame
 
       // Getting keyboard input
       _timer.Tick += new System.EventHandler(KeyDown);
-      _timer.Interval = 82;
+      _timer.Interval = 72;
     }
 
     public void AddPlayers()
@@ -121,11 +121,11 @@ namespace FootballGame
       Player.ControllablePlayer = offenderQuarterback;
 
       Player.AddPlayer(offenderWideReceiverTop, initlineX, PlayingField.FieldCenterY - 220, ParentForm.Player1, VerticalPosition.PositionTop);
-      Player.AddPlayer(offenderOutsideLinemanTop, initlineX, PlayingField.FieldCenterY - 96, ParentForm.Player1, VerticalPosition.PositionTop);
-      Player.AddPlayer(offenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 52, ParentForm.Player1, VerticalPosition.PositionMiddle);
-      Player.AddPlayer(offenderLinemanCenter, initlineX, PlayingField.FieldCenterY, ParentForm.Player1, VerticalPosition.PositionMiddle);
-      Player.AddPlayer(offenderLinemanLower, initlineX, PlayingField.FieldCenterY + 56, ParentForm.Player1, VerticalPosition.PositionMiddle);
-      Player.AddPlayer(offenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 96, ParentForm.Player1, VerticalPosition.PositionBottom);
+      Player.AddPlayer(offenderOutsideLinemanTop, initlineX - 4, PlayingField.FieldCenterY - 104, ParentForm.Player1, VerticalPosition.PositionTop);
+      Player.AddPlayer(offenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 58, ParentForm.Player1, VerticalPosition.PositionMiddle);
+      Player.AddPlayer(offenderLinemanCenter, initlineX, PlayingField.FieldCenterY + 2, ParentForm.Player1, VerticalPosition.PositionMiddle);
+      Player.AddPlayer(offenderLinemanLower, initlineX, PlayingField.FieldCenterY + 62, ParentForm.Player1, VerticalPosition.PositionMiddle);
+      Player.AddPlayer(offenderOutsideLinemanBottom, initlineX - 4, PlayingField.FieldCenterY + 106, ParentForm.Player1, VerticalPosition.PositionBottom);
       Player.AddPlayer(offenderWideReceiverBottom, initlineX, PlayingField.FieldCenterY + 220, ParentForm.Player1, VerticalPosition.PositionBottom);
 
       //--------------------- Defensive Players
@@ -180,6 +180,9 @@ namespace FootballGame
           else
           {
             ChoosePlay();
+            PlayingField.DrawField(CurrentGameState.BallOnYard100);
+            ParentForm.Invalidate();
+
             if (_timeExpired)
             {
               DisplayEndGameMessage();
@@ -274,7 +277,7 @@ namespace FootballGame
       CurrentGameState.YardsGained = 0;
       CurrentGameState.TackledBy = tackledBy;
 
-      if (Player.ControllablePlayer.Left + 28 > PlayingField.PixelFromYard(100)) // TouchDown, (28 is tip of ball)
+      if (Player.ControllablePlayer.Left + 30 > PlayingField.PixelFromYard(100)) // TouchDown, (30 is tip of ball)
       {
         endPlayType = EndPlayType.Touchdown;
         CurrentGameState.YardsGained = 100 - CurrentGameState.BallOnYard100;
@@ -288,7 +291,7 @@ ReevaluateEndPlayCase:
         // These 2 cases below are the only cases for yards gained / loss and also a first down made.
         case EndPlayType.Tackled:
         case EndPlayType.OutOfBounds:
-          if (Player.ControllablePlayer.Left + 28 < PlayingField.PixelFromYard(0)) // Safety, (28 is tip of ball)
+          if (Player.ControllablePlayer.Left + 30 < PlayingField.PixelFromYard(0)) // Safety, (28 is tip of ball)
           {
             CurrentGameState.GuestScore += 2;
             CurrentGameState.YardsGained = 0;
@@ -390,10 +393,6 @@ ReevaluateEndPlayCase:
       Scoreboard.DisplayBallOn(CurrentGameState.BallOnYard.ToString("00"));
       Scoreboard.DisplayToGo(CurrentGameState.YardsToGo.ToString("00"));
       Scoreboard.DisplayDown(CurrentGameState.Down.ToString("0"));
-
-      PlayingField.DrawField(CurrentGameState.BallOnYard100);
-
-      ParentForm.Invalidate();
     }
 
     private void Update_TackledAt_YardsGained_BallOnYard100_YardsToGo_FirstDown()
@@ -407,7 +406,7 @@ ReevaluateEndPlayCase:
 
     private float GetTackledAt()
     {
-      return PlayingField.YardFromPixel(Player.ControllablePlayer.Left + 28);
+      return PlayingField.YardFromPixel(Player.ControllablePlayer.Left + 30);
     }
 
     public void Stop()
@@ -484,13 +483,13 @@ ReevaluateEndPlayCase:
       {
         if (totalMovement > Player.ControllablePlayer.SpeedCap * 2 - 16)
         {
-          Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 12) * Math.Sign(Player.ControllablePlayer.ChangeX);
-          Player.ControllablePlayer.ChangeY = (Player.ControllablePlayer.SpeedCap - 12) * Math.Sign(Player.ControllablePlayer.ChangeY);
+          Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 10) * Math.Sign(Player.ControllablePlayer.ChangeX);
+          Player.ControllablePlayer.ChangeY = (Player.ControllablePlayer.SpeedCap - 10) * Math.Sign(Player.ControllablePlayer.ChangeY);
         }
         else
         {
-          Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 20) * Math.Sign(Player.ControllablePlayer.ChangeX);
-          Player.ControllablePlayer.ChangeY = (Player.ControllablePlayer.SpeedCap - 20) * Math.Sign(Player.ControllablePlayer.ChangeY);
+          Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 18) * Math.Sign(Player.ControllablePlayer.ChangeX);
+          Player.ControllablePlayer.ChangeY = (Player.ControllablePlayer.SpeedCap - 18) * Math.Sign(Player.ControllablePlayer.ChangeY);
         }
       }
 

@@ -468,15 +468,15 @@ namespace FootballGame
       if (distanceX + distanceY > (player2.PlayerWidth << 1) - 10) // Cutting corners, not true math, but close. "<<" is a fast * 2
         return false;
 
-      return distanceX < player2.PlayerWidth - 1 && distanceY < player2.PlayerHeight - 1;
+      return distanceX < player2.PlayerWidth - 2 && distanceY < player2.PlayerHeight - 2;
     }
     public static bool DetectCloseCollision(Player player1, Player player2, int howClose)
     {
-      return Math.Abs(player1.Left - player2.Left - 1) < howClose && Math.Abs(player1.Top - player2.Top - 1) < howClose;
+      return Math.Abs(player1.Left - player2.Left - 2) < howClose && Math.Abs(player1.Top - player2.Top - 2) < howClose;
     }
     public static bool DetectCloseCollision(Player player, int X, int Y, int howClose)
     {
-      return Math.Abs(player.Left - player.Left - 1) < howClose && Math.Abs(player.Top - Y - 1) < howClose;
+      return Math.Abs(player.Left - player.Left - 2) < howClose && Math.Abs(player.Top - Y - 2) < howClose;
     }
   }
 }

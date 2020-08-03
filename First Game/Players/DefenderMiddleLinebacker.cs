@@ -14,7 +14,7 @@ namespace FootballGame
     {
       int shortYardage = 0;
       
-      SpeedCap = 118;
+      SpeedCap = 114;
       Intelligence = 10;
       TargetPlayer = ControllablePlayer;
       CanStillIntercept = true;
@@ -55,12 +55,12 @@ namespace FootballGame
       if (IsThrowingOrKicking)
       {
         DefensiveMode = DefensiveMode.Blitz; // Switch to tight coverage.
-        ChangeX += 10; // If the ball is thrown go out where the receivers are.
+        ChangeX += 12; // If the ball is thrown go out where the receivers are.
 
         if (ControllablePlayer.Top < Top)
-          ChangeY += 4;
+          ChangeY += 8;
         else
-          ChangeY -= 4;
+          ChangeY -= 8;
       }
       else if(Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
       {
