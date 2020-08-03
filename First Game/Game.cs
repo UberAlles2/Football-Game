@@ -352,7 +352,23 @@ ReevaluateEndPlayCase:
           }
           CurrentGameState.YardsToGo = 10;
           CurrentGameState.Down = 1;
-          break;
+          
+          if(Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 140)
+            Scoreboard.CountDownTimer.SubtractTime(2, 0); // Subtract 2 minutes off the clock
+          else
+          {
+            MessageBox.Show("Needed to use timeouts to stop the clock.", "Time Outs Used", MessageBoxButtons.OK);
+            if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 100)
+            {
+              Scoreboard.CountDownTimer.SubtractTime(0, 30); // Subtract 30 seconds minutes off the clock
+              // TODO use 1 timeout 
+            }
+            else
+            {
+              // TODO use 2 timeouts, if available 
+            }
+          }
+          break; 
         case EndPlayType.FieldGoal:
         case EndPlayType.FieldGoalMiss:
         case EndPlayType.Touchdown:
@@ -488,8 +504,8 @@ ReevaluateEndPlayCase:
         }
         else
         {
-          Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 18) * Math.Sign(Player.ControllablePlayer.ChangeX);
-          Player.ControllablePlayer.ChangeY = (Player.ControllablePlayer.SpeedCap - 18) * Math.Sign(Player.ControllablePlayer.ChangeY);
+          Player.ControllablePlayer.ChangeX = (Player.ControllablePlayer.SpeedCap - 16) * Math.Sign(Player.ControllablePlayer.ChangeX);
+          Player.ControllablePlayer.ChangeY = (Player.ControllablePlayer.SpeedCap - 16) * Math.Sign(Player.ControllablePlayer.ChangeY);
         }
       }
 

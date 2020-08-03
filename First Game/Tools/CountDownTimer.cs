@@ -69,6 +69,12 @@ namespace FootballGame
       TimeChanged?.Invoke();
     }
     public void SetTime(int min, int sec = 0) => SetTime(TimeSpan.FromSeconds(min * 60 + sec));
+    //public void SubtractTime(int min, int sec = 0) => _stpWatch.Elapsed.Add(TimeSpan.FromSeconds(min * 60 + sec));
+    public void SubtractTime(int min, int sec = 0)
+    {
+      SetTime(_max - TimeSpan.FromSeconds(min * 60 + sec));
+    }
+    
 
     public void Start()
     {

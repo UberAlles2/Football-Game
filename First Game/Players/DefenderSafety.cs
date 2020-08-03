@@ -16,7 +16,7 @@ namespace FootballGame
 
     public override void Initialize()
     {
-      SpeedCap = 132;
+      SpeedCap = 134;
       Intelligence = 11;
       InCoverage = true;
       CanStillIntercept = true;
@@ -32,7 +32,7 @@ namespace FootballGame
       {
         CoveredPlayer = Game.offenderWideReceiverBottom;
       }
-      CoverAfterMove = Random.Next(10, 350); // Initially don't cover anyone but switch later on.
+      CoverAfterMove = Random.Next(10, 300); // Initially don't cover anyone but switch later on.
 
       TargetPlayer = Game.defenderMiddleLinebacker; // Inital zone coverage, switches later
       if (Random.Next(0, 15) < 2 || Player.ThrowingType ==  ThrowType.Punt || Player.ThrowingType == ThrowType.FieldGoal) // Blitz
@@ -69,12 +69,13 @@ namespace FootballGame
       if (ControllablePlayer.Left > PlayingField.LineOfScrimagePixel - 30 && InCoverage == true)
       {
         // One time deal when switching
-        Intelligence = 11;
+        SpeedCap += 6;
+        Intelligence += 1;
         MovingAroundBlocker = 0;
         TargetPlayer = ControllablePlayer;
         DefensiveMode = DefensiveMode.Soft;
-        ChangeX += 10;
-        base.MoveTowardsTarget(TargetPlayer.Left + 320, TargetPlayer.Top);
+        ChangeX += 12;
+        base.MoveTowardsTarget(TargetPlayer.Left + 200, TargetPlayer.Top);
         InCoverage = false; // No longer in coverage.
       }
       if(InCoverage && TotalMoves > CoverAfterMove) // Switch to covering wide receivers
