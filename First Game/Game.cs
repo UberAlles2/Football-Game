@@ -323,12 +323,12 @@ ReevaluateEndPlayCase:
             // Other team scored.
             if (CurrentGameState.BallOnYard100 < 3)
             {
-              message = "Guest scored a touchdown.";
+              message += "\nGuest scored a touchdown.";
               CurrentGameState.GuestScore += 7;
             }
             else
             {
-              message = "Guest scored a field goal.";
+              message += "\nGuest scored a field goal.";
               CurrentGameState.GuestScore += 3;
             }
             CurrentGameState.YardsGained = 0;
