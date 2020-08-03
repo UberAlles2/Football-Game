@@ -72,6 +72,7 @@ namespace FootballGame
       {
         ScrollTimer.Stop();
         ScrollTimer.Dispose();
+        return;
       }
 
       string currentMessagePart = MessageToScroll.Substring(timerTicks, ScrollMessageLength);

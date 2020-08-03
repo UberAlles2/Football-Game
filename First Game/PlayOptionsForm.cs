@@ -40,6 +40,9 @@ namespace FootballGame
       SetRandomWRPatterns();
 
       btnPunt.Enabled = btnFieldGoal.Enabled = false;
+      chkTimeOut1.Checked = true;
+      chkTimeOut2.Checked = true;
+      chkTimeOut3.Checked = true;
 
       if (Game.CurrentGameState.Down == 4 || Scoreboard.CountDownTimer.TimeLeft.TotalSeconds < 60)
       {

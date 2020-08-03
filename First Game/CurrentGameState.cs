@@ -18,6 +18,10 @@ namespace FootballGame
     public int Down;
     public float YardsToGo;
     public bool FirstDown;
+    public float DriveYards;
+    public int DrivePlays;
+    public int DriveFirstDowns;
+    public int DriveTime;
 
     public float TackledAt100;
     private float ballOnYard100;

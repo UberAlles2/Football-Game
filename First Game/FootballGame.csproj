@@ -51,7 +51,7 @@
   <ItemGroup>
     <Compile Include="Tools\CountDownTimer.cs" />
     <Compile Include="Players\DefenderSafety.cs" />
-    <Compile Include="PlayOptionsFormStats.cs" />
+    <Compile Include="CurrentGameState.cs" />
     <Compile Include="PlayOptionsForm.cs">
       <SubType>Form</SubType>
     </Compile>

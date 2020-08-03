@@ -56,7 +56,6 @@
       this.label1 = new System.Windows.Forms.Label();
       this.label2 = new System.Windows.Forms.Label();
       this.label3 = new System.Windows.Forms.Label();
-      this.label5 = new System.Windows.Forms.Label();
       this.picSlantPattern = new System.Windows.Forms.PictureBox();
       this.picSlantPatternTop = new System.Windows.Forms.PictureBox();
       this.picQuickOutPattern = new System.Windows.Forms.PictureBox();
@@ -65,6 +64,24 @@
       this.lblTimeLeft = new System.Windows.Forms.Label();
       this.btnPunt = new System.Windows.Forms.Button();
       this.btnFieldGoal = new System.Windows.Forms.Button();
+      this.panel2 = new System.Windows.Forms.Panel();
+      this.lblDriveFirstDowns = new System.Windows.Forms.Label();
+      this.lblDriveYards = new System.Windows.Forms.Label();
+      this.lblDrivePlays = new System.Windows.Forms.Label();
+      this.label9 = new System.Windows.Forms.Label();
+      this.label10 = new System.Windows.Forms.Label();
+      this.label11 = new System.Windows.Forms.Label();
+      this.lblCurrentDrive = new System.Windows.Forms.Label();
+      this.trackBarRunPass = new System.Windows.Forms.TrackBar();
+      this.label12 = new System.Windows.Forms.Label();
+      this.label13 = new System.Windows.Forms.Label();
+      this.button1 = new System.Windows.Forms.Button();
+      this.label14 = new System.Windows.Forms.Label();
+      this.chkTimeOut1 = new System.Windows.Forms.CheckBox();
+      this.chkTimeOut2 = new System.Windows.Forms.CheckBox();
+      this.chkTimeOut3 = new System.Windows.Forms.CheckBox();
+      this.lblDriveTime = new System.Windows.Forms.Label();
+      this.label16 = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.picReceiverTop)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picPostPattern)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFlyPattern)).BeginInit();
@@ -79,6 +96,8 @@
       ((System.ComponentModel.ISupportInitialize)(this.picSlantPatternTop)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picQuickOutPattern)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picQuickOutPatternTop)).BeginInit();
+      this.panel2.SuspendLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.trackBarRunPass)).BeginInit();
       this.SuspendLayout();
       // 
       // picReceiverTop
@@ -127,7 +146,7 @@
       // btnStartPlay
       // 
       this.btnStartPlay.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnStartPlay.Location = new System.Drawing.Point(388, 427);
+      this.btnStartPlay.Location = new System.Drawing.Point(425, 483);
       this.btnStartPlay.Name = "btnStartPlay";
       this.btnStartPlay.Size = new System.Drawing.Size(122, 35);
       this.btnStartPlay.TabIndex = 11;
@@ -215,16 +234,16 @@
       this.pnlLastPlayResults.Controls.Add(this.lblTackledBy);
       this.pnlLastPlayResults.Controls.Add(this.lblGain);
       this.pnlLastPlayResults.Controls.Add(this.lblResultsOfLastPlayHeading);
-      this.pnlLastPlayResults.Location = new System.Drawing.Point(241, 31);
+      this.pnlLastPlayResults.Location = new System.Drawing.Point(241, 22);
       this.pnlLastPlayResults.Name = "pnlLastPlayResults";
-      this.pnlLastPlayResults.Size = new System.Drawing.Size(269, 98);
+      this.pnlLastPlayResults.Size = new System.Drawing.Size(306, 98);
       this.pnlLastPlayResults.TabIndex = 19;
       // 
       // lblTackledByValue
       // 
       this.lblTackledByValue.AutoSize = true;
       this.lblTackledByValue.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblTackledByValue.Location = new System.Drawing.Point(63, 56);
+      this.lblTackledByValue.Location = new System.Drawing.Point(73, 56);
       this.lblTackledByValue.Name = "lblTackledByValue";
       this.lblTackledByValue.Size = new System.Drawing.Size(58, 13);
       this.lblTackledByValue.TabIndex = 6;
@@ -271,7 +290,7 @@
       // 
       this.lblResultsOfLastPlayHeading.AutoSize = true;
       this.lblResultsOfLastPlayHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lblResultsOfLastPlayHeading.Location = new System.Drawing.Point(76, 2);
+      this.lblResultsOfLastPlayHeading.Location = new System.Drawing.Point(97, 2);
       this.lblResultsOfLastPlayHeading.Name = "lblResultsOfLastPlayHeading";
       this.lblResultsOfLastPlayHeading.Size = new System.Drawing.Size(116, 15);
       this.lblResultsOfLastPlayHeading.TabIndex = 0;
@@ -287,16 +306,16 @@
       this.panel1.Controls.Add(this.label1);
       this.panel1.Controls.Add(this.label2);
       this.panel1.Controls.Add(this.label3);
-      this.panel1.Location = new System.Drawing.Point(241, 144);
+      this.panel1.Location = new System.Drawing.Point(241, 135);
       this.panel1.Name = "panel1";
-      this.panel1.Size = new System.Drawing.Size(269, 86);
+      this.panel1.Size = new System.Drawing.Size(306, 84);
       this.panel1.TabIndex = 20;
       // 
       // lblYardsToGoValue
       // 
       this.lblYardsToGoValue.AutoSize = true;
       this.lblYardsToGoValue.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblYardsToGoValue.Location = new System.Drawing.Point(70, 63);
+      this.lblYardsToGoValue.Location = new System.Drawing.Point(70, 61);
       this.lblYardsToGoValue.Name = "lblYardsToGoValue";
       this.lblYardsToGoValue.Size = new System.Drawing.Size(61, 13);
       this.lblYardsToGoValue.TabIndex = 9;
@@ -306,7 +325,7 @@
       // 
       this.lblDownValue.AutoSize = true;
       this.lblDownValue.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblDownValue.Location = new System.Drawing.Point(38, 44);
+      this.lblDownValue.Location = new System.Drawing.Point(44, 42);
       this.lblDownValue.Name = "lblDownValue";
       this.lblDownValue.Size = new System.Drawing.Size(35, 13);
       this.lblDownValue.TabIndex = 8;
@@ -316,7 +335,7 @@
       // 
       this.lblBallOnValue.AutoSize = true;
       this.lblBallOnValue.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblBallOnValue.Location = new System.Drawing.Point(44, 26);
+      this.lblBallOnValue.Location = new System.Drawing.Point(44, 24);
       this.lblBallOnValue.Name = "lblBallOnValue";
       this.lblBallOnValue.Size = new System.Drawing.Size(38, 13);
       this.lblBallOnValue.TabIndex = 7;
@@ -325,7 +344,7 @@
       // label4
       // 
       this.label4.AutoSize = true;
-      this.label4.Location = new System.Drawing.Point(3, 26);
+      this.label4.Location = new System.Drawing.Point(3, 24);
       this.label4.Name = "label4";
       this.label4.Size = new System.Drawing.Size(44, 13);
       this.label4.TabIndex = 4;
@@ -334,7 +353,7 @@
       // label1
       // 
       this.label1.AutoSize = true;
-      this.label1.Location = new System.Drawing.Point(3, 44);
+      this.label1.Location = new System.Drawing.Point(3, 42);
       this.label1.Name = "label1";
       this.label1.Size = new System.Drawing.Size(38, 13);
       this.label1.TabIndex = 3;
@@ -343,7 +362,7 @@
       // label2
       // 
       this.label2.AutoSize = true;
-      this.label2.Location = new System.Drawing.Point(3, 63);
+      this.label2.Location = new System.Drawing.Point(3, 61);
       this.label2.Name = "label2";
       this.label2.Size = new System.Drawing.Size(70, 13);
       this.label2.TabIndex = 1;
@@ -353,20 +372,11 @@
       // 
       this.label3.AutoSize = true;
       this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label3.Location = new System.Drawing.Point(96, 2);
+      this.label3.Location = new System.Drawing.Point(116, 2);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(73, 15);
       this.label3.TabIndex = 0;
       this.label3.Text = "Current Play";
-      // 
-      // label5
-      // 
-      this.label5.AutoSize = true;
-      this.label5.Location = new System.Drawing.Point(301, 250);
-      this.label5.Name = "label5";
-      this.label5.Size = new System.Drawing.Size(130, 13);
-      this.label5.TabIndex = 21;
-      this.label5.Text = "TODO Current Drive Stats";
       // 
       // picSlantPattern
       // 
@@ -415,7 +425,7 @@
       // label6
       // 
       this.label6.AutoSize = true;
-      this.label6.Location = new System.Drawing.Point(248, 410);
+      this.label6.Location = new System.Drawing.Point(298, 473);
       this.label6.Name = "label6";
       this.label6.Size = new System.Drawing.Size(114, 13);
       this.label6.TabIndex = 26;
@@ -425,7 +435,7 @@
       // 
       this.lblTimeLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
       this.lblTimeLeft.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lblTimeLeft.Location = new System.Drawing.Point(283, 429);
+      this.lblTimeLeft.Location = new System.Drawing.Point(333, 492);
       this.lblTimeLeft.Name = "lblTimeLeft";
       this.lblTimeLeft.Size = new System.Drawing.Size(32, 26);
       this.lblTimeLeft.TabIndex = 27;
@@ -435,7 +445,7 @@
       // btnPunt
       // 
       this.btnPunt.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnPunt.Location = new System.Drawing.Point(388, 346);
+      this.btnPunt.Location = new System.Drawing.Point(425, 402);
       this.btnPunt.Name = "btnPunt";
       this.btnPunt.Size = new System.Drawing.Size(122, 35);
       this.btnPunt.TabIndex = 28;
@@ -446,7 +456,7 @@
       // btnFieldGoal
       // 
       this.btnFieldGoal.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.btnFieldGoal.Location = new System.Drawing.Point(388, 387);
+      this.btnFieldGoal.Location = new System.Drawing.Point(425, 443);
       this.btnFieldGoal.Name = "btnFieldGoal";
       this.btnFieldGoal.Size = new System.Drawing.Size(122, 35);
       this.btnFieldGoal.TabIndex = 29;
@@ -454,12 +464,209 @@
       this.btnFieldGoal.UseVisualStyleBackColor = true;
       this.btnFieldGoal.Click += new System.EventHandler(this.btnFieldGoal_Click);
       // 
+      // panel2
+      // 
+      this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+      this.panel2.Controls.Add(this.lblDriveTime);
+      this.panel2.Controls.Add(this.label16);
+      this.panel2.Controls.Add(this.lblDriveFirstDowns);
+      this.panel2.Controls.Add(this.lblDriveYards);
+      this.panel2.Controls.Add(this.lblDrivePlays);
+      this.panel2.Controls.Add(this.label9);
+      this.panel2.Controls.Add(this.label10);
+      this.panel2.Controls.Add(this.label11);
+      this.panel2.Controls.Add(this.lblCurrentDrive);
+      this.panel2.Location = new System.Drawing.Point(241, 237);
+      this.panel2.Name = "panel2";
+      this.panel2.Size = new System.Drawing.Size(306, 72);
+      this.panel2.TabIndex = 30;
+      // 
+      // lblDriveFirstDowns
+      // 
+      this.lblDriveFirstDowns.AutoSize = true;
+      this.lblDriveFirstDowns.ForeColor = System.Drawing.Color.DarkBlue;
+      this.lblDriveFirstDowns.Location = new System.Drawing.Point(225, 28);
+      this.lblDriveFirstDowns.Name = "lblDriveFirstDowns";
+      this.lblDriveFirstDowns.Size = new System.Drawing.Size(61, 13);
+      this.lblDriveFirstDowns.TabIndex = 9;
+      this.lblDriveFirstDowns.Text = "YardsToGo";
+      // 
+      // lblDriveYards
+      // 
+      this.lblDriveYards.AutoSize = true;
+      this.lblDriveYards.ForeColor = System.Drawing.Color.DarkBlue;
+      this.lblDriveYards.Location = new System.Drawing.Point(44, 46);
+      this.lblDriveYards.Name = "lblDriveYards";
+      this.lblDriveYards.Size = new System.Drawing.Size(59, 13);
+      this.lblDriveYards.TabIndex = 8;
+      this.lblDriveYards.Text = "DriveYards";
+      // 
+      // lblDrivePlays
+      // 
+      this.lblDrivePlays.AutoSize = true;
+      this.lblDrivePlays.ForeColor = System.Drawing.Color.DarkBlue;
+      this.lblDrivePlays.Location = new System.Drawing.Point(44, 28);
+      this.lblDrivePlays.Name = "lblDrivePlays";
+      this.lblDrivePlays.Size = new System.Drawing.Size(57, 13);
+      this.lblDrivePlays.TabIndex = 7;
+      this.lblDrivePlays.Text = "DrivePlays";
+      // 
+      // label9
+      // 
+      this.label9.AutoSize = true;
+      this.label9.Location = new System.Drawing.Point(3, 28);
+      this.label9.Name = "label9";
+      this.label9.Size = new System.Drawing.Size(35, 13);
+      this.label9.TabIndex = 4;
+      this.label9.Text = "Plays:";
+      // 
+      // label10
+      // 
+      this.label10.AutoSize = true;
+      this.label10.Location = new System.Drawing.Point(3, 46);
+      this.label10.Name = "label10";
+      this.label10.Size = new System.Drawing.Size(37, 13);
+      this.label10.TabIndex = 3;
+      this.label10.Text = "Yards:";
+      // 
+      // label11
+      // 
+      this.label11.AutoSize = true;
+      this.label11.Location = new System.Drawing.Point(161, 28);
+      this.label11.Name = "label11";
+      this.label11.Size = new System.Drawing.Size(65, 13);
+      this.label11.TabIndex = 1;
+      this.label11.Text = "First Downs:";
+      // 
+      // lblCurrentDrive
+      // 
+      this.lblCurrentDrive.AutoSize = true;
+      this.lblCurrentDrive.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.lblCurrentDrive.Location = new System.Drawing.Point(116, 2);
+      this.lblCurrentDrive.Name = "lblCurrentDrive";
+      this.lblCurrentDrive.Size = new System.Drawing.Size(78, 15);
+      this.lblCurrentDrive.TabIndex = 0;
+      this.lblCurrentDrive.Text = "Current Drive";
+      // 
+      // trackBarRunPass
+      // 
+      this.trackBarRunPass.Location = new System.Drawing.Point(19, 492);
+      this.trackBarRunPass.Name = "trackBarRunPass";
+      this.trackBarRunPass.Size = new System.Drawing.Size(245, 45);
+      this.trackBarRunPass.TabIndex = 31;
+      this.trackBarRunPass.Value = 5;
+      // 
+      // label12
+      // 
+      this.label12.AutoSize = true;
+      this.label12.Location = new System.Drawing.Point(27, 476);
+      this.label12.Name = "label12";
+      this.label12.Size = new System.Drawing.Size(67, 13);
+      this.label12.TabIndex = 32;
+      this.label12.Text = "< Better Run";
+      // 
+      // label13
+      // 
+      this.label13.AutoSize = true;
+      this.label13.Location = new System.Drawing.Point(186, 476);
+      this.label13.Name = "label13";
+      this.label13.Size = new System.Drawing.Size(70, 13);
+      this.label13.TabIndex = 33;
+      this.label13.Text = "Better Pass >";
+      // 
+      // button1
+      // 
+      this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.button1.Location = new System.Drawing.Point(425, 361);
+      this.button1.Name = "button1";
+      this.button1.Size = new System.Drawing.Size(122, 35);
+      this.button1.TabIndex = 34;
+      this.button1.Text = "Time Out";
+      this.button1.UseVisualStyleBackColor = true;
+      // 
+      // label14
+      // 
+      this.label14.AutoSize = true;
+      this.label14.Location = new System.Drawing.Point(331, 364);
+      this.label14.Name = "label14";
+      this.label14.Size = new System.Drawing.Size(76, 13);
+      this.label14.TabIndex = 35;
+      this.label14.Text = "Time Outs Left";
+      // 
+      // chkTimeOut1
+      // 
+      this.chkTimeOut1.AutoCheck = false;
+      this.chkTimeOut1.AutoSize = true;
+      this.chkTimeOut1.Checked = true;
+      this.chkTimeOut1.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+      this.chkTimeOut1.ForeColor = System.Drawing.SystemColors.Control;
+      this.chkTimeOut1.Location = new System.Drawing.Point(335, 380);
+      this.chkTimeOut1.Name = "chkTimeOut1";
+      this.chkTimeOut1.Size = new System.Drawing.Size(15, 14);
+      this.chkTimeOut1.TabIndex = 39;
+      this.chkTimeOut1.UseVisualStyleBackColor = true;
+      // 
+      // chkTimeOut2
+      // 
+      this.chkTimeOut2.AutoCheck = false;
+      this.chkTimeOut2.AutoSize = true;
+      this.chkTimeOut2.Checked = true;
+      this.chkTimeOut2.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+      this.chkTimeOut2.ForeColor = System.Drawing.SystemColors.Control;
+      this.chkTimeOut2.Location = new System.Drawing.Point(363, 380);
+      this.chkTimeOut2.Name = "chkTimeOut2";
+      this.chkTimeOut2.Size = new System.Drawing.Size(15, 14);
+      this.chkTimeOut2.TabIndex = 40;
+      this.chkTimeOut2.UseVisualStyleBackColor = true;
+      // 
+      // chkTimeOut3
+      // 
+      this.chkTimeOut3.AutoCheck = false;
+      this.chkTimeOut3.AutoSize = true;
+      this.chkTimeOut3.BackColor = System.Drawing.SystemColors.Control;
+      this.chkTimeOut3.Checked = true;
+      this.chkTimeOut3.CheckState = System.Windows.Forms.CheckState.Indeterminate;
+      this.chkTimeOut3.ForeColor = System.Drawing.SystemColors.Control;
+      this.chkTimeOut3.Location = new System.Drawing.Point(389, 380);
+      this.chkTimeOut3.Name = "chkTimeOut3";
+      this.chkTimeOut3.Size = new System.Drawing.Size(15, 14);
+      this.chkTimeOut3.TabIndex = 41;
+      this.chkTimeOut3.UseVisualStyleBackColor = false;
+      // 
+      // lblDriveTime
+      // 
+      this.lblDriveTime.AutoSize = true;
+      this.lblDriveTime.ForeColor = System.Drawing.Color.DarkBlue;
+      this.lblDriveTime.Location = new System.Drawing.Point(225, 46);
+      this.lblDriveTime.Name = "lblDriveTime";
+      this.lblDriveTime.Size = new System.Drawing.Size(61, 13);
+      this.lblDriveTime.TabIndex = 11;
+      this.lblDriveTime.Text = "YardsToGo";
+      // 
+      // label16
+      // 
+      this.label16.AutoSize = true;
+      this.label16.Location = new System.Drawing.Point(161, 46);
+      this.label16.Name = "label16";
+      this.label16.Size = new System.Drawing.Size(33, 13);
+      this.label16.TabIndex = 10;
+      this.label16.Text = "Time:";
+      // 
       // PlayOptionsForm
       // 
       this.AcceptButton = this.btnStartPlay;
       this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
       this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-      this.ClientSize = new System.Drawing.Size(540, 474);
+      this.ClientSize = new System.Drawing.Size(577, 542);
+      this.Controls.Add(this.chkTimeOut3);
+      this.Controls.Add(this.chkTimeOut2);
+      this.Controls.Add(this.chkTimeOut1);
+      this.Controls.Add(this.label14);
+      this.Controls.Add(this.button1);
+      this.Controls.Add(this.label13);
+      this.Controls.Add(this.label12);
+      this.Controls.Add(this.trackBarRunPass);
+      this.Controls.Add(this.panel2);
       this.Controls.Add(this.btnFieldGoal);
       this.Controls.Add(this.btnPunt);
       this.Controls.Add(this.lblTimeLeft);
@@ -468,7 +675,6 @@
       this.Controls.Add(this.label6);
       this.Controls.Add(this.picQuickOutPattern);
       this.Controls.Add(this.picSlantPattern);
-      this.Controls.Add(this.label5);
       this.Controls.Add(this.panel1);
       this.Controls.Add(this.pnlLastPlayResults);
       this.Controls.Add(this.lblBottomReceiverPattern);
@@ -503,6 +709,9 @@
       ((System.ComponentModel.ISupportInitialize)(this.picSlantPatternTop)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picQuickOutPattern)).EndInit();
       ((System.ComponentModel.ISupportInitialize)(this.picQuickOutPatternTop)).EndInit();
+      this.panel2.ResumeLayout(false);
+      this.panel2.PerformLayout();
+      ((System.ComponentModel.ISupportInitialize)(this.trackBarRunPass)).EndInit();
       this.ResumeLayout(false);
       this.PerformLayout();
 
@@ -530,7 +739,6 @@
     private System.Windows.Forms.Label label2;
     private System.Windows.Forms.Label label3;
     private System.Windows.Forms.Label label4;
-    private System.Windows.Forms.Label label5;
     private System.Windows.Forms.Label lblResultsOfLastPlay;
     private System.Windows.Forms.Label lblYardGainedValue;
     private System.Windows.Forms.Label lblTackledByValue;
@@ -545,5 +753,23 @@
     private System.Windows.Forms.Label lblTimeLeft;
     private System.Windows.Forms.Button btnPunt;
     private System.Windows.Forms.Button btnFieldGoal;
+    private System.Windows.Forms.Panel panel2;
+    private System.Windows.Forms.Label lblDriveFirstDowns;
+    private System.Windows.Forms.Label lblDriveYards;
+    private System.Windows.Forms.Label lblDrivePlays;
+    private System.Windows.Forms.Label label9;
+    private System.Windows.Forms.Label label10;
+    private System.Windows.Forms.Label label11;
+    private System.Windows.Forms.Label lblCurrentDrive;
+    private System.Windows.Forms.TrackBar trackBarRunPass;
+    private System.Windows.Forms.Label label12;
+    private System.Windows.Forms.Label label13;
+    private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.Label label14;
+    public System.Windows.Forms.CheckBox chkTimeOut1;
+    public System.Windows.Forms.CheckBox chkTimeOut2;
+    public System.Windows.Forms.CheckBox chkTimeOut3;
+    private System.Windows.Forms.Label lblDriveTime;
+    private System.Windows.Forms.Label label16;
   }
 }
