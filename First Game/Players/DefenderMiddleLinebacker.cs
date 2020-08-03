@@ -17,6 +17,7 @@ namespace FootballGame
       SpeedCap = 118;
       Intelligence = 10;
       TargetPlayer = ControllablePlayer;
+      CanStillIntercept = true;
 
       base.Initialize();
 

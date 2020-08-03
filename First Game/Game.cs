@@ -302,11 +302,6 @@ ReevaluateEndPlayCase:
           else
           {
             Update_TackledAt_YardsGained_BallOnYard100_YardsToGo_FirstDown();
-            if (CurrentGameState.Down > 4 && !CurrentGameState.FirstDown) // Loss of possession on downs if not first down.
-            {
-              endPlayType = EndPlayType.LossOfPossessionOnDowns;
-              goto ReevaluateEndPlayCase; //GOTO ===^^^^
-            }
           }
           break;
         case EndPlayType.Punted:
@@ -315,7 +310,7 @@ ReevaluateEndPlayCase:
           if (endPlayType == EndPlayType.LossOfPossessionOnDowns)
             CurrentGameState.YardsGained -= (Random.Next(0, 26));
           else if (endPlayType == EndPlayType.Intercepted)
-            CurrentGameState.YardsGained = PlayingField.YardFromPixel(ballAsPlayer.Left) - Random.Next(0, 26); 
+            CurrentGameState.YardsGained = PlayingField.YardsFromLineOfScrimage(ballAsPlayer.Left) - Random.Next(20, 46); // includes random punt back
           else if (CurrentGameState.BallOnYard100 < 20)
             CurrentGameState.YardsGained -= (12 + Random.Next(0, 6));
           else
@@ -345,9 +340,12 @@ ReevaluateEndPlayCase:
           {
             // "Intercepted" or "Punted" or "LossOfPossessionOnDowns"  
             if (endPlayType == EndPlayType.LossOfPossessionOnDowns)
-              message = "Loss of possession on downs,\na loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("00") + " yards on change of possesion.";
+              message = "Loss of possession on downs.\nA loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("0.0") + " yards on change of possesion.";
             else
-              message = Enum.GetName(typeof(EndPlayType), endPlayType) + ", a loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("00") + " yards on change of possesion.";
+            {
+              CurrentGameState.TackledBy = null;
+              message = Enum.GetName(typeof(EndPlayType), endPlayType) + ".\nA loss of " + Math.Abs(CurrentGameState.YardsGained).ToString("0.0") + " yards on change of possesion.";
+            }
           }
           CurrentGameState.YardsToGo = 10;
           CurrentGameState.Down = 1;
@@ -367,6 +365,12 @@ ReevaluateEndPlayCase:
           Scoreboard.DisplayBearsScore(CurrentGameState.HomeScore.ToString(" 0"));
           Scoreboard.ScrollMessage(message);
           break;
+      }
+
+      if (CurrentGameState.Down > 4 && !CurrentGameState.FirstDown) // Loss of possession on downs if not first down.
+      {
+        endPlayType = EndPlayType.LossOfPossessionOnDowns;
+        goto ReevaluateEndPlayCase; //GOTO ===^^^^
       }
 
       CurrentGameState.ResultsOfLastPlay = message;

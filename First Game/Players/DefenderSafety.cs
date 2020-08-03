@@ -19,6 +19,7 @@ namespace FootballGame
       SpeedCap = 132;
       Intelligence = 11;
       InCoverage = true;
+      CanStillIntercept = true;
 
       base.Initialize();
 
@@ -129,6 +130,8 @@ namespace FootballGame
           ParentGame.EndPlay(EndPlayType.Intercepted, this, "Intercepted.");
           return;
         }
+        
+        return; // No collision moves if it's the ball
       }
 
       if (collidedWithPlayer.HasBall && !IsThrowingOrKicking)

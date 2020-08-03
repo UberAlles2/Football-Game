@@ -12,6 +12,8 @@ namespace FootballGame
   {
     public int Intelligence = 10;
     public DefensiveMode DefensiveMode = DefensiveMode.Normal;
+    public bool CanStillIntercept = false;
+
     public override void Initialize()
     {
       Team = 2;
@@ -123,10 +125,15 @@ namespace FootballGame
       return targetX;
     }
 
-    protected bool IsInterception(Player player)
+    protected bool IsInterception(Defender player)
     {
       int normalDeflectionOdds = 60;
       int normalInterceptionOdds = 10;
+
+      if (player.CanStillIntercept)
+        player.CanStillIntercept = false;
+      else 
+        return false; 
 
       if (player is DefenderMiddleLinebacker)
       {
@@ -136,7 +143,7 @@ namespace FootballGame
       if (player is DefenderSafety)
       {
         normalDeflectionOdds = 45;
-        normalInterceptionOdds = 25;
+        normalInterceptionOdds = 99; // TODO
       }
 
       int random = Random.Next(0, 100);

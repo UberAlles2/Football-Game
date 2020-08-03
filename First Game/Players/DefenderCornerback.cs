@@ -42,6 +42,7 @@ namespace FootballGame
       SpeedCap = 132;
       Intelligence = 6;
       InCoverage = true;
+      CanStillIntercept = true;
       base.Initialize();
     }
 

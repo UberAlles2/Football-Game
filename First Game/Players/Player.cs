@@ -389,17 +389,25 @@ namespace FootballGame
       {
         for (int j = i + 1; j < Player.Players.Count; j++)
         {
-          if (!Player.IsThrowingOrKicking && Players[j].IsBall)
+          bool CheckingBallCollision = Players[i].IsBall || Players[j].IsBall;
+
+          if (!IsThrowingOrKicking && CheckingBallCollision) // Only check ball collision if throwing, TODO what if kicking?
             break;
 
-          // If check for ball collision, the below positions are the only one who can catch the ball
-          // any other positions willl not be checked and thus the break;
-          if (!(Players[i] is OffenderWideReceiver)
-           && !(Players[i] is DefenderCornerback)
-           && !(Players[i] is DefenderMiddleLinebacker)
-           && !(Players[i] is DefenderSafety)
-           && Players[j].IsBall)
-            break;
+          if(CheckingBallCollision) // Ball check
+          {
+            // Check for ball collision, the below positions are the only one who can catch the ball
+            // any other positions will not be checked and thus the break;
+            //if (!(Players[i] is OffenderWideReceiver)
+            // && !(Players[i] is DefenderCornerback)
+            // && !(Players[i] is DefenderMiddleLinebacker)
+            // && !(Players[i] is DefenderSafety)
+            // && Players[j].IsBall)
+
+            if ((Players[j] is Defender))
+              if (!((Defender)Players[j]).CanStillIntercept) // This defender already collided, not to be checked again. 
+                continue;
+          }
 
 
           //if (players[j].IsBall && (players[i] is DefenderCornerback) && ballAsPlayer.BallIsCatchable) // TODO take out

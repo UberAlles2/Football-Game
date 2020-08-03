@@ -217,14 +217,14 @@
       this.pnlLastPlayResults.Controls.Add(this.lblResultsOfLastPlayHeading);
       this.pnlLastPlayResults.Location = new System.Drawing.Point(241, 31);
       this.pnlLastPlayResults.Name = "pnlLastPlayResults";
-      this.pnlLastPlayResults.Size = new System.Drawing.Size(269, 93);
+      this.pnlLastPlayResults.Size = new System.Drawing.Size(269, 98);
       this.pnlLastPlayResults.TabIndex = 19;
       // 
       // lblTackledByValue
       // 
       this.lblTackledByValue.AutoSize = true;
       this.lblTackledByValue.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblTackledByValue.Location = new System.Drawing.Point(63, 50);
+      this.lblTackledByValue.Location = new System.Drawing.Point(63, 56);
       this.lblTackledByValue.Name = "lblTackledByValue";
       this.lblTackledByValue.Size = new System.Drawing.Size(58, 13);
       this.lblTackledByValue.TabIndex = 6;
@@ -234,7 +234,7 @@
       // 
       this.lblYardGainedValue.AutoSize = true;
       this.lblYardGainedValue.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblYardGainedValue.Location = new System.Drawing.Point(73, 70);
+      this.lblYardGainedValue.Location = new System.Drawing.Point(73, 76);
       this.lblYardGainedValue.Name = "lblYardGainedValue";
       this.lblYardGainedValue.Size = new System.Drawing.Size(74, 13);
       this.lblYardGainedValue.TabIndex = 5;
@@ -252,7 +252,7 @@
       // lblTackledBy
       // 
       this.lblTackledBy.AutoSize = true;
-      this.lblTackledBy.Location = new System.Drawing.Point(2, 50);
+      this.lblTackledBy.Location = new System.Drawing.Point(2, 56);
       this.lblTackledBy.Name = "lblTackledBy";
       this.lblTackledBy.Size = new System.Drawing.Size(64, 13);
       this.lblTackledBy.TabIndex = 3;
@@ -261,7 +261,7 @@
       // lblGain
       // 
       this.lblGain.AutoSize = true;
-      this.lblGain.Location = new System.Drawing.Point(2, 70);
+      this.lblGain.Location = new System.Drawing.Point(2, 76);
       this.lblGain.Name = "lblGain";
       this.lblGain.Size = new System.Drawing.Size(74, 13);
       this.lblGain.TabIndex = 1;
@@ -271,7 +271,7 @@
       // 
       this.lblResultsOfLastPlayHeading.AutoSize = true;
       this.lblResultsOfLastPlayHeading.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.lblResultsOfLastPlayHeading.Location = new System.Drawing.Point(59, 2);
+      this.lblResultsOfLastPlayHeading.Location = new System.Drawing.Point(76, 2);
       this.lblResultsOfLastPlayHeading.Name = "lblResultsOfLastPlayHeading";
       this.lblResultsOfLastPlayHeading.Size = new System.Drawing.Size(116, 15);
       this.lblResultsOfLastPlayHeading.TabIndex = 0;
@@ -353,7 +353,7 @@
       // 
       this.label3.AutoSize = true;
       this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.label3.Location = new System.Drawing.Point(78, 2);
+      this.label3.Location = new System.Drawing.Point(96, 2);
       this.label3.Name = "label3";
       this.label3.Size = new System.Drawing.Size(73, 15);
       this.label3.TabIndex = 0;
