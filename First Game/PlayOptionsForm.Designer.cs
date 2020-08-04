@@ -65,6 +65,8 @@
       this.btnPunt = new System.Windows.Forms.Button();
       this.btnFieldGoal = new System.Windows.Forms.Button();
       this.panel2 = new System.Windows.Forms.Panel();
+      this.lblDriveTime = new System.Windows.Forms.Label();
+      this.label16 = new System.Windows.Forms.Label();
       this.lblDriveFirstDowns = new System.Windows.Forms.Label();
       this.lblDriveYards = new System.Windows.Forms.Label();
       this.lblDrivePlays = new System.Windows.Forms.Label();
@@ -75,13 +77,11 @@
       this.trackBarRunPass = new System.Windows.Forms.TrackBar();
       this.label12 = new System.Windows.Forms.Label();
       this.label13 = new System.Windows.Forms.Label();
-      this.button1 = new System.Windows.Forms.Button();
+      this.btnTimeOut = new System.Windows.Forms.Button();
       this.label14 = new System.Windows.Forms.Label();
       this.chkTimeOut1 = new System.Windows.Forms.CheckBox();
       this.chkTimeOut2 = new System.Windows.Forms.CheckBox();
       this.chkTimeOut3 = new System.Windows.Forms.CheckBox();
-      this.lblDriveTime = new System.Windows.Forms.Label();
-      this.label16 = new System.Windows.Forms.Label();
       ((System.ComponentModel.ISupportInitialize)(this.picReceiverTop)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picPostPattern)).BeginInit();
       ((System.ComponentModel.ISupportInitialize)(this.picFlyPattern)).BeginInit();
@@ -481,6 +481,25 @@
       this.panel2.Size = new System.Drawing.Size(306, 72);
       this.panel2.TabIndex = 30;
       // 
+      // lblDriveTime
+      // 
+      this.lblDriveTime.AutoSize = true;
+      this.lblDriveTime.ForeColor = System.Drawing.Color.DarkBlue;
+      this.lblDriveTime.Location = new System.Drawing.Point(225, 46);
+      this.lblDriveTime.Name = "lblDriveTime";
+      this.lblDriveTime.Size = new System.Drawing.Size(61, 13);
+      this.lblDriveTime.TabIndex = 11;
+      this.lblDriveTime.Text = "YardsToGo";
+      // 
+      // label16
+      // 
+      this.label16.AutoSize = true;
+      this.label16.Location = new System.Drawing.Point(161, 46);
+      this.label16.Name = "label16";
+      this.label16.Size = new System.Drawing.Size(33, 13);
+      this.label16.TabIndex = 10;
+      this.label16.Text = "Time:";
+      // 
       // lblDriveFirstDowns
       // 
       this.lblDriveFirstDowns.AutoSize = true;
@@ -574,15 +593,16 @@
       this.label13.TabIndex = 33;
       this.label13.Text = "Better Pass >";
       // 
-      // button1
+      // btnTimeOut
       // 
-      this.button1.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-      this.button1.Location = new System.Drawing.Point(425, 361);
-      this.button1.Name = "button1";
-      this.button1.Size = new System.Drawing.Size(122, 35);
-      this.button1.TabIndex = 34;
-      this.button1.Text = "Time Out";
-      this.button1.UseVisualStyleBackColor = true;
+      this.btnTimeOut.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+      this.btnTimeOut.Location = new System.Drawing.Point(425, 361);
+      this.btnTimeOut.Name = "btnTimeOut";
+      this.btnTimeOut.Size = new System.Drawing.Size(122, 35);
+      this.btnTimeOut.TabIndex = 34;
+      this.btnTimeOut.Text = "Time Out";
+      this.btnTimeOut.UseVisualStyleBackColor = true;
+      this.btnTimeOut.Click += new System.EventHandler(this.btnTimeOut_Click);
       // 
       // label14
       // 
@@ -633,25 +653,6 @@
       this.chkTimeOut3.TabIndex = 41;
       this.chkTimeOut3.UseVisualStyleBackColor = false;
       // 
-      // lblDriveTime
-      // 
-      this.lblDriveTime.AutoSize = true;
-      this.lblDriveTime.ForeColor = System.Drawing.Color.DarkBlue;
-      this.lblDriveTime.Location = new System.Drawing.Point(225, 46);
-      this.lblDriveTime.Name = "lblDriveTime";
-      this.lblDriveTime.Size = new System.Drawing.Size(61, 13);
-      this.lblDriveTime.TabIndex = 11;
-      this.lblDriveTime.Text = "YardsToGo";
-      // 
-      // label16
-      // 
-      this.label16.AutoSize = true;
-      this.label16.Location = new System.Drawing.Point(161, 46);
-      this.label16.Name = "label16";
-      this.label16.Size = new System.Drawing.Size(33, 13);
-      this.label16.TabIndex = 10;
-      this.label16.Text = "Time:";
-      // 
       // PlayOptionsForm
       // 
       this.AcceptButton = this.btnStartPlay;
@@ -662,7 +663,7 @@
       this.Controls.Add(this.chkTimeOut2);
       this.Controls.Add(this.chkTimeOut1);
       this.Controls.Add(this.label14);
-      this.Controls.Add(this.button1);
+      this.Controls.Add(this.btnTimeOut);
       this.Controls.Add(this.label13);
       this.Controls.Add(this.label12);
       this.Controls.Add(this.trackBarRunPass);
@@ -763,7 +764,7 @@
     private System.Windows.Forms.Label lblCurrentDrive;
     private System.Windows.Forms.Label label12;
     private System.Windows.Forms.Label label13;
-    private System.Windows.Forms.Button button1;
+    private System.Windows.Forms.Button btnTimeOut;
     private System.Windows.Forms.Label label14;
     public System.Windows.Forms.CheckBox chkTimeOut1;
     public System.Windows.Forms.CheckBox chkTimeOut2;

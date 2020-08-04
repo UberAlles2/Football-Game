@@ -89,14 +89,14 @@ namespace FootballGame
       PlayingField.ParentForm = form1;
 
       // Set initial values and Display them.
-      CurrentGameState.Down = 1;
-      CurrentGameState.YardsToGo = 1;
-      CurrentGameState.BallOnYard100 = 89.0F; // 1 - 100
+      CurrentGameState.Down = 3;
+      CurrentGameState.YardsToGo = 3;
+      CurrentGameState.BallOnYard100 = 20.0F; // 1 - 100
       CurrentGameState.GuestScore = 3;
       CurrentGameState.Quarter = 4;
-      CurrentGameState.TimeOutsLeft = 1;
+      CurrentGameState.TimeOutsLeft = 0;
 
-      Scoreboard.CountDownTimer.SetTime(15, 0);
+      Scoreboard.CountDownTimer.SetTime(1, 0);
 
       // Draw the scoreboard and field.
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
@@ -252,15 +252,18 @@ namespace FootballGame
           Player.ThrowingType = Player.ThrowType.Punt; // Not used for anything yet.
           _playEnded = false;
           EndPlay(EndPlayType.Punted, null, ""); // takes yardage away and possession goes back to offense
-          ChoosePlay();
+          if (!_timeExpired)
+            ChoosePlay();
           break;
         case PlayOptionsForm.PlayOptionType.FieldGoal:
           Player.ThrowingType = Player.ThrowType.FieldGoal;
           break;
       }
 
-      if(!_timeExpired)
+      if (!_timeExpired)
+      {
         Scoreboard.CountDownTimer.Start();
+      }
     }
 
     public void EndPlay(EndPlayType endPlayType, Player tackledBy, string message)
@@ -410,20 +413,27 @@ ReevaluateEndPlayCase:
         Scoreboard.CountDownTimer.SubtractTime(1, 28); // Subtract 88 second off the clock, 2 minute warning was employed
       else
       {
-        MessageBox.Show("Needed to use timeouts to stop the clock.", "Time Outs Used", MessageBoxButtons.OK); // TODO different messages based on time out situation.
-        if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 120)
+        if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 120 && PlayOptionsForm.TimeOutsLeft > 0)
         {
-          Scoreboard.CountDownTimer.SubtractTime(0, 58); // Subtract 58 seconds off the clock, 2 minute warning was employed
-                                                         // TODO use 1 timeout if available
+          Scoreboard.CountDownTimer.SubtractTime(0, 58); // Subtract 58 seconds off the clock, 2 minute warning was employed, only 1 timeout spent.
+          MessageBox.Show("Needed to use a timeout to stop the clock.", "Time Outs Used", MessageBoxButtons.OK);
+          PlayOptionsForm.TimeOutsLeft--;
         }
-        else if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 80)
+        else if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 80 && PlayOptionsForm.TimeOutsLeft > 1)
         {
           Scoreboard.CountDownTimer.SubtractTime(0, 59); // Subtract 60 seconds off the clock
-                                                         // TODO use 2 timeouts if available
+          MessageBox.Show("Needed to use 2 timeouts to stop the clock.", "Time Outs Used", MessageBoxButtons.OK);
+          PlayOptionsForm.TimeOutsLeft -= 2;
+        }
+        else if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 50 && PlayOptionsForm.TimeOutsLeft > 2)
+        {
+          Scoreboard.CountDownTimer.SubtractTime(0, 29); // Subtract 60 seconds off the clock
+          MessageBox.Show("Needed to use 3 timeouts to stop the clock.", "Time Outs Used", MessageBoxButtons.OK);
+          PlayOptionsForm.TimeOutsLeft -= 3;
         }
         else
         {
-          // TODO Time expired no matter what, end game or leave 5 seconds on the clock.
+          EndGame();
         }
       }
     }

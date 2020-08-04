@@ -15,7 +15,7 @@ namespace FootballGame
     public Action TimeChanged; // Set this delegate to an Action method that gets called when the time ticks. (Every one second default.)
     public Action TimeExpired; // Set this delegate to an Action method that gets called when the time expires.
 
-    public bool IsRunnign => timer.Enabled;
+    public bool IsRunning => timer.Enabled;
 
     public int SetInterval
     {

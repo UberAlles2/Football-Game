@@ -30,8 +30,9 @@ namespace FootballGame
 
       set 
       { 
-        timeOutsLeft = value; 
-        for(int i = 0; i < 3; i++)
+        timeOutsLeft = value;
+        Game.CurrentGameState.TimeOutsLeft = timeOutsLeft; // keep the 2 in sync.
+        for (int i = 0; i < 3; i++)
         {
           if (i < timeOutsLeft)
           {
@@ -43,7 +44,7 @@ namespace FootballGame
             chkTimeOutArray[i].Checked = false;
           }
         }
-      } 
+      }
     }
 
     public PlayOptionsForm(Game parentGame)
@@ -69,7 +70,8 @@ namespace FootballGame
       chkTimeOutArray[2] = chkTimeOut3;
       TimeOutsLeft = Game.CurrentGameState.TimeOutsLeft;
 
-      if (Game.CurrentGameState.Down == 4 || Scoreboard.CountDownTimer.TimeLeft.TotalSeconds < 60)
+      btnPunt.Enabled = false;
+      if (Game.CurrentGameState.Down == 4 || Scoreboard.CountDownTimer.TimeLeft.TotalSeconds < 20)
       {
         btnPunt.Enabled = true;
         if(Game.CurrentGameState.BallOnYard100 > 55)
@@ -97,6 +99,16 @@ namespace FootballGame
       PlayOption = PlayOptionType.NormalPlay;
       RunPassTendency = trackBarRunPass.Value;
       this.Close();
+    }
+    private void btnTimeOut_Click(object sender, EventArgs e)
+    {
+      CountDownTimer.Stop();
+      Scoreboard.CountDownTimer.Stop();
+      TimeOutsLeft--;
+      if (TimeOutsLeft == 0)
+      {
+        btnTimeOut.Enabled = false;
+      }
     }
     private void btnPunt_Click(object sender, EventArgs e)
     {
