@@ -121,7 +121,11 @@ namespace FootballGame
         lblBallOnValue.Text = '◀' + "  " + Game.CurrentGameState.BallOnYard.ToString("0.0");
 
       lblDownValue.Text = Game.CurrentGameState.Down.ToString();
-      lblYardsToGoValue.Text = Game.CurrentGameState.YardsToGo.ToString("0.0");
+      // Down Text 
+      if(Game.CurrentGameState.Down == 1 && Game.CurrentGameState.BallOnYard100 > 90)
+        lblYardsToGoValue.Text = "First and Goal at the " + Game.CurrentGameState.BallOnYard.ToString("0.0") + " yard line.";
+      else
+        lblYardsToGoValue.Text = Game.CurrentGameState.YardsToGo.ToString("0.0");
     }
 
     private void SetRandomWRPatterns()

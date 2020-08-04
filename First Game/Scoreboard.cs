@@ -39,8 +39,8 @@ namespace FootballGame
       DisplayBallOn("20");
       DisplayQtr(Game.CurrentGameState.Quarter.ToString(" 0"));
       DisplayClock();
-      DisplayBearsScore(Game.CurrentGameState.HomeScore.ToString(" 0"));
-      DisplayGuestScore(Game.CurrentGameState.GuestScore.ToString(" 0"));
+      DisplayBearsScore(Game.CurrentGameState.HomeScore);
+      DisplayGuestScore(Game.CurrentGameState.GuestScore);
     }
 
     public static PictureBox CreateLetterPictureBox(int left)
@@ -130,8 +130,9 @@ namespace FootballGame
     {
       DisplayMessage(message, 13);
     }
-    public static void DisplayBearsScore(string message)
+    public static void DisplayBearsScore(int score)
     {
+      string message = score.ToString("0").PadLeft(2);
       DisplayMessage(message, 18);
     }
     public static void DisplayTimeMin(string message)
@@ -142,8 +143,9 @@ namespace FootballGame
     {
       DisplayMessage(message, 24);
     }
-    public static void DisplayGuestScore(string message)
+    public static void DisplayGuestScore(int score)
     {
+      string message = score.ToString("0").PadLeft(2);
       DisplayMessage(message, 27);
     }
 

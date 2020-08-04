@@ -88,8 +88,8 @@ namespace FootballGame
 
       // Set initial values and Display them.
       CurrentGameState.Down = 1;
-      CurrentGameState.YardsToGo = 10;
-      CurrentGameState.BallOnYard100 = 20.0F; // 1 - 100
+      CurrentGameState.YardsToGo = 1;
+      CurrentGameState.BallOnYard100 = 89.0F; // 1 - 100
       CurrentGameState.GuestScore = 3;
       CurrentGameState.Quarter = 4;
 
@@ -298,7 +298,7 @@ ReevaluateEndPlayCase:
             CurrentGameState.BallOnYard100 = 20;
             CurrentGameState.YardsToGo = 10;
             CurrentGameState.Down = 1;
-            Scoreboard.DisplayGuestScore(CurrentGameState.GuestScore.ToString(" 0"));
+            Scoreboard.DisplayGuestScore(CurrentGameState.GuestScore);
             message = "Safety.";
             Scoreboard.ScrollMessage(message);
           }
@@ -321,7 +321,7 @@ ReevaluateEndPlayCase:
 
           CurrentGameState.BallOnYard100 += CurrentGameState.YardsGained;
 
-          if(CurrentGameState.BallOnYard100 < 12)
+          if (CurrentGameState.BallOnYard100 < 12)
           {
             // Other team scored.
             if (CurrentGameState.BallOnYard100 < 3)
@@ -337,7 +337,7 @@ ReevaluateEndPlayCase:
             CurrentGameState.YardsGained = 0;
             CurrentGameState.BallOnYard100 = 20;
             Scoreboard.ScrollMessage(message);
-            Scoreboard.DisplayGuestScore(CurrentGameState.GuestScore.ToString(" 0"));
+            Scoreboard.DisplayGuestScore(CurrentGameState.GuestScore);
           }
           else
           {
@@ -353,29 +353,8 @@ ReevaluateEndPlayCase:
           CurrentGameState.YardsToGo = 10;
           CurrentGameState.Down = 1;
 
-          if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 240)
-            Scoreboard.CountDownTimer.SubtractTime(2, 0); 
-          else if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 160)
-            Scoreboard.CountDownTimer.SubtractTime(1, 28); // Subtract 88 second off the clock, 2 minute warning was employed
-          else
-          {
-            MessageBox.Show("Needed to use timeouts to stop the clock.", "Time Outs Used", MessageBoxButtons.OK); // TODO different messages based on time out situation.
-            if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 120)
-            {
-              Scoreboard.CountDownTimer.SubtractTime(0, 58); // Subtract 58 seconds off the clock, 2 minute warning was employed
-              // TODO use 1 timeout if available
-            }
-            else if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 80)
-            {
-              Scoreboard.CountDownTimer.SubtractTime(0, 59); // Subtract 60 seconds off the clock
-              // TODO use 2 timeouts if available
-            }
-            else
-            {
-              // TODO Time expired no matter what, end game or leave 5 seconds on the clock.
-            }
-          }
-          break; 
+          UpdateClockAndTimeoutsForChangeOfPossession();
+          break;
         case EndPlayType.FieldGoal:
         case EndPlayType.FieldGoalMiss:
         case EndPlayType.Touchdown:
@@ -388,7 +367,7 @@ ReevaluateEndPlayCase:
           CurrentGameState.BallOnYard100 = 20;
           CurrentGameState.YardsToGo = 10;
           CurrentGameState.Down = 1;
-          Scoreboard.DisplayBearsScore(CurrentGameState.HomeScore.ToString(" 0"));
+          Scoreboard.DisplayBearsScore(CurrentGameState.HomeScore);
           Scoreboard.ScrollMessage(message);
           break;
       }
@@ -416,6 +395,32 @@ ReevaluateEndPlayCase:
       Scoreboard.DisplayBallOn(CurrentGameState.BallOnYard.ToString("00"));
       Scoreboard.DisplayToGo(CurrentGameState.YardsToGo.ToString("00"));
       Scoreboard.DisplayDown(CurrentGameState.Down.ToString("0"));
+    }
+
+    private static void UpdateClockAndTimeoutsForChangeOfPossession()
+    {
+      if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 240)
+        Scoreboard.CountDownTimer.SubtractTime(2, 0);
+      else if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 160)
+        Scoreboard.CountDownTimer.SubtractTime(1, 28); // Subtract 88 second off the clock, 2 minute warning was employed
+      else
+      {
+        MessageBox.Show("Needed to use timeouts to stop the clock.", "Time Outs Used", MessageBoxButtons.OK); // TODO different messages based on time out situation.
+        if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 120)
+        {
+          Scoreboard.CountDownTimer.SubtractTime(0, 58); // Subtract 58 seconds off the clock, 2 minute warning was employed
+                                                         // TODO use 1 timeout if available
+        }
+        else if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 80)
+        {
+          Scoreboard.CountDownTimer.SubtractTime(0, 59); // Subtract 60 seconds off the clock
+                                                         // TODO use 2 timeouts if available
+        }
+        else
+        {
+          // TODO Time expired no matter what, end game or leave 5 seconds on the clock.
+        }
+      }
     }
 
     private void Update_TackledAt_YardsGained_BallOnYard100_YardsToGo_FirstDown()
