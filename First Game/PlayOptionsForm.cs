@@ -22,6 +22,29 @@ namespace FootballGame
     public static CountDownTimer CountDownTimer;
     public static PlayOptionType PlayOption = PlayOptionType.NormalPlay;
     public static int RunPassTendency = 5;
+    private static CheckBox[] chkTimeOutArray = new CheckBox[3];
+    private static int timeOutsLeft;
+    public static int TimeOutsLeft 
+    {
+      get { return timeOutsLeft; }
+
+      set 
+      { 
+        timeOutsLeft = value; 
+        for(int i = 0; i < 3; i++)
+        {
+          if (i < timeOutsLeft)
+          {
+            chkTimeOutArray[i].Checked = true;
+            chkTimeOutArray[i].CheckState = CheckState.Indeterminate;
+          }
+          else
+          {
+            chkTimeOutArray[i].Checked = false;
+          }
+        }
+      } 
+    }
 
     public PlayOptionsForm(Game parentGame)
     {
@@ -41,9 +64,10 @@ namespace FootballGame
       SetRandomWRPatterns();
 
       btnPunt.Enabled = btnFieldGoal.Enabled = false;
-      chkTimeOut1.Checked = true;
-      chkTimeOut2.Checked = true;
-      chkTimeOut3.Checked = true;
+      chkTimeOutArray[0] = chkTimeOut1;
+      chkTimeOutArray[1] = chkTimeOut2;
+      chkTimeOutArray[2] = chkTimeOut3;
+      TimeOutsLeft = Game.CurrentGameState.TimeOutsLeft;
 
       if (Game.CurrentGameState.Down == 4 || Scoreboard.CountDownTimer.TimeLeft.TotalSeconds < 60)
       {

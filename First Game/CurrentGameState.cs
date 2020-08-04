@@ -22,6 +22,7 @@ namespace FootballGame
     public int DrivePlays;
     public int DriveFirstDowns;
     public int DriveTime;
+    public int TimeOutsLeft;
 
     public float TackledAt100;
     private float ballOnYard100;

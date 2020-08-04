@@ -10,14 +10,16 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using Drake.Tools;
 
-/* To Do List
+/*-------------- To Do List ---------------
+ * Timeouts
+ * 
+ * Penalties?
+ * 
  * 
  * Add more WR patterns
  * 
- * Draw end zones 
- * Timeouts
- * 
- * 
+ * ---------- Discarded Changes -----------
+ * Draw end zones, too much time for the graphics
  */
 namespace FootballGame
 {
@@ -92,6 +94,7 @@ namespace FootballGame
       CurrentGameState.BallOnYard100 = 89.0F; // 1 - 100
       CurrentGameState.GuestScore = 3;
       CurrentGameState.Quarter = 4;
+      CurrentGameState.TimeOutsLeft = 1;
 
       Scoreboard.CountDownTimer.SetTime(15, 0);
 
@@ -369,6 +372,8 @@ ReevaluateEndPlayCase:
           CurrentGameState.Down = 1;
           Scoreboard.DisplayBearsScore(CurrentGameState.HomeScore);
           Scoreboard.ScrollMessage(message);
+
+          UpdateClockAndTimeoutsForChangeOfPossession();
           break;
       }
 
@@ -392,7 +397,7 @@ ReevaluateEndPlayCase:
         Scoreboard.ScrollMessage("First Down!");
       }
 
-      Scoreboard.DisplayBallOn(CurrentGameState.BallOnYard.ToString("00"));
+      Scoreboard.DisplayBallOn(CurrentGameState.BallOnYard);
       Scoreboard.DisplayToGo(CurrentGameState.YardsToGo.ToString("00"));
       Scoreboard.DisplayDown(CurrentGameState.Down.ToString("0"));
     }
