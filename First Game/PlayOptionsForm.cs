@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Drake.Tools;
 
 namespace FootballGame
 {
@@ -79,6 +80,13 @@ namespace FootballGame
           btnFieldGoal.Enabled = true;
         }
       }
+
+      // Current Drive values
+      lblDrivePlays.Text      = Game.CurrentGameState.DrivePlays.ToString();
+      lblDriveFirstDowns.Text = Game.CurrentGameState.DriveFirstDowns.ToString();
+      lblDriveYards.Text      = Game.CurrentGameState.GetDriveYards().ToString("0.0");
+      //TimeSpan Elapsed        = Scoreboard.CountDownTimer.TimeLeft.Subtract(Game.CurrentGameState.DriveStartTimeSpan);
+      lblDriveTime.Text       = Game.CurrentGameState.GetElapsedString(); 
 
       CountDownTimer = new CountDownTimer(0, 20); // 20 seconds to choose a play.
       CountDownTimer.TimeChanged = TimeChanged;

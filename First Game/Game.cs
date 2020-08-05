@@ -88,15 +88,16 @@ namespace FootballGame
       Scoreboard.ParentForm = form1;
       PlayingField.ParentForm = form1;
 
+      Scoreboard.CountDownTimer.SetTime(10, 0);
+
       // Set initial values and Display them.
       CurrentGameState.Down = 3;
-      CurrentGameState.YardsToGo = 3;
+      CurrentGameState.YardsToGo = 10;
       CurrentGameState.BallOnYard100 = 20.0F; // 1 - 100
       CurrentGameState.GuestScore = 3;
       CurrentGameState.Quarter = 4;
-      CurrentGameState.TimeOutsLeft = 0;
-
-      Scoreboard.CountDownTimer.SetTime(1, 0);
+      CurrentGameState.TimeOutsLeft = 3;
+      CurrentGameState.ResetDriveState();
 
       // Draw the scoreboard and field.
       Scoreboard.InitializeDrawing(); // Draw the starting scoreboard
@@ -269,6 +270,9 @@ namespace FootballGame
     public void EndPlay(EndPlayType endPlayType, Player tackledBy, string message)
     {
       CurrentGameState.FirstDown = false;
+      if (CurrentGameState.DrivePlays == 0)
+        CurrentGameState.DriveStartYard = CurrentGameState.BallOnYard100;
+      CurrentGameState.DrivePlays++;
 
       if (_playEnded) // Play ended by another player
         return;
@@ -397,6 +401,7 @@ ReevaluateEndPlayCase:
 
         CurrentGameState.Down = 1;
         CurrentGameState.ResultsOfLastPlay += "  First Down!";
+        CurrentGameState.DriveFirstDowns++;
         Scoreboard.ScrollMessage("First Down!");
       }
 
@@ -436,6 +441,7 @@ ReevaluateEndPlayCase:
           EndGame();
         }
       }
+      CurrentGameState.ResetDriveState();
     }
 
     private void Update_TackledAt_YardsGained_BallOnYard100_YardsToGo_FirstDown()
