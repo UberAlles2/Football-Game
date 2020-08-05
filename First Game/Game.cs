@@ -146,7 +146,7 @@ namespace FootballGame
       Player.AddPlayer(defenderMiddleLinebacker, PlayingField.LineOfScrimagePixel + 120, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
       defenderMiddleLinebacker.PicBox.BackColor = Color.DarkGreen; // TODO take out
       // Safety
-      Player.AddPlayer(defenderSafety, PlayingField.LineOfScrimagePixel + 420, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
+      Player.AddPlayer(defenderSafety, PlayingField.LineOfScrimagePixel + 320, PlayingField.FieldCenterY, ParentForm.Player2, VerticalPosition.PositionMiddle);
       defenderSafety.PicBox.BackColor = Color.DarkBlue; // TODO take out
       Player.AddPlayer(defenderLinemanLower, initlineX, PlayingField.FieldCenterY + 47, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 78);
       //defenderLinemanLower.PicBox.BackColor = Color.DarkBlue; // TODO take out

@@ -124,6 +124,7 @@ namespace FootballGame
 
         if(IsInterception(this))
         {
+          FlashPlayer();
           ParentGame.EndPlay(EndPlayType.Intercepted, this, "Intercepted.");
           return;
         }

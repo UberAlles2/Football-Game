@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -159,5 +161,23 @@ namespace FootballGame
       // 30% ball goes by defender
       return false;
     }
+    public void FlashPlayer()
+    {
+      PicBox.BackColor = Color.Yellow;
+      Game.ballAsPlayer.PicBox.Invalidate();
+      Application.DoEvents();
+      Thread.Sleep(100);
+      PicBox.BackColor = Color.Transparent;
+      Application.DoEvents();
+      Thread.Sleep(100);
+      PicBox.BackColor = Color.Yellow;
+      Game.ballAsPlayer.PicBox.Invalidate();
+      Application.DoEvents();
+      Thread.Sleep(100);
+      PicBox.BackColor = Color.Transparent;
+      Application.DoEvents();
+      Thread.Sleep(100);
+    }
+
   }
 }
