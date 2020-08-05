@@ -13,7 +13,8 @@ namespace FootballGame
   {
     Blitz,
     Normal,
-    Soft
+    Soft,
+    CoverageInfront
   }
 
   public enum VerticalPosition

@@ -16,7 +16,7 @@ namespace FootballGame
 
     public override void Initialize()
     {
-      Team = 2;
+      Team = 2; // TODO, needed?
       base.Initialize();
     }
 

@@ -10,6 +10,8 @@ namespace FootballGame
 {
   public class DefenderMiddleLinebacker : Defender
   {
+    private bool InCoverage = true;
+
     public override void Initialize()
     {
       int shortYardage = 0;
@@ -32,6 +34,22 @@ namespace FootballGame
         Left = InitialLeft + 20;
         ChangeX = +6;
         shortYardage = -4; // More likely to play soft
+
+        // Cover one of the wide receivers
+        if (Random.Next(0, 100) < 20)
+        {
+          DefensiveMode = DefensiveMode.Blitz;
+          if (Random.Next(0, 100) < 50)
+          {
+            TargetPlayer = Game.offenderWideReceiverTop;
+            Game.defenderCornerbackTop.DefensiveMode = DefensiveMode.CoverageInfront; // double coverage, one in front, one behind
+          }
+          else
+          {
+            TargetPlayer = Game.offenderWideReceiverBottom;
+            Game.defenderCornerbackBottom.DefensiveMode = DefensiveMode.CoverageInfront; // double coverage, one in front, one behind
+          }
+        }
       }
 
       int r = Random.Next(0, 12);

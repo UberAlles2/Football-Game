@@ -13,7 +13,7 @@ using Drake.Tools;
 /*-------------- To Do List ---------------
  * Tight in front coverage at time for cornerback
  * Penalty for play clock running down.
- * 
+ * Play begin dialog, defficulty, decribe game situation.
  * Penalties?
  * 
  * Add more WR patterns
@@ -137,7 +137,7 @@ namespace FootballGame
       //--------------------- Defensive Players
       initlineX = PlayingField.LineOfScrimagePixel + 25; // All defensive X values
 
-      Player.AddPlayer(defenderCornerbackTop, offenderWideReceiverTop.InitialLeft + 160, offenderWideReceiverTop.InitialTop + 30, ParentForm.Player2, VerticalPosition.PositionTop);
+      Player.AddPlayer(defenderCornerbackTop, offenderWideReceiverTop.InitialLeft + 120, offenderWideReceiverTop.InitialTop + 30, ParentForm.Player2, VerticalPosition.PositionTop);
       Player.AddPlayer(defenderOutsideLinemanTop, initlineX, PlayingField.FieldCenterY - 152, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -235);
       defenderOutsideLinemanTop.PicBox.BackColor = Color.LightGreen; // TODO take out
       Player.AddPlayer(defenderLinemanUpper, initlineX, PlayingField.FieldCenterY - 50, ParentForm.Player2, VerticalPosition.PositionTop, initialOffsetY: -85);
@@ -152,7 +152,7 @@ namespace FootballGame
       //defenderLinemanLower.PicBox.BackColor = Color.DarkBlue; // TODO take out
       Player.AddPlayer(defenderOutsideLinemanBottom, initlineX, PlayingField.FieldCenterY + 152, ParentForm.Player2, VerticalPosition.PositionBottom, initialOffsetY: 235);
       //defenderOutsideLinemanBottom.PicBox.BackColor = Color.LightGreen; // TODO take out
-      Player.AddPlayer(defenderCornerbackBottom, offenderWideReceiverBottom.InitialLeft + 160, offenderWideReceiverBottom.InitialTop - 30, ParentForm.Player2, VerticalPosition.PositionBottom);
+      Player.AddPlayer(defenderCornerbackBottom, offenderWideReceiverBottom.InitialLeft + 120, offenderWideReceiverBottom.InitialTop - 30, ParentForm.Player2, VerticalPosition.PositionBottom);
 
       // Setup Initial TargetPlayers
       defenderCornerbackTop.InitialTargetPlayer = offenderWideReceiverTop;
@@ -168,6 +168,8 @@ namespace FootballGame
 
     public void InitializePlayers()
     {
+      defenderMiddleLinebacker.TargetPlayer = null; // Can't depend on initialization order so some things need resetting;
+      defenderSafety.CoveredPlayer          = null; // Can't depend on initialization order so some things need resetting;
       Player.Players.ForEach(p => p.Initialize());
     }
 

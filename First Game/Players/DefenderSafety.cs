@@ -24,36 +24,41 @@ namespace FootballGame
       base.Initialize();
 
       // Cover one of the wide receivers
-      if (Random.Next(0, 16) < 8)
+      if (Random.Next(0, 100) < 50)
       {
         CoveredPlayer = Game.offenderWideReceiverTop;
+        Game.defenderCornerbackTop.DefensiveMode = DefensiveMode.CoverageInfront; // double coverage, one in front, one behind
       }
       else
       {
         CoveredPlayer = Game.offenderWideReceiverBottom;
+        Game.defenderCornerbackBottom.DefensiveMode = DefensiveMode.CoverageInfront; // double coverage, one in front, one behind
       }
-      CoverAfterMove = Random.Next(10, 300); // Initially don't cover anyone but switch later on.
+      CoverAfterMove = Random.Next(6, 24); // Initially don't cover anyone but switch later on.
 
       TargetPlayer = Game.defenderMiddleLinebacker; // Inital zone coverage, switches later
-      if (Random.Next(0, 15) < 2 || Player.ThrowingType ==  ThrowType.Punt || Player.ThrowingType == ThrowType.FieldGoal) // Blitz
-      {
+      if (Random.Next(0, 100) < 15 || Player.ThrowingType ==  ThrowType.Punt || Player.ThrowingType == ThrowType.FieldGoal) // Blitz
+      { // Blitz
         DefensiveMode = DefensiveMode.Blitz;
         Intelligence = 9; // Mixed in with blocker less intelligence
         TargetPlayer = ControllablePlayer;
         CoverAfterMove = 999999; // Never switch;
         SpeedCap -= 16; // In blockers, less speed
-        if (Random.Next(0, 15) < 7)
+        if (Random.Next(0, 100) < 50)
           Top = PlayingField.FieldCenterY - 200;
         else
           Top = PlayingField.FieldCenterY + 200;
 
         Left = PlayingField.LineOfScrimagePixel + 30;
       }
-      else if (Random.Next(0, 10) < 10)
+      else if (Random.Next(0, 100) < 40)
       {
         DefensiveMode = DefensiveMode.Normal;
         Left = PlayingField.LineOfScrimagePixel + 300;
-        Top += Random.Next(0, 200) - 100;
+        if (CoveredPlayer == Game.offenderWideReceiverTop)
+          Top -= (Random.Next(0, 200) - 10);
+        else
+          Top += (Random.Next(0, 200) - 10);
       }
       else
       {
@@ -73,7 +78,7 @@ namespace FootballGame
         Intelligence += 1;
         MovingAroundBlocker = 0;
         TargetPlayer = ControllablePlayer;
-        DefensiveMode = DefensiveMode.Soft;
+        DefensiveMode = DefensiveMode.Blitz; // tight coverage
         ChangeX += 12;
         base.MoveTowardsTarget(TargetPlayer.Left + 200, TargetPlayer.Top);
         InCoverage = false; // No longer in coverage.
@@ -82,6 +87,7 @@ namespace FootballGame
       {
         Intelligence = 6; // while in coverage, you don't always keep up with player
         TargetPlayer = CoveredPlayer;
+        DefensiveMode = DefensiveMode.Normal;
         CoverAfterMove = 99999999; // Never switch again
       }
       if (IsThrowingOrKicking)

@@ -11,23 +11,30 @@ namespace FootballGame
 {
   public class DefenderCornerbackTop : DefenderCornerback 
   {
+    public override void Initialize()
+    {
+      base.SetRandomcoverage(); // Infront, Normal, Soft
+      base.Initialize();
+      if (Game.defenderSafety.CoveredPlayer == Game.offenderWideReceiverTop || Game.defenderMiddleLinebacker.TargetPlayer == Game.offenderWideReceiverTop)
+        DefensiveMode = DefensiveMode.CoverageInfront;
+    }
     public override void Move()
     {
-      if (Top > PlayingField.FieldCenterY - 120) // Top man should not leave his zone and stay on top 
-      {
-        ChangeY -= 6;
-      }
       base.Move();
     }
   }
   public class DefenderCornerbackBottom : DefenderCornerback 
   {
+    public override void Initialize()
+    {
+      base.SetRandomcoverage(); // Infront, Normal, Soft
+      base.Initialize();
+      if (Game.defenderSafety.CoveredPlayer == Game.offenderWideReceiverBottom || Game.defenderMiddleLinebacker.TargetPlayer == Game.offenderWideReceiverBottom)
+        DefensiveMode = DefensiveMode.CoverageInfront;
+    }
+
     public override void Move()
     {
-      if (Top < PlayingField.FieldCenterY + 120) // Bottom man should not leave his zone and stay on bottom 
-      {
-        ChangeY += 6;
-      }
       base.Move();
     }
   }
@@ -35,12 +42,11 @@ namespace FootballGame
   public class DefenderCornerback : Defender
   {
     private bool InCoverage = true;
-    
 
     public override void Initialize()
     {
       SpeedCap = 132;
-      Intelligence = 6;
+      Intelligence = 7;
       InCoverage = true;
       CanStillIntercept = true;
       base.Initialize();
@@ -57,16 +63,42 @@ namespace FootballGame
         InCoverage = false;
       }
 
-      if (this.Intelligence > Random.Next(0,15) || MovingAroundBlocker > 0)
+      if (this.Intelligence > Random.Next(0, 15) || MovingAroundBlocker > 0)
       {
-        int calcTargetX = AI_BasicMoveTowardsTargetX();
+        int calcTargetX;
+        int calcTargetY;
 
+        //---- Calculate horizontalcoverage
+        if (DefensiveMode == DefensiveMode.CoverageInfront)
+        {
+          calcTargetX = TargetPlayer.Left;
+        }
+        else
+          calcTargetX = AI_BasicMoveTowardsTargetX();
+
+        //---- Calculate vertical coverage
         if (InCoverage)
         {
-          if (TargetPlayer.Top < PlayingField.FieldCenterY)
-            base.MoveTowardsTarget(calcTargetX + (Random.Next(0, 340) - 140), TargetPlayer.Top + 40);
-          else
-            base.MoveTowardsTarget(calcTargetX + (Random.Next(0, 340) - 140), TargetPlayer.Top - 40);
+          if (VerticalPosition == VerticalPosition.PositionTop)
+          {
+            if (TargetPlayer.Left < Left && Math.Abs(TargetPlayer.Top - Top) < 32 && TargetPlayer.Top < PlayingField.FieldCenterY) // We are trying to move in front, go around if at the same Y.
+              calcTargetY = TargetPlayer.Top + 50 - TargetPlayer.ChangeY;
+            else if (TargetPlayer.Top < PlayingField.FieldCenterY)
+              calcTargetY = TargetPlayer.Top + 30;
+            else
+              calcTargetY = TargetPlayer.Top - 30;
+          }
+          else // Bottom CB
+          {
+            if (TargetPlayer.Left < Left && Math.Abs(TargetPlayer.Top - Top) < 32 && TargetPlayer.Top > PlayingField.FieldCenterY) // We are trying to move in front, go around if at the same Y.
+              calcTargetY = TargetPlayer.Top - 50 - TargetPlayer.ChangeY;
+            else if (TargetPlayer.Top > PlayingField.FieldCenterY)
+              calcTargetY = TargetPlayer.Top - 30;
+            else
+              calcTargetY = TargetPlayer.Top + 30;
+          }
+
+          base.MoveTowardsTarget(calcTargetX + (Random.Next(0, 120) - 50), calcTargetY + (Random.Next(0, 100) - 50));
 
           if (IsThrowingOrKicking && Random.Next(0, 10) > 9) // Player will move towards thrown ball
           {
@@ -110,6 +142,25 @@ namespace FootballGame
       }
 
       base.CollisionMove(collidedWithPlayer, collisionOrientation);
+    }
+    protected void SetRandomcoverage()
+    {
+      Top += Random.Next(0, 80) - 40;
+
+      if (Random.Next(0, 100) < 20 || Player.ThrowingType == ThrowType.Punt || Player.ThrowingType == ThrowType.FieldGoal) // Blitz
+      {
+        DefensiveMode = DefensiveMode.CoverageInfront;
+        Left -= 20;
+      }
+      else if (Random.Next(0, 100) < 85)
+      {
+        DefensiveMode = DefensiveMode.Normal;
+      }
+      else
+      {
+        DefensiveMode = DefensiveMode.Soft;
+        Left += 20;
+      }
     }
   }
 }
