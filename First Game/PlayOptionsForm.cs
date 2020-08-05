@@ -111,7 +111,6 @@ namespace FootballGame
     public void TimeExpired()
     {
       // 5 yard penalty
-      CountDownTimer.Stop();
       PlayClockPenalty = true;
       btnStartPlay_Click(this, null);
     }

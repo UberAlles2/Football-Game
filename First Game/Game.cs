@@ -12,12 +12,12 @@ using Drake.Tools;
 
 /*-------------- To Do List ---------------
  * 
- * Penalty for play clock running down.
- * Play begin dialog, defficulty, decribe game situation.
- * Penalties?
+ * Play begin dialog, difficulty, decribe game situation.
+ * 
+ * Bug, End of game field goal didn't count.
  * 
  * Add more WR patterns
- * 
+ * Penalties?
  * ---------- Discarded Changes -----------
  * Draw end zones, too much time for the graphics
  */
