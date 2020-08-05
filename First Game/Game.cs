@@ -11,10 +11,10 @@ using System.Windows.Forms;
 using Drake.Tools;
 
 /*-------------- To Do List ---------------
- * Timeouts
+ * Tight in front coverage at time for cornerback
+ * Penalty for play clock running down.
  * 
  * Penalties?
- * 
  * 
  * Add more WR patterns
  * 
@@ -91,7 +91,7 @@ namespace FootballGame
       Scoreboard.CountDownTimer.SetTime(10, 0);
 
       // Set initial values and Display them.
-      CurrentGameState.Down = 3;
+      CurrentGameState.Down = 1;
       CurrentGameState.YardsToGo = 10;
       CurrentGameState.BallOnYard100 = 20.0F; // 1 - 100
       CurrentGameState.GuestScore = 3;
@@ -104,7 +104,9 @@ namespace FootballGame
       PlayingField.InitializeDrawing(CurrentGameState.BallOnYard100); // Draw the starting sideline and other playing field objects
       Player.FieldBounds = PlayingField.FieldBounds;
 
+      //////////////////////////
       AddPlayers();
+      //////////////////////////
 
       _playEnded = true; // Causes PlayOptions form to be displayed from main loop
 
