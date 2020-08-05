@@ -10,7 +10,7 @@ namespace FootballGame
 {
   public class CountDownTimer : IDisposable
   {
-    public Stopwatch _stpWatch = new Stopwatch();
+    public Stopwatch _stpWatch;
 
     public Action TimeChanged; // Set this delegate to an Action method that gets called when the time ticks. (Every one second default.)
     public Action TimeExpired; // Set this delegate to an Action method that gets called when the time expires.
@@ -24,7 +24,7 @@ namespace FootballGame
     }
 
     private Timer timer = new Timer();
-    private TimeSpan _max = TimeSpan.FromMilliseconds(30000);
+    private TimeSpan _max = TimeSpan.FromMilliseconds(600000);
     public TimeSpan TimeLeft => (_max.TotalMilliseconds - _stpWatch.ElapsedMilliseconds) > 0 ? TimeSpan.FromMilliseconds(_max.TotalMilliseconds - _stpWatch.ElapsedMilliseconds) : TimeSpan.FromMilliseconds(0);
     private bool _mustStop => (_max.TotalMilliseconds - _stpWatch.ElapsedMilliseconds) < 0;
     public string TimeLeftString => TimeLeft.ToString(@"mm\:ss");
@@ -61,6 +61,8 @@ namespace FootballGame
     private void Init()
     {
       SetInterval = 1000; // One second default
+      _stpWatch = new Stopwatch();
+      _stpWatch.Reset();
       timer.Tick += new EventHandler(TimerTick);
     }
     public void SetTime(TimeSpan ts)
@@ -103,6 +105,12 @@ namespace FootballGame
       timer.Start();
     }
 
-    public void Dispose() => timer.Dispose();
+    public void Dispose()
+    {
+      _stpWatch.Reset();
+      _stpWatch = null;
+      timer.Dispose();
+    }
+
   }
 }

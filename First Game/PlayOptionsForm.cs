@@ -111,11 +111,14 @@ namespace FootballGame
     public void TimeExpired()
     {
       // 5 yard penalty
+      CountDownTimer.Stop();
       PlayClockPenalty = true;
       btnStartPlay_Click(this, null);
     }
     private void btnStartPlay_Click(object sender, EventArgs e)
     {
+      CountDownTimer.Stop();
+      CountDownTimer.Dispose();
       PlayOption = PlayOptionType.NormalPlay;
       RunPassTendency = trackBarRunPass.Value;
       this.Close();
