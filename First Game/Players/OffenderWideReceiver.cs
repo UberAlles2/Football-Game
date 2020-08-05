@@ -100,7 +100,7 @@ namespace FootballGame
           if (Random.Next(0, 100) > 82) // 18% dropped
           {
             BallAsPlayer.SpinDefectedBall();
-            ParentGame.EndPlay(EndPlayType.Incomplete, null, "Dropped.");
+            Game.EndPlay(EndPlayType.Incomplete, null, "Dropped.");
             return;
           }
           else

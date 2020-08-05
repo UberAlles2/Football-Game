@@ -136,7 +136,7 @@ namespace FootballGame
         if (IsInterception(this))
         {
           FlashPlayer();
-          ParentGame.EndPlay(EndPlayType.Intercepted, this, "Intercepted.");
+          Game.EndPlay(EndPlayType.Intercepted, this, "Intercepted.");
           return;
         }
         
@@ -145,7 +145,7 @@ namespace FootballGame
 
       if (collidedWithPlayer.HasBall && !IsThrowingOrKicking)
       {
-        ParentGame.EndPlay(EndPlayType.Tackled, this, "Tackled.");
+        Game.EndPlay(EndPlayType.Tackled, this, "Tackled.");
         return;
       }
 

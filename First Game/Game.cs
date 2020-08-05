@@ -11,7 +11,7 @@ using System.Windows.Forms;
 using Drake.Tools;
 
 /*-------------- To Do List ---------------
- * Tight in front coverage at time for cornerback
+ * 
  * Penalty for play clock running down.
  * Play begin dialog, defficulty, decribe game situation.
  * Penalties?
@@ -44,8 +44,7 @@ namespace FootballGame
     FieldGoalMiss,
     Touchdown,
     Safety,
-    OffensivePenalty,
-    DefensivePenalty
+    Penalty
   }
 
   public class Game
@@ -188,6 +187,15 @@ namespace FootballGame
           else
           {
             ChoosePlay();
+            while (PlayOptionsForm.PlayClockPenalty)
+            {
+              Game.EndPlay(EndPlayType.Penalty, null, "Play clock ran down. 5 yard penalty.", -5);
+              Thread.Sleep(1000);
+              PlayingField.DrawField(CurrentGameState.BallOnYard100);
+              ParentForm.Invalidate();
+              ChoosePlay();
+            }
+
             PlayingField.DrawField(CurrentGameState.BallOnYard100);
             ParentForm.Invalidate();
 
@@ -242,9 +250,9 @@ namespace FootballGame
       MessageBox.Show(message, "Game Ended", MessageBoxButtons.OK);
     }
 
-    private void ChoosePlay()
+    private static void ChoosePlay()
     {
-      _playOptionsForm = new PlayOptionsForm(this);
+      _playOptionsForm = new PlayOptionsForm();
       _playOptionsForm.Location = new Point(ParentForm.Left + 660, ParentForm.Top + 160);
       _playOptionsForm.ShowDialog();
 
@@ -271,14 +279,13 @@ namespace FootballGame
       }
     }
 
-    public void EndPlay(EndPlayType endPlayType, Player tackledBy, string message)
+    public static void EndPlay(EndPlayType endPlayType, Player tackledBy, string message, int penaltyYards = 0)
     {
       CurrentGameState.FirstDown = false;
       if (CurrentGameState.DrivePlays == 0)
         CurrentGameState.DriveStartYard = CurrentGameState.BallOnYard100;
-      CurrentGameState.DrivePlays++;
 
-      if (_playEnded) // Play ended by another player
+      if (_playEnded && penaltyYards == 0) // Play ended by another player
         return;
       else
         _playEnded = true;
@@ -297,14 +304,24 @@ namespace FootballGame
         CurrentGameState.YardsGained = 100 - CurrentGameState.BallOnYard100;
       }
 
-      CurrentGameState.Down++;
+      if(penaltyYards == 0)
+      {
+        CurrentGameState.DrivePlays++;
+        CurrentGameState.Down++;
+      }
+      else // Penalty
+      {
+        Player.ControllablePlayer.Left = PlayingField.PixelFromYard((int)CurrentGameState.BallOnYard100 + penaltyYards) - 30;
+      }
 
-ReevaluateEndPlayCase:
+    ReevaluateEndPlayCase:
       switch (endPlayType)
       {
         // These 2 cases below are the only cases for yards gained / loss and also a first down made.
         case EndPlayType.Tackled:
         case EndPlayType.OutOfBounds:
+        case EndPlayType.Penalty:
+          //---- Safty
           if (Player.ControllablePlayer.Left + 30 < PlayingField.PixelFromYard(0)) // Safety, (28 is tip of ball)
           {
             CurrentGameState.GuestScore += 2;
@@ -318,7 +335,9 @@ ReevaluateEndPlayCase:
           }
           else
           {
+            //////////////////////
             Update_TackledAt_YardsGained_BallOnYard100_YardsToGo_FirstDown();
+            //////////////////////
           }
           break;
         case EndPlayType.Punted:
@@ -409,6 +428,9 @@ ReevaluateEndPlayCase:
         Scoreboard.ScrollMessage("First Down!");
       }
 
+      //if(endPlayType == EndPlayType.Penalty)
+      //  ChoosePlay();
+
       Scoreboard.DisplayBallOn(CurrentGameState.BallOnYard);
       Scoreboard.DisplayToGo(CurrentGameState.YardsToGo.ToString("00"));
       Scoreboard.DisplayDown(CurrentGameState.Down.ToString("0"));
@@ -448,7 +470,7 @@ ReevaluateEndPlayCase:
       CurrentGameState.ResetDriveState();
     }
 
-    private void Update_TackledAt_YardsGained_BallOnYard100_YardsToGo_FirstDown()
+    private static void Update_TackledAt_YardsGained_BallOnYard100_YardsToGo_FirstDown()
     {
       CurrentGameState.TackledAt100 = GetTackledAt();
       CurrentGameState.YardsGained = CurrentGameState.TackledAt100 - CurrentGameState.BallOnYard100;
@@ -457,7 +479,7 @@ ReevaluateEndPlayCase:
       CurrentGameState.FirstDown = CurrentGameState.YardsToGo < .01;
     }
 
-    private float GetTackledAt()
+    private static float GetTackledAt()
     {
       return PlayingField.YardFromPixel(Player.ControllablePlayer.Left + 30);
     }

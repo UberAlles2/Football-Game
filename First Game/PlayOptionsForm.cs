@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Drake.Tools;
@@ -23,6 +24,8 @@ namespace FootballGame
     public static CountDownTimer CountDownTimer;
     public static PlayOptionType PlayOption = PlayOptionType.NormalPlay;
     public static int RunPassTendency = 5;
+    public static bool PlayClockPenalty = false;
+
     private static CheckBox[] chkTimeOutArray = new CheckBox[3];
     private static int timeOutsLeft;
     public static int TimeOutsLeft 
@@ -48,7 +51,7 @@ namespace FootballGame
       }
     }
 
-    public PlayOptionsForm(Game parentGame)
+    public PlayOptionsForm()
     {
       InitializeComponent();
       // We only have 3 pictures, the top ones are the bottom ones flipped.
@@ -64,6 +67,7 @@ namespace FootballGame
     {
       DisplayStats();
       SetRandomWRPatterns();
+      PlayClockPenalty = false;
 
       btnPunt.Enabled = btnFieldGoal.Enabled = false;
       chkTimeOutArray[0] = chkTimeOut1;
@@ -96,10 +100,18 @@ namespace FootballGame
 
     public void TimeChanged()
     {
+      if (CountDownTimer.TimeLeft.TotalSeconds < 6)
+      {
+        lblTimeLeft.ForeColor = Color.DarkRed;
+        lblTimeLeft.BackColor = Color.Yellow;
+      }
+
       lblTimeLeft.Text = CountDownTimer.TimeLeftSecondsString;
     }
     public void TimeExpired()
     {
+      // 5 yard penalty
+      PlayClockPenalty = true;
       btnStartPlay_Click(this, null);
     }
     private void btnStartPlay_Click(object sender, EventArgs e)

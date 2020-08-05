@@ -67,8 +67,18 @@ namespace FootballGame
 
     public override void Move()
     {
-      if (TargetPlayer != Player.ControllablePlayer) // If a catch is made by offensive player
-        TargetPlayer = Player.ControllablePlayer;    // Change your target
+      if (ControllablePlayer.Left > PlayingField.LineOfScrimagePixel - 30 && InCoverage == true)
+      {
+        // One time deal when switching
+        SpeedCap += 4;
+        Intelligence += 1;
+        MovingAroundBlocker = 0;
+        TargetPlayer = ControllablePlayer;
+        DefensiveMode = DefensiveMode.Blitz; // tight coverage
+        ChangeX += 4;
+        base.MoveTowardsTarget(TargetPlayer.Left + 200, TargetPlayer.Top);
+        InCoverage = false; // No longer in coverage.
+      }
 
       if (IsThrowingOrKicking)
       {
@@ -110,14 +120,14 @@ namespace FootballGame
         if (IsInterception(this))
         {
           FlashPlayer();
-          ParentGame.EndPlay(EndPlayType.Intercepted, this, "Intercepted.");
+          Game.EndPlay(EndPlayType.Intercepted, this, "Intercepted.");
           return;
         }
       }
 
       if (collidedWithPlayer.HasBall && !IsThrowingOrKicking)
       {
-        ParentGame.EndPlay(EndPlayType.Tackled, this, "Tackled.");
+        Game.EndPlay(EndPlayType.Tackled, this, "Tackled.");
         return;
       }
 

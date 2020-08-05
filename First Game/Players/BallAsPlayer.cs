@@ -68,11 +68,11 @@ namespace FootballGame
         if (BallIsCatchable)
         {
           BallIsCatchable = false;
-          ParentGame.EndPlay(EndPlayType.Incomplete, null, "Incomplete.");
+          Game.EndPlay(EndPlayType.Incomplete, null, "Incomplete.");
         }
         else
         {
-          ParentGame.EndPlay(EndPlayType.Incomplete, null, "Pass Broken Up.");
+          Game.EndPlay(EndPlayType.Incomplete, null, "Pass Broken Up.");
         }
 
         return;
@@ -148,7 +148,7 @@ namespace FootballGame
     {
       if (this.Left < PlayingField.FieldGoalPostLeft)
       {
-        ParentGame.EndPlay(EndPlayType.FieldGoalMiss, null, "Missed Field Goal Short.");
+        Game.EndPlay(EndPlayType.FieldGoalMiss, null, "Missed Field Goal Short.");
       }
 
       this.Left = PlayingField.FieldGoalPostLeft + 4;
@@ -158,17 +158,17 @@ namespace FootballGame
       {
         SpinDefectedBall();
         if (Random.Next(0, 20) > 9)
-          ParentGame.EndPlay(EndPlayType.FieldGoal, null, "Field Goal! Went through.");
+          Game.EndPlay(EndPlayType.FieldGoal, null, "Field Goal! Went through.");
         else
-          ParentGame.EndPlay(EndPlayType.FieldGoalMiss, null, "Missed Field Goal. Hit Post.");
+          Game.EndPlay(EndPlayType.FieldGoalMiss, null, "Missed Field Goal. Hit Post.");
       }
       else if (this.Top > PlayingField.FieldGoalPostTop && this.Top < PlayingField.FieldGoalPostBottom) // Most common result
       {
-        ParentGame.EndPlay(EndPlayType.FieldGoal, null, "Field Goal!");
+        Game.EndPlay(EndPlayType.FieldGoal, null, "Field Goal!");
       }
       else
       {
-        ParentGame.EndPlay(EndPlayType.FieldGoalMiss, null, "Missed Field Goal Wide.");
+        Game.EndPlay(EndPlayType.FieldGoalMiss, null, "Missed Field Goal Wide.");
       }
     }
 

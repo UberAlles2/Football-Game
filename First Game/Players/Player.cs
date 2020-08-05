@@ -336,7 +336,7 @@ namespace FootballGame
         else if (this.HasBall)
         {
           this.Left += Random.Next(60, 360);
-          ParentGame.EndPlay(EndPlayType.Tackled, null, "Tackled after extra yards.");
+          Game.EndPlay(EndPlayType.Tackled, null, "Tackled after extra yards.");
           return;
         }
         else
@@ -350,7 +350,7 @@ namespace FootballGame
           this.ChangeY = 60;
         else if (this.HasBall && !Player.IsThrowingOrKicking)
         {
-          ParentGame.EndPlay(EndPlayType.OutOfBounds, null, "Out of Bounds.");
+          Game.EndPlay(EndPlayType.OutOfBounds, null, "Out of Bounds.");
           return;
         }
         else
@@ -365,7 +365,7 @@ namespace FootballGame
           this.ChangeY = -60;
         else if (this.HasBall)
         {
-          ParentGame.EndPlay(EndPlayType.OutOfBounds, null, "Out of Bounds.");
+          Game.EndPlay(EndPlayType.OutOfBounds, null, "Out of Bounds.");
           return;
         }
         else
@@ -381,7 +381,7 @@ namespace FootballGame
         return;
       
       if (this.Left + 28 > PlayingField.PixelFromYard(100)) // 28 is tip of ball crossing, not Left
-        ParentGame.EndPlay(EndPlayType.Touchdown, this, "Touchdown!");
+        Game.EndPlay(EndPlayType.Touchdown, this, "Touchdown!");
     }
 
     public static void CheckCollisions()
