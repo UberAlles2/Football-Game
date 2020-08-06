@@ -25,7 +25,16 @@ namespace FootballGame
 
     private Timer timer = new Timer();
     private TimeSpan _max = TimeSpan.FromMilliseconds(600000);
-    public TimeSpan TimeLeft => (_max.TotalMilliseconds - _stpWatch.ElapsedMilliseconds) > 0 ? TimeSpan.FromMilliseconds(_max.TotalMilliseconds - _stpWatch.ElapsedMilliseconds) : TimeSpan.FromMilliseconds(0);
+    public TimeSpan TimeLeft
+    {
+      get 
+      {
+        if (_stpWatch == null)
+          _stpWatch = new Stopwatch();
+        return (_max.TotalMilliseconds - _stpWatch.ElapsedMilliseconds) > 0 ? TimeSpan.FromMilliseconds(_max.TotalMilliseconds - _stpWatch.ElapsedMilliseconds) : TimeSpan.FromMilliseconds(0);
+      }
+    }
+    
     private bool _mustStop => (_max.TotalMilliseconds - _stpWatch.ElapsedMilliseconds) < 0;
     public string TimeLeftString => TimeLeft.ToString(@"mm\:ss");
     public string TimeLeftMinutesString => TimeLeft.ToString(@"mm");

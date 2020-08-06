@@ -65,6 +65,11 @@ namespace FootballGame
 
     private void PlayOptionsForm_Load(object sender, EventArgs e)
     {
+      CountDownTimer = new CountDownTimer(0, 20); // 20 seconds to choose a play.
+      CountDownTimer.TimeChanged = TimeChanged;
+      CountDownTimer.TimeExpired = TimeExpired;
+      CountDownTimer.Start();
+
       DisplayStats();
       SetRandomWRPatterns();
       PlayClockPenalty = false;
@@ -91,11 +96,6 @@ namespace FootballGame
       lblDriveYards.Text      = Game.CurrentGameState.GetDriveYards().ToString("0.0");
       //TimeSpan Elapsed        = Scoreboard.CountDownTimer.TimeLeft.Subtract(Game.CurrentGameState.DriveStartTimeSpan);
       lblDriveTime.Text       = Game.CurrentGameState.GetElapsedString(); 
-
-      CountDownTimer = new CountDownTimer(0, 20); // 20 seconds to choose a play.
-      CountDownTimer.TimeChanged = TimeChanged;
-      CountDownTimer.TimeExpired = TimeExpired;
-      CountDownTimer.Start();
     }
 
     public void TimeChanged()
