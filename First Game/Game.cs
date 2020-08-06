@@ -228,7 +228,9 @@ namespace FootballGame
     public static void EndGame()
     {
       _timeExpired = true;
+      Scoreboard.CountDownTimer.SetTime(0, 0);
       PlayOptionsForm.CountDownTimer.Stop();
+      Scoreboard.DisplayClock();
       _playOptionsForm.Close();
       Scoreboard.ScrollMessage("Game Ended");
     }
@@ -356,16 +358,19 @@ namespace FootballGame
 
           if (CurrentGameState.BallOnYard100 < 12)
           {
-            // Other team scored.
-            if (CurrentGameState.BallOnYard100 < 3)
+            if (CurrentGameState.BallOnYard100 < 3 && Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 60)
             {
-              message += "\nGuest scored a touchdown.";
-              CurrentGameState.GuestScore += 7;
-            }
-            else
-            {
-              message += "\nGuest scored a field goal.";
-              CurrentGameState.GuestScore += 3;
+              // Other team scored.
+              if (CurrentGameState.BallOnYard100 < 3 && Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 60)
+              {
+                message += "\nGuest scored a touchdown.";
+                CurrentGameState.GuestScore += 7;
+              }
+              else
+              {
+                message += "\nGuest scored a field goal.";
+                CurrentGameState.GuestScore += 3;
+              }
             }
             CurrentGameState.YardsGained = 0;
             CurrentGameState.BallOnYard100 = 20;
@@ -438,9 +443,9 @@ namespace FootballGame
 
     private static void UpdateClockAndTimeoutsForChangeOfPossession()
     {
-      if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 240)
+      if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 240) // 4 minutes left
         Scoreboard.CountDownTimer.SubtractTime(2, 0);
-      else if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 160)
+      else if (Scoreboard.CountDownTimer.TimeLeft.TotalSeconds > 160) // 2:40 seconds left, subtract 1:28
         Scoreboard.CountDownTimer.SubtractTime(1, 28); // Subtract 88 second off the clock, 2 minute warning was employed
       else
       {
@@ -463,6 +468,10 @@ namespace FootballGame
           PlayOptionsForm.TimeOutsLeft -= 3;
         }
         else
+        {
+          EndGame();
+        }
+        if(Scoreboard.CountDownTimer.TimeLeft.TotalSeconds < 10)
         {
           EndGame();
         }

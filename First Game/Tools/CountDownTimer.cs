@@ -47,6 +47,12 @@ namespace FootballGame
 
       if (_mustStop)
       {
+        if (_stpWatch == null)
+        {
+          _stpWatch = new Stopwatch();
+          return;
+        }
+
         TimeExpired?.Invoke();
         _stpWatch.Stop();
         timer.Enabled = false;
@@ -110,6 +116,10 @@ namespace FootballGame
 
     public void Restart()
     {
+      if (_stpWatch == null)
+      {
+        _stpWatch = new Stopwatch();
+      }
       _stpWatch.Reset();
       timer.Start();
     }
