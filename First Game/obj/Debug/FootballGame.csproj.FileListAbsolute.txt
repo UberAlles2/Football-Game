@@ -24,3 +24,4 @@ C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\obj\Debug\Foot
 C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\obj\Debug\FootballGame.exe
 C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\obj\Debug\FootballGame.pdb
 C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\obj\Debug\FootballGame.PlayOptionsForm.resources
+C:\Users\drakega\Source\Repos\UberAlles2\Football-Game\First Game\obj\Debug\FootballGame.frmIntroduction.resources

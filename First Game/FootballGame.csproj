@@ -49,6 +49,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="frmIntroduction.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmIntroduction.Designer.cs">
+      <DependentUpon>frmIntroduction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tools\CountDownTimer.cs" />
     <Compile Include="Players\DefenderSafety.cs" />
     <Compile Include="CurrentGameState.cs" />
@@ -83,6 +89,9 @@
     <Compile Include="Tools\MyExtensions.cs" />
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmIntroduction.resx">
+      <DependentUpon>frmIntroduction.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="PlayOptionsForm.resx">
       <DependentUpon>PlayOptionsForm.cs</DependentUpon>

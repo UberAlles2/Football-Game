@@ -16,6 +16,7 @@ namespace FootballGame
     {
       Application.EnableVisualStyles();
       Application.SetCompatibleTextRenderingDefault(false);
+      Application.Run(new frmIntroduction());
       Application.Run(new Form1());
     }
   }
