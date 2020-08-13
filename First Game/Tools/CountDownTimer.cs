@@ -111,6 +111,10 @@ namespace FootballGame
 
     public void Reset()
     {
+      if (_stpWatch == null)
+      {
+        _stpWatch = new Stopwatch();
+      }
       _stpWatch.Reset();
     }
 
